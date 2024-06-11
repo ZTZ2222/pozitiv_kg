@@ -1,25 +1,29 @@
-import {LocalePrefix} from 'next-intl/routing';
+import { LocalePrefix } from "next-intl/routing";
 
-const localePrefix: LocalePrefix = 'as-needed';
+const localePrefix: LocalePrefix = "as-needed";
 
 export const AppConfig = {
-  name: 'Positiv',
+  name: "Positiv",
   locales: [
     {
-      id: 'ru',
-      name: 'Русский',
+      id: "ru",
+      name: "Русский",
     },
     {
-      id: 'en',
-      name: 'English',
+      id: "en",
+      name: "English",
     },
     {
-      id: 'ky',
-      name: 'Кыргызча',
+      id: "ky",
+      name: "Кыргызча",
+    },
+    {
+      id: "uz",
+      name: "O`zbek",
     },
   ],
-  defaultLocale: 'ru',
+  defaultLocale: "ru",
   localePrefix,
 };
 
-export const AllLocales = AppConfig.locales.map(locale => locale.id);
+export const AllLocales = AppConfig.locales.map((locale) => locale.id);
