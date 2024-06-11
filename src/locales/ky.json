@@ -4,6 +4,7 @@
     "meta_description": "Pozitiv-KY"
   },
   "Search": {
-    "placeholder": "Издөө..."
+    "placeholder_mobile": "Издөө...",
+    "placeholder_desktop": "Кыймылдарды издөө..."
   }
 }

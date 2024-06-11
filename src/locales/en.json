@@ -4,6 +4,7 @@
     "meta_description": "Pozitiv-EN"
   },
   "Search": {
-    "placeholder": "Search..."
+    "placeholder_mobile": "Search...",
+    "placeholder_desktop": "Search for properties..."
   }
 }

@@ -4,6 +4,7 @@
     "meta_description": "Pozitiv-KY"
   },
   "Search": {
-    "placeholder": "Qidirmoq..."
+    "placeholder_mobile": "Qidirmoq...",
+    "placeholder_desktop": "Xususiyatlarni qidiring..."
   }
 }
