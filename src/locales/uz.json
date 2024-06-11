@@ -6,5 +6,9 @@
   "Search": {
     "placeholder_mobile": "Qidirmoq...",
     "placeholder_desktop": "Xususiyatlarni qidiring..."
+  },
+  "Button": {
+    "login": "Tizimga kirish",
+    "categories": "Kategoriyalar"
   }
 }

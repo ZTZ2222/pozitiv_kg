@@ -6,5 +6,9 @@
   "Search": {
     "placeholder_mobile": "Поиск...",
     "placeholder_desktop": "Поиск недвижимостей..."
+  },
+  "Button": {
+    "login": "Войти",
+    "categories": "Категории"
   }
 }

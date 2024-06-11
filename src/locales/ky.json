@@ -6,5 +6,9 @@
   "Search": {
     "placeholder_mobile": "Издөө...",
     "placeholder_desktop": "Кыймылдарды издөө..."
+  },
+  "Button": {
+    "login": "Кирүү",
+    "categories": "Категориялар"
   }
 }

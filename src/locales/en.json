@@ -6,5 +6,9 @@
   "Search": {
     "placeholder_mobile": "Search...",
     "placeholder_desktop": "Search for properties..."
+  },
+  "Button": {
+    "login": "Sign-in",
+    "categories": "Categories"
   }
 }
