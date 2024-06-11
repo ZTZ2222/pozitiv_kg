@@ -1,6 +1,9 @@
 {
   "Index": {
-    "meta_title": "Pozitiv-KG",
-    "meta_description": "Pozitiv-KG"
+    "meta_title": "Pozitiv-RU",
+    "meta_description": "Pozitiv-RU"
+  },
+  "Search": {
+    "placeholder": "Поиск..."
   }
 }
