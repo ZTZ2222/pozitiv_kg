@@ -211,7 +211,7 @@ const CategoryModal = () => {
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
       <DrawerTrigger>
-        <ButtonCategory className="text-pink-500" />
+        <ButtonCategory className="text-fuchsia-500" />
       </DrawerTrigger>
       {/* Trigger button */}
 

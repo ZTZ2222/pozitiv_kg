@@ -12,7 +12,7 @@ const ButtonCategory: React.FC<ButtonCategoryProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "flex h-full gap-2.5 p-0 text-lg font-normal leading-tight text-grey-300",
+        "flex h-full gap-2.5 p-0 text-lg font-normal leading-tight text-gray-500",
         className,
       )}
     >
