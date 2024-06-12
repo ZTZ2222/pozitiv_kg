@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const TopHeader = () => {
@@ -12,14 +13,14 @@ const TopHeader = () => {
           className="object-contain"
         />
       </div>
-      <div className="relative mx-4 h-4 w-[120px]">
+      <Link href="/" className="relative mx-4 h-4 w-[120px]">
         <Image
           src="/assets/logo/pozitiv.png"
           alt="Logo"
           fill
           className="object-contain"
         />
-      </div>
+      </Link>
       <div className="relative h-4 w-full self-end">
         <Image
           src="/assets/ornament-down.png"
