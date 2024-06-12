@@ -9,12 +9,13 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-import { X } from "lucide-react";
-import ButtonCategory from "@/components/ButtonCategory";
+import { Grip, X } from "lucide-react";
 import CategoryCard from "./CategoryCard";
 import { Accordion } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
 
 const categories = [
   {
@@ -204,19 +205,26 @@ const categories = [
 ];
 
 const CategoryModal = () => {
+  const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 395px)");
   return (
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
-      <DrawerTrigger>
-        <ButtonCategory className="text-fuchsia-500" />
+      <DrawerTrigger asChild>
+        <Button className="flex h-full gap-2.5 p-0 text-lg leading-tight text-fuchsia-500">
+          <Grip className="h-6 w-6" />
+          {t("categories")}
+        </Button>
       </DrawerTrigger>
       {/* Trigger button */}
 
       {/* Drawer content */}
-      <DrawerContent className="h-full max-w-[395px] rounded-t-[10px] bg-gray-100">
+      <DrawerContent className="h-full max-w-[395px] rounded-t-[10px] bg-white">
         <DrawerHeader className="flex justify-between py-0 pb-8">
-          <ButtonCategory className="ml-4" />
+          <div className="ml-4 flex gap-2.5 text-lg leading-tight text-gray-500">
+            <Grip className="h-6 w-6" />
+            {t("categories")}
+          </div>
           <DrawerClose className="">
             <X className="h-6 w-6 text-gray-500" />
           </DrawerClose>
