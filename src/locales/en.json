@@ -9,6 +9,7 @@
   },
   "Button": {
     "login": "Sign-in",
-    "categories": "Categories"
+    "categories": "Categories",
+    "filter": "Filter"
   }
 }

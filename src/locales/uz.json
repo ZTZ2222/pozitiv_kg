@@ -9,6 +9,7 @@
   },
   "Button": {
     "login": "Tizimga kirish",
-    "categories": "Kategoriyalar"
+    "categories": "Kategoriyalar",
+    "filter": "Filtr"
   }
 }

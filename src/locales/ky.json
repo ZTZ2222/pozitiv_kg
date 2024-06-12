@@ -9,6 +9,7 @@
   },
   "Button": {
     "login": "Кирүү",
-    "categories": "Категориялар"
+    "categories": "Категориялар",
+    "filter": "Фильтр"
   }
 }
