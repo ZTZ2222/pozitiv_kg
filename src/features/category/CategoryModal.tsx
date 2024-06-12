@@ -9,14 +9,12 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-import { Grip, Menu as HamburgerMenu, User } from "lucide-react";
 import { X } from "lucide-react";
 import ButtonCategory from "@/components/ButtonCategory";
 import CategoryCard from "./CategoryCard";
 import { Accordion } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { Button } from "@/components/ui/button";
 
 const categories = [
   {
@@ -220,7 +218,7 @@ const CategoryModal = () => {
         <DrawerHeader className="flex justify-between py-0 pb-8">
           <ButtonCategory className="ml-4" />
           <DrawerClose className="">
-            <X />
+            <X className="h-6 w-6 text-gray-500" />
           </DrawerClose>
         </DrawerHeader>
 
