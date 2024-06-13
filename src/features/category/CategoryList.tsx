@@ -2,7 +2,7 @@
 
 import React from "react";
 import CategoryCard from "./CategoryCard";
-import { categories } from "./CategoryModal";
+import { categories } from "@/utils/fake_api";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const CategoryList = () => {
