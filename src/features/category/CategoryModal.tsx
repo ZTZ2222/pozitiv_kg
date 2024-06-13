@@ -17,7 +17,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
-const categories = [
+export const categories = [
   {
     title: "Недвижимость",
     subs: [
@@ -211,7 +211,10 @@ const CategoryModal = () => {
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
       <DrawerTrigger asChild>
-        <Button className="flex h-full gap-2.5 p-0 text-lg leading-tight text-fuchsia-500">
+        <Button
+          variant="ghost"
+          className="flex h-fit gap-2.5 p-0 text-lg leading-tight text-fuchsia-500"
+        >
           <Grip className="h-6 w-6" />
           {t("categories")}
         </Button>
