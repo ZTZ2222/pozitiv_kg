@@ -227,3 +227,30 @@ export const ads = [
     images: ["/assets/ads/house_1.png", "/assets/ads/house_2.png"],
   },
 ];
+
+export const banners = [
+  {
+    id: 1,
+    url_mobile: "/assets/swiperImages/dubai_mobile.png",
+    url_desktop: "/assets/swiperImages/dubai_desktop.png",
+    href: "#",
+  },
+  {
+    id: 2,
+    url_mobile: "/assets/swiperImages/sea_mobile.png",
+    url_desktop: "/assets/swiperImages/sea_desktop.png",
+    href: "#",
+  },
+  {
+    id: 3,
+    url_mobile: "/assets/swiperImages/flat_mobile.png",
+    url_desktop: "/assets/swiperImages/flat_desktop.png",
+    href: "#",
+  },
+  {
+    id: 4,
+    url_mobile: "/assets/swiperImages/sea_mobile.png",
+    url_desktop: "/assets/swiperImages/sea_desktop.png",
+    href: "#",
+  },
+];
