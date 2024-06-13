@@ -31,7 +31,10 @@ const MainFilter = () => {
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
       <DrawerTrigger asChild>
-        <Button className="h-full gap-1.5 p-0 font-light text-cyan-400">
+        <Button
+          variant="ghost"
+          className="h-full gap-1.5 p-0 font-light text-cyan-400"
+        >
           <SlidersHorizontal className="h-6 w-6" />
           {t("filter")}
         </Button>
