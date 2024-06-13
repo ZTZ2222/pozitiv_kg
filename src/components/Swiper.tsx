@@ -12,8 +12,16 @@ import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/utils/Helpers";
 import { Card, CardContent } from "./ui/card";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { IBannerItem } from "@/types/swiper.interface";
+import Link from "next/link";
 
-const Swiper = ({ className }: { className?: string }) => {
+const Swiper = ({
+  className,
+  images,
+}: {
+  className?: string;
+  images: IBannerItem[];
+}) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -50,70 +58,26 @@ const Swiper = ({ className }: { className?: string }) => {
         ]}
       >
         <CarouselContent className="mr-4 cursor-grab pl-4 sm:mr-0 md:-ml-5">
-          <CarouselItem className="basis-[90%] sm:basis-full">
-            <Card className="rounded-[10px] border-none">
-              <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
-                <Image
-                  src={
-                    isSmallScreen
-                      ? "/assets/swiperImages/dubai_mobile.png"
-                      : "/assets/swiperImages/dubai_desktop.png"
-                  }
-                  alt="Dubai"
-                  fill
-                  className="rounded-[10px] object-cover object-left"
-                />
-              </CardContent>
-            </Card>
-          </CarouselItem>
-          <CarouselItem className="basis-[90%] sm:basis-full">
-            <Card className="rounded-[10px] border-none">
-              <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
-                <Image
-                  src={
-                    isSmallScreen
-                      ? "/assets/swiperImages/sea_mobile.png"
-                      : "/assets/swiperImages/sea_desktop.png"
-                  }
-                  alt="Dubai"
-                  fill
-                  className="rounded-[10px] object-cover object-left"
-                />
-              </CardContent>
-            </Card>
-          </CarouselItem>
-          <CarouselItem className="basis-[90%] sm:basis-full">
-            <Card className="rounded-[10px] border-none">
-              <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
-                <Image
-                  src={
-                    isSmallScreen
-                      ? "/assets/swiperImages/dubai_mobile.png"
-                      : "/assets/swiperImages/dubai_desktop.png"
-                  }
-                  alt="Dubai"
-                  fill
-                  className="rounded-[10px] object-cover object-left"
-                />
-              </CardContent>
-            </Card>
-          </CarouselItem>
-          <CarouselItem className="basis-[90%] sm:basis-full">
-            <Card className="rounded-[10px] border-none">
-              <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
-                <Image
-                  src={
-                    isSmallScreen
-                      ? "/assets/swiperImages/sea_mobile.png"
-                      : "/assets/swiperImages/sea_desktop.png"
-                  }
-                  alt="Dubai"
-                  fill
-                  className="rounded-[10px] object-cover object-left"
-                />
-              </CardContent>
-            </Card>
-          </CarouselItem>
+          {images.map((item, index) => (
+            <CarouselItem key={index} className="basis-[90%] sm:basis-full">
+              <Link href={item.href}>
+                <Card className="rounded-[10px] border-none">
+                  <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
+                    <Image
+                      src={
+                        isSmallScreen
+                          ? item.url_mobile || item.url_desktop
+                          : item.url_desktop
+                      }
+                      alt={item.href}
+                      fill
+                      className="rounded-[10px] object-cover object-left"
+                    />
+                  </CardContent>
+                </Card>
+              </Link>
+            </CarouselItem>
+          ))}
         </CarouselContent>
       </Carousel>
       <div className="mt-4 flex justify-center">
