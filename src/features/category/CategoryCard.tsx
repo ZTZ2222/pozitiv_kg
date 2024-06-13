@@ -9,19 +9,9 @@ import {
 import { cn } from "@/utils/Helpers";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { ICategory } from "@/types/category.interface";
 
-interface CategoryCardProps {
-  title: string;
-  icon?: string;
-  subs?: {
-    title: string;
-    href: string;
-  }[];
-  className?: string;
-  variant?: "accordion" | "button";
-}
-
-const CategoryCard: React.FC<CategoryCardProps> = ({
+const CategoryCard: React.FC<ICategory> = ({
   title,
   icon,
   subs,
