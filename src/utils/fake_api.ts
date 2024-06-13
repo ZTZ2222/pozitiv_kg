@@ -297,3 +297,36 @@ export const banners = [
     href: "#",
   },
 ];
+
+export const socials = [
+  {
+    title: "instagram",
+    image: "/assets/socials/instagram.svg",
+    link: "#",
+    color: "",
+  },
+  {
+    title: "whatsapp",
+    image: "/assets/socials/whatsapp.svg",
+    link: "#",
+    color: "",
+  },
+  {
+    title: "telegram",
+    image: "/assets/socials/telegram.svg",
+    link: "#",
+    color: "",
+  },
+  {
+    title: "tiktok",
+    image: "/assets/socials/tiktok.svg",
+    link: "#",
+    color: "",
+  },
+  {
+    title: "facebook",
+    image: "/assets/socials/facebook.svg",
+    link: "#",
+    color: "",
+  },
+];

@@ -13,6 +13,17 @@
     "filter": "Filtr"
   },
   "Heading": {
-    "recommended_ads": "Tanlangan reklamalar"
+    "recommended_ads": "Tanlangan reklamalar",
+    "recently_viewed": "Siz yaqinda ko‘rganlaringiz"
+  },
+  "Footer": {
+    "copyright": "© 2013. Barcha huquqlar himoyalangan. Ko‘chmas mulk agentligi PozitivKG.",
+    "my_profile": "Mening profilim",
+    "personal_account": "Shaxsiy kabinet",
+    "post_ad": "E'lon joylashtirish",
+    "favorites": "Tanlanganlar",
+    "chats": "Chatlar",
+    "support": "Texnik yordam",
+    "socials": "Bizning ijtimoiy tarmoqlar"
   }
 }
