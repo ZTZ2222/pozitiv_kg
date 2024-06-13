@@ -49,7 +49,7 @@ const Swiper = ({ className }: { className?: string }) => {
           }),
         ]}
       >
-        <CarouselContent className="mr-4 pl-4 sm:mr-0 md:-ml-5">
+        <CarouselContent className="mr-4 cursor-grab pl-4 sm:mr-0 md:-ml-5">
           <CarouselItem className="basis-[90%] sm:basis-full">
             <Card className="rounded-[10px] border-none">
               <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
