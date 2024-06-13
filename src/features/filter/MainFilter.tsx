@@ -33,7 +33,7 @@ const MainFilter = () => {
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
-          className="h-full gap-1.5 p-0 font-light text-cyan-400"
+          className="h-full gap-1.5 p-1 font-light text-cyan-400"
         >
           <SlidersHorizontal className="h-6 w-6" />
           {t("filter")}
