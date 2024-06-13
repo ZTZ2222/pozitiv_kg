@@ -11,5 +11,8 @@
     "login": "Tizimga kirish",
     "categories": "Kategoriyalar",
     "filter": "Filtr"
+  },
+  "Heading": {
+    "recommended_ads": "Tanlangan reklamalar"
   }
 }

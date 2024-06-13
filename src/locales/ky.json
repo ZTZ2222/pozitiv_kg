@@ -11,5 +11,8 @@
     "login": "Кирүү",
     "categories": "Категориялар",
     "filter": "Фильтр"
+  },
+  "Heading": {
+    "recommended_ads": "Өзгөчөлөнгөн жарнамалар"
   }
 }

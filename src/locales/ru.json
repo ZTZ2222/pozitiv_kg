@@ -11,5 +11,8 @@
     "login": "Войти",
     "categories": "Категории",
     "filter": "Фильтр"
+  },
+  "Heading": {
+    "recommended_ads": "Рекомендуемые объявления"
   }
 }

@@ -11,5 +11,8 @@
     "login": "Sign-in",
     "categories": "Categories",
     "filter": "Filter"
+  },
+  "Heading": {
+    "recommended_ads": "Featured Ads"
   }
 }
