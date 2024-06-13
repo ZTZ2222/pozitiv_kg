@@ -228,6 +228,49 @@ export const ads = [
   },
 ];
 
+export const ads_2 = [
+  {
+    id: 1,
+    title: "Загородный дом",
+    re_area: 120,
+    is_favorite: true,
+    is_promoted: true,
+    price_usd: 78650,
+    price_som: 78650 * 89.6,
+    images: ["/assets/ads/house_2.png", "/assets/ads/house_1.png"],
+  },
+  {
+    id: 2,
+    title: "Загородный дом",
+    re_area: 120,
+    is_favorite: false,
+    is_promoted: false,
+    price_usd: 78650,
+    price_som: 78650 * 89.6,
+    images: ["/assets/ads/house_2.png", "/assets/ads/house_1.png"],
+  },
+  {
+    id: 3,
+    title: "Загородный дом",
+    re_area: 120,
+    is_favorite: true,
+    is_promoted: true,
+    price_usd: 78650,
+    price_som: 78650 * 89.6,
+    images: ["/assets/ads/house_2.png", "/assets/ads/house_1.png"],
+  },
+  {
+    id: 4,
+    title: "Загородный дом",
+    re_area: 120,
+    is_favorite: false,
+    is_promoted: false,
+    price_usd: 78650,
+    price_som: 78650 * 89.6,
+    images: ["/assets/ads/house_2.png", "/assets/ads/house_1.png"],
+  },
+];
+
 export const banners = [
   {
     id: 1,
