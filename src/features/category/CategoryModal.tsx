@@ -16,6 +16,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/utils/Helpers";
 
 export const categories = [
   {
@@ -204,21 +205,39 @@ export const categories = [
   },
 ];
 
-const CategoryModal = () => {
+const CategoryModal = ({ className }: { className?: string }) => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 395px)");
+  const isDesktopScreen = useMediaQuery("(min-width: 768px)");
   return (
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
-      <DrawerTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex h-fit gap-2.5 p-0 text-lg leading-tight text-fuchsia-500"
-        >
-          <Grip className="h-6 w-6" />
-          {t("categories")}
-        </Button>
-      </DrawerTrigger>
+      {isDesktopScreen ? (
+        <DrawerTrigger asChild>
+          <Button
+            variant="ghost"
+            className={cn(
+              "flex h-fit gap-2.5 p-0 text-lg leading-tight text-fuchsia-500",
+              className,
+            )}
+          >
+            <Grip className="h-6 w-6" />
+            {t("categories")}
+          </Button>
+        </DrawerTrigger>
+      ) : (
+        <DrawerTrigger asChild>
+          <Button
+            className={cn(
+              "flex h-fit w-full max-w-[360px] gap-2.5 bg-fuchsia-500 py-3 text-lg leading-tight",
+              className,
+            )}
+          >
+            <Grip className="h-6 w-6" />
+            {t("categories")}
+          </Button>
+        </DrawerTrigger>
+      )}
       {/* Trigger button */}
 
       {/* Drawer content */}
