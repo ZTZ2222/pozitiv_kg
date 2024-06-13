@@ -17,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "relative flex h-9 w-64 items-center rounded-[10px] border border-[#BCBCBC] bg-[#E4E4E4] text-gray-400 md:h-14 md:w-[480px] md:border-none md:bg-white",
+        "relative flex h-9 w-64 items-center rounded-[10px] border border-[#BCBCBC] bg-gray-200 text-gray-400 has-[:focus]:ring-1 has-[:focus]:ring-cyan-400 md:h-14 md:w-[480px] md:border-none md:bg-white",
         className,
       )}
     >
@@ -26,13 +26,13 @@ const Search: React.FC<SearchProps> = ({ className }) => {
         <Input
           type="search"
           placeholder={t("placeholder_mobile")}
-          className="h-full border-none px-2 text-base font-light"
+          className="h-full border-none bg-gray-200 px-2 text-base font-light text-gray-700"
         />
       ) : (
         <Input
           type="search"
           placeholder={t("placeholder_desktop")}
-          className="h-full border-none pl-7 text-lg md:order-1"
+          className="h-full border-none bg-gray-200 pl-7 text-lg text-gray-700 md:order-1"
         />
       )}
     </div>
