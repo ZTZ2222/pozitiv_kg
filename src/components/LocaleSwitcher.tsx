@@ -13,8 +13,9 @@ import {
 import { usePathname, useRouter } from "@/libs/i18nNavigation";
 import { AppConfig } from "@/utils/AppConfig";
 import { ChevronDown } from "lucide-react";
+import { cn } from "@/utils/Helpers";
 
-export default function LocaleSwitcher() {
+export default function LocaleSwitcher({ className }: { className?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
@@ -28,23 +29,24 @@ export default function LocaleSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="text-grey-3 space-x-2 p-2 focus-visible:ring-offset-0"
+          className={cn(
+            "text-grey-3 space-x-1.5 fill-none p-2 focus-visible:ring-offset-0",
+            className,
+          )}
           variant="ghost"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="size-6 stroke-current stroke-2"
-            fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
-            viewBox="0 0 24 24"
           >
             <path stroke="none" d="M0 0h24v24H0z" />
             <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0M3.6 9h16.8M3.6 15h16.8" />
             <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
           </svg>
           <span>{locale.toLocaleUpperCase()}</span>
-          <ChevronDown className="text-gray-400" />
+          <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
