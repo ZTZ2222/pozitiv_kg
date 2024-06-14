@@ -1,7 +1,4 @@
-import LocaleSwitcher from "@/components/LocaleSwitcher";
-import { Button } from "@/components/ui/button";
 import { socials } from "@/utils/fake_api";
-import { Instagram } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,18 +30,18 @@ const Footer = () => {
         <nav className="space-y-9">
           <h6 className="font-bold uppercase">{t("my_profile")}</h6>
           <div className="flex flex-col gap-[30px]">
-            <a className="link link-hover">{t("personal_account")}</a>
-            <a className="link link-hover">{t("post_ad")}</a>
-            <a className="link link-hover">{t("favorites")}</a>
-            <a className="link link-hover">{t("chats")}</a>
+            <Link href="#">{t("personal_account")}</Link>
+            <Link href="#">{t("post_ad")}</Link>
+            <Link href="#">{t("favorites")}</Link>
+            <Link href="#">{t("chats")}</Link>
           </div>
         </nav>
         <nav className="space-y-9">
           <h6 className="font-bold uppercase">{t("support")}</h6>
           <div className="flex flex-col gap-[30px]">
-            <a className="link link-hover">support.pozitiv@gmail.com</a>
-            <a className="link link-hover">+996 555 10 20 50</a>
-            <a className="link link-hover">+996 500 10 20 50</a>
+            <Link href="#">support.pozitiv@gmail.com</Link>
+            <Link href="#">+996 555 10 20 50</Link>
+            <Link href="#">+996 500 10 20 50</Link>
           </div>
         </nav>
         <nav className="space-y-[30px]">
@@ -69,10 +66,18 @@ const Footer = () => {
           </div>
         </nav>
       </div>
-      <div className="container text-wrap pb-[100px] text-lg">
+      <div className="container text-wrap pb-[30px] text-lg">
         {t("copyright")}
       </div>
-      <LocaleSwitcher />
+      <div className="container pb-[121px]">
+        <Image
+          src="/assets/socials/stats.png"
+          alt="website stats"
+          width={88}
+          height={31}
+          priority
+        />
+      </div>
     </footer>
   );
 };
