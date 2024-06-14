@@ -33,6 +33,7 @@ const AdCard: React.FC<Ad> = ({
               alt={`${title} {index}`}
               fill
               className="object-cover"
+              sizes="(max-width: 600px) 100vw, 50vw"
             />
           </div>
         </CardHeader>

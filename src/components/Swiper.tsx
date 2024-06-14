@@ -72,6 +72,7 @@ const Swiper = ({
                       alt={item.href}
                       fill
                       className="rounded-[10px] object-cover object-left"
+                      priority
                     />
                   </CardContent>
                 </Card>
