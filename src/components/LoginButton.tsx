@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { useTranslations } from "next-intl";
 
-const ButtonLogin = () => {
+const LoginButton = () => {
   const t = useTranslations("Button");
   return (
     <Button
@@ -22,4 +22,4 @@ const ButtonLogin = () => {
   );
 };
 
-export default ButtonLogin;
+export default LoginButton;
