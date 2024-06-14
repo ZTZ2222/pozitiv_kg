@@ -8,6 +8,8 @@ import { AllLocales } from "@/utils/AppConfig";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import Header from "@/templates/Header";
+import Footer from "@/templates/Footer";
+import MobileNav from "@/components/MobileNav";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,6 +43,8 @@ export default function RootLayout({
         <NextIntlClientProvider locale={params.locale} messages={messages}>
           <Header />
           {children}
+          <Footer />
+          <MobileNav />
         </NextIntlClientProvider>
       </body>
     </html>
