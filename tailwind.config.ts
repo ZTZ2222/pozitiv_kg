@@ -56,6 +56,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "fuchsia-500": "#F809F3",
       },
       borderRadius: {
         lg: "var(--radius)",

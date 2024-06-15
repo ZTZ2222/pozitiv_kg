@@ -6,6 +6,8 @@ import CategoryList from "@/features/category/CategoryList";
 import RecommendedSection from "@/templates/RecommendedSection";
 import { banners } from "@/utils/fake_api";
 import RecentlyViewed from "@/templates/RecentlyViewed";
+import Search from "@/components/Search";
+import MainFilter from "@/features/filter/MainFilter";
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
@@ -22,6 +24,11 @@ export async function generateMetadata(props: { params: { locale: string } }) {
 export default function IndexPage() {
   return (
     <main>
+      {/* Bottom header */}
+      <div className="container flex items-center justify-between gap-[18px] py-1.5 shadow-sm md:hidden">
+        <Search />
+        <MainFilter />
+      </div>
       <Swiper images={banners} className="mt-[30px]" />
       <CategoryList />
       <div className="container flex justify-center">
