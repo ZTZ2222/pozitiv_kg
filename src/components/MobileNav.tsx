@@ -21,7 +21,7 @@ const MobileNavButton = ({
         "flex w-full flex-col items-center justify-center transition-colors ease-in-out",
         "gap-1 pb-4 pt-3 sm:gap-2 sm:pb-6",
         "fill-gray-400 text-gray-400 focus:fill-fuchsia-500 focus:text-fuchsia-500",
-        "xs:text-sm text-xs sm:text-base",
+        "text-xs xs:text-sm sm:text-base",
         pathname === href && "fill-fuchsia-500 text-fuchsia-500",
       )}
     >
@@ -80,9 +80,9 @@ const MobileNav = () => {
           </svg>
         </div>
 
-        <span className="xs:text-sm text-xs sm:text-base">Подать</span>
+        <span className="text-xs xs:text-sm sm:text-base">Подать</span>
       </Link>
-      <MobileNavButton href="/chats">
+      <MobileNavButton href="/chat">
         <svg
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
