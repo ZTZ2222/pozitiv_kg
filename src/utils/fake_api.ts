@@ -1,3 +1,5 @@
+import { IAttribute } from "@/types/category.interface";
+
 export const categories = [
   {
     title: "Недвижимость",
@@ -328,5 +330,58 @@ export const socials = [
     image: "/assets/socials/facebook.svg",
     link: "#",
     color: "",
+  },
+];
+
+export const category_attrs: IAttribute[] = [
+  {
+    id: 174,
+    name: "MGP",
+    type: "integer",
+    is_required: 1,
+    options: [],
+  },
+  {
+    id: 175,
+    name: "Lens",
+    type: "select",
+    is_required: 0,
+    options: [
+      {
+        id: 1891,
+        name: "Carl zeis",
+      },
+      {
+        id: 1892,
+        name: "LG",
+      },
+    ],
+  },
+  {
+    id: 176,
+    name: "Поддержка",
+    type: "multiselect",
+    is_required: 0,
+    options: [
+      {
+        id: 1893,
+        name: "option-1",
+      },
+      {
+        id: 1894,
+        name: "option-2",
+      },
+      {
+        id: 1895,
+        name: "option-3",
+      },
+    ],
+  },
+  {
+    id: 177,
+    name: "Texts",
+    type: "text",
+    is_required: 1,
+    options: [],
   },
 ];
