@@ -10,6 +10,7 @@ import { NextIntlClientProvider, useMessages } from "next-intl";
 import Header from "@/templates/Header";
 import Footer from "@/templates/Footer";
 import MobileNav from "@/components/MobileNav";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <MobileNav />
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>
