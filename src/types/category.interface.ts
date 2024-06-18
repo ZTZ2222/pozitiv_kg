@@ -8,3 +8,16 @@ export interface ICategory {
   className?: string;
   variant?: "accordion" | "button";
 }
+
+export interface IOption {
+  id: number;
+  name: string;
+}
+
+export interface IAttribute {
+  id: number;
+  name: string;
+  type: "integer" | "text" | "select" | "multiselect";
+  is_required: number;
+  options: IOption[];
+}
