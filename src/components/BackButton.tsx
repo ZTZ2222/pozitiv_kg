@@ -4,9 +4,25 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { useStepper } from "@/hooks/useStepper";
+import { useRouter } from "@/libs/i18nNavigation";
 
-const BackButton = () => {
+const BackButton = ({ variant }: { variant: "stepper" | "router" }) => {
   const { prevStep, isDisabledStep } = useStepper();
+  const router = useRouter();
+
+  if (variant === "router") {
+    return (
+      <Button
+        className="flex shrink-0 justify-start"
+        variant="ghost"
+        size="icon"
+        onClick={() => router.back()}
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </Button>
+    );
+  }
+
   return (
     <Button
       disabled={isDisabledStep}

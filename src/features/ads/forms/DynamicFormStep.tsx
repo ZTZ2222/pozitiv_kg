@@ -23,7 +23,7 @@ const DynamicFormStep = ({ attrGroup }: { attrGroup: IAttribute[] }) => {
   const { control } = useFormContext();
   return (
     <div className="space-y-6">
-      <BackButton />
+      <BackButton variant="stepper" />
       {attrGroup.map((attr) => {
         switch (attr.type) {
           case "integer":
