@@ -1,4 +1,8 @@
+"use client";
+
+import { usePathname } from "@/libs/i18nNavigation";
 import { socials } from "@/utils/fake_api";
+import { chatRouteRegex } from "@/utils/Helpers";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +10,9 @@ import React from "react";
 
 const Footer = () => {
   const t = useTranslations("Footer");
+  const pathname = usePathname();
+
+  if (chatRouteRegex.test(pathname)) return null;
   return (
     <footer className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white">
       <div className="container flex py-5">

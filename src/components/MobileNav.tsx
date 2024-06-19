@@ -4,7 +4,7 @@ import React from "react";
 import { usePathname } from "@/libs/i18nNavigation";
 import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { cn } from "@/utils/Helpers";
+import { chatRouteRegex, cn } from "@/utils/Helpers";
 
 const MobileNavButton = ({
   href,
@@ -34,7 +34,7 @@ const MobileNav = () => {
   const pathname = usePathname();
   const isMobileView = useMediaQuery("(max-width: 768px)");
 
-  if (!isMobileView) return null;
+  if (!isMobileView || chatRouteRegex.test(pathname)) return null;
   return (
     <nav className="fixed bottom-0 left-0 z-20 flex w-full max-w-3xl border-t border-gray-200 bg-white px-1 shadow sm:px-0">
       <MobileNavButton href="/">
@@ -64,10 +64,10 @@ const MobileNav = () => {
         <span>Избранные</span>
       </MobileNavButton>
       <Link
-        href="#"
+        href="/ad/post"
         className={cn(
           "group flex w-full -translate-y-3 flex-col items-center justify-center gap-1 text-gray-400 focus:text-fuchsia-500 sm:gap-2",
-          //   pathname === "/favorites" && "fill-fuchsia-500 text-fuchsia-500",
+          pathname === "/ad/post" && "fill-fuchsia-500 text-fuchsia-500",
         )}
       >
         <div className="grid size-12 place-content-center rounded-full bg-fuchsia-500 group-focus:outline group-focus:outline-offset-1 group-focus:outline-gray-400 sm:size-16">
