@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ChatBottombar from "./ChatBottomBar";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { format } from "date-fns";
+import BottomScroller from "@/components/BottomScroller";
 
 interface ChatProps {
   messages?: IMessage[];
@@ -24,16 +25,6 @@ export function Chat({ messages, currentUser }: ChatProps) {
   const sendMessage = (newMessage: IMessage) => {
     setMessages([...messagesState, newMessage]);
   };
-
-  const messagesContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesContainerRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  React.useEffect(() => {
-    scrollToBottom();
-  }, [messagesState]);
 
   return (
     <div className="container relative max-h-screen px-0">
@@ -106,7 +97,7 @@ export function Chat({ messages, currentUser }: ChatProps) {
             </motion.div>
           ))}
 
-          <div ref={messagesContainerRef} />
+          <BottomScroller dependencies={messagesState} />
           <ScrollBar orientation="vertical" />
         </ScrollArea>
       </AnimatePresence>

@@ -5,6 +5,7 @@ import React from "react";
 import { chat_list } from "@/utils/fake_api";
 import { IChat } from "@/types/chat.interface";
 import BackButton from "@/components/BackButton";
+import BottomScroller from "@/components/BottomScroller";
 
 // const fetchChats = async () => {
 //   const res = await fetch("https://pozitiv.kg/api/v1/chats", {
@@ -30,45 +31,67 @@ const ChatList = async () => {
   // const chats = await fetchChats();
   // console.log(chats);
 
+  // const chat_list: IChat[] = [];
+
   return (
     <>
       <div className="container flex h-16 items-center border-b border-gray-200">
         <BackButton variant="router" />
         <h1 className="mx-auto -translate-x-5">Чаты</h1>
       </div>
-      <main className="mt-10 flex h-screen w-full flex-col gap-2.5">
-        {chat_list.map((chat: IChat) => (
-          <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id}>
-            <Card className="container flex min-h-[78px] items-center justify-between gap-4 rounded-none border-0 border-y border-gray-200 bg-gray-50 pb-3 pt-1.5 transition-colors duration-500 hover:bg-gray-200">
-              <div className="relative size-10 shrink-0">
-                <Image
-                  src={chat.seller.image || "/assets/chat/woman.png"}
-                  alt="profile picture"
-                  className="rounded-full bg-gray-600 object-contain"
-                  fill
-                  sizes="(max-width: 600px) 100vw, 50vw"
-                />
-              </div>
-              <div className="flex w-[160px] flex-col justify-between xs:w-[215px]">
-                <span className="truncate font-semibold text-gray-800">
-                  {chat.name}
-                </span>
-                <p className="truncate font-light text-gray-500">
-                  {chat.last_message}
-                </p>
-              </div>
-              <div className="relative size-[60px] shrink-0">
-                <Image
-                  src={chat.image || "/assets/chat/house.png"}
-                  alt="ad picture"
-                  className="rounded-[10px] bg-gray-600 object-contain"
-                  fill
-                  sizes="(max-width: 600px) 100vw, 50vw"
-                />
-              </div>
-            </Card>
-          </Link>
-        ))}
+      <main className="mt-10 flex h-[calc(100vh-168px)] w-full flex-col gap-2.5">
+        {chat_list.length > 0 ? (
+          chat_list.map((chat: IChat) => (
+            <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id}>
+              <Card className="container flex min-h-[78px] items-center justify-between gap-4 rounded-none border-0 border-y border-gray-200 bg-gray-50 pb-3 pt-1.5 transition-colors duration-500 hover:bg-gray-200">
+                <div className="relative size-10 shrink-0">
+                  <Image
+                    src={chat.seller.image || "/assets/chat/woman.png"}
+                    alt="profile picture"
+                    className="rounded-full bg-gray-600 object-contain"
+                    fill
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="flex w-[160px] flex-col justify-between xs:w-[215px]">
+                  <span className="truncate font-semibold text-gray-800">
+                    {chat.name}
+                  </span>
+                  <p className="truncate font-light text-gray-500">
+                    {chat.last_message}
+                  </p>
+                </div>
+                <div className="relative size-[60px] shrink-0">
+                  <Image
+                    src={chat.image || "/assets/chat/house.png"}
+                    alt="ad picture"
+                    className="rounded-[10px] bg-gray-600 object-contain"
+                    fill
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                  />
+                </div>
+              </Card>
+            </Link>
+          ))
+        ) : (
+          <div className="grid h-full place-content-center justify-items-center gap-5">
+            <div className="relative h-[61px] w-[64px]">
+              <Image
+                src="/assets/chat/empty.png"
+                alt="empty"
+                fill
+                sizes="(max-width: 600px) 100vw, 50vw"
+                className="object-contain"
+              />
+            </div>
+            <span className="font-semibold">Нет сообщений</span>
+            <p className="max-w-[311px] text-center text-gray-500">
+              У Вас пока нет сообщений. <br /> Все исходящие и входящие
+              сообщения будут Вас ждать тут.
+            </p>
+          </div>
+        )}
+        <BottomScroller dependencies={[chat_list.length]} />
       </main>
     </>
   );
