@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { AppConfig } from "./AppConfig";
 import { IAttribute } from "@/types/category.interface";
 import { formatDistance } from "date-fns";
 import { ru } from "date-fns/locale";
@@ -9,14 +8,6 @@ import { ru } from "date-fns/locale";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-export const getI18nPath = (url: string, locale: string) => {
-  if (locale === AppConfig.defaultLocale) {
-    return url;
-  }
-
-  return `/${locale}${url}`;
-};
 
 export function chunkArray(arr: IAttribute[], size: number) {
   return arr.reduce<IAttribute[][]>((chunks, item, index) => {

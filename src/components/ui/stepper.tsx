@@ -4,7 +4,7 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import { CheckIcon, Loader2, X } from "lucide-react";
 
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -18,7 +18,7 @@ import {
   StepSharedProps,
   VerticalStepProps,
 } from "@/types/stepper.interface";
-import { StepperProvider } from "@/libs/StepperProvider";
+import { StepperProvider } from "@/components/providers/StepperProvider";
 import { useStepper } from "@/hooks/useStepper";
 
 // <---------- STEPS ---------->
@@ -322,7 +322,7 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
       if (!expandVerticalSteps) {
         return (
           <Collapsible open={isCurrentStep}>
-            <CollapsibleContent className="data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up overflow-hidden">
+            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
               {children}
             </CollapsibleContent>
           </Collapsible>
