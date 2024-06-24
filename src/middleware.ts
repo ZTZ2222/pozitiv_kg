@@ -1,66 +1,73 @@
-import {type NextFetchEvent, type NextRequest, NextResponse} from 'next/server';
-import createMiddleware from 'next-intl/middleware';
+import { type NextRequest, NextResponse } from "next/server";
+import NodeCache from "node-cache";
+import { jwtVerify } from "jose";
 
-import {AllLocales, AppConfig} from './utils/AppConfig';
+import { zTokenPayload } from "./types/token.schema";
+import { i18nMiddleware } from "./lib/i18n";
 
-const intlMiddleware = createMiddleware({
-  locales: AllLocales,
-  localePrefix: AppConfig.localePrefix,
-  defaultLocale: AppConfig.defaultLocale,
-});
+const tokenStore = new NodeCache({ stdTTL: 600 });
+const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
-const isProtectedRoute = (pathname: string) => {
-  const protectedRoutes = [
-    /^\/dashboard(.*)/,
-    /^\/\w{2}\/dashboard(.*)/,
-    /^\/onboarding(.*)/,
-    /^\/\w{2}\/onboarding(.*)/,
-  ];
-  return protectedRoutes.some(route => route.test(pathname));
+const protectedRoutes = [
+  /^\/dashboard(.*)/,
+  /^\/\w{2}\/dashboard(.*)/,
+  /^\/protected-example-route(.*)/,
+  /^\/\w{2}\/protected-example-route(.*)/,
+  /^\/admin(.*)/,
+  /^\/\w{2}\/admin(.*)/,
+];
+
+const isProtectedRoute = (pathname: string) =>
+  protectedRoutes.some((route) => route.test(pathname));
+
+const verifyToken = async (token: string) => {
+  try {
+    const { payload } = await jwtVerify(token, secret);
+    return payload as zTokenPayload;
+  } catch (error) {
+    return null;
+  }
 };
 
-export default function middleware(
-  request: NextRequest,
-  event: NextFetchEvent,
-) {
-  const {pathname} = request.nextUrl;
+export default async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  if (
-    pathname.includes('/sign-in') ||
-    pathname.includes('/sign-up') ||
-    isProtectedRoute(pathname)
-  ) {
-    // Handle protected routes and authentication logic here
-    const locale = pathname.match(/\/(\w{2})\/dashboard/)?.[1] || '';
+  if (isProtectedRoute(pathname)) {
+    const locale = pathname.match(/^\/(\w{2})\//)?.[1] || "";
     const signInUrl = new URL(`${locale}/sign-in`, request.url);
+    const homeUrl = new URL(`${locale}/`, request.url);
 
-    // Check for authentication (mock logic, replace with actual auth check)
-    const isAuthenticated = request.headers.get('authorization'); // Example check, replace with your logic
+    const token = request.cookies.get("token")?.value;
 
-    if (isProtectedRoute(pathname) && !isAuthenticated) {
-      // Redirect to sign-in page if not authenticated
+    if (!token) {
       return NextResponse.redirect(signInUrl);
     }
 
-    if (
-      isAuthenticated &&
-      pathname.includes('/dashboard') &&
-      !pathname.endsWith('/organization-selection')
-    ) {
-      const orgSelection = new URL(
-        '/onboarding/organization-selection',
-        request.url,
-      );
+    let tokenPayload = tokenStore.get<zTokenPayload>(token);
 
-      return NextResponse.redirect(orgSelection);
+    if (!tokenPayload) {
+      tokenPayload = await verifyToken(token);
+      if (!tokenPayload) {
+        return NextResponse.redirect(signInUrl);
+      }
+
+      tokenStore.set(token, tokenPayload);
     }
 
-    return intlMiddleware(request);
+    if (tokenPayload.exp < Math.floor(Date.now() / 1000)) {
+      return NextResponse.redirect(signInUrl);
+    }
+
+    if (tokenPayload.is_superuser === false) {
+      return NextResponse.redirect(homeUrl);
+    }
+
+    return NextResponse.next();
   }
 
-  return intlMiddleware(request);
+  return i18nMiddleware(request);
 }
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
