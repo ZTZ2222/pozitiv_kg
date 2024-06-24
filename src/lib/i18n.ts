@@ -19,10 +19,6 @@ export const AppConfig = {
       id: "ky",
       name: "Кыргызча",
     },
-    {
-      id: "uz",
-      name: "O`zbek",
-    },
   ],
   defaultLocale: "ru",
   localePrefix,
