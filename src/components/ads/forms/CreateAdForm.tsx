@@ -1,6 +1,6 @@
 "use client";
 
-import { IAttribute } from "@/types/category.schema";
+import { zCategoryAttributeRead } from "@/types/category.schema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +13,7 @@ import DynamicFormStep from "./DynamicFormStep";
 import { chunkArray } from "@/lib/utils";
 
 interface CreateAdFormProps {
-  attributes: IAttribute[];
+  attributes: zCategoryAttributeRead[];
 }
 
 const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {

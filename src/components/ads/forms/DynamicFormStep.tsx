@@ -14,12 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { IAttribute } from "@/types/category.schema";
+import { zCategoryAttributeRead } from "@/types/category.schema";
 import StepperFormActions from "./StepperFormActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import BackButton from "@/components/navigation/BackButton";
 
-const DynamicFormStep = ({ attrGroup }: { attrGroup: IAttribute[] }) => {
+const DynamicFormStep = ({
+  attrGroup,
+}: {
+  attrGroup: zCategoryAttributeRead[];
+}) => {
   const { control } = useFormContext();
   return (
     <div className="space-y-6">

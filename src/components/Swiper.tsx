@@ -11,22 +11,19 @@ import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "./ui/card";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import Link from "next/link";
-import { zBanner } from "@/types/banner.schema";
+import { zBannerRead } from "@/types/banner.schema";
 
 const Swiper = ({
   className,
   images,
 }: {
   className?: string;
-  images: zBanner[];
+  images: zBannerRead[];
 }) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-
-  const isSmallScreen = useMediaQuery("(max-width: 575px)");
 
   React.useEffect(() => {
     if (!api) {

@@ -23,10 +23,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useTranslations } from "next-intl";
-import { ICategory } from "@/types/category.schema";
+import { zCategoryRead } from "@/types/category.schema";
 import { useRouter } from "@/lib/i18nNavigation";
 
-const MainFilter = ({ categories }: { categories: ICategory[] }) => {
+const MainFilter = ({ categories }: { categories: zCategoryRead[] }) => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 390px)");
 

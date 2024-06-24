@@ -1,4 +1,4 @@
-import { ICategory } from "@/types/category.schema";
+import { zCategoryRead } from "@/types/category.schema";
 import React from "react";
 import {
   Accordion,
@@ -14,7 +14,7 @@ const RecursiveAccordionItem = ({
   category,
   level = 0,
 }: {
-  category: ICategory;
+  category: zCategoryRead;
   level?: number;
 }) => {
   const { name, bg_color, text_color, icon, childs = [] } = category;
@@ -69,7 +69,7 @@ const CategoryAccordion = ({
   categories,
   className,
 }: {
-  categories: ICategory[];
+  categories: zCategoryRead[];
   className?: string;
 }) => {
   return (

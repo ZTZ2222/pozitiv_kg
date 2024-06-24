@@ -15,7 +15,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ICategory } from "@/types/category.schema";
+import { zCategoryRead } from "@/types/category.schema";
 import CategoryAccordion from "./CategoryAccordion";
 
 const CategoryModal = ({
@@ -23,7 +23,7 @@ const CategoryModal = ({
   categories,
 }: {
   className?: string;
-  categories: ICategory[];
+  categories: zCategoryRead[];
 }) => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 395px)");
