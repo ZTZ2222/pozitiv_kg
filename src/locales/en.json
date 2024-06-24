@@ -10,7 +10,7 @@
     "placeholder_desktop": "Search for properties..."
   },
   "Button": {
-    "login": "Sign-in",
+    "login": "Login",
     "categories": "Categories",
     "filter": "Filter"
   },

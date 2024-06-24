@@ -1,17 +1,18 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
-import CategoryModal from "@/features/category/CategoryModal";
+import CategoryModal from "@/components/category/CategoryModal";
 import Swiper from "@/components/Swiper";
-import CategoryList from "@/features/category/CategoryList";
-import RecommendedSection from "@/templates/RecommendedSection";
-import { banners } from "@/utils/fake_api";
-import RecentlyViewed from "@/templates/RecentlyViewed";
-import Search from "@/components/Search";
-import MainFilter from "@/features/filter/MainFilter";
+import CategoryList from "@/components/category/CategoryList";
+import Search from "@/components/navigation/Search";
+import MainFilter from "@/components/filter/MainFilter";
+import AdList from "@/components/ads/AdList";
+import { getCategories } from "@/actions/category-actions";
+import { getBanners } from "@/actions/banner-actions";
 
-export async function generateMetadata(props: { params: { locale: string } }) {
+export async function generateMetadata() {
+  const locale = await getLocale();
   const t = await getTranslations({
-    locale: props.params.locale,
+    locale: locale,
     namespace: "Index",
   });
 
@@ -21,22 +22,42 @@ export async function generateMetadata(props: { params: { locale: string } }) {
   };
 }
 
-export default function IndexPage() {
+export default async function Home() {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "Index",
+  });
+
+  const categories = await getCategories();
+  const banners = await getBanners();
+
   return (
     <main>
       {/* Bottom header */}
       <div className="container flex items-center justify-between gap-[18px] py-1.5 shadow-sm md:hidden">
         <Search />
-        <MainFilter />
+        <MainFilter categories={categories} />
       </div>
+      {/* End of bottom header */}
       <Swiper images={banners} className="mt-[30px]" />
-      <CategoryList />
+      <CategoryList categories={categories} />
       <div className="container flex justify-center">
-        <CategoryModal className="mt-4 self-center md:hidden" />
+        <CategoryModal
+          categories={categories}
+          className="mt-4 self-center md:hidden"
+        />
       </div>
-      <RecommendedSection className="mt-[50px]" />
+      <section className="container mt-[50px]">
+        <h2 className="text-lg font-semibold">{t("recommended_ads")}</h2>
+        <AdList />
+      </section>
+
       <Swiper images={banners} className="mt-[50px]" />
-      <RecentlyViewed className="mb-[100px] mt-[35px]" />
+      <section className="container mb-[100px] mt-[35px]">
+        <h2 className="text-lg font-semibold">{t("recently_viewed")}</h2>
+        <AdList />
+      </section>
     </main>
   );
 }

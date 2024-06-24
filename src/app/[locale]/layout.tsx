@@ -3,13 +3,13 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
-import { cn } from "@/utils/Helpers";
-import { AllLocales } from "@/utils/AppConfig";
+import { cn } from "@/lib/utils";
+import { AllLocales } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import Header from "@/templates/Header";
-import Footer from "@/templates/Footer";
-import MobileNav from "@/components/MobileNav";
+import Header from "@/components/navigation/Header";
+import Footer from "@/components/navigation/Footer";
+import MobileNav from "@/components/navigation/MobileNav";
 import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
