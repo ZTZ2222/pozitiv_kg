@@ -34,13 +34,13 @@ export default async function middleware(request: NextRequest) {
 
   if (isProtectedRoute(pathname)) {
     const locale = pathname.match(/^\/(\w{2})\//)?.[1] || "";
-    const signInUrl = new URL(`${locale}/sign-in`, request.url);
+    const loginUrl = new URL(`${locale}/login`, request.url);
     const homeUrl = new URL(`${locale}/`, request.url);
 
     const token = request.cookies.get("token")?.value;
 
     if (!token) {
-      return NextResponse.redirect(signInUrl);
+      return NextResponse.redirect(loginUrl);
     }
 
     let tokenPayload = tokenStore.get<zTokenPayload>(token);
@@ -48,14 +48,14 @@ export default async function middleware(request: NextRequest) {
     if (!tokenPayload) {
       tokenPayload = await verifyToken(token);
       if (!tokenPayload) {
-        return NextResponse.redirect(signInUrl);
+        return NextResponse.redirect(loginUrl);
       }
 
       tokenStore.set(token, tokenPayload);
     }
 
     if (tokenPayload.exp < Math.floor(Date.now() / 1000)) {
-      return NextResponse.redirect(signInUrl);
+      return NextResponse.redirect(loginUrl);
     }
 
     if (tokenPayload.is_superuser === false) {
