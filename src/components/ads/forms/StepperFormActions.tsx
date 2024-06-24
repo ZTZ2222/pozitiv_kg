@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useStepper } from "@/hooks/useStepper";
-import { IAttribute } from "@/types/category.interface";
+import { IAttribute } from "@/types/category.schema";
 import { useFormContext } from "react-hook-form";
 
 function StepperFormActions({ attrGroup }: { attrGroup: IAttribute[] }) {

@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { IAttribute } from "@/types/category.interface";
+import { IAttribute } from "@/types/category.schema";
 import StepperFormActions from "./StepperFormActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import BackButton from "@/components/navigation/BackButton";

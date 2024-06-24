@@ -1,4 +1,4 @@
-import { ICategory } from "@/types/category.interface";
+import { ICategory } from "@/types/category.schema";
 import React from "react";
 import {
   Accordion,

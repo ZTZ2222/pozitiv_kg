@@ -1,12 +1,11 @@
-"use client";
-
 import AdCard from "@/components/ads/AdCard";
-import { IAd } from "@/types/ad.interface";
-import { ads } from "@/utils/fake_api";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { zPromotionRead } from "@/types/ad.schema";
+import { getAds } from "@/actions/ads-actions";
 
-const AdList = ({ className }: { className?: string }) => {
+const AdList = async ({ className }: { className?: string }) => {
+  const ads = await getAds();
   return (
     <div
       className={cn(
@@ -14,7 +13,7 @@ const AdList = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      {ads.map((ad: IAd) => (
+      {ads.map((ad: zPromotionRead) => (
         <AdCard key={ad.id} {...ad} />
       ))}
     </div>

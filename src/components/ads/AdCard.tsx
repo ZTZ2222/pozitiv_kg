@@ -6,14 +6,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { IAd } from "@/types/ad.interface";
 import { cn } from "@/lib/utils";
 import { Crown, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { zPromotionRead } from "@/types/ad.schema";
 
-const AdCard: React.FC<IAd> = ({
+const AdCard: React.FC<zPromotionRead> = ({
   name,
   description,
   currency,

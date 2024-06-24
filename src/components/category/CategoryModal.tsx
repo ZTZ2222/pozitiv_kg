@@ -15,7 +15,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ICategory } from "@/types/category.interface";
+import { ICategory } from "@/types/category.schema";
 import CategoryAccordion from "./CategoryAccordion";
 
 const CategoryModal = ({

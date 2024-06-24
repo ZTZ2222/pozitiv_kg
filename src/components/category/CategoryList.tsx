@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ICategory } from "@/types/category.interface";
+import { ICategory } from "@/types/category.schema";
 import CategoryButton from "./CategoryButton";
 
 const CategoryList = ({ categories }: { categories: ICategory[] }) => {
