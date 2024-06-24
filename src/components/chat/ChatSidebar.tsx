@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { IChat } from "@/types/chat.interface";
+import { IChat } from "@/types/chat.schema";
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 interface SidebarProps {

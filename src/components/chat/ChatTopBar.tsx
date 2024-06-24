@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import { IChat } from "@/types/chat.interface";
+import { zChat } from "@/types/chat.schema";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Phone, Settings } from "lucide-react";
-import { formatTimeDistanceCustom } from "@/utils/Helpers";
+import { formatTimeDistanceCustom } from "@/lib/utils";
 import BackButton from "@/components/navigation/BackButton";
 
-const ChatTopBar = ({ chat }: { chat: IChat }) => {
+const ChatTopBar = ({ chat }: { chat: zChat }) => {
   const { seller } = chat;
   return (
     <>

@@ -1,25 +1,14 @@
-import {
-  FileImage,
-  Mic,
-  Paperclip,
-  PlusCircle,
-  SendHorizontal,
-  Smile,
-  ThumbsUp,
-} from "lucide-react";
-import Link from "next/link";
+import { FileImage, Paperclip, SendHorizontal } from "lucide-react";
 import React, { useRef, useState } from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "@/components/ui/textarea";
-import { IMessage } from "@/types/chat.interface";
-import useMediaQuery from "@/hooks/useMediaQuery";
+import { zMessage } from "@/types/chat.schema";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface ChatBottombarProps {
-  sendMessage: (newMessage: IMessage) => void;
+  sendMessage: (newMessage: zMessage) => void;
 }
 
 export const BottombarIcons = [{ icon: FileImage }, { icon: Paperclip }];
@@ -40,7 +29,7 @@ export default function ChatBottombar({ sendMessage }: ChatBottombarProps) {
 
   const handleSend = () => {
     if (message.trim()) {
-      const newMessage: IMessage = {
+      const newMessage: zMessage = {
         id: 5555,
         sender_id: {
           id: 482,

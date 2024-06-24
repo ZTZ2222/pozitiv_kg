@@ -1,9 +1,9 @@
 "use client";
 
-import { IMessage } from "@/types/chat.interface";
-import { IUser } from "@/types/user.interface";
+import { zMessage } from "@/types/chat.schema";
+import { zUserRead } from "@/types/user.schema";
 import { cn } from "@/lib/utils";
-import React, { useRef } from "react";
+import React from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,16 +13,16 @@ import { format } from "date-fns";
 import BottomScroller from "@/components/BottomScroller";
 
 interface ChatProps {
-  messages?: IMessage[];
-  currentUser: IUser;
+  messages?: zMessage[];
+  currentUser: zUserRead;
 }
 
 export function Chat({ messages, currentUser }: ChatProps) {
-  const [messagesState, setMessages] = React.useState<IMessage[]>(
+  const [messagesState, setMessages] = React.useState<zMessage[]>(
     messages ?? [],
   );
 
-  const sendMessage = (newMessage: IMessage) => {
+  const sendMessage = (newMessage: zMessage) => {
     setMessages([...messagesState, newMessage]);
   };
 
