@@ -1,7 +1,9 @@
 {
   "Index": {
     "meta_title": "Pozitiv-EN",
-    "meta_description": "Pozitiv-EN"
+    "meta_description": "Pozitiv-EN",
+    "recommended_ads": "Featured Ads",
+    "recently_viewed": "Recently Viewed"
   },
   "Search": {
     "placeholder_mobile": "Search...",
@@ -11,10 +13,6 @@
     "login": "Sign-in",
     "categories": "Categories",
     "filter": "Filter"
-  },
-  "Heading": {
-    "recommended_ads": "Featured Ads",
-    "recently_viewed": "Recently Viewed"
   },
   "Footer": {
     "copyright": "© 2013. All rights reserved. Real Estate Agency PozitivKG.",

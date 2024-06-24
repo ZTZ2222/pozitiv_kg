@@ -1,7 +1,9 @@
 {
   "Index": {
     "meta_title": "Pozitiv-KY",
-    "meta_description": "Pozitiv-KY"
+    "meta_description": "Pozitiv-KY",
+    "recommended_ads": "Өзгөчөлөнгөн жарнамалар",
+    "recently_viewed": "Сиз жакында көргөндөр"
   },
   "Search": {
     "placeholder_mobile": "Издөө...",
@@ -11,10 +13,6 @@
     "login": "Кирүү",
     "categories": "Категориялар",
     "filter": "Фильтр"
-  },
-  "Heading": {
-    "recommended_ads": "Өзгөчөлөнгөн жарнамалар",
-    "recently_viewed": "Сиз жакында көргөндөр"
   },
   "Footer": {
     "copyright": "© 2013. Бардык укуктар корголгон. Кыймылсыз мүлк агенттиги ПозитивKG.",

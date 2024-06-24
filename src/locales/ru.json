@@ -1,7 +1,9 @@
 {
   "Index": {
     "meta_title": "Pozitiv-RU",
-    "meta_description": "Pozitiv-RU"
+    "meta_description": "Pozitiv-RU",
+    "recommended_ads": "Рекомендуемые объявления",
+    "recently_viewed": "Вы просматривали недавно"
   },
   "Search": {
     "placeholder_mobile": "Поиск...",
@@ -11,10 +13,6 @@
     "login": "Войти",
     "categories": "Категории",
     "filter": "Фильтр"
-  },
-  "Heading": {
-    "recommended_ads": "Рекомендуемые объявления",
-    "recently_viewed": "Вы просматривали недавно"
   },
   "Footer": {
     "copyright": "© 2013. Все права защищены Агентство недвижимости ПозитивKG.",
