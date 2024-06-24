@@ -1,11 +1,39 @@
 "use client";
 
 import { usePathname } from "@/lib/i18nNavigation";
-import { socials } from "@/utils/fake_api";
+import { zSocialRead } from "@/types/social.schema";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+const socials: zSocialRead[] = [
+  {
+    title: "instagram",
+    image: "/assets/socials/instagram.png",
+    link: "https://www.instagram.com/",
+  },
+  {
+    title: "whatsapp",
+    image: "/assets/socials/whatsapp.png",
+    link: "https://www.whatsapp.com/",
+  },
+  {
+    title: "telegram",
+    image: "/assets/socials/telegram.png",
+    link: "https://telegram.org/",
+  },
+  {
+    title: "tiktok",
+    image: "/assets/socials/tiktok.png",
+    link: "https://www.tiktok.com/",
+  },
+  {
+    title: "facebook",
+    image: "/assets/socials/facebook.png",
+    link: "https://www.facebook.com/",
+  },
+];
 
 const Footer = () => {
   const t = useTranslations("Footer");
@@ -53,9 +81,9 @@ const Footer = () => {
         <nav className="space-y-[30px]">
           <h6 className="font-bold uppercase">{t("socials")}</h6>
           <div className="flex gap-[26px]">
-            {socials.map((social, idx) => (
+            {socials.map((social) => (
               <Link
-                key={idx}
+                key={social.title}
                 href={social.link}
                 target="_blank"
                 className="grid h-10 w-10 place-items-center rounded-[10px] bg-white"
