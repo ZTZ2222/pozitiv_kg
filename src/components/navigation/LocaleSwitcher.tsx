@@ -10,10 +10,10 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { usePathname, useRouter } from "@/libs/i18nNavigation";
-import { AppConfig } from "@/utils/AppConfig";
+import { usePathname, useRouter } from "@/lib/i18nNavigation";
+import { AppConfig } from "@/lib/i18n";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 
 export default function LocaleSwitcher({ className }: { className?: string }) {
   const router = useRouter();

@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { usePathname } from "@/libs/i18nNavigation";
+import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { chatRouteRegex, cn } from "@/utils/Helpers";
+import { chatRouteRegex, cn } from "@/lib/utils";
 
 const MobileNavButton = ({
   href,
@@ -64,10 +64,10 @@ const MobileNav = () => {
         <span>Избранные</span>
       </MobileNavButton>
       <Link
-        href="/ad/post"
+        href="/ads/post"
         className={cn(
           "group flex w-full -translate-y-3 flex-col items-center justify-center gap-1 text-gray-400 focus:text-fuchsia-500 sm:gap-2",
-          pathname === "/ad/post" && "fill-fuchsia-500 text-fuchsia-500",
+          pathname === "/ads/post" && "fill-fuchsia-500 text-fuchsia-500",
         )}
       >
         <div className="grid size-12 place-content-center rounded-full bg-fuchsia-500 group-focus:outline group-focus:outline-offset-1 group-focus:outline-gray-400 sm:size-16">

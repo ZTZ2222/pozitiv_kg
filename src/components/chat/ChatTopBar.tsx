@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Phone, Settings } from "lucide-react";
 import { formatTimeDistanceCustom } from "@/utils/Helpers";
-import BackButton from "@/components/BackButton";
+import BackButton from "@/components/navigation/BackButton";
 
 const ChatTopBar = ({ chat }: { chat: IChat }) => {
   const { seller } = chat;

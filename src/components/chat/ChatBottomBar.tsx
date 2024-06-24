@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "@/components/ui/textarea";
 import { IMessage } from "@/types/chat.interface";

@@ -4,7 +4,7 @@ import { chat_list, chat_messages, current_user } from "@/utils/fake_api";
 import React from "react";
 import { Chat } from "./Chat";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { ChatSidebar } from "@/components/ChatSidebar";
+import { ChatSidebar } from "./ChatSidebar";
 
 export function ChatLayout() {
   const [currentUser, setcurrentUser] = React.useState(current_user);

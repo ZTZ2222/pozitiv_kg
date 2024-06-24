@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Search as SearchIcon } from "lucide-react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 import { useTranslations } from "next-intl";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 interface SearchProps {

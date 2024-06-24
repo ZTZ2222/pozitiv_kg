@@ -6,65 +6,88 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Ad } from "@/types/ad.interface";
-import { cn } from "@/utils/Helpers";
+import { IAd } from "@/types/ad.interface";
+import { cn } from "@/lib/utils";
 import { Crown, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const AdCard: React.FC<Ad> = ({
-  id,
-  title,
-  re_area,
-  is_favorite,
-  is_promoted,
-  price_usd,
-  price_som,
-  images,
+const AdCard: React.FC<IAd> = ({
+  name,
+  description,
+  currency,
+  price_after_discount,
+  exchange_price_after_discount,
+  attribute,
+  galleries,
+  favorites,
+  is_vip,
 }) => {
   return (
     <Link href="#">
-      <Card className="relative overflow-hidden border-black">
+      <Card className="relative flex h-full flex-col justify-between overflow-hidden border-black">
+        {/* Image */}
         <CardHeader className="p-0">
           <div className="relative h-[169px]">
             <Image
-              src={images[0]}
-              alt={`${title} {index}`}
+              src={
+                galleries && galleries.length > 0
+                  ? galleries[0].image
+                  : "/assets/ads/house_1.png"
+              }
+              alt={`${name} {index}`}
               fill
               className="object-cover"
               sizes="(max-width: 600px) 100vw, 50vw"
             />
           </div>
         </CardHeader>
+
+        {/* Info */}
         <CardContent className="px-2.5 py-4">
-          <CardTitle className="text-wrap text-lg font-medium">
-            {title}, {re_area} м<sup>2</sup>
+          <CardTitle className="line-clamp-2 text-base font-medium">
+            {name},{" "}
+            {(attribute &&
+              attribute.length > 0 &&
+              attribute.find((attr) => attr.title === "Площадь")?.value) ||
+              ""}{" "}
+            м<sup>2</sup>
           </CardTitle>
-          <CardDescription className="text-wrap text-base font-light">
-            {title}, {re_area} м<sup>2</sup>
+          <CardDescription className="line-clamp-2 text-sm font-light">
+            {description},{" "}
+            {(attribute &&
+              attribute.length > 0 &&
+              attribute.find((attr) => attr.title === "Площадь")?.value) ||
+              ""}{" "}
+            м<sup>2</sup>
           </CardDescription>
         </CardContent>
+
+        {/* Prices */}
         <CardFooter className="flex flex-col items-start px-2.5 pb-5">
           <span className="text-lg font-bold text-red-600">
-            {price_som.toLocaleString().replace(/,/g, " ")} сом
+            {exchange_price_after_discount}
           </span>
           <span className="text-lg font-semibold text-green-500">
-            {price_usd.toLocaleString().replace(/,/g, " ")} $
+            {price_after_discount} {currency}
           </span>
         </CardFooter>
-        {is_promoted && (
+
+        {/* VIP Badge */}
+        {is_vip && (
           <span className="absolute left-1 top-5 flex items-center gap-1 rounded-sm bg-red-600 px-1.5 py-1 text-sm font-semibold text-white">
             <Crown className="h-3.5 w-3.5" />
             VIP
           </span>
         )}
 
+        {/* Add to favorites */}
         <span className="absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040]">
           <Heart
             className={cn(
               "stroke-1",
-              is_favorite && "fill-red-600 stroke-red-600",
+              favorites && "fill-red-600 stroke-red-600",
             )}
           />
         </span>

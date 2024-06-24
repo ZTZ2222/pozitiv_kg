@@ -10,16 +10,21 @@ import {
 } from "@/components/ui/drawer";
 
 import { Grip, X } from "lucide-react";
-import CategoryCard from "./CategoryCard";
-import { Accordion } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/Helpers";
-import { categories } from "@/utils/fake_api";
+import { cn } from "@/lib/utils";
+import { ICategory } from "@/types/category.interface";
+import CategoryAccordion from "./CategoryAccordion";
 
-const CategoryModal = ({ className }: { className?: string }) => {
+const CategoryModal = ({
+  className,
+  categories,
+}: {
+  className?: string;
+  categories: ICategory[];
+}) => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 395px)");
   const isDesktopScreen = useMediaQuery("(min-width: 768px)");
@@ -68,15 +73,10 @@ const CategoryModal = ({ className }: { className?: string }) => {
 
         {/* Start of categories navbar */}
         <ScrollArea>
-          <Accordion
-            type="single"
-            collapsible
+          <CategoryAccordion
+            categories={categories}
             className="w-full space-y-5 px-9"
-          >
-            {categories.map((item) => (
-              <CategoryCard key={item.title} {...item} />
-            ))}
-          </Accordion>
+          />
         </ScrollArea>
         {/* End of categories navbar */}
       </DrawerContent>

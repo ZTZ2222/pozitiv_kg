@@ -2,7 +2,7 @@
 
 import { IMessage } from "@/types/chat.interface";
 import { IUser } from "@/types/user.interface";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 

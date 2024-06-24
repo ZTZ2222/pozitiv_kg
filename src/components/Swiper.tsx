@@ -9,18 +9,18 @@ import {
 } from "./ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import { Card, CardContent } from "./ui/card";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { IBannerItem } from "@/types/swiper.interface";
 import Link from "next/link";
+import { zBanner } from "@/types/banner.schema";
 
 const Swiper = ({
   className,
   images,
 }: {
   className?: string;
-  images: IBannerItem[];
+  images: zBanner[];
 }) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -60,16 +60,12 @@ const Swiper = ({
         <CarouselContent className="mr-4 cursor-grab pl-4 sm:mr-0 md:-ml-5">
           {images.map((item, index) => (
             <CarouselItem key={index} className="basis-[90%] sm:basis-full">
-              <Link href={item.href}>
+              <Link href={item.link}>
                 <Card className="rounded-[10px] border-none">
                   <CardContent className="relative h-[150px] p-0 md:h-[245px] lg:h-[340px]">
                     <Image
-                      src={
-                        isSmallScreen
-                          ? item.url_mobile || item.url_desktop
-                          : item.url_desktop
-                      }
-                      alt={item.href}
+                      src={item.banner}
+                      alt={item.link}
                       fill
                       className="rounded-[10px] object-cover object-left"
                       priority

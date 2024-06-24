@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { useStepper } from "@/hooks/useStepper";
-import { useRouter } from "@/libs/i18nNavigation";
+import { useRouter } from "@/lib/i18nNavigation";
 
 const BackButton = ({ variant }: { variant: "stepper" | "router" }) => {
   const { prevStep, isDisabledStep } = useStepper();

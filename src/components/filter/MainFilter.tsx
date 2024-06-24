@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/drawer";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { SlidersHorizontal, X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -23,10 +23,34 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useTranslations } from "next-intl";
+import { ICategory } from "@/types/category.interface";
+import { useRouter } from "@/lib/i18nNavigation";
 
-const MainFilter = () => {
+const MainFilter = ({ categories }: { categories: ICategory[] }) => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 390px)");
+
+  const router = useRouter();
+
+  // State to manage filter values
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [currency, setCurrency] = useState("KGS");
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
+  const [sortOrder, setSortOrder] = useState("popular");
+
+  // Handle Apply Filter button click
+  const handleApplyFilter = () => {
+    const query = {
+      category: selectedCategory,
+      currency,
+      priceFrom,
+      priceTo,
+      sort: sortOrder,
+    };
+
+    router.push(`?${new URLSearchParams(query).toString()}`);
+  };
   return (
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
@@ -62,11 +86,11 @@ const MainFilter = () => {
             </SelectTrigger>
             <SelectContent className="bg-white">
               <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id.toString()}>
+                    {category.name}
+                  </SelectItem>
+                ))}
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -128,6 +152,7 @@ const MainFilter = () => {
             <Button
               className="mt-8 w-full rounded-[10px] bg-cyan-400 text-white"
               size="lg"
+              onClick={handleApplyFilter}
             >
               Применить фильтр
             </Button>

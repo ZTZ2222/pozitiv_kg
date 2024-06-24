@@ -7,10 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Step, Stepper } from "@/components/ui/stepper";
 import { toast } from "@/components/ui/use-toast";
 import { Form } from "@/components/ui/form";
-import { createDynamicSchema } from "@/libs/schemas";
+import { createDynamicSchema } from "@/lib/schemas";
 import { z } from "zod";
-import { chunkArray } from "@/utils/Helpers";
 import DynamicFormStep from "./DynamicFormStep";
+import { chunkArray } from "@/lib/utils";
 
 interface CreateAdFormProps {
   attributes: IAttribute[];

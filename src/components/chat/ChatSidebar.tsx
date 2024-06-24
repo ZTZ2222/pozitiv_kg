@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { MoreHorizontal, SquarePen } from "lucide-react";
-import { cn } from "@/utils/Helpers";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { Avatar, AvatarImage } from "./ui/avatar";
 import { IChat } from "@/types/chat.interface";
+import { Avatar, AvatarImage } from "../ui/avatar";
 
 interface SidebarProps {
   chats: IChat[];
@@ -15,31 +14,7 @@ export function ChatSidebar({ chats }: SidebarProps) {
   return (
     <div className="group relative flex h-full flex-col gap-4 p-2 data-[collapsed=true]:p-2">
       <div className="flex items-center justify-between p-2">
-        <div className="flex items-center gap-2 text-2xl">
-          <p className="font-medium">Chats</p>
-          <span className="text-zinc-300">({chats.length})</span>
-        </div>
-        <div>
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <MoreHorizontal size={20} />
-          </Link>
-
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <SquarePen size={20} />
-          </Link>
-        </div>
+        <p className="font-medium text-gray-500">Сообщения</p>
       </div>
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
         {chats.map((chat, index) => (
@@ -61,8 +36,8 @@ export function ChatSidebar({ chats }: SidebarProps) {
                 className="h-10 w-10 object-cover"
               />
             </Avatar>
-            <div className="flex max-w-28 flex-col">
-              <span>{chat.seller.name}</span>
+            <div className="flex max-w-[215px] flex-col">
+              <span className="truncate font-medium">{chat.name}</span>
               {chat.last_message && (
                 <span className="truncate text-xs text-zinc-300">
                   {chat.last_message}
