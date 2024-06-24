@@ -1,4 +1,4 @@
-import { StepperContext } from "@/libs/StepperProvider";
+import { StepperContext } from "@/components/providers/StepperProvider";
 import * as React from "react";
 
 function useStepper() {
