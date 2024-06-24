@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { IAttribute } from "@/types/category.interface";
+import { zCategoryAttributeRead } from "@/types/category.schema";
 import { formatDistance } from "date-fns";
 import { ru } from "date-fns/locale";
 
@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function chunkArray(arr: IAttribute[], size: number) {
-  return arr.reduce<IAttribute[][]>((chunks, item, index) => {
+export function chunkArray(arr: zCategoryAttributeRead[], size: number) {
+  return arr.reduce<zCategoryAttributeRead[][]>((chunks, item, index) => {
     const chunkIndex = Math.floor(index / size);
 
     if (!chunks[chunkIndex]) {

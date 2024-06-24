@@ -1,7 +1,7 @@
-import { IAttribute } from "@/types/category.interface";
+import { zCategoryAttributeRead } from "@/types/category.schema";
 import * as z from "zod";
 
-export const createDynamicSchema = (attributes: IAttribute[]) => {
+export const createDynamicSchema = (attributes: zCategoryAttributeRead[]) => {
   const schema: Record<string, z.ZodTypeAny> = {};
 
   attributes.forEach((attr) => {
