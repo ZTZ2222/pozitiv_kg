@@ -150,7 +150,7 @@ const MainFilter = ({ categories }: { categories: zCategoryRead[] }) => {
 
           <DrawerClose asChild>
             <Button
-              className="mt-8 w-full rounded-[10px] bg-cyan-400 text-white"
+              className="mt-8 w-full bg-cyan-400 text-white"
               size="lg"
               onClick={handleApplyFilter}
             >

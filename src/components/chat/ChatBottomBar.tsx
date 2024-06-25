@@ -79,7 +79,7 @@ export default function ChatBottombar({ sendMessage }: ChatBottombarProps) {
             <Button
               onClick={() => setMessage((prev) => prev + text)}
               key={index}
-              className="h-full rounded-[10px] bg-red-600 px-4 py-1 font-normal text-white hover:bg-red-800/70"
+              className="h-full bg-red-600 px-4 py-1 font-normal text-white hover:bg-red-800/70"
             >
               {text}
             </Button>
@@ -102,7 +102,7 @@ export default function ChatBottombar({ sendMessage }: ChatBottombarProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="h-9 w-9 shrink-0 rounded-[10px] bg-gray-400 hover:bg-gray-500"
+          className="h-9 w-9 shrink-0 bg-gray-400 hover:bg-gray-500"
           onClick={handleSend}
         >
           <SendHorizontal size={20} className="text-white" />
