@@ -34,3 +34,8 @@ export const formatTimeDistanceCustom = (date: Date) => {
 
 // Regular expression to match /chat/{id}
 export const chatRouteRegex = /\/chat\/\d+_\d+$/;
+
+export const formatStringToDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("ru-RU");
+};

@@ -19,6 +19,11 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         grey: "bg-accent/30 text-accent-foreground shadow-sm hover:bg-accent/80",
+        "contact-chat": "bg-fuchsia-500 text-white hover:bg-fuchsia-600",
+        "contact-wa": "bg-[#25D366] text-white hover:bg-green-600",
+        "contact-call": "bg-[#4BB3FF] text-white hover:bg-blue-500",
+        "contact-favorites":
+          "bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -27,6 +32,8 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
         xl: "h-16 rounded-md px-5 ",
+        "col-1": "py-2.5 px-3 w-full max-w-[360px] gap-2.5",
+        "col-2": "py-2.5 px-3 max-w-[200px] w-full gap-1",
       },
     },
     defaultVariants: {
