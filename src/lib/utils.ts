@@ -45,3 +45,14 @@ export const getInitials = (name: string): string => {
   const initials = nameParts.map((part) => part.charAt(0)).join("");
   return initials.toUpperCase();
 };
+
+export const matchesRoute = (pathname: string, routes: (string | RegExp)[]) => {
+  return routes.some((route) => {
+    if (typeof route === "string") {
+      return pathname === route;
+    } else if (route instanceof RegExp) {
+      return route.test(pathname);
+    }
+    return false;
+  });
+};
