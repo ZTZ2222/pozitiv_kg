@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { IChat } from "@/types/chat.schema";
+import { zChat } from "@/types/chat.schema";
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 interface SidebarProps {
-  chats: IChat[];
+  chats: zChat[];
 }
 
 export function ChatSidebar({ chats }: SidebarProps) {
