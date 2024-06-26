@@ -17,7 +17,7 @@ const AdDetails: React.FC<Props> = ({ attributes, className }) => {
             className="flex flex-col gap-3.5 py-5 md:flex-row"
           >
             <p className="w-full text-gray-500">{attribute.title}</p>
-            <p className="w-full font-semibold text-gray-800">
+            <p className="line-clamp-2 w-full font-semibold text-gray-800">
               {attribute.value}
             </p>
           </li>

@@ -13,7 +13,7 @@ const BackButton = ({ variant }: { variant: "stepper" | "router" }) => {
   if (variant === "router") {
     return (
       <Button
-        className="flex shrink-0 justify-start"
+        className="flex h-fit shrink-0 justify-start p-1"
         variant="ghost"
         size="icon"
         onClick={() => router.back()}
