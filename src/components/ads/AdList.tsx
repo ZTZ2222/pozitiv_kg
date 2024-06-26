@@ -2,10 +2,13 @@ import AdCard from "@/components/ads/AdCard";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { zPromotionRead } from "@/types/ad.schema";
-import { getAds } from "@/actions/ads-actions";
 
-const AdList = async ({ className }: { className?: string }) => {
-  const ads = await getAds();
+type Props = {
+  ads: zPromotionRead[];
+  className?: string;
+};
+
+const AdList: React.FC<Props> = ({ ads, className }) => {
   return (
     <div
       className={cn(

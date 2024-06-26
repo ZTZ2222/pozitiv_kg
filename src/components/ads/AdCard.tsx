@@ -1,32 +1,31 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import { Crown, Heart } from "lucide-react";
+import { Crown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { zPromotionRead } from "@/types/ad.schema";
+import AddToFavorites from "../favorites/AddToFavorites";
 
 const AdCard: React.FC<zPromotionRead> = ({
+  id,
   name,
   description,
   currency,
   price_after_discount,
   exchange_price_after_discount,
-  attribute,
   galleries,
   favorites,
   is_vip,
 }) => {
   return (
-    <Link href="#">
-      <Card className="relative flex h-full flex-col justify-between overflow-hidden border-black">
+    <Card className="relative flex h-full flex-col justify-between overflow-hidden border-black">
+      <Link href={`/ads/${id}`} className="block h-full w-full">
         {/* Image */}
         <CardHeader className="p-0">
           <div className="relative h-[169px]">
@@ -46,22 +45,9 @@ const AdCard: React.FC<zPromotionRead> = ({
 
         {/* Info */}
         <CardContent className="px-2.5 py-4">
-          <CardTitle className="line-clamp-2 text-base font-medium">
-            {name},{" "}
-            {(attribute &&
-              attribute.length > 0 &&
-              attribute.find((attr) => attr.title === "Площадь")?.value) ||
-              ""}{" "}
-            м<sup>2</sup>
+          <CardTitle className="line-clamp-3 text-base font-normal">
+            {description}
           </CardTitle>
-          <CardDescription className="line-clamp-2 text-sm font-light">
-            {description},{" "}
-            {(attribute &&
-              attribute.length > 0 &&
-              attribute.find((attr) => attr.title === "Площадь")?.value) ||
-              ""}{" "}
-            м<sup>2</sup>
-          </CardDescription>
         </CardContent>
 
         {/* Prices */}
@@ -73,26 +59,19 @@ const AdCard: React.FC<zPromotionRead> = ({
             {price_after_discount} {currency}
           </span>
         </CardFooter>
+      </Link>
 
-        {/* VIP Badge */}
-        {is_vip && (
-          <span className="absolute left-1 top-5 flex items-center gap-1 rounded-sm bg-red-600 px-1.5 py-1 text-sm font-semibold text-white">
-            <Crown className="h-3.5 w-3.5" />
-            VIP
-          </span>
-        )}
-
-        {/* Add to favorites */}
-        <span className="absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040]">
-          <Heart
-            className={cn(
-              "stroke-1",
-              favorites && "fill-red-600 stroke-red-600",
-            )}
-          />
+      {/* VIP Badge */}
+      {is_vip && (
+        <span className="absolute left-1 top-5 flex items-center gap-1 rounded-sm bg-red-600 px-1.5 py-1 text-sm font-semibold text-white">
+          <Crown className="h-3.5 w-3.5" />
+          VIP
         </span>
-      </Card>
-    </Link>
+      )}
+
+      {/* Add to favorites */}
+      <AddToFavorites id={id} favorites={favorites} />
+    </Card>
   );
 };
 

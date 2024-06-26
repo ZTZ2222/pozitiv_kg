@@ -39,3 +39,9 @@ export const formatStringToDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString("ru-RU");
 };
+
+export const getInitials = (name: string): string => {
+  const nameParts = name.split(" ");
+  const initials = nameParts.map((part) => part.charAt(0)).join("");
+  return initials.toUpperCase();
+};
