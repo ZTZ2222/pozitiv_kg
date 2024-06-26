@@ -4,6 +4,7 @@ import { jwtVerify } from "jose";
 
 import { zTokenPayload } from "./types/token.schema";
 import { i18nMiddleware } from "./lib/i18n";
+import { matchesRoute } from "./lib/utils";
 
 const tokenStore = new NodeCache({ stdTTL: 600 });
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -17,9 +18,6 @@ const protectedRoutes = [
   /^\/\w{2}\/admin(.*)/,
 ];
 
-const isProtectedRoute = (pathname: string) =>
-  protectedRoutes.some((route) => route.test(pathname));
-
 const verifyToken = async (token: string) => {
   try {
     const { payload } = await jwtVerify(token, secret);
@@ -32,7 +30,7 @@ const verifyToken = async (token: string) => {
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (isProtectedRoute(pathname)) {
+  if (matchesRoute(pathname, protectedRoutes)) {
     const locale = pathname.match(/^\/(\w{2})\//)?.[1] || "";
     const loginUrl = new URL(`${locale}/login`, request.url);
     const homeUrl = new URL(`${locale}/`, request.url);

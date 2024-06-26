@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/drawer";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { SlidersHorizontal, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -25,10 +25,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useTranslations } from "next-intl";
 import { zCategoryRead } from "@/types/category.schema";
 import { useRouter } from "@/lib/i18nNavigation";
+import { getCategories } from "@/actions/category-actions";
 
-const MainFilter = ({ categories }: { categories: zCategoryRead[] }) => {
+const MainFilter = () => {
   const t = useTranslations("Button");
   const isSmallScreen = useMediaQuery("(max-width: 390px)");
+  const [categories, setCategories] = useState<zCategoryRead[] | null>(null);
 
   const router = useRouter();
 
@@ -38,6 +40,14 @@ const MainFilter = ({ categories }: { categories: zCategoryRead[] }) => {
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
   const [sortOrder, setSortOrder] = useState("popular");
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getCategories();
+      setCategories(data);
+    };
+    fetchCategories();
+  }, []);
 
   // Handle Apply Filter button click
   const handleApplyFilter = () => {
@@ -82,11 +92,11 @@ const MainFilter = ({ categories }: { categories: zCategoryRead[] }) => {
           <div className="text-lg font-medium">Категория</div>
           <Select>
             <SelectTrigger className="rounded-[10px] border-gray-300 font-light text-gray-500">
-              <SelectValue placeholder="Недвижимость" />
+              <SelectValue placeholder="Выберите категорию" />
             </SelectTrigger>
             <SelectContent className="bg-white">
               <SelectGroup>
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <SelectItem key={category.id} value={category.id.toString()}>
                     {category.name}
                   </SelectItem>
