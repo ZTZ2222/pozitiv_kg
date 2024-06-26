@@ -3,8 +3,6 @@ import React from "react";
 import CategoryModal from "@/components/category/CategoryModal";
 import Swiper from "@/components/Swiper";
 import CategoryList from "@/components/category/CategoryList";
-import Search from "@/components/navigation/Search";
-import MainFilter from "@/components/filter/MainFilter";
 import AdList from "@/components/ads/AdList";
 import { getCategories } from "@/actions/category-actions";
 import { getBanners } from "@/actions/banner-actions";
