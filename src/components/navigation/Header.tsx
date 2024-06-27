@@ -20,7 +20,7 @@ const Header = () => {
 
   const pathname = usePathname();
 
-  const searchFilterRoutes = ["/"];
+  const searchFilterRoutes = ["/", "/favorites"];
   // const backbtnRoutes = [/^\/chats\/[^/]+$/];
   const backbtnShareDotsRoutes = [/^\/ads\/[^/]+$/];
   const backbtnChatsText = ["/chat"];
