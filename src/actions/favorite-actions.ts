@@ -3,60 +3,39 @@
 import { FavoriteItemSchema } from "@/types/ad.schema";
 import { actionClient } from "./safe-action";
 import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
-export const addToFavorites = actionClient
+export const updateFavorites = actionClient
   .schema(FavoriteItemSchema)
-  .action(async ({ parsedInput: { id, favourable_type = "Product" } }) => {
-    const access_token = cookies().get("access_token")?.value;
+  .action(
+    async ({
+      parsedInput: { id, favourable_type = "Product", action },
+    }): Promise<string> => {
+      const access_token = cookies().get("access_token")?.value;
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/favourites/store`,
-      {
+      const endpoint =
+        action === "add"
+          ? `${process.env.NEXT_PUBLIC_API_URL}/favourites/store`
+          : `${process.env.NEXT_PUBLIC_API_URL}/favourites/remove`;
+
+      const res = await fetch(endpoint, {
         method: "POST",
         credentials: "include",
         headers: {
           Authorization: `Bearer ${access_token}`,
           "Content-Type": "application/json",
-          "Accept-Language": "ru",
         },
         body: JSON.stringify({ id, favourable_type }),
-      },
-    );
+      });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
-    const { data } = await res.json();
+      revalidatePath("/favorites");
 
-    return { status: "OK", message: data };
-  });
+      const { data } = await res.json();
 
-export const removeFromFavorites = actionClient
-  .schema(FavoriteItemSchema)
-  .action(async ({ parsedInput: { id, favourable_type = "Product" } }) => {
-    const access_token = cookies().get("access_token")?.value;
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/favourites/remove`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          "Content-Type": "application/json",
-          "Accept-Language": "ru",
-        },
-        body: JSON.stringify({ id, favourable_type }),
-      },
-    );
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-
-    const { data } = await res.json();
-
-    return { status: "OK", message: data };
-  });
+      return data;
+    },
+  );

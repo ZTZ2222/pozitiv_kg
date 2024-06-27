@@ -70,6 +70,7 @@ export const PromotionReadSchema = PromotionUpdateSchema.omit({
 export const FavoriteItemSchema = z.object({
   id: z.number().int(),
   favourable_type: z.string(),
+  action: z.enum(["add", "remove"]),
 });
 
 export type zGalleryImage = z.infer<typeof GalleryImageSchema>;
