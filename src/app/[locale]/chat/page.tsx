@@ -12,10 +12,6 @@ const ChatList = async () => {
 
   return (
     <>
-      <div className="container flex h-16 items-center border-b border-gray-200">
-        <BackButton variant="router" />
-        <h1 className="mx-auto -translate-x-5">Чаты</h1>
-      </div>
       <main className="mt-10 flex h-[calc(100vh-168px)] w-full flex-col gap-2.5">
         {chatList.length > 0 ? (
           chatList.map((chat: zChat) => (
@@ -51,7 +47,7 @@ const ChatList = async () => {
             </Link>
           ))
         ) : (
-          <div className="grid h-full place-content-center justify-items-center gap-5">
+          <div className="mt-[10vh] flex flex-col items-center gap-5">
             <div className="relative h-[61px] w-[64px]">
               <Image
                 src="/assets/chat/empty.png"

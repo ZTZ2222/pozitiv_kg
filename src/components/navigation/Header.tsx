@@ -5,10 +5,26 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
-import BreadCrumbs from "./BreadCrumbs";
+import Search from "./Search";
+import MainFilter from "../filter/MainFilter";
+import { cn, matchesRoute } from "@/lib/utils";
+import { usePathname } from "@/lib/i18nNavigation";
+import BackButton from "./BackButton";
+import { Button } from "../ui/button";
+import { Share } from "lucide-react";
+
+import DotsDropdownMenu from "./DotsDropdownMenu";
 
 const Header = () => {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
+  const pathname = usePathname();
+
+  const searchFilterRoutes = ["/"];
+  // const backbtnRoutes = [/^\/chats\/[^/]+$/];
+  const backbtnShareDotsRoutes = [/^\/ads\/[^/]+$/];
+  const backbtnChatsText = ["/chat"];
+  // const backbtnUserInfoCallbtnDots = [/^\/chat\/[^/]+$/];
 
   if (isSmallScreen) {
     return (
@@ -43,8 +59,58 @@ const Header = () => {
             />
           </div>
         </div>
-        <nav>
-          <BreadCrumbs />
+        <nav className="container">
+          {/* Search & Filter */}
+          {matchesRoute(pathname, searchFilterRoutes) && (
+            <div
+              className={cn(
+                "flex items-center justify-between gap-[18px] py-1.5 shadow-sm md:hidden",
+                // "hidden",
+              )}
+            >
+              <Search />
+              <MainFilter />
+            </div>
+          )}
+
+          {/* Back Button Router */}
+          {/* {matchesRoute(pathname, backbtnRoutes) && (
+            <>
+              <BackButton variant="router" />
+              <div>Back Button Routes</div>
+            </>
+          )} */}
+
+          {/* Back Button, Share & Dots */}
+          {matchesRoute(pathname, backbtnShareDotsRoutes) && (
+            <div className="mt-[30px] flex justify-between">
+              <BackButton variant="router" />
+              <div className="flex items-center gap-2.5">
+                <Button
+                  variant="ghost"
+                  size="xs"
+                  className="h-fit gap-1.5 text-fuchsia-500"
+                >
+                  Поделиться <Share className="size-5" />
+                </Button>
+
+                <DotsDropdownMenu />
+              </div>
+            </div>
+          )}
+
+          {/* Back Button & "Chats" Text */}
+          {matchesRoute(pathname, backbtnChatsText) && (
+            <div className="container mt-4 flex items-center">
+              <BackButton variant="router" />
+              <h1 className="mx-auto -translate-x-5">Чаты</h1>
+            </div>
+          )}
+
+          {/* Back Button, UserInfo, Call Button & 3 Dots */}
+          {/* {matchesRoute(pathname, backbtnUserInfoCallbtnDots) && (
+            <div>Back Button, UserInfo, Call Button & 3 Dots</div>
+          )} */}
         </nav>
       </header>
     );
