@@ -5,7 +5,7 @@ import { zChat } from "@/types/chat.schema";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Phone, Settings } from "lucide-react";
+import { ChevronRight, Phone } from "lucide-react";
 import { formatTimeDistanceCustom } from "@/lib/utils";
 import BackButton from "@/components/navigation/BackButton";
 import DotsDropdownMenu from "../navigation/DotsDropdownMenu";
