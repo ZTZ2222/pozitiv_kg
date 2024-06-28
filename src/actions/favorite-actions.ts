@@ -74,8 +74,6 @@ export const deleteSearch = actionClient
   .action(async ({ parsedInput: { id } }): Promise<string> => {
     const access_token = cookies().get("access_token")?.value;
 
-    console.log("Search ID: ", id);
-
     const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/delete-search/${id}`;
 
     const res = await fetch(endpoint, {
@@ -85,8 +83,6 @@ export const deleteSearch = actionClient
         Authorization: `Bearer ${access_token}`,
       },
     });
-
-    console.log(res.status, res);
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);

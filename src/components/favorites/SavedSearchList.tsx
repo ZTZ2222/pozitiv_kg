@@ -6,6 +6,8 @@ import { Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useOptimisticAction } from "next-safe-action/hooks";
 import { deleteSearch } from "@/actions/favorite-actions";
+import { toast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   savedSearches: zSearchRead[];
@@ -31,10 +33,19 @@ const SavedSearchList: React.FC<Props> = ({ savedSearches, className }) => {
             <h4 className="font-semibold text-gray-800">{savedSearch.title}</h4>
             <p className="text-gray-400">{savedSearch.title}</p>
           </div>
-          <Trash2
-            onClick={() => execute({ id: savedSearch.id })}
-            className="mx-1 size-[18px]"
-          />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              execute({ id: savedSearch.id });
+              toast({
+                description: "Вы успешно отписались от поиска.",
+                duration: 3000,
+              });
+            }}
+          >
+            <Trash2 className="mx-1 size-[18px]" />
+          </Button>
         </div>
       ))}
     </div>

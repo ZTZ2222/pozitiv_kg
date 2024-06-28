@@ -111,6 +111,7 @@ const ComplainModal = ({
   function onSubmit(data: zComplainForm) {
     toast({
       description: "Спасибо! Ваша жалоба будет рассмотрена.",
+      duration: 3000,
     });
   }
   return (

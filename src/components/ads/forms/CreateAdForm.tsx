@@ -37,6 +37,7 @@ const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
     toast({
       title: "Form submitted!",
       description: JSON.stringify(data, null, 2),
+      duration: 3000,
     });
   };
 
