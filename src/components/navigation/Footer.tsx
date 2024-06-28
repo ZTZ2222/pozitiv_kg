@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/lib/i18nNavigation";
-import { zSocialRead } from "@/types/social.schema";
+import { zSocialRead } from "@/types/other.schema";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
