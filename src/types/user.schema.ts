@@ -26,6 +26,12 @@ export const UserReadSchema = z.object({
   show_theme: z.number().int(),
 });
 
+export const UserUpdateSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().email(),
+  phone: z.string().optional(),
+});
+
 export const SellerReadSchema = z.object({
   id: z.number().int(),
   name: z.string(),
@@ -36,4 +42,5 @@ export const SellerReadSchema = z.object({
 });
 
 export type zUserRead = z.infer<typeof UserReadSchema>;
+export type zUserUpdate = z.infer<typeof UserUpdateSchema>;
 export type zSellerRead = z.infer<typeof SellerReadSchema>;
