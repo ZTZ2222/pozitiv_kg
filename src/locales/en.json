@@ -14,6 +14,23 @@
     "categories": "Categories",
     "filter": "Filter"
   },
+  "BackButton": {
+    "profile": "My Profile",
+    "profile-edit": "Edit Profile"
+  },
+  "ProfileForm": {
+    "name": "Name",
+    "name-placeholder": "Enter your name",
+    "phone": "Your phone number",
+    "phone-placeholder": "Enter your phone number",
+    "email": "Email address",
+    "email-placeholder": "Enter your email address",
+    "locale": "Application language",
+    "terms": "Terms of use",
+    "logout": "Log out",
+    "delete-account": "Delete account",
+    "submit": "Update"
+  },
   "Footer": {
     "copyright": "© 2013. All rights reserved. Real Estate Agency PozitivKG.",
     "my_profile": "My Profile",
