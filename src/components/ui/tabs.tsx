@@ -4,6 +4,7 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -22,16 +23,31 @@ const TabsList = React.forwardRef<
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
 
+const tabsTriggerVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+  {
+    variants: {
+      variant: {
+        rounded:
+          "rounded-[10px] data-[state=active]:border data-[state=active]:border-cyan-400",
+        borderBottom:
+          "data-[state=active]:border-b data-[state=active]:border-b-cyan-400",
+      },
+    },
+    defaultVariants: {
+      variant: "rounded",
+    },
+  },
+);
+
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> &
+    VariantProps<typeof tabsTriggerVariants>
+>(({ className, variant, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
-    className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-[10px] px-3 py-1.5 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border data-[state=active]:border-cyan-400 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
-      className,
-    )}
+    className={cn(tabsTriggerVariants({ variant }), className)}
     {...props}
   />
 ));
