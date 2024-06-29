@@ -18,6 +18,20 @@
     "profile": "Менин профилим",
     "profile-edit": "Профилиңизди түзөтүү"
   },
+  "FilterSortModal": {
+    "filter": "Фильтр",
+    "select-category-label": "Категория",
+    "select-category-placeholder": "Категория тандаңыз",
+    "price-label": "Баасы",
+    "price-placeholder-min": "Минимум",
+    "price-placeholder-max": "Максимум",
+    "sort-radio-label": "Сорттоо",
+    "sort-var-popular": "Популярдуулук",
+    "sort-var-new": "Жаңы",
+    "sort-var-price-asc": "Баасы өсүү",
+    "sort-var-price-desc": "Баасы төмөндөтүү",
+    "apply-filter": "Фильтрди колдонуңуз"
+  },
   "ProfileForm": {
     "name": "Атыңыз",
     "name-placeholder": "Атыңызды киргизиңиз",

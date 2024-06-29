@@ -11,12 +11,25 @@
   },
   "Button": {
     "login": "Login",
-    "categories": "Categories",
-    "filter": "Filter"
+    "categories": "Categories"
   },
   "BackButton": {
     "profile": "My Profile",
     "profile-edit": "Edit Profile"
+  },
+  "FilterSortModal": {
+    "filter": "Filter",
+    "select-category-label": "Category",
+    "select-category-placeholder": "Select a category",
+    "price-label": "Price",
+    "price-placeholder-min": "From",
+    "price-placeholder-max": "To",
+    "sort-radio-label": "Sort by",
+    "sort-var-popular": "Popularity",
+    "sort-var-new": "New",
+    "sort-var-price-asc": "Price ascending",
+    "sort-var-price-desc": "Price descending",
+    "apply-filter": "Apply filter"
   },
   "ProfileForm": {
     "name": "Name",

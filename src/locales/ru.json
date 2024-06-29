@@ -11,12 +11,25 @@
   },
   "Button": {
     "login": "Войти",
-    "categories": "Категории",
-    "filter": "Фильтр"
+    "categories": "Категории"
   },
   "BackButton": {
     "profile": "Мой профиль",
     "profile-edit": "Редактирование данных"
+  },
+  "FilterSortModal": {
+    "filter": "Фильтр",
+    "select-category-label": "Категория",
+    "select-category-placeholder": "Выберите категорию",
+    "price-label": "Цена",
+    "price-placeholder-min": "От",
+    "price-placeholder-max": "До",
+    "sort-radio-label": "Сортировать по",
+    "sort-var-popular": "Популярности",
+    "sort-var-new": "Новинке",
+    "sort-var-price-asc": "Цена по возрастанию",
+    "sort-var-price-desc": "Цена по убыванию",
+    "apply-filter": "Применить фильтр"
   },
   "ProfileForm": {
     "name": "Имя",

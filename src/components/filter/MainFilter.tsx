@@ -28,7 +28,7 @@ import { useRouter } from "@/lib/i18nNavigation";
 import { getCategories } from "@/actions/category-actions";
 
 const MainFilter = () => {
-  const t = useTranslations("Button");
+  const t = useTranslations("FilterSortModal");
   const isSmallScreen = useMediaQuery("(max-width: 390px)");
   const [categories, setCategories] = useState<zCategoryRead[] | null>(null);
 
@@ -89,10 +89,12 @@ const MainFilter = () => {
 
         {/* Start of filter toolbar */}
         <div className="flex w-full flex-col gap-5 px-8">
-          <div className="text-lg font-medium">Категория</div>
+          <div className="text-lg font-medium">
+            {t("select-category-label")}
+          </div>
           <Select>
             <SelectTrigger className="rounded-[10px] border-gray-300 font-light text-gray-500">
-              <SelectValue placeholder="Выберите категорию" />
+              <SelectValue placeholder={t("select-category-placeholder")} />
             </SelectTrigger>
             <SelectContent className="bg-white">
               <SelectGroup>
@@ -107,7 +109,7 @@ const MainFilter = () => {
 
           {/* Price Input */}
           <div className="flex items-center gap-4 text-lg font-medium">
-            <span>Цена</span>
+            <span>{t("price-label")}</span>
             <Select defaultValue="KGS">
               <SelectTrigger className="w-fit rounded-[10px] border-0 p-0 font-medium text-gray-500">
                 <SelectValue placeholder="🇰🇬 KGS" />
@@ -125,35 +127,35 @@ const MainFilter = () => {
           <div className="flex gap-4 text-gray-500">
             <Input
               type="number"
-              placeholder="От"
+              placeholder={t("price-placeholder-min")}
               className="rounded-[10px] border-gray-300"
             />
             <Input
               type="number"
-              placeholder="До"
+              placeholder={t("price-placeholder-max")}
               className="rounded-[10px] border-gray-300"
             />
           </div>
           {/* End of Price Input */}
 
           {/* Sort Radio Group */}
-          <div className="text-lg font-medium">Сортировать по</div>
+          <div className="text-lg font-medium">{t("sort-radio-label")}</div>
           <RadioGroup defaultValue="popular">
             <div className="flex items-center space-x-2.5">
               <RadioGroupItem value="popular" id="popular" />
-              <Label htmlFor="popular">Популярности</Label>
+              <Label htmlFor="popular">{t("sort-var-popular")}</Label>
             </div>
             <div className="flex items-center space-x-2.5">
               <RadioGroupItem value="new" id="new" />
-              <Label htmlFor="new">Новинке</Label>
+              <Label htmlFor="new">{t("sort-var-new")}</Label>
             </div>
             <div className="flex items-center space-x-2.5">
               <RadioGroupItem value="price-asc" id="price-asc" />
-              <Label htmlFor="price-asc">Цена по возрастанию</Label>
+              <Label htmlFor="price-asc">{t("sort-var-price-asc")}</Label>
             </div>
             <div className="flex items-center space-x-2.5">
               <RadioGroupItem value="price-desc" id="price-desc" />
-              <Label htmlFor="price-desc">Цена по убыванию</Label>
+              <Label htmlFor="price-desc">{t("sort-var-price-desc")}</Label>
             </div>
           </RadioGroup>
           {/* End of Sort Radio Group */}
@@ -164,7 +166,7 @@ const MainFilter = () => {
               size="lg"
               onClick={handleApplyFilter}
             >
-              Применить фильтр
+              {t("apply-filter")}
             </Button>
           </DrawerClose>
         </div>
