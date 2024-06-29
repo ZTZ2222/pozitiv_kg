@@ -2,8 +2,8 @@
   "Index": {
     "meta_title": "Pozitiv-EN",
     "meta_description": "Pozitiv-EN",
-    "recommended_ads": "Featured Ads",
-    "recently_viewed": "Recently Viewed"
+    "recommend": "Recommended",
+    "new": "New"
   },
   "Search": {
     "placeholder_mobile": "Search...",

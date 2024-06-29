@@ -2,8 +2,8 @@
   "Index": {
     "meta_title": "Pozitiv-RU",
     "meta_description": "Pozitiv-RU",
-    "recommended_ads": "Рекомендуемые объявления",
-    "recently_viewed": "Вы просматривали недавно"
+    "recommend": "Рекомендуемые",
+    "new": "Новые"
   },
   "Search": {
     "placeholder_mobile": "Поиск...",

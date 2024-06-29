@@ -7,6 +7,7 @@ import AdList from "@/components/ads/AdList";
 import { getCategories } from "@/actions/category-actions";
 import { getBanners } from "@/actions/banner-actions";
 import { getAds } from "@/actions/ads-actions";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -30,7 +31,8 @@ export default async function Home() {
 
   const categories = await getCategories();
   const banners = await getBanners();
-  const promotions = await getAds();
+  const recommendedPromotions = await getAds("latest", "1");
+  const newPromotions = await getAds("latest");
 
   return (
     <main>
@@ -43,16 +45,18 @@ export default async function Home() {
           className="mt-4 self-center md:hidden"
         />
       </div>
-      <section className="container mt-[50px]">
-        <h2 className="text-lg font-semibold">{t("recommended_ads")}</h2>
-        <AdList ads={promotions} />
-      </section>
-
-      <Swiper images={banners} className="mt-[50px]" />
-      <section className="container mb-[100px] mt-[35px]">
-        <h2 className="text-lg font-semibold">{t("recently_viewed")}</h2>
-        <AdList ads={promotions} />
-      </section>
+      <Tabs defaultValue="recommend" className="container mb-[100px] mt-[30px]">
+        <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0">
+          <TabsTrigger value="recommend">{t("recommend")}</TabsTrigger>
+          <TabsTrigger value="new">{t("new")}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="recommend">
+          <AdList ads={recommendedPromotions} />
+        </TabsContent>
+        <TabsContent value="new">
+          <AdList ads={newPromotions} />
+        </TabsContent>
+      </Tabs>
     </main>
   );
 }
