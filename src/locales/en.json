@@ -45,5 +45,14 @@
     "title": "Oops!",
     "description": "The page you are looking for does not exist.",
     "back-to-home": "Back to home"
+  },
+  "FavoritesPage": {
+    "tab-1": "Announcements",
+    "tab-1-empty-title": "No favorites",
+    "tab-1-empty-description": "Add promotions to your favorites to watch them later",
+    "tab-2": "Search",
+    "tab-2-empty-title": "No search subscriptions",
+    "tab-2-empty-description": "Save your searches and stay updated on new listings",
+    "search-unsubscribe-success-text": "You have successfully unsubscribed from the search."
   }
 }

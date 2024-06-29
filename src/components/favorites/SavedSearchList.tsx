@@ -8,6 +8,7 @@ import { useOptimisticAction } from "next-safe-action/hooks";
 import { deleteSearch } from "@/actions/favorite-actions";
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 type Props = {
   savedSearches: zSearchRead[];
@@ -15,6 +16,7 @@ type Props = {
 };
 
 const SavedSearchList: React.FC<Props> = ({ savedSearches, className }) => {
+  const t = useTranslations("FavoritesPage");
   const { execute, optimisticState } = useOptimisticAction(deleteSearch, {
     currentState: savedSearches,
     updateFn: (savedSearches, { id }) => {
@@ -39,7 +41,7 @@ const SavedSearchList: React.FC<Props> = ({ savedSearches, className }) => {
             onClick={() => {
               execute({ id: savedSearch.id });
               toast({
-                description: "Вы успешно отписались от поиска.",
+                description: t("search-unsubscribe-success-text"),
                 duration: 3000,
               });
             }}
