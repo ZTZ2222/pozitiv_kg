@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { zChat } from "@/types/chat.schema";
-import BackButton from "@/components/navigation/BackButton";
 import BottomScroller from "@/components/BottomScroller";
 import { getChatList } from "@/actions/chat-actions";
 

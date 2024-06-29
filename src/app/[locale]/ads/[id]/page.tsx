@@ -29,7 +29,7 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
       <AdDetails attributes={promotion.attribute} className="mb-[60px]" />
       <Map className="mb-[40px]" />
       <UserInfoCard seller={promotion.seller} className="mb-[30px]" />
-      <section className="container mb-[100px]">
+      <section className="mb-[100px]">
         <h2 className="text-lg font-semibold">Похожие объявления</h2>
         <AdList ads={relatedPromotions} />
       </section>

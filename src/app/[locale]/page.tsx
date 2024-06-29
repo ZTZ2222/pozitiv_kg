@@ -31,8 +31,11 @@ export default async function Home() {
 
   const categories = await getCategories();
   const banners = await getBanners();
-  const recommendedPromotions = await getAds("latest", "1");
-  const newPromotions = await getAds("latest");
+  const recommendedPromotions = await getAds({
+    sort_by: "latest",
+    recommend: "1",
+  });
+  const newPromotions = await getAds({ sort_by: "latest" });
 
   return (
     <main>
