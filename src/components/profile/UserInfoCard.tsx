@@ -1,4 +1,4 @@
-import { cn, getInitials } from "@/lib/utils";
+import { cn, getInitials, getRandomColor } from "@/lib/utils";
 import { zSellerRead } from "@/types/user.schema";
 import React from "react";
 import {
@@ -19,15 +19,18 @@ type Props = {
 
 const UserInfoCard: React.FC<Props> = ({ seller, className }) => {
   const initials = getInitials(seller.name);
+  const bgColor = getRandomColor();
   return (
     <Card className={cn("inline-flex border-none md:border-solid", className)}>
-      <CardHeader className="justify-center p-0">
-        <Avatar className="h-12 w-12">
+      <CardHeader className="justify-center p-3">
+        <Avatar className="h-16 w-16">
           <AvatarImage src={seller.image} />
-          <AvatarFallback>{initials}</AvatarFallback>
+          <AvatarFallback className={cn("text-xl font-medium", bgColor)}>
+            {initials}
+          </AvatarFallback>
         </Avatar>
       </CardHeader>
-      <CardContent className="space-y-2 p-5">
+      <CardContent className="space-y-3.5 p-5">
         <CardTitle className="text-lg font-normal">{seller.name}</CardTitle>
         <CardDescription className="flex gap-2.5">
           <Phone className="size-[18px] fill-cyan-400 text-cyan-400" />

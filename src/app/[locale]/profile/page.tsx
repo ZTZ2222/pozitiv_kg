@@ -10,25 +10,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { zPromotionRead } from "@/types/ad.schema";
 import AdList from "@/components/ads/AdList";
 
-const colors = [
-  "bg-red-200",
-  "bg-blue-200",
-  "bg-green-200",
-  "bg-yellow-200",
-  "bg-purple-200",
-  "bg-pink-200",
-  "bg-indigo-200",
-  "bg-teal-200",
-  // Add more colors as needed
-];
-
 const Profile = async () => {
   const myPromotions: zPromotionRead[] = [];
 
   const userInfo = await getUserInfo();
 
   const initials = getInitials(userInfo.name || "Annonymous");
-  const bgColor = getRandomColor(colors);
+  const bgColor = getRandomColor();
   return (
     <div className="container">
       <div className="mt-[30px] flex items-center justify-between">
