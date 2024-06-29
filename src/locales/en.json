@@ -67,5 +67,10 @@
     "tab-2-empty-title": "No search subscriptions",
     "tab-2-empty-description": "Save your searches and stay updated on new listings",
     "search-unsubscribe-success-text": "You have successfully unsubscribed from the search."
+  },
+  "CategoryPromotionsPage": {
+    "empty-message-title": "It's empty here yet",
+    "empty-message-description": "There are no ads in this category yet.",
+    "back-to-home": "Back to home"
   }
 }

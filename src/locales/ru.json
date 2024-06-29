@@ -67,5 +67,10 @@
     "tab-2-empty-title": "Подписок на поиски нет",
     "tab-2-empty-description": "Сохраните параметры поиски и будьте в курсе новых объявлений",
     "search-unsubscribe-success-text": "Вы успешно отписались от поиска."
+  },
+  "CategoryPromotionsPage": {
+    "empty-message-title": "Тут пока пусто",
+    "empty-message-description": "В этой категории пока нет объявлений.",
+    "back-to-home": "На главную"
   }
 }

@@ -68,5 +68,10 @@
     "tab-2-empty-title": "Издөө жазылуулар жок",
     "tab-2-empty-description": "Издөөлөрүңүздү сактаңыз жана жаңы тизмелерден кабардар болуп туруңуз",
     "search-unsubscribe-success-text": "Сиз издөөдөн ийгиликтүү баш тарттыңыз."
+  },
+  "CategoryPromotionsPage": {
+    "empty-message-title": "Бул жерде азырынча бош",
+    "empty-message-description": "Бул категорияда азырынча эч кандай жарнама жок.",
+    "back-to-home": "Башкы бетке кайтуу"
   }
 }

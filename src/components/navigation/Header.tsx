@@ -8,10 +8,10 @@ import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
 import Search from "./Search";
 import MainFilter from "../filter/MainFilter";
 import { cn, matchesRoute } from "@/lib/utils";
-import { usePathname } from "@/lib/i18nNavigation";
+import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import BackButton from "./BackButton";
 import { Button } from "../ui/button";
-import { Share } from "lucide-react";
+import { ChevronLeft, Share } from "lucide-react";
 
 import DotsDropdownMenu from "./DotsDropdownMenu";
 
@@ -19,12 +19,12 @@ const Header = () => {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
   const pathname = usePathname();
+  const router = useRouter();
 
   const searchFilterRoutes = ["/", "/favorites"];
-  // const backbtnRoutes = [/^\/chats\/[^/]+$/];
+  const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/];
   const backbtnShareDotsRoutes = [/^\/ads\/[^/]+$/];
   const backbtnChatsText = ["/chat"];
-  // const backbtnUserInfoCallbtnDots = [/^\/chat\/[^/]+$/];
 
   if (!isSmallScreen) {
     return <header>Desktop View</header>;
@@ -76,13 +76,26 @@ const Header = () => {
           </div>
         )}
 
-        {/* Back Button Router */}
-        {/* {matchesRoute(pathname, backbtnRoutes) && (
-            <>
-              <BackButton variant="router" />
-              <div>Back Button Routes</div>
-            </>
-          )} */}
+        {/* Back Button, Search & Filter */}
+        {matchesRoute(pathname, backbtnSearchFilterRoutes) && (
+          <div
+            className={cn(
+              "flex items-center justify-between gap-2 py-1.5 md:hidden",
+              // "hidden",
+            )}
+          >
+            <Button
+              className="flex h-fit w-fit shrink-0 justify-start p-1"
+              variant="ghost"
+              size="icon"
+              onClick={() => router.back()}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+            <Search />
+            <MainFilter />
+          </div>
+        )}
 
         {/* Back Button, Share & Dots */}
         {matchesRoute(pathname, backbtnShareDotsRoutes) && (
@@ -109,11 +122,6 @@ const Header = () => {
             <h1 className="mx-auto -translate-x-5">Чаты</h1>
           </div>
         )}
-
-        {/* Back Button, UserInfo, Call Button & 3 Dots */}
-        {/* {matchesRoute(pathname, backbtnUserInfoCallbtnDots) && (
-            <div>Back Button, UserInfo, Call Button & 3 Dots</div>
-          )} */}
       </nav>
     </header>
   );

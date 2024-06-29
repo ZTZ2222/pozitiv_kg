@@ -54,7 +54,7 @@ const RecursiveAccordionItem = ({
           ))
         ) : (
           <Link
-            href={`/categories/${category.id}`}
+            href={`/category/${category.id}`}
             className="px-2 py-2.5 hover:bg-black/25"
           >
             {name}
