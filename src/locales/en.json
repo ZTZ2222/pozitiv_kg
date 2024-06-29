@@ -40,5 +40,10 @@
     "chats": "Chats",
     "support": "Support",
     "socials": "Our Social Media"
+  },
+  "NotFoundPage": {
+    "title": "Oops!",
+    "description": "The page you are looking for does not exist.",
+    "back-to-home": "Back to home"
   }
 }
