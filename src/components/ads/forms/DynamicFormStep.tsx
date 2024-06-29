@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { zCategoryAttributeRead } from "@/types/category.schema";
+import { zCategoryAttribute } from "@/types/category.schema";
 import StepperFormActions from "./StepperFormActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import BackButton from "@/components/navigation/BackButton";
@@ -22,7 +22,7 @@ import BackButton from "@/components/navigation/BackButton";
 const DynamicFormStep = ({
   attrGroup,
 }: {
-  attrGroup: zCategoryAttributeRead[];
+  attrGroup: zCategoryAttribute[];
 }) => {
   const { control } = useFormContext();
   return (

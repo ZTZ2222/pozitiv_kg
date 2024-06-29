@@ -5,7 +5,7 @@ const OptionSchema = z.object({
   name: z.string(),
 });
 
-export const CategoryAttributeReadSchema = z.object({
+export const CategoryAttributeSchema = z.object({
   id: z.number().int(),
   name: z.string(),
   type: z.enum(["integer", "text", "select", "multiselect"]),
@@ -30,7 +30,5 @@ export const CategoryReadSchema = baseCategorySchema.extend({
   childs: z.lazy(() => baseCategorySchema.array()).optional(),
 });
 
-export type zCategoryAttributeRead = z.infer<
-  typeof CategoryAttributeReadSchema
->;
+export type zCategoryAttribute = z.infer<typeof CategoryAttributeSchema>;
 export type zCategoryRead = z.infer<typeof CategoryReadSchema>;

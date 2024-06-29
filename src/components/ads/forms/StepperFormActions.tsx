@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useStepper } from "@/hooks/useStepper";
-import { zCategoryAttributeRead } from "@/types/category.schema";
+import { zCategoryAttribute } from "@/types/category.schema";
 import { useFormContext } from "react-hook-form";
 
 function StepperFormActions({
   attrGroup,
 }: {
-  attrGroup: zCategoryAttributeRead[];
+  attrGroup: zCategoryAttribute[];
 }) {
   const { trigger, formState } = useFormContext();
   const { nextStep, isLastStep } = useStepper();

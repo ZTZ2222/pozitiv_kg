@@ -26,7 +26,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
 
   return (
     <main>
-      <ScrollArea className="ml-4 mt-10">
+      <ScrollArea className="ml-4 mt-7">
         <div className="mr-4 flex gap-4">
           {category.childs?.map((child) => (
             <Link

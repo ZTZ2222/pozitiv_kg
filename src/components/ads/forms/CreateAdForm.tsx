@@ -1,6 +1,6 @@
 "use client";
 
-import { zCategoryAttributeRead } from "@/types/category.schema";
+import { zCategoryAttribute } from "@/types/category.schema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +13,7 @@ import DynamicFormStep from "./DynamicFormStep";
 import { chunkArray } from "@/lib/utils";
 
 interface CreateAdFormProps {
-  attributes: zCategoryAttributeRead[];
+  attributes: zCategoryAttribute[];
 }
 
 const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
@@ -44,7 +44,7 @@ const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
   const chunkedAttributes = chunkArray(attributes, 2);
 
   return (
-    <div className="container flex h-screen w-full flex-col gap-4 p-5">
+    <div className="container flex min-h-screen w-full flex-col gap-4 p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Stepper

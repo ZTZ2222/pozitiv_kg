@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { SellerReadSchema } from "./user.schema";
-import { CategoryReadSchema } from "./category.schema";
+import { CategoryAttributeSchema, CategoryReadSchema } from "./category.schema";
 
 export const GalleryImageSchema = z.object({
   id: z.number().int().optional(),
@@ -21,7 +21,7 @@ export const PromotionCreateSchema = z.object({
   dates: z.string().optional(),
   city_id: z.number().int().positive(),
   galleries: GalleryImageSchema.array().default([]),
-  attribute: PromotionAttributeSchema.array().default([]),
+  attribute: CategoryAttributeSchema.array().default([]),
   currency: z.enum(["USD", "KGS", "RU", "EURO"]).default("KGS"),
   phone: z.string().min(2),
 });
@@ -33,6 +33,7 @@ export const PromotionUpdateSchema = PromotionCreateSchema.extend({
 export const PromotionReadSchema = PromotionUpdateSchema.omit({
   category_id: true,
   city_id: true,
+  attribute: true,
 }).extend({
   is_valid_discount: z.boolean(),
   discount_remaining_days: z.number().int(),
@@ -43,6 +44,7 @@ export const PromotionReadSchema = PromotionUpdateSchema.omit({
   discount_end_date: z.string(),
   image: z.string().optional(),
   favorites: z.number().int(),
+  attribute: PromotionAttributeSchema.array().default([]),
   likes: z.number().int(),
   is_likes: z.boolean(),
   views_count: z.number().int(),
