@@ -21,6 +21,7 @@ import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import { AppConfig } from "@/lib/i18n";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Globus } from "@/components/icons";
 
 export default function LocaleSwitcher({
   className,
@@ -43,16 +44,7 @@ export default function LocaleSwitcher({
       <Select onValueChange={handleChange}>
         <SelectTrigger className="h-12 rounded-[10px] border-black/25">
           <div className="flex items-center gap-5">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-6 fill-none stroke-current stroke-2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" />
-              <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0M3.6 9h16.8M3.6 15h16.8" />
-              <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
-            </svg>
+            <Globus className="size-6 fill-none stroke-current stroke-2" />
             <span>{locale.toLocaleUpperCase()}</span>
           </div>
         </SelectTrigger>
@@ -76,16 +68,7 @@ export default function LocaleSwitcher({
           )}
           variant="ghost"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="size-6 stroke-current stroke-2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" />
-            <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0M3.6 9h16.8M3.6 15h16.8" />
-            <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
-          </svg>
+          <Globus className="size-6 stroke-current stroke-2" />
           <span>{locale.toLocaleUpperCase()}</span>
           <ChevronDown />
         </Button>

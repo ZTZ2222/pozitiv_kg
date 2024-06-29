@@ -23,7 +23,7 @@ const Header = () => {
 
   const searchFilterRoutes = ["/", "/favorites"];
   const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/];
-  const backbtnShareDotsRoutes = [/^\/ads\/[^/]+$/];
+  const backbtnShareDotsRoutes = [/^\/ads\/\d+$/];
   const backbtnChatsText = ["/chat"];
 
   if (!isSmallScreen) {
