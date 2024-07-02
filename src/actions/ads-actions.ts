@@ -4,24 +4,14 @@ import { zPromotionRead } from "@/types/ad.schema";
 import { getLocale } from "next-intl/server";
 import { cookies } from "next/headers";
 
-interface QueryParams {
-  search?: string;
-  category_id?: string;
-  sort_by?: string;
-  recommend?: string;
-}
-
-export const getAds = async ({
-  search = "",
-  category_id = "",
-  sort_by = "",
-  recommend = "",
-}: QueryParams): Promise<zPromotionRead[]> => {
+export const getAds = async (
+  params: URLSearchParams,
+): Promise<zPromotionRead[]> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products?search=${search}&category_id=${category_id}&sort_by=${sort_by}&recommend=${recommend}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`,
     {
       cache: "no-store",
       credentials: "include",
