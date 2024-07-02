@@ -31,7 +31,7 @@ const BackButton: React.FC<Props> = ({ variant, className }) => {
         >
           <ChevronLeft className="h-6 w-6" />
         </Button>
-        <span className="font-light text-gray-400">{t(path) || path}</span>
+        <span className="font-light text-gray-400">{t(path)}</span>
       </div>
     );
   }

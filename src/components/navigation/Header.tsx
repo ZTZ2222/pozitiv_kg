@@ -22,7 +22,7 @@ const Header = () => {
   const router = useRouter();
 
   const searchFilterRoutes = ["/", "/favorites"];
-  const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/];
+  const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/, "/search"];
   const backbtnShareDotsRoutes = [/^\/ads\/\d+$/];
   const backbtnChatsText = ["/chat"];
 
@@ -100,7 +100,14 @@ const Header = () => {
         {/* Back Button, Share & Dots */}
         {matchesRoute(pathname, backbtnShareDotsRoutes) && (
           <div className="mt-[30px] flex justify-between">
-            <BackButton variant="router" />
+            <Button
+              className="flex h-fit w-fit shrink-0 justify-start p-1"
+              variant="ghost"
+              size="icon"
+              onClick={() => router.back()}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
             <div className="flex items-center gap-2.5">
               <Button
                 variant="ghost"

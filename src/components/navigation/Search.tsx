@@ -6,6 +6,9 @@ import { Input } from "../ui/input";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/lib/i18nNavigation";
+import { useDebouncedCallback } from "use-debounce";
 
 interface SearchProps {
   className?: string;
@@ -13,7 +16,22 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ className }) => {
   const t = useTranslations("Search");
-  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const searchParams = useSearchParams();
+  const { push } = useRouter();
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (term) {
+      params.set("search", term);
+    } else {
+      params.delete("search");
+    }
+
+    push(`/search?${params.toString()}`);
+  }, 1200);
   return (
     <div
       className={cn(
@@ -22,17 +40,25 @@ const Search: React.FC<SearchProps> = ({ className }) => {
       )}
     >
       <SearchIcon className="ml-3 h-6 w-6 md:order-last md:ml-0 md:mr-7" />
-      {isSmallScreen ? (
-        <Input
-          type="search"
-          placeholder={t("placeholder_mobile")}
-          className="h-full border-none bg-gray-200 px-2 text-base font-light text-gray-700"
-        />
-      ) : (
+      {isDesktop ? (
         <Input
           type="search"
           placeholder={t("placeholder_desktop")}
           className="h-full border-none bg-gray-200 pl-7 text-lg text-gray-700 md:order-1"
+          defaultValue={searchParams.get("search")?.toString()}
+          onChange={(e) => {
+            handleSearch(e.target.value);
+          }}
+        />
+      ) : (
+        <Input
+          type="search"
+          placeholder={t("placeholder_mobile")}
+          className="h-full border-none bg-gray-200 px-2 text-base font-light text-gray-700"
+          defaultValue={searchParams.get("search")?.toString()}
+          onChange={(e) => {
+            handleSearch(e.target.value);
+          }}
         />
       )}
     </div>
