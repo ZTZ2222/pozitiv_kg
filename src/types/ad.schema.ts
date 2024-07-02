@@ -13,17 +13,22 @@ export const PromotionAttributeSchema = z.object({
 });
 
 export const PromotionCreateSchema = z.object({
-  name: z.string().min(2).trim(),
-  description: z.string().min(2).trim(),
-  price: z.number().positive(),
-  category_id: z.number().int().positive(),
+  name: z.string().optional(),
+  description: z.string({ required_error: "Обязательное поле" }),
+  price: z.number({ required_error: "Обязательное поле" }).positive(),
+  category_id: z
+    .number({ required_error: "Обязательное поле" })
+    .int()
+    .positive(),
   discount: z.number().min(0).max(100).default(0),
   dates: z.string().optional(),
-  city_id: z.number().int().positive(),
-  galleries: GalleryImageSchema.array().default([]),
+  city_id: z.number().int().positive().optional(),
+  galleries: z.array(z.instanceof(File)),
   attribute: CategoryAttributeSchema.array().default([]),
-  currency: z.enum(["USD", "KGS", "RU", "EURO"]).default("KGS"),
-  phone: z.string().min(2),
+  currency: z
+    .enum(["USD", "KGS", "RU", "EURO"], { required_error: "Обязательное поле" })
+    .default("KGS"),
+  phone: z.string({ required_error: "Обязательное поле" }),
 });
 
 export const PromotionUpdateSchema = PromotionCreateSchema.extend({
@@ -34,6 +39,7 @@ export const PromotionReadSchema = PromotionUpdateSchema.omit({
   category_id: true,
   city_id: true,
   attribute: true,
+  galleries: true,
 }).extend({
   is_valid_discount: z.boolean(),
   discount_remaining_days: z.number().int(),
@@ -45,6 +51,7 @@ export const PromotionReadSchema = PromotionUpdateSchema.omit({
   image: z.string().optional(),
   favorites: z.number().int(),
   attribute: PromotionAttributeSchema.array().default([]),
+  galleries: z.array(GalleryImageSchema),
   likes: z.number().int(),
   is_likes: z.boolean(),
   views_count: z.number().int(),

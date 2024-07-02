@@ -44,6 +44,18 @@
     "delete-account": "Delete account",
     "submit": "Update"
   },
+  "PromotionForm": {
+    "images-label": "Upload images",
+    "main-image-label": "Main image",
+    "description-label": "Description",
+    "description-placeholder": "Enter description",
+    "price-label": "Price",
+    "price-placeholder": "Enter price",
+    "category-label": "Category",
+    "category-button": "Select category",
+    "category-search-placeholder": "Search category...",
+    "category-empty-text": "No category found."
+  },
   "Footer": {
     "copyright": "© 2013. All rights reserved. Real Estate Agency PozitivKG.",
     "my_profile": "My Profile",

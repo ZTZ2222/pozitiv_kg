@@ -1,11 +1,12 @@
 import React from "react";
-import { category_attrs } from "@/utils/fake_api";
 import CreateAdForm from "@/components/ads/forms/CreateAdForm";
+import PromotionForm from "@/components/ads/forms/PromotionForm";
+import { getCategories } from "@/actions/category-actions";
 
 const PostAd = async () => {
-  const data = category_attrs;
+  const categories = await getCategories();
 
-  return <CreateAdForm attributes={data} />;
+  return <PromotionForm categories={categories} />;
 };
 
 export default PostAd;

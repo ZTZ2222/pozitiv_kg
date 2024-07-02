@@ -44,6 +44,18 @@
     "delete-account": "Удалить свой профиль",
     "submit": "Обновить"
   },
+  "PromotionForm": {
+    "images-label": "Загрузите фото",
+    "main-image-label": "Главное фото",
+    "description-label": "Описание",
+    "description-placeholder": "Добавьте описание Вашего объявления",
+    "price-label": "Цена",
+    "price-placeholder": "Введите цену",
+    "category-label": "Категория",
+    "category-button": "Выберите категорию",
+    "category-search-placeholder": "Поиск категории...",
+    "category-empty-text": "Категория не найдена."
+  },
   "Footer": {
     "copyright": "© 2013. Все права защищены Агентство недвижимости ПозитивKG.",
     "my_profile": "Мой профиль",

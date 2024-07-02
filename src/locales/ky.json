@@ -45,6 +45,18 @@
     "delete-account": "Профилиңизди жок кылыңыз",
     "submit": "Жаңыртуу"
   },
+  "PromotionForm": {
+    "images-label": "Сүрөт жүктөө",
+    "main-image-label": "Негизги сүрөт",
+    "description-label": "Баяндамасы",
+    "description-placeholder": "Жарнамаңыздын сүрөттөмөсүн кошуңуз",
+    "price-label": "Баасы",
+    "price-placeholder": "Бааны киргизиңиз",
+    "category-label": "Категория",
+    "category-button": "Категория тандаңыз",
+    "category-search-placeholder": "Категория издөө...",
+    "category-empty-text": "Категория табылган жок."
+  },
   "Footer": {
     "copyright": "© 2013. Бардык укуктар корголгон. Кыймылсыз мүлк агенттиги ПозитивKG.",
     "my_profile": "Менин профилим",
