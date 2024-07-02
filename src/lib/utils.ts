@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { zCategoryAttribute } from "@/types/category.schema";
+import { zCategoryAttribute, zCategoryRead } from "@/types/category.schema";
 import { formatDistance } from "date-fns";
 import { ru } from "date-fns/locale";
 
@@ -75,4 +75,26 @@ export const matchesRoute = (pathname: string, routes: (string | RegExp)[]) => {
     }
     return false;
   });
+};
+
+export const flattenCategories = (categories: zCategoryRead[] | undefined) => {
+  const flatCategories: zCategoryRead[] = [];
+
+  const traverse = (category: zCategoryRead) => {
+    flatCategories.push(category);
+    if (category.childs && category.childs.length > 0) {
+      category?.childs.forEach(traverse);
+    }
+  };
+
+  categories?.forEach(traverse);
+  return flatCategories;
+};
+
+export const filterParams = (
+  params: Record<string, any>,
+): Record<string, string> => {
+  return Object.fromEntries(
+    Object.entries(params).filter(([_, value]) => value !== undefined),
+  ) as Record<string, string>;
 };
