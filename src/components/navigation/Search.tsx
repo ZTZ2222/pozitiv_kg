@@ -44,7 +44,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
         <Input
           type="search"
           placeholder={t("placeholder_desktop")}
-          className="h-full border-none bg-gray-200 pl-7 text-lg text-gray-700 md:order-1"
+          className="h-full border-none pl-7 text-lg text-gray-700 md:order-1"
           defaultValue={searchParams.get("search")?.toString()}
           onChange={(e) => {
             handleSearch(e.target.value);

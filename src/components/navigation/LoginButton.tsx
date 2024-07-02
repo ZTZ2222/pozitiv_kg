@@ -8,8 +8,8 @@ const LoginButton = () => {
   const t = useTranslations("Button");
   return (
     <Button
-      size="sm"
-      className="gap-3 p-0 text-base font-normal text-fuchsia-500"
+      variant="ghost"
+      className="h-fit gap-3 px-2 py-1 text-base font-normal text-fuchsia-500"
     >
       <span>{t("login")}</span>
       <UserCircle className="h-[30px] w-[30px] fill-fuchsia-500" />
