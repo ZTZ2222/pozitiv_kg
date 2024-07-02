@@ -26,20 +26,31 @@ import { useTranslations } from "next-intl";
 import { zCategoryRead } from "@/types/category.schema";
 import { useRouter } from "@/lib/i18nNavigation";
 import { getCategories } from "@/actions/category-actions";
+import CategoryPicker from "@/components/ui/category-picker";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FilterFormSchema, zFilterForm } from "@/types/other.schema";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { toast } from "@/components/ui/use-toast";
+import { useSearchParams } from "next/navigation";
+import { filterParams } from "@/lib/utils";
 
 const MainFilter = () => {
   const t = useTranslations("FilterSortModal");
   const isSmallScreen = useMediaQuery("(max-width: 390px)");
-  const [categories, setCategories] = useState<zCategoryRead[] | null>(null);
+  const [categories, setCategories] = useState<zCategoryRead[]>();
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
 
-  // State to manage filter values
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [currency, setCurrency] = useState("KGS");
-  const [priceFrom, setPriceFrom] = useState("");
-  const [priceTo, setPriceTo] = useState("");
-  const [sortOrder, setSortOrder] = useState("popular");
+  const filterForm = useForm<zFilterForm>({
+    resolver: zodResolver(FilterFormSchema),
+    defaultValues: {
+      // currency: "KGS",
+      sort_by: "latest",
+    },
+  });
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -50,17 +61,18 @@ const MainFilter = () => {
   }, []);
 
   // Handle Apply Filter button click
-  const handleApplyFilter = () => {
-    const query = {
-      category: selectedCategory,
-      currency,
-      priceFrom,
-      priceTo,
-      sort: sortOrder,
-    };
+  const onSubmit = (data: zFilterForm) => {
+    const filteredData = filterParams(data);
 
-    router.push(`?${new URLSearchParams(query).toString()}`);
+    if (search) {
+      filteredData.search = search;
+    }
+
+    const params = new URLSearchParams(filteredData);
+
+    router.push(`/search?${params.toString()}`);
   };
+
   return (
     <Drawer direction={isSmallScreen ? "bottom" : "left"}>
       {/* Trigger button */}
@@ -87,89 +99,150 @@ const MainFilter = () => {
           </DrawerClose>
         </DrawerHeader>
 
-        {/* Start of filter toolbar */}
-        <div className="flex w-full flex-col gap-5 px-8">
-          <div className="text-lg font-medium">
-            {t("select-category-label")}
-          </div>
-          <Select>
-            <SelectTrigger className="rounded-[10px] border-gray-300 font-light text-gray-500">
-              <SelectValue placeholder={t("select-category-placeholder")} />
-            </SelectTrigger>
-            <SelectContent className="bg-white">
-              <SelectGroup>
-                {categories?.map((category) => (
-                  <SelectItem key={category.id} value={category.id.toString()}>
-                    {category.name}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-
-          {/* Price Input */}
-          <div className="flex items-center gap-4 text-lg font-medium">
-            <span>{t("price-label")}</span>
-            <Select defaultValue="KGS">
-              <SelectTrigger className="w-fit rounded-[10px] border-0 p-0 font-medium text-gray-500">
-                <SelectValue placeholder="🇰🇬 KGS" />
-              </SelectTrigger>
-              <SelectContent className="min-w-[85px] bg-white">
-                <SelectGroup className="font-medium text-gray-500">
-                  <SelectItem value="KGS">🇰🇬 KGS</SelectItem>
-                  <SelectItem value="RUB">🇷🇺 RUB</SelectItem>
-                  <SelectItem value="USD">🇺🇸 USD</SelectItem>
-                  <SelectItem value="UZS">🇺🇿 UZS</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="flex gap-4 text-gray-500">
-            <Input
-              type="number"
-              placeholder={t("price-placeholder-min")}
-              className="rounded-[10px] border-gray-300"
+        {/* Start of filter form toolbar */}
+        <Form {...filterForm}>
+          <form
+            onSubmit={filterForm.handleSubmit(onSubmit)}
+            className="z-[55] flex w-full flex-col gap-5 px-8"
+          >
+            {/* Category Pick */}
+            <div className="text-lg font-medium">
+              {t("select-category-label")}
+            </div>
+            <FormField
+              control={filterForm.control}
+              name="category_id"
+              render={({ field }) => (
+                <CategoryPicker
+                  categories={categories}
+                  field={field}
+                  modal={true}
+                  withLabel={false}
+                />
+              )}
             />
-            <Input
-              type="number"
-              placeholder={t("price-placeholder-max")}
-              className="rounded-[10px] border-gray-300"
+
+            {/* Price Input */}
+            <div className="flex items-center gap-4 text-lg font-medium">
+              <span>{t("price-label")}</span>
+              <FormField
+                control={filterForm.control}
+                name="currency"
+                render={({ field }) => (
+                  <FormItem>
+                    <Select onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className="w-fit rounded-[10px] border-0 p-0 font-medium text-gray-500">
+                          <SelectValue placeholder="🇰🇬 KGS" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="min-w-[85px] bg-white">
+                        <SelectGroup className="font-medium text-gray-500">
+                          <SelectItem value="KGS">🇰🇬 KGS</SelectItem>
+                          <SelectItem value="RUB">🇷🇺 RUB</SelectItem>
+                          <SelectItem value="USD">🇺🇸 USD</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex gap-4 text-gray-500">
+              <FormField
+                control={filterForm.control}
+                name="min_price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder={t("price-placeholder-min")}
+                        className="rounded-[10px] border-gray-300"
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={filterForm.control}
+                name="max_price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder={t("price-placeholder-max")}
+                        className="rounded-[10px] border-gray-300"
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+            {/* End of Price Input */}
+
+            {/* Sort Radio Group */}
+            <div className="text-lg font-medium">{t("sort-radio-label")}</div>
+            <FormField
+              control={filterForm.control}
+              name="sort_by"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <div className="flex items-center space-x-2.5">
+                        <FormControl>
+                          <RadioGroupItem value="popular" id="popular" />
+                        </FormControl>
+                        <Label htmlFor="popular">{t("sort-var-popular")}</Label>
+                      </div>
+                      <div className="flex items-center space-x-2.5">
+                        <FormControl>
+                          <RadioGroupItem value="latest" id="latest" />
+                        </FormControl>
+                        <Label htmlFor="latest">{t("sort-var-new")}</Label>
+                      </div>
+                      <div className="flex items-center space-x-2.5">
+                        <FormControl>
+                          <RadioGroupItem value="price-asc" id="price-asc" />
+                        </FormControl>
+                        <Label htmlFor="price-asc">
+                          {t("sort-var-price-asc")}
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2.5">
+                        <FormControl>
+                          <RadioGroupItem value="price-desc" id="price-desc" />
+                        </FormControl>
+                        <Label htmlFor="price-desc">
+                          {t("sort-var-price-desc")}
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                </FormItem>
+              )}
             />
-          </div>
-          {/* End of Price Input */}
 
-          {/* Sort Radio Group */}
-          <div className="text-lg font-medium">{t("sort-radio-label")}</div>
-          <RadioGroup defaultValue="popular">
-            <div className="flex items-center space-x-2.5">
-              <RadioGroupItem value="popular" id="popular" />
-              <Label htmlFor="popular">{t("sort-var-popular")}</Label>
-            </div>
-            <div className="flex items-center space-x-2.5">
-              <RadioGroupItem value="new" id="new" />
-              <Label htmlFor="new">{t("sort-var-new")}</Label>
-            </div>
-            <div className="flex items-center space-x-2.5">
-              <RadioGroupItem value="price-asc" id="price-asc" />
-              <Label htmlFor="price-asc">{t("sort-var-price-asc")}</Label>
-            </div>
-            <div className="flex items-center space-x-2.5">
-              <RadioGroupItem value="price-desc" id="price-desc" />
-              <Label htmlFor="price-desc">{t("sort-var-price-desc")}</Label>
-            </div>
-          </RadioGroup>
-          {/* End of Sort Radio Group */}
+            {/* End of Sort Radio Group */}
 
-          <DrawerClose asChild>
-            <Button
-              className="mt-8 w-full bg-cyan-400 text-white"
-              size="lg"
-              onClick={handleApplyFilter}
-            >
-              {t("apply-filter")}
-            </Button>
-          </DrawerClose>
-        </div>
+            <DrawerClose asChild>
+              <Button
+                className="mt-8 w-full bg-cyan-400 text-white"
+                size="lg"
+                type="submit"
+              >
+                {t("apply-filter")}
+              </Button>
+            </DrawerClose>
+          </form>
+        </Form>
         {/* End of filter toolbar */}
       </DrawerContent>
       {/* Drawer content */}
