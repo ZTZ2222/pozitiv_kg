@@ -1,9 +1,10 @@
 import { getAds } from "@/actions/ads-actions";
+import { getBanners } from "@/actions/banner-actions";
 import { getCategoryById } from "@/actions/category-actions";
 import AdList from "@/components/ads/AdList";
-import { Eyes } from "@/components/icons";
+import EmptyMessage from "@/components/category/EmptyMessage";
+import Swiper from "@/components/Swiper";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import React from "react";
 
@@ -14,16 +15,14 @@ type Props = {
 const CategoryPromotionList: React.FC<Props> = async ({
   params: { categoryId },
 }) => {
-  const locale = await getLocale();
-  const t = await getTranslations({
-    locale: locale,
-    namespace: "CategoryPromotionsPage",
-  });
-  const category = await getCategoryById({ id: categoryId });
-  const promotions = await getAds({
+  const params = new URLSearchParams({
     sort_by: "latest",
     category_id: categoryId,
   });
+
+  const category = await getCategoryById({ id: categoryId });
+  const promotions = await getAds(params);
+  const banners = await getBanners();
 
   return (
     <main>
@@ -42,25 +41,12 @@ const CategoryPromotionList: React.FC<Props> = async ({
         <ScrollBar className="hidden h-1.5 md:flex" orientation="horizontal" />
       </ScrollArea>
       {promotions.length > 0 ? (
-        <AdList ads={promotions} className="container mb-10" />
-      ) : (
         <>
-          <div className="container flex h-[50vh] flex-col items-center justify-center gap-10">
-            <div className="flex max-w-[260px] flex-col items-center gap-5 text-center">
-              <Eyes />
-              <h2 className="text-lg font-semibold text-gray-800">
-                {t("empty-message-title")}
-              </h2>
-              <p className="text-gray-600">{t("empty-message-description")}</p>
-            </div>
-            <Link
-              className="flex h-[50px] w-full max-w-[358px] items-center justify-center rounded-[10px] bg-fuchsia-500 font-medium text-white"
-              href="/"
-            >
-              {t("back-to-home")}
-            </Link>
-          </div>
+          <AdList ads={promotions} className="container mb-10" />
+          <Swiper images={banners} className="mb-10" />
         </>
+      ) : (
+        <EmptyMessage />
       )}
     </main>
   );

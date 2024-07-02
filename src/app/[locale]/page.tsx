@@ -31,23 +31,20 @@ export default async function Home() {
 
   const categories = await getCategories();
   const banners = await getBanners();
-  const recommendedPromotions = await getAds({
-    sort_by: "latest",
-    recommend: "1",
-  });
-  const newPromotions = await getAds({ sort_by: "latest" });
+  const params = new URLSearchParams({ sort_by: "latest" });
+  const newPromotions = await getAds(params);
+  params.set("recommend", "1");
+  const recommendedPromotions = await getAds(params);
 
   return (
     <main>
       {/* End of bottom header */}
       <Swiper images={banners} className="mt-[30px]" />
       <CategoryList categories={categories} />
-      <div className="container flex justify-center">
-        <CategoryModal
-          categories={categories}
-          className="mt-4 self-center md:hidden"
-        />
-      </div>
+      <CategoryModal
+        categories={categories}
+        className="container mt-4 self-center md:hidden"
+      />
       <Tabs defaultValue="recommend" className="container mb-[100px] mt-[30px]">
         <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0">
           <TabsTrigger value="recommend">{t("recommend")}</TabsTrigger>
