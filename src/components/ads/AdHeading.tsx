@@ -21,17 +21,17 @@ const AdHeading: React.FC<Props> = ({
 }) => {
   return (
     <div className={cn("flex flex-col gap-3.5", className)}>
-      <span className="inline-flex items-center gap-1.5 text-sm">
+      <span className="inline-flex items-center gap-1.5 text-sm lg:order-last">
         <Eye className="size-4" /> {views_count}
       </span>
 
-      <p className="text-2xl font-medium text-emerald-500">
+      <p className="text-2xl font-medium text-emerald-500 lg:order-3">
         {price} {currency === "USD" ? "$" : "сом"}
       </p>
-      <p className="text-xl font-medium text-red-500">
+      <p className="text-xl font-medium text-red-500 lg:order-4">
         {exchange_price_after_discount}
       </p>
-      <p className="">{description}</p>
+      <p className="lg:order-1">{description}</p>
     </div>
   );
 };

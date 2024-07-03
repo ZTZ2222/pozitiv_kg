@@ -21,8 +21,8 @@ const ContactBlock: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={cn("space-y-5", className)}>
-      <div className="flex w-full gap-5">
+    <div className={cn("flex flex-col gap-5", className)}>
+      <div className="order-1 flex w-full gap-5">
         <Button variant="contact-chat" size="col-2">
           <MessageCircleMore className="size-5" />
           Написать в чат
@@ -32,12 +32,12 @@ const ContactBlock: React.FC<Props> = ({
           WhatsApp
         </Button>
       </div>
-      <Button variant="contact-call" size="col-1">
+      <Button variant="contact-call" size="col-1" className="order-2 lg:hidden">
         <Phone className="size-5" />
         Позвонить
       </Button>
       {/* Created & Updated Dates */}
-      <div className="my-10 flex flex-col">
+      <div className="order-3 flex flex-col lg:order-4">
         <span className="font-light text-gray-800">
           Обновлено {formatStringToDate(updatedAt)}
         </span>
@@ -46,7 +46,12 @@ const ContactBlock: React.FC<Props> = ({
         </span>
       </div>
       {/* Add To Favorites */}
-      <AddToFavorites variant="button" id={id} favorites={favorites} />
+      <AddToFavorites
+        variant="button"
+        id={id}
+        favorites={favorites}
+        className="order-4 lg:order-3"
+      />
     </div>
   );
 };

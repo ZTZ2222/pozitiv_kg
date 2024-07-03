@@ -54,18 +54,18 @@ const AdCarousel = ({
         //     stopOnInteraction: true,
         //   }),
         // ]}
-        className="relative"
+        className="relative min-w-[300px] overflow-hidden rounded-[10px] lg:w-[400px]"
       >
         <CarouselContent className="cursor-grab">
           {images.map((item, index) => (
             <CarouselItem key={index}>
-              <Card className="rounded-[10px] border-none">
-                <CardContent className="relative h-[281px] p-0 md:h-[317px] lg:h-[352px]">
+              <Card className="border-none">
+                <CardContent className="relative h-[281px] bg-gray-200 p-0 md:h-[317px] lg:h-[352px]">
                   <Image
                     src={item.image}
                     alt={adName || "Images Carousel"}
                     fill
-                    className="rounded-[10px] object-cover object-left"
+                    className="object-contain"
                     priority
                   />
                 </CardContent>

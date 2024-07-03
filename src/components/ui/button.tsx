@@ -32,7 +32,7 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
         xl: "h-16 rounded-md px-5 ",
-        "col-1": "py-2.5 px-3 w-full max-w-[360px] gap-2.5",
+        "col-1": "py-2.5 px-3 w-full max-w-[420px] gap-2.5",
         "col-2": "py-2.5 px-3 max-w-[200px] w-full gap-1",
       },
     },

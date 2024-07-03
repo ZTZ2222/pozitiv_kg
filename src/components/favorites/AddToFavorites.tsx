@@ -12,10 +12,12 @@ const AddToFavorites = ({
   id,
   favorites,
   variant = "icon",
+  className,
 }: {
   id: number;
   favorites: number;
   variant?: "icon" | "button";
+  className?: string;
 }) => {
   const { execute, isExecuting, optimisticState } = useOptimisticAction(
     updateFavorites,
@@ -37,7 +39,7 @@ const AddToFavorites = ({
         disabled={isExecuting}
         variant="contact-favorites"
         size="col-1"
-        className="py-3 font-medium"
+        className={cn("py-3 font-medium", className)}
       >
         {optimisticState === 1
           ? "Удалить из избранного"
