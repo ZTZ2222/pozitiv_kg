@@ -18,7 +18,7 @@ const CategoryButton: React.FC<zCategoryRead> = ({
   const router = useRouter();
   return (
     <Button
-      className="h-fit w-[224px] justify-start gap-5 rounded-[5px] border border-yellow-400 bg-indigo-400 p-5 px-5 py-2.5 text-white"
+      className="h-fit w-[224px] justify-start gap-5 rounded-[5px] border border-yellow-400 bg-indigo-400 p-5 px-5 py-2.5 text-white md:w-full"
       onClick={() => router.push(`/category/${id}`)}
       style={{
         backgroundColor: bg_color,

@@ -60,7 +60,7 @@ const CategoryModal = ({
       {/* Trigger button */}
 
       {/* Drawer content */}
-      <DrawerContent className="h-full max-w-[395px] rounded-t-[10px] bg-white">
+      <DrawerContent className="h-full max-w-[395px] rounded-t-[10px] bg-white md:rounded-none">
         <DrawerHeader className="flex justify-between py-0 pb-8">
           <div className="ml-4 flex gap-2.5 text-lg leading-tight text-gray-500">
             <Grip className="h-6 w-6" />
