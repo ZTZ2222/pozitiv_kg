@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Search from "./Search";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const socials: zSocialRead[] = [
   {
@@ -38,11 +40,15 @@ const socials: zSocialRead[] = [
 const Footer = () => {
   const t = useTranslations("Footer");
   const pathname = usePathname();
-
   if (pathname.includes("/chat")) return null;
+
+  const isMobile = useMediaQuery("(max-width: 480px)");
+  const isTablet = useMediaQuery("(max-width: 768px)");
+  const isNarrowDesktop = useMediaQuery("(max-width: 1440px)");
   return (
     <footer className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white">
-      <div className="container flex py-5">
+      {/* Logo */}
+      <div className="container flex items-center justify-between py-5">
         <Link href="/" className="relative h-[117px] w-[100px]">
           <Image
             src="/assets/logo/circle-logo.png"
@@ -51,31 +57,49 @@ const Footer = () => {
             className="object-contain"
           />
         </Link>
+        {!isTablet && <Search />}
       </div>
-      <div className="relative mb-5 h-4 w-full self-end">
-        <Image
-          src="/assets/ornament-down.png"
-          alt="Ornaments"
-          fill
-          className="object-contain"
-        />
+
+      {/* Ornaments */}
+      <div className="container mb-5 flex overflow-hidden md:mb-7">
+        {Array.from({
+          length: isMobile ? 1 : isTablet ? 2 : isNarrowDesktop ? 3 : 4,
+        }).map((_, index) => (
+          <div key={index} className="relative h-4 w-full">
+            <Image
+              src="/assets/ornament-down.png"
+              alt="Ornaments"
+              fill
+              className="object-contain"
+              sizes="(max-width: 600px) 100vw, 50vw"
+            />
+          </div>
+        ))}
       </div>
-      <div className="container mb-10 space-y-[50px]">
+
+      {/* Navigation */}
+      <div className="container mb-10 flex flex-col justify-between gap-[50px] md:flex-row">
         <nav className="space-y-9">
           <h6 className="font-bold uppercase">{t("my_profile")}</h6>
           <div className="flex flex-col gap-[30px]">
-            <Link href="#">{t("personal_account")}</Link>
-            <Link href="#">{t("post_ad")}</Link>
-            <Link href="#">{t("favorites")}</Link>
-            <Link href="#">{t("chats")}</Link>
+            <Link href="/profile">{t("personal_account")}</Link>
+            <Link href="/ads/post">{t("post_ad")}</Link>
+            <Link href="/favorites">{t("favorites")}</Link>
+            <Link href="/chat">{t("chats")}</Link>
           </div>
         </nav>
+        {/* Justify self center */}
         <nav className="space-y-9">
           <h6 className="font-bold uppercase">{t("support")}</h6>
           <div className="flex flex-col gap-[30px]">
-            <Link href="#">support.pozitiv@gmail.com</Link>
-            <Link href="#">+996 555 10 20 50</Link>
-            <Link href="#">+996 500 10 20 50</Link>
+            <Link
+              href="mailto:support.pozitiv@gmail.com"
+              className="inline-block"
+            >
+              support.pozitiv@gmail.com
+            </Link>
+            <span>+996 555 10 20 50</span>
+            <span>+996 500 10 20 50</span>
           </div>
         </nav>
         <nav className="space-y-[30px]">
@@ -100,10 +124,14 @@ const Footer = () => {
           </div>
         </nav>
       </div>
+
+      {/* Copyright */}
       <div className="container text-wrap pb-[30px] text-lg">
         {t("copyright")}
       </div>
-      <div className="container pb-[121px]">
+
+      {/* Website stats */}
+      <div className="container pb-[121px] md:pb-12">
         <Image
           src="/assets/socials/stats.png"
           alt="website stats"

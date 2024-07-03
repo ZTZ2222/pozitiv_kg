@@ -3,7 +3,7 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
 import Search from "./Search";
 import MainFilter from "../filter/MainFilter";
@@ -11,12 +11,18 @@ import { cn, matchesRoute } from "@/lib/utils";
 import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import BackButton from "./BackButton";
 import { Button } from "../ui/button";
-import { ChevronLeft, Share } from "lucide-react";
+import { ChevronLeft, Grip, Share, UserIcon } from "lucide-react";
 
 import DotsDropdownMenu from "./DotsDropdownMenu";
+import LoginButton from "./LoginButton";
+import { zCategoryRead } from "@/types/category.schema";
+import { getCategories } from "@/actions/category-actions";
+import CategoryModal from "../category/CategoryModal";
 
 const Header = () => {
-  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 769px)");
+  const isWideScreen = useMediaQuery("(min-width: 1441px)");
+  const isMobile = useMediaQuery("(max-width: 480px)");
 
   const pathname = usePathname();
   const router = useRouter();
@@ -26,22 +32,94 @@ const Header = () => {
   const backbtnShareDotsRoutes = [/^\/ads\/\d+$/];
   const backbtnChatsText = ["/chat"];
 
-  if (!isSmallScreen) {
-    return <header>Desktop View</header>;
+  const [categories, setCategories] = useState<zCategoryRead[]>();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getCategories();
+      setCategories(data);
+    };
+    fetchCategories();
+  }, []);
+
+  if (isDesktop) {
+    return (
+      <header>
+        <div className="bg-gradient-to-r from-cyan-400 to-fuchsia-500">
+          <div className="flex flex-col justify-between bg-gradient-to-r from-cyan-400 to-fuchsia-500">
+            {/* Ornaments */}
+            <div className="flex overflow-hidden">
+              {Array.from({ length: isWideScreen ? 5 : 4 }).map((_, index) => (
+                <div key={index} className="relative h-4 w-full">
+                  <Image
+                    src="/assets/ornament-up.png"
+                    alt="Ornaments"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="container flex items-center justify-between py-1">
+              <Link href="/" className="relative h-[26px] w-[200px]">
+                <Image
+                  src="/assets/logo/pozitiv.png"
+                  alt="Logo"
+                  fill
+                  className="object-contain"
+                />
+              </Link>
+              <Search />
+            </div>
+            {/* Ornaments */}
+            <div className="flex overflow-hidden">
+              {Array.from({ length: isWideScreen ? 5 : 4 }).map((_, index) => (
+                <div key={index} className="relative h-4 w-full">
+                  <Image
+                    src="/assets/ornament-down.png"
+                    alt="Ornaments"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <nav className="container flex items-center justify-between bg-white p-4">
+          <CategoryModal
+            categories={categories || []}
+            className="hover:bg-inherit"
+          />
+          <div className="flex items-center space-x-4">
+            <LocaleSwitcher />
+            <LoginButton />
+          </div>
+        </nav>
+      </header>
+    );
   }
 
   return (
     <header>
       <div className="flex h-16 flex-col justify-between bg-gradient-to-r from-cyan-400 to-fuchsia-500">
-        <div className="relative h-4 w-full">
-          <Image
-            src="/assets/ornament-up.png"
-            alt="Ornaments"
-            fill
-            className="object-contain"
-            sizes="(max-width: 600px) 100vw, 50vw"
-          />
+        {/* Ornaments */}
+        <div className="flex overflow-hidden">
+          {Array.from({ length: isMobile ? 1 : 2 }).map((_, index) => (
+            <div key={index} className="relative h-4 w-full">
+              <Image
+                src="/assets/ornament-up.png"
+                alt="Ornaments"
+                fill
+                className="object-contain"
+                sizes="(max-width: 600px) 100vw, 50vw"
+              />
+            </div>
+          ))}
         </div>
+        {/* Logo */}
         <div className="container flex items-center justify-between">
           <Link href="/" className="relative h-4 w-[120px]">
             <Image
@@ -53,13 +131,19 @@ const Header = () => {
           </Link>
           <LocaleSwitcher className="h-fit p-0 text-white/80" />
         </div>
-        <div className="relative h-4 w-full self-end">
-          <Image
-            src="/assets/ornament-down.png"
-            alt="Ornaments"
-            fill
-            className="object-contain"
-          />
+        {/* Ornaments */}
+        <div className="flex overflow-hidden">
+          {Array.from({ length: isMobile ? 1 : 2 }).map((_, index) => (
+            <div key={index} className="relative h-4 w-full">
+              <Image
+                src="/assets/ornament-down.png"
+                alt="Ornaments"
+                fill
+                className="object-contain"
+                sizes="(max-width: 600px) 100vw, 50vw"
+              />
+            </div>
+          ))}
         </div>
       </div>
       <nav className="container">
