@@ -46,8 +46,10 @@ export default async function Home() {
         className="container mt-4 self-center md:hidden"
       />
       <Tabs defaultValue="recommend" className="container mb-[100px] mt-[30px]">
-        <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0">
-          <TabsTrigger value="recommend">{t("recommend")}</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0 md:w-[40%]">
+          <TabsTrigger value="recommend" className="">
+            {t("recommend")}
+          </TabsTrigger>
           <TabsTrigger value="new">{t("new")}</TabsTrigger>
         </TabsList>
         <TabsContent value="recommend">

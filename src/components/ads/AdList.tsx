@@ -12,7 +12,7 @@ const AdList: React.FC<Props> = ({ ads, className }) => {
   return (
     <div
       className={cn(
-        "mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2",
+        "mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-4 xl:grid-cols-5",
         className,
       )}
     >
