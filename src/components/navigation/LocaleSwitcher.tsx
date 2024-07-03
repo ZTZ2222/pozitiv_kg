@@ -63,7 +63,7 @@ export default function LocaleSwitcher({
       <DropdownMenuTrigger asChild>
         <Button
           className={cn(
-            "text-grey-3 space-x-1.5 fill-none p-2 focus-visible:ring-offset-0",
+            "space-x-1.5 fill-none p-2 text-gray-400 focus-visible:ring-offset-0",
             className,
           )}
           variant="ghost"

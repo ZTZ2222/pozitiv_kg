@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { DrawerClose } from "@/components/ui/drawer";
 
 const RecursiveAccordionItem = ({
   category,
@@ -53,12 +54,14 @@ const RecursiveAccordionItem = ({
             />
           ))
         ) : (
-          <Link
-            href={`/category/${category.id}`}
-            className="px-2 py-2.5 hover:bg-black/25"
-          >
-            {name}
-          </Link>
+          <DrawerClose asChild>
+            <Link
+              href={`/category/${category.id}`}
+              className="px-2 py-2.5 hover:bg-black/25"
+            >
+              {name}
+            </Link>
+          </DrawerClose>
         )}
       </AccordionContent>
     </AccordionItem>

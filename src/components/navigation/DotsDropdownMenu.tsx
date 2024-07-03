@@ -180,6 +180,7 @@ const ComplainModal = ({
                         ? "bg-fuchsia-500 hover:bg-fuchsia-600"
                         : "cursor-not-allowed bg-gray-400 hover:bg-gray-500",
                     )}
+                    onClick={() => setIsOpen(false)}
                   >
                     Отправить
                   </Button>

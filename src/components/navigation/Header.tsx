@@ -196,7 +196,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="xs"
-                className="h-fit gap-1.5 text-fuchsia-500"
+                className="h-fit gap-1.5 text-fuchsia-500 hover:bg-inherit"
               >
                 Поделиться <Share className="size-5" />
               </Button>
