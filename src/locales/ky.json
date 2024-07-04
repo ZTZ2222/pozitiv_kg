@@ -18,6 +18,14 @@
     "profile": "Менин профилим",
     "profile-edit": "Профилиңизди түзөтүү"
   },
+  "ContactBlock": {
+    "chat": "Чатка жазуу",
+    "call": "Чалуу",
+    "updated-at": "Жаңыланды",
+    "created-at": "Жарыяланган датасы",
+    "add-to-favorites": "Тандалмандарга кошуу",
+    "delete-from-favorites": "Тандалмандардан алып салуу"
+  },
   "FilterSortModal": {
     "filter": "Фильтр",
     "select-category-label": "Категория",
@@ -57,6 +65,13 @@
     "category-search-placeholder": "Категория издөө...",
     "category-empty-text": "Категория табылган жок."
   },
+  "Header": {
+    "share": "Бөлүшүү",
+    "post-ad": "Жарыя берүү",
+    "favorites": "Тандалгандар",
+    "profile": "Профиль",
+    "chats": "Чаттар"
+  },
   "Footer": {
     "copyright": "© 2013. Бардык укуктар корголгон. Кыймылсыз мүлк агенттиги ПозитивKG.",
     "my_profile": "Менин профилим",
@@ -66,6 +81,13 @@
     "chats": "Чаттар",
     "support": "Техколдоо",
     "socials": "Биздин социалдык тармактар"
+  },
+  "MobileNav": {
+    "home": "Башкы",
+    "post-ad": "Жарыялоо",
+    "favorites": "Тандалгандар",
+    "profile": "Профиль",
+    "chats": "Чаттар"
   },
   "NotFoundPage": {
     "title": "Ой!",

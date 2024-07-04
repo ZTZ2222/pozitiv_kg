@@ -19,6 +19,7 @@ import MainFilter from "@/components/filter/MainFilter";
 import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
 import CategoryModal from "@/components/category/CategoryModal";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 type Props = {
   isAuthenticated: boolean;
@@ -33,6 +34,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
 
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations("Header");
 
   const searchFilterRoutes = ["/", "/favorites"];
   const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/, "/search"];
@@ -112,7 +114,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
               >
                 <PlusCircle className="group-hover:bg-accent-foreground" />
                 <span className="text-xs xs:text-sm sm:text-base">
-                  Подать объявление
+                  {t("post-ad")}
                 </span>
               </Link>
 
@@ -122,7 +124,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
               >
                 <Heart className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
-                <span>Избранные</span>
+                <span>{t("favorites")}</span>
               </Link>
 
               {/* /chat */}
@@ -131,7 +133,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
               >
                 <Chat className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
-                <span>Чаты</span>
+                <span>{t("chats")}</span>
               </Link>
 
               {/* /profile */}
@@ -140,7 +142,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
               >
                 <UserCircle className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
-                <span>Профиль</span>
+                <span>{t("profile")}</span>
               </Link>
             </div>
           </nav>
@@ -257,7 +259,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 size="xs"
                 className="h-fit gap-1.5 text-fuchsia-500 hover:bg-inherit"
               >
-                Поделиться <Share className="size-5" />
+                {t("share")} <Share className="size-5" />
               </Button>
 
               <DotsDropdownMenu />
@@ -269,7 +271,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         {checkRoute(pathname, backbtnChatsText) && (
           <div className="container mt-4 flex items-center">
             <BackButton variant="router" />
-            <h1 className="mx-auto -translate-x-5">Чаты</h1>
+            <h1 className="mx-auto -translate-x-5">{t("chats")}</h1>
           </div>
         )}
       </nav>

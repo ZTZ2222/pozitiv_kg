@@ -17,6 +17,14 @@
     "profile": "My Profile",
     "profile-edit": "Edit Profile"
   },
+  "ContactBlock": {
+    "chat": "Chat",
+    "call": "Call",
+    "updated-at": "Updated at",
+    "created-at": "Created at",
+    "add-to-favorites": "Add to favorites",
+    "delete-from-favorites": "Remove from favorites"
+  },
   "FilterSortModal": {
     "filter": "Filter",
     "select-category-label": "Category",
@@ -56,6 +64,13 @@
     "category-search-placeholder": "Search category...",
     "category-empty-text": "No category found."
   },
+  "Header": {
+    "share": "Share",
+    "post-ad": "Post Ad",
+    "favorites": "Favorites",
+    "profile": "Profile",
+    "chats": "Chats"
+  },
   "Footer": {
     "copyright": "© 2013. All rights reserved. Real Estate Agency PozitivKG.",
     "my_profile": "My Profile",
@@ -65,6 +80,13 @@
     "chats": "Chats",
     "support": "Support",
     "socials": "Our Social Media"
+  },
+  "MobileNav": {
+    "home": "Home",
+    "post-ad": "Post",
+    "favorites": "Favorites",
+    "profile": "Profile",
+    "chats": "Chats"
   },
   "NotFoundPage": {
     "title": "Oops!",

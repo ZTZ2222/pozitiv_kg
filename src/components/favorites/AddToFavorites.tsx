@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useOptimisticAction } from "next-safe-action/hooks";
 import { updateFavorites } from "@/actions/favorite-actions";
 import { Button } from "../ui/button";
+import { useTranslations } from "next-intl";
 
 const AddToFavorites = ({
   id,
@@ -19,6 +20,7 @@ const AddToFavorites = ({
   variant?: "icon" | "button";
   className?: string;
 }) => {
+  const t = useTranslations("ContactBlock");
   const { execute, isExecuting, optimisticState } = useOptimisticAction(
     updateFavorites,
     {
@@ -42,8 +44,8 @@ const AddToFavorites = ({
         className={cn("py-3 font-medium", className)}
       >
         {optimisticState === 1
-          ? "Удалить из избранного"
-          : "Добавить в избранное"}{" "}
+          ? t("add-to-favorites")
+          : t("delete-from-favorites")}{" "}
         <Heart className="size-5 fill-white" />
       </Button>
     );

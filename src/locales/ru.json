@@ -17,6 +17,14 @@
     "profile": "Мой профиль",
     "profile-edit": "Редактирование данных"
   },
+  "ContactBlock": {
+    "chat": "Написать в чат",
+    "call": "Позвонить",
+    "updated-at": "Обновлено",
+    "created-at": "Дата публикации",
+    "add-to-favorites": "Добавить в избранные",
+    "delete-from-favorites": "Удалить из избранных"
+  },
   "FilterSortModal": {
     "filter": "Фильтр",
     "select-category-label": "Категория",
@@ -56,6 +64,13 @@
     "category-search-placeholder": "Поиск категории...",
     "category-empty-text": "Категория не найдена."
   },
+  "Header": {
+    "share": "Поделиться",
+    "post-ad": "Подать объявление",
+    "favorites": "Избранные",
+    "profile": "Профиль",
+    "chats": "Чаты"
+  },
   "Footer": {
     "copyright": "© 2013. Все права защищены Агентство недвижимости ПозитивKG.",
     "my_profile": "Мой профиль",
@@ -65,6 +80,13 @@
     "chats": "Чаты",
     "support": "Техподдержка",
     "socials": "Наши соцсети"
+  },
+  "MobileNav": {
+    "home": "Главная",
+    "post-ad": "Подать",
+    "favorites": "Избранные",
+    "profile": "Профиль",
+    "chats": "Чаты"
   },
   "NotFoundPage": {
     "title": "Ой!",

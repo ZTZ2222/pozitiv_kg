@@ -6,6 +6,7 @@ import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import { Chat, Heart, Home, PlusCircle, UserCircle } from "@/components/icons";
+import { useTranslations } from "next-intl";
 
 const MobileNavButton = ({
   href,
@@ -38,16 +39,18 @@ const MobileNav = () => {
   const pathname = usePathname();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
+  const t = useTranslations("MobileNav");
+
   if (isDesktop || chatRouteRegex.test(pathname)) return null;
   return (
     <nav className="fixed bottom-0 left-0 z-20 flex w-full max-w-5xl border-t border-gray-200 bg-white px-1 shadow sm:px-0">
       <MobileNavButton href="/">
         <Home className="size-5 sm:size-7" />
-        <span>Главная</span>
+        <span>{t("home")}</span>
       </MobileNavButton>
       <MobileNavButton href="/favorites">
         <Heart className="size-5 sm:size-7" />
-        <span>Избранные</span>
+        <span>{t("favorites")}</span>
       </MobileNavButton>
       <Link
         href="/ads/post"
@@ -58,15 +61,15 @@ const MobileNav = () => {
       >
         <PlusCircle className="size-12 p-4 sm:size-16" />
 
-        <span className="text-xs xs:text-sm sm:text-base">Подать</span>
+        <span className="text-xs xs:text-sm sm:text-base">{t("post-ad")}</span>
       </Link>
       <MobileNavButton href="/chat">
         <Chat className="size-5 sm:size-7" />
-        <span>Чаты</span>
+        <span>{t("chats")}</span>
       </MobileNavButton>
       <MobileNavButton href="/profile">
         <UserCircle className="size-5 sm:size-7" />
-        <span>Профиль</span>
+        <span>{t("profile")}</span>
       </MobileNavButton>
     </nav>
   );
