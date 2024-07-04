@@ -85,5 +85,17 @@
     "empty-message-title": "Бул жерде азырынча бош",
     "empty-message-description": "Бул категорияда азырынча эч кандай жарнама жок.",
     "back-to-home": "Башкы бетке кайтуу"
+  },
+  "ProfilePage": {
+    "your-promotions": "Сиздин жарыяларыңыз",
+    "tab-trigger-active": "Активдүү",
+    "tab-trigger-in-moderation": "Модерацияда",
+    "tab-trigger-deactivated": "Өчүрүлгөн",
+    "empty-active-message-title": "Активдүү жарыялар жок",
+    "empty-active-message-description": "Ийгиликтүү сатып алуу жана сатуу үчүн жарыяларды жайгаштырыңыз!",
+    "empty-in-moderation-message-title": "Жарыялар жок",
+    "empty-in-moderation-message-description": "Бул бөлүмдө сиз модерациядан өтүп жаткан жарыяларды көрөсүз.",
+    "empty-deactivated-message-title": "Жарыялар жок",
+    "empty-deactivated-message-description": "Бул жерде сиз өчүрүлгөн жарыяларыңызды көрөсүз."
   }
 }

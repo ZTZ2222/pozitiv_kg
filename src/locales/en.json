@@ -84,5 +84,17 @@
     "empty-message-title": "It's empty here yet",
     "empty-message-description": "There are no ads in this category yet.",
     "back-to-home": "Back to home"
+  },
+  "ProfilePage": {
+    "your-promotions": "Your Promotions",
+    "tab-trigger-active": "Active",
+    "tab-trigger-in-moderation": "In Moderation",
+    "tab-trigger-deactivated": "Deactivated",
+    "empty-active-message-title": "No Active Promotions",
+    "empty-active-message-description": "Post promotions for successful buying and selling!",
+    "empty-in-moderation-message-title": "No Promotions",
+    "empty-in-moderation-message-description": "In this section, you will see promotions that are undergoing moderation.",
+    "empty-deactivated-message-title": "No Promotions",
+    "empty-deactivated-message-description": "Here you will see your deactivated promotions."
   }
 }

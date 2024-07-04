@@ -84,5 +84,17 @@
     "empty-message-title": "Тут пока пусто",
     "empty-message-description": "В этой категории пока нет объявлений.",
     "back-to-home": "На главную"
+  },
+  "ProfilePage": {
+    "your-promotions": "Ваши объявления",
+    "tab-trigger-active": "Активные",
+    "tab-trigger-in-moderation": "На модерации",
+    "tab-trigger-deactivated": "Деактивировано",
+    "empty-active-message-title": "Нет активных объявлений",
+    "empty-active-message-description": "Размещайте объявления для успешных покупок и продаж!",
+    "empty-in-moderation-message-title": "Нет объявлений",
+    "empty-in-moderation-message-description": "В этом разделе вы увидите объявления, проходящие модерацию.",
+    "empty-deactivated-message-title": "Нет объявлений",
+    "empty-deactivated-message-description": "Здесь вы увидите свои деактивированные объявления."
   }
 }

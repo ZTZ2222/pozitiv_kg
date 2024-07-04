@@ -81,3 +81,27 @@ export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
 
   return data.items;
 };
+
+export const getMyAds = async (): Promise<zPromotionRead[]> => {
+  const access_token = cookies().get("access_token")?.value;
+  const locale = await getLocale();
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/my-list`,
+    {
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        "Accept-Language": locale,
+        Authorization: `Bearer ${access_token}`,
+      },
+      next: { tags: ["my-list"] },
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const { data } = await response.json();
+
+  return data.items;
+};

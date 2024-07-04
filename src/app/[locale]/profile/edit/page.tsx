@@ -8,7 +8,7 @@ const EditProfile = async () => {
   return (
     <div className="container">
       <BackButton variant="router" className="mt-[30px]" />
-      <UserForm name={name} phone={phone} email={email} />
+      <UserForm name={name} phone={phone} email={email} className="mx-auto" />
     </div>
   );
 };
