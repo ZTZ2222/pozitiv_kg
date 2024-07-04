@@ -66,7 +66,7 @@ export const getRandomColor = () => {
   return avatarBackgroundColors[randomIndex];
 };
 
-export const matchesRoute = (pathname: string, routes: (string | RegExp)[]) => {
+export const checkRoute = (pathname: string, routes: (string | RegExp)[]) => {
   return routes.some((route) => {
     if (typeof route === "string") {
       return pathname === route;
