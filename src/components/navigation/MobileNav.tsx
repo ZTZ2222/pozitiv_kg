@@ -5,7 +5,7 @@ import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { chatRouteRegex, cn } from "@/lib/utils";
-import { Chat, Heart, Home, Plus, UserCircle } from "@/components/icons";
+import { Chat, Heart, Home, PlusCircle, UserCircle } from "@/components/icons";
 
 const MobileNavButton = ({
   href,
@@ -53,9 +53,7 @@ const MobileNav = () => {
           pathname === "/ads/post" && "fill-fuchsia-500 text-fuchsia-500",
         )}
       >
-        <div className="grid size-12 place-content-center rounded-full bg-fuchsia-500 group-focus:outline group-focus:outline-offset-1 group-focus:outline-gray-400 sm:size-16">
-          <Plus className="size-[14px] fill-white sm:size-5" />
-        </div>
+        <PlusCircle className="size-12 p-4 sm:size-16" />
 
         <span className="text-xs xs:text-sm sm:text-base">Подать</span>
       </Link>

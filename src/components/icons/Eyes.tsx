@@ -35,8 +35,8 @@ const Eyes: React.FC<ComponentProps<"svg">> = (props) => {
           y2="42.5031"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#37E5F0" />
-          <stop offset="1" stop-color="#1EA69A" />
+          <stop stopColor="#37E5F0" />
+          <stop offset="1" stopColor="#1EA69A" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1379_18374"
@@ -46,8 +46,8 @@ const Eyes: React.FC<ComponentProps<"svg">> = (props) => {
           y2="42.5031"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#37E5F0" />
-          <stop offset="1" stop-color="#1EA69A" />
+          <stop stopColor="#37E5F0" />
+          <stop offset="1" stopColor="#1EA69A" />
         </linearGradient>
       </defs>
     </svg>

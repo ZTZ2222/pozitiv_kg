@@ -27,8 +27,8 @@ const Crescent: React.FC<ComponentProps<"svg">> = (props) => {
           y2="58.6926"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#37E5F0" />
-          <stop offset="1" stop-color="#1EA69A" />
+          <stop stopColor="#37E5F0" />
+          <stop offset="1" stopColor="#1EA69A" />
         </linearGradient>
       </defs>
     </svg>
