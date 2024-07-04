@@ -10,7 +10,7 @@ const Loading = () => {
           alt="Pozitiv Logo"
           className="object-contain"
           fill
-          sizes="(max-width: 600px) 100vw, 50vw"
+          sizes="100vw"
         />
       </div>
     </div>
