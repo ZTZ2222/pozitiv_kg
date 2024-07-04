@@ -1,28 +1,35 @@
 "use client";
 
-import useMediaQuery from "@/hooks/useMediaQuery";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
-import Search from "./Search";
-import MainFilter from "../filter/MainFilter";
-import { cn, matchesRoute } from "@/lib/utils";
-import { usePathname, useRouter } from "@/lib/i18nNavigation";
-import BackButton from "./BackButton";
-import { Button } from "../ui/button";
-import { ChevronLeft, Grip, Share, UserIcon } from "lucide-react";
 
-import DotsDropdownMenu from "./DotsDropdownMenu";
-import LoginButton from "./LoginButton";
 import { zCategoryRead } from "@/types/category.schema";
 import { getCategories } from "@/actions/category-actions";
-import CategoryModal from "../category/CategoryModal";
+import { ChevronLeft, Share } from "lucide-react";
+import { Chat, Heart, PlusCircle, UserCircle } from "@/components/icons";
+import { cn, checkRoute } from "@/lib/utils";
+import { usePathname, useRouter } from "@/lib/i18nNavigation";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import Search from "./Search";
+import BackButton from "./BackButton";
+import DotsDropdownMenu from "./DotsDropdownMenu";
+import LoginButton from "./LoginButton";
+import MainFilter from "@/components/filter/MainFilter";
+import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
+import CategoryModal from "@/components/category/CategoryModal";
+import { Button } from "@/components/ui/button";
 
-const Header = () => {
+type Props = {
+  isAuthenticated: boolean;
+};
+
+const Header: React.FC<Props> = ({ isAuthenticated }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const isWideScreen = useMediaQuery("(min-width: 1441px)");
   const isMobile = useMediaQuery("(max-width: 480px)");
+
+  // const isAuthenticated = true;
 
   const pathname = usePathname();
   const router = useRouter();
@@ -44,7 +51,7 @@ const Header = () => {
 
   if (isDesktop) {
     return (
-      <header>
+      <header className="fixed top-0 z-50 w-full shadow-[0px_0px_4px_0px_#9090904D]">
         <div className="bg-gradient-to-r from-cyan-400 to-fuchsia-500">
           <div className="flex flex-col justify-between bg-gradient-to-r from-cyan-400 to-fuchsia-500">
             {/* Ornaments */}
@@ -61,6 +68,7 @@ const Header = () => {
                 </div>
               ))}
             </div>
+            {/* Logo */}
             <div className="container flex items-center justify-between py-1">
               <Link href="/" className="relative h-[26px] w-[200px]">
                 <Image
@@ -88,16 +96,66 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <nav className="container flex items-center justify-between bg-white p-4">
-          <CategoryModal
-            categories={categories || []}
-            className="hover:bg-inherit"
-          />
-          <div className="flex items-center space-x-4">
-            <LocaleSwitcher />
-            <LoginButton />
-          </div>
-        </nav>
+        {!isAuthenticated ? (
+          <nav className="container flex items-center justify-between bg-white px-4 py-2.5">
+            <CategoryModal
+              categories={categories || []}
+              className="hover:bg-inherit"
+            />
+            <div className="flex items-center gap-3.5 text-fuchsia-500">
+              <LocaleSwitcher />
+
+              {/* /ads/post */}
+              <Link
+                href="/ads/post"
+                className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
+              >
+                <PlusCircle className="group-hover:bg-accent-foreground" />
+                <span className="text-xs xs:text-sm sm:text-base">
+                  Подать объявление
+                </span>
+              </Link>
+
+              {/* /favorites */}
+              <Link
+                href="/favorites"
+                className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
+              >
+                <Heart className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
+                <span>Избранные</span>
+              </Link>
+
+              {/* /chat */}
+              <Link
+                href="/chat"
+                className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
+              >
+                <Chat className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
+                <span>Чаты</span>
+              </Link>
+
+              {/* /profile */}
+              <Link
+                href="/profile"
+                className="group flex gap-2 rounded-[10px] px-2 py-1 hover:bg-accent hover:text-accent-foreground"
+              >
+                <UserCircle className="size-6 fill-fuchsia-500 group-hover:fill-accent-foreground" />
+                <span>Профиль</span>
+              </Link>
+            </div>
+          </nav>
+        ) : (
+          <nav className="container flex items-center justify-between bg-white px-4 py-2.5">
+            <CategoryModal
+              categories={categories || []}
+              className="hover:bg-inherit"
+            />
+            <div className="flex items-center space-x-4">
+              <LocaleSwitcher />
+              <LoginButton />
+            </div>
+          </nav>
+        )}
       </header>
     );
   }
@@ -148,7 +206,7 @@ const Header = () => {
       </div>
       <nav className="container">
         {/* Search & Filter */}
-        {matchesRoute(pathname, searchFilterRoutes) && (
+        {checkRoute(pathname, searchFilterRoutes) && (
           <div
             className={cn(
               "flex items-center justify-between gap-[18px] py-1.5 shadow-sm md:hidden",
@@ -161,7 +219,7 @@ const Header = () => {
         )}
 
         {/* Back Button, Search & Filter */}
-        {matchesRoute(pathname, backbtnSearchFilterRoutes) && (
+        {checkRoute(pathname, backbtnSearchFilterRoutes) && (
           <div
             className={cn(
               "flex items-center justify-between gap-2 py-1.5 md:hidden",
@@ -182,7 +240,7 @@ const Header = () => {
         )}
 
         {/* Back Button, Share & Dots */}
-        {matchesRoute(pathname, backbtnShareDotsRoutes) && (
+        {checkRoute(pathname, backbtnShareDotsRoutes) && (
           <div className="mt-[30px] flex justify-between">
             <Button
               className="flex h-fit w-fit shrink-0 justify-start p-1"
@@ -207,7 +265,7 @@ const Header = () => {
         )}
 
         {/* Back Button & "Chats" Text */}
-        {matchesRoute(pathname, backbtnChatsText) && (
+        {checkRoute(pathname, backbtnChatsText) && (
           <div className="container mt-4 flex items-center">
             <BackButton variant="router" />
             <h1 className="mx-auto -translate-x-5">Чаты</h1>
