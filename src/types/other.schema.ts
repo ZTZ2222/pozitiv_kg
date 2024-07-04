@@ -25,7 +25,7 @@ export const SocialReadSchema = z.object({
 
 export const SearchCreateSchema = z.object({
   title: z.string(),
-  query: z.string(),
+  result: z.string(),
   type: z.number().int(),
 });
 
@@ -33,8 +33,11 @@ export const SearchDeleteSchema = z.object({
   id: z.number().int(),
 });
 
-export const SearchReadSchema = SearchCreateSchema.extend({
+export const SearchReadSchema = SearchCreateSchema.omit({
+  result: true,
+}).extend({
   id: z.number().int(),
+  query: z.string(),
 });
 
 export const FilterFormSchema = z
