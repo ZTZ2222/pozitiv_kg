@@ -38,7 +38,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
             <Link
               key={child.id}
               href={`/category/${child.id}`}
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] border border-input bg-background px-3.5 py-2.5 transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] border border-input bg-background px-2.5 py-1.5 transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               {child.name}
             </Link>
