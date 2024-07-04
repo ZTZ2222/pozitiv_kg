@@ -12,7 +12,7 @@ const getFavorites = async (): Promise<zPromotionRead[]> => {
   const locale = await getLocale();
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`,
     {
       cache: "no-store",
       credentials: "include",
@@ -35,7 +35,7 @@ const getFavorites = async (): Promise<zPromotionRead[]> => {
   return data.items;
 };
 
-const getSavedSeaches = async (): Promise<zSearchRead[]> => {
+export const getSavedSeaches = async (): Promise<zSearchRead[]> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
