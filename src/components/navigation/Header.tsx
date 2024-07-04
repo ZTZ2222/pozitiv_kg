@@ -96,7 +96,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
             </div>
           </div>
         </div>
-        {!isAuthenticated ? (
+        {isAuthenticated ? (
           <nav className="container flex items-center justify-between bg-white px-4 py-2.5">
             <CategoryModal
               categories={categories || []}
