@@ -66,6 +66,7 @@ const AdCarousel = ({
                     alt={adName || "Images Carousel"}
                     fill
                     className="object-contain"
+                    sizes="100vw"
                     priority
                   />
                 </CardContent>

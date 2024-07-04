@@ -5,6 +5,7 @@ import AdList from "@/components/ads/AdList";
 import EmptyMessage from "@/components/category/EmptyMessage";
 import Swiper from "@/components/Swiper";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
@@ -26,7 +27,12 @@ const CategoryPromotionList: React.FC<Props> = async ({
 
   return (
     <main>
-      <ScrollArea className="ml-4 mt-7">
+      <ScrollArea
+        className={cn(
+          "ml-4",
+          category.childs && category.childs.length > 0 && "mt-7",
+        )}
+      >
         <div className="mr-4 flex gap-4">
           {category.childs?.map((child) => (
             <Link

@@ -66,6 +66,7 @@ const Swiper = ({
                       fill
                       className="rounded-[10px] object-cover object-left"
                       priority
+                      sizes="100vw"
                     />
                   </CardContent>
                 </Card>

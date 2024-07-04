@@ -55,6 +55,7 @@ const Footer = () => {
             alt="Logo"
             fill
             className="object-contain"
+            sizes="100vw"
           />
         </Link>
         {!isTablet && <Search />}
@@ -71,7 +72,7 @@ const Footer = () => {
               alt="Ornaments"
               fill
               className="object-contain"
-              sizes="(max-width: 600px) 100vw, 50vw"
+              sizes="100vw"
             />
           </div>
         ))}
@@ -117,7 +118,6 @@ const Footer = () => {
                   alt={social.title}
                   width={20}
                   height={20}
-                  priority
                 />
               </Link>
             ))}

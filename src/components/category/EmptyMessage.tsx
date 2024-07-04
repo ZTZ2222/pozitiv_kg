@@ -11,7 +11,7 @@ const EmptyMessage = async () => {
   });
   return (
     <>
-      <div className="container flex h-[50vh] flex-col items-center justify-center gap-10">
+      <div className="container flex h-[50vh] flex-col items-center justify-center gap-10 lg:h-[65vh]">
         <div className="flex max-w-[260px] flex-col items-center gap-5 text-center">
           <Eyes />
           <h2 className="text-lg font-semibold text-gray-800">

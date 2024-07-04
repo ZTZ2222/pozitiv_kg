@@ -25,8 +25,8 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ isAuthenticated }) => {
-  const isDesktop = useMediaQuery("(min-width: 769px)");
-  const isWideScreen = useMediaQuery("(min-width: 1441px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isWideScreen = useMediaQuery("(min-width: 1536px)");
   const isMobile = useMediaQuery("(max-width: 480px)");
 
   // const isAuthenticated = true;
@@ -63,7 +63,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                     alt="Ornaments"
                     fill
                     className="object-contain"
-                    sizes="(max-width: 600px) 100vw, 50vw"
+                    sizes="100vw"
                   />
                 </div>
               ))}
@@ -89,7 +89,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                     alt="Ornaments"
                     fill
                     className="object-contain"
-                    sizes="(max-width: 600px) 100vw, 50vw"
+                    sizes="100vw"
                   />
                 </div>
               ))}
@@ -172,7 +172,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 alt="Ornaments"
                 fill
                 className="object-contain"
-                sizes="(max-width: 600px) 100vw, 50vw"
+                sizes="(max-width: 600px) 50vw, 25vw"
               />
             </div>
           ))}
@@ -185,6 +185,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
               alt="Logo"
               fill
               className="object-contain"
+              sizes="100vw"
             />
           </Link>
           <LocaleSwitcher className="h-fit p-0 text-white/80" />
@@ -198,7 +199,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
                 alt="Ornaments"
                 fill
                 className="object-contain"
-                sizes="(max-width: 600px) 100vw, 50vw"
+                sizes="(max-width: 600px) 50vw, 25vw"
               />
             </div>
           ))}
@@ -222,7 +223,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         {checkRoute(pathname, backbtnSearchFilterRoutes) && (
           <div
             className={cn(
-              "flex items-center justify-between gap-2 py-1.5 md:hidden",
+              "mt-1 flex items-center justify-between gap-2 py-1.5 md:hidden",
               // "hidden",
             )}
           >

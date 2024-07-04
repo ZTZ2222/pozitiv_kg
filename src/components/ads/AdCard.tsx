@@ -28,7 +28,7 @@ const AdCard: React.FC<zPromotionRead> = ({
       <Link href={`/ads/${id}`} className="block h-full w-full">
         {/* Image */}
         <CardHeader className="p-0">
-          <div className="relative h-[169px]">
+          <div className="relative h-[169px] md:h-[220px] lg:h-[280px]">
             <Image
               src={
                 galleries && galleries.length > 0
@@ -38,26 +38,29 @@ const AdCard: React.FC<zPromotionRead> = ({
               alt={`${name} {index}`}
               fill
               className="object-cover"
-              sizes="(max-width: 600px) 100vw, 50vw"
+              sizes="(max-width: 320px) 100vw, (max-width: 767px) 50vw, 33vw"
             />
           </div>
         </CardHeader>
 
         {/* Info */}
         <CardContent className="px-2.5 py-4">
-          <CardTitle className="line-clamp-3 text-base font-normal">
+          <CardTitle className="line-clamp-3 text-base font-normal lg:text-lg">
             {description}
           </CardTitle>
         </CardContent>
 
         {/* Prices */}
         <CardFooter className="flex flex-col items-start px-2.5 pb-5">
-          <span className="text-lg font-bold text-red-600">
+          <span className="text-lg font-bold text-red-600 lg:text-xl lg:font-extrabold">
             {exchange_price_after_discount}
           </span>
-          <span className="text-lg font-semibold text-green-500">
+          <span className="text-lg font-semibold text-green-500 lg:text-2xl">
             {price_after_discount} {currency}
           </span>
+          <div className="mt-5 hidden w-full rounded-[10px] border border-cyan-400 py-1.5 text-center text-lg hover:bg-gray-100 lg:block">
+            Подробнее
+          </div>
         </CardFooter>
       </Link>
 

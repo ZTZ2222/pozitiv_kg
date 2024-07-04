@@ -11,7 +11,7 @@ const CategoryList = ({ categories }: { categories: zCategoryRead[] }) => {
 
   if (isDesktop) {
     return (
-      <div className="container my-[100px] grid grid-cols-5 gap-4 p-4">
+      <div className="container my-[100px] grid grid-cols-3 gap-4 p-4 lg:grid-cols-4 xl:grid-cols-5">
         {categories.map((category) => (
           <CategoryButton key={category.id} {...category} />
         ))}

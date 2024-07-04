@@ -21,14 +21,16 @@ import { Label } from "@/components/ui/label";
 import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
+import { cn } from "@/lib/utils";
 
 type Props = {
   name?: string;
   phone?: string;
   email?: string;
+  className?: string;
 };
 
-const UserForm: React.FC<Props> = ({ name, phone, email }) => {
+const UserForm: React.FC<Props> = ({ name, phone, email, className }) => {
   const t = useTranslations("ProfileForm");
 
   const form = useForm<zUserUpdate>({
@@ -51,7 +53,10 @@ const UserForm: React.FC<Props> = ({ name, phone, email }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="my-[30px] space-y-[30px]"
+        className={cn(
+          "my-[30px] max-w-[420px] space-y-[30px] text-gray-500 lg:my-0",
+          className,
+        )}
       >
         {/* Name */}
         <FormField
@@ -65,7 +70,7 @@ const UserForm: React.FC<Props> = ({ name, phone, email }) => {
                   <Input
                     placeholder={t("name-placeholder")}
                     {...field}
-                    className="border-black/25 pl-10"
+                    className="min-w-[324px] border-black/25 pl-10"
                   />
                   <User className="absolute left-2.5 top-1/2 size-5 -translate-y-1/2" />
                 </div>
@@ -87,7 +92,7 @@ const UserForm: React.FC<Props> = ({ name, phone, email }) => {
                   <Input
                     placeholder={t("phone-placeholder")}
                     {...field}
-                    className="border-black/25 pl-10"
+                    className="min-w-[324px] border-black/25 pl-10"
                   />
                   <Phone className="absolute left-2.5 top-1/2 size-5 -translate-y-1/2" />
                 </div>
@@ -109,7 +114,7 @@ const UserForm: React.FC<Props> = ({ name, phone, email }) => {
                   <Input
                     placeholder={t("email-placeholder")}
                     {...field}
-                    className="border-black/25 pl-10"
+                    className="min-w-[324px] border-black/25 pl-10"
                   />
                   <Mail className="absolute left-2.5 top-1/2 size-5 -translate-y-1/2" />
                 </div>
@@ -133,7 +138,7 @@ const UserForm: React.FC<Props> = ({ name, phone, email }) => {
             type="button"
             variant="link"
             size="xs"
-            className="h-fit text-base font-normal"
+            className="h-fit text-base font-normal text-gray-500"
             onClick={(e) => {
               toast({
                 description: t("logout"),
