@@ -7,9 +7,6 @@ import { cn } from "@/lib/utils";
 import { AllLocales } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import Header from "@/components/navigation/Header";
-import Footer from "@/components/navigation/Footer";
-import MobileNav from "@/components/navigation/MobileNav";
 import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
@@ -42,10 +39,7 @@ export default function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={params.locale} messages={messages}>
-          <Header />
           {children}
-          <Footer />
-          <MobileNav />
           <Toaster />
         </NextIntlClientProvider>
       </body>
