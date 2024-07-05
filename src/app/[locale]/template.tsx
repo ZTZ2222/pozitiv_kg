@@ -1,3 +1,4 @@
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 import Footer from "@/components/navigation/Footer";
 import Header from "@/components/navigation/Header";
 import MobileNav from "@/components/navigation/MobileNav";
@@ -9,7 +10,7 @@ const Template = async ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header isAuthenticated={isAuthenticated} />
-      <div className="w-full lg:h-[168px]" />
+      <BreadCrumbs className="hidden lg:mt-48 lg:block" />
       {children}
       <Footer />
       <MobileNav />

@@ -12,8 +12,9 @@ import {
 // import { useTranslations } from "next-intl";
 import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-const BreadCrumbs = () => {
+const BreadCrumbs = ({ className }: { className?: string }) => {
   //   const t = useTranslations("Navigation");
   const pathname = usePathname();
 
@@ -27,8 +28,14 @@ const BreadCrumbs = () => {
   }));
 
   return (
-    <Breadcrumb className="container mt-7 py-1">
+    <Breadcrumb className={cn("container mt-7 py-1", className)}>
       <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link href="/">Главная</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
         {breadcrumbLinks.map((link, index) => (
           <React.Fragment key={index}>
             {index > 0 && <BreadcrumbSeparator />}
