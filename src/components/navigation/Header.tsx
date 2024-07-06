@@ -53,7 +53,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
 
   if (isDesktop) {
     return (
-      <header className="fixed top-0 z-50 w-full shadow-[0px_0px_4px_0px_#9090904D]">
+      <header className="fixed top-0 z-50 w-full bg-white shadow-[0px_0px_4px_0px_#9090904D]">
         <div className="bg-gradient-to-r from-cyan-400 to-fuchsia-500">
           <div className="flex flex-col justify-between bg-gradient-to-r from-cyan-400 to-fuchsia-500">
             {/* Ornaments */}
@@ -269,7 +269,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
 
         {/* Back Button & "Chats" Text */}
         {checkRoute(pathname, backbtnChatsText) && (
-          <div className="container mt-4 flex items-center">
+          <div className="mt-4 flex items-center">
             <Button
               className="flex h-fit w-fit shrink-0 justify-start p-1"
               variant="ghost"

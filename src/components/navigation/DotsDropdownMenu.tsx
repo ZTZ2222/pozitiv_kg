@@ -26,14 +26,18 @@ import { ComplainFormSchema, zComplainForm } from "@/types/other.schema";
 import { cn } from "@/lib/utils";
 import { ThreeDots } from "@/components/icons";
 
-const DotsDropdownMenu = () => {
+const DotsDropdownMenu = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="size-fit px-2 py-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className={cn("size-fit px-2 py-1", className)}
+          >
             <ThreeDots />
           </Button>
         </DropdownMenuTrigger>

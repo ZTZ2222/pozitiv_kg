@@ -39,12 +39,13 @@ const socials: zSocialRead[] = [
 
 const Footer = () => {
   const t = useTranslations("Footer");
-  const pathname = usePathname();
-  if (pathname.includes("/chat")) return null;
 
-  const isMobile = useMediaQuery("(max-width: 480px)");
-  const isTablet = useMediaQuery("(max-width: 768px)");
-  const isNarrowDesktop = useMediaQuery("(max-width: 1440px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isWideDesktop = useMediaQuery("(min-width: 1536px)");
+
+  const pathname = usePathname();
+  if (pathname.includes("/chat") && !isDesktop) return null;
   return (
     <footer className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white">
       {/* Logo */}
@@ -58,13 +59,13 @@ const Footer = () => {
             sizes="100vw"
           />
         </Link>
-        {!isTablet && <Search />}
+        {isTablet && <Search />}
       </div>
 
       {/* Ornaments */}
       <div className="container mb-5 flex overflow-hidden md:mb-7">
         {Array.from({
-          length: isMobile ? 1 : isTablet ? 2 : isNarrowDesktop ? 3 : 4,
+          length: isTablet ? 2 : isDesktop ? 3 : isWideDesktop ? 4 : 1,
         }).map((_, index) => (
           <div key={index} className="relative h-4 w-full">
             <Image

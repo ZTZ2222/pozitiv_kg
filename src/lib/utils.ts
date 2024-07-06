@@ -23,14 +23,8 @@ export function chunkArray(arr: zCategoryAttribute[], size: number) {
   }, []);
 }
 
-export const formatTimeDistanceCustom = (date: Date) => {
-  const result = formatDistance(date, new Date(), { locale: ru });
-  return result
-    .replace(/часов?/g, "ч.")
-    .replace(/дней?/g, "д.")
-    .replace(/минут?/g, "мин.")
-    .replace(/секунд?/g, "сек.");
-};
+export const formatTimeDistanceCustom = (date: Date) =>
+  formatDistance(date, new Date(), { locale: ru });
 
 export const formatStringToDate = (dateString: string) => {
   const date = new Date(dateString);
