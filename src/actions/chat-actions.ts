@@ -1,7 +1,9 @@
 "use server";
 
-import { zChat, zMessage } from "@/types/chat.schema";
+import { MessageCreateSchema, zChat, zMessage } from "@/types/chat.schema";
 import { cookies } from "next/headers";
+import { actionClient } from "./safe-action";
+import { revalidateTag } from "next/cache";
 
 export const getChatList = async (): Promise<zChat[]> => {
   const access_token = cookies().get("access_token")?.value;
@@ -12,6 +14,7 @@ export const getChatList = async (): Promise<zChat[]> => {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
+    next: { tags: ["chats"] },
   });
 
   if (!res.ok) {
@@ -35,6 +38,7 @@ export const getMessagesByChatId = async (
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
+      next: { tags: [`chat-${chatId}`] },
     },
   );
 
@@ -44,9 +48,31 @@ export const getMessagesByChatId = async (
 
   const { data } = await res.json();
 
-  return data.items;
+  return data.items.reverse();
 };
 
-// export const sendMessage
+export const sendMessage = actionClient
+  .schema(MessageCreateSchema)
+  .action(async ({ parsedInput }) => {
+    const access_token = cookies().get("access_token")?.value;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chats/store`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(parsedInput),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    revalidateTag(`chat-${parsedInput.chat_id}`);
+
+    return await res.json();
+  });
 
 // export const deleteMessage

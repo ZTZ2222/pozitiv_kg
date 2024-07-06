@@ -42,9 +42,15 @@ export const MessageSchema = z.object({
   updated_at: z.string().optional(),
 });
 
+export const MessageCreateSchema = z.object({
+  message: z.string().min(1, { message: "Пусто | Empty | Бош" }),
+  chat_id: z.string(),
+});
+
 export type zSenderMessage = z.infer<typeof SenderMessageSchema>;
 export type zReceiverMessage = z.infer<typeof ReceiverMessageSchema>;
 export type zUserChat = z.infer<typeof UserChatSchema>;
 export type zSellerChat = z.infer<typeof SellerChatSchema>;
 export type zChat = z.infer<typeof ChatSchema>;
 export type zMessage = z.infer<typeof MessageSchema>;
+export type zMessageCreate = z.infer<typeof MessageCreateSchema>;
