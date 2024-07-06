@@ -26,7 +26,7 @@ const UserInfoCard: React.FC<Props> = ({ seller, className }) => {
     >
       <CardHeader className="justify-center p-3">
         <Avatar className="h-16 w-16">
-          <AvatarImage src={seller.image} />
+          <AvatarImage src={seller.image} className="object-cover" />
           <AvatarFallback className={cn("text-xl font-medium", bgColor)}>
             {initials}
           </AvatarFallback>
