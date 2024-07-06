@@ -8,16 +8,15 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 import { AnimatePresence, motion } from "framer-motion";
 import ChatBottombar from "./ChatBottomBar";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { format } from "date-fns";
-import BottomScroller from "@/components/BottomScroller";
 
 interface ChatProps {
   messages?: zMessage[];
   currentUser: zUserRead;
 }
 
-export function Chat({ messages, currentUser }: ChatProps) {
+export function ChatMessages({ messages, currentUser }: ChatProps) {
   const [messagesState, setMessages] = React.useState<zMessage[]>(
     messages ?? [],
   );
@@ -27,9 +26,9 @@ export function Chat({ messages, currentUser }: ChatProps) {
   };
 
   return (
-    <div className="container relative max-h-screen px-0">
+    <div className="container relative px-0">
       <AnimatePresence>
-        <ScrollArea className="h-[calc(100vh_-_317px)]">
+        <ScrollArea className="h-[62vh] md:h-[59vh] lg:h-[45vh] xl:h-[40vh]">
           {messages?.map((message, index) => (
             <motion.div
               key={index}
@@ -96,9 +95,6 @@ export function Chat({ messages, currentUser }: ChatProps) {
               </div>
             </motion.div>
           ))}
-
-          <BottomScroller dependencies={messagesState} />
-          <ScrollBar orientation="vertical" />
         </ScrollArea>
       </AnimatePresence>
       <ChatBottombar sendMessage={sendMessage} />
