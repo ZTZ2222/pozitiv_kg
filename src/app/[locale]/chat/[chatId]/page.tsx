@@ -1,5 +1,6 @@
 import { getChatList, getMessagesByChatId } from "@/actions/chat-actions";
 import { getUserInfo } from "@/actions/user-actions";
+import ChatBottombar from "@/components/chat/ChatBottomBar";
 import { ChatMessages } from "@/components/chat/ChatMessages";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatTopBar from "@/components/chat/ChatTopBar";
@@ -22,11 +23,14 @@ const Chat = async ({ params: { chatId } }: ChatProps) => {
   return (
     <main className="lg:container lg:my-10 lg:flex lg:gap-5">
       <ChatSidebar chats={chatList} className="hidden lg:flex" />
-      <div className="w-[90%] lg:rounded-[10px] lg:shadow-[0px_0px_4px_0px_#9090904D]">
+      <div className="lg:w-[590px] lg:rounded-[10px] lg:shadow-[0px_0px_4px_0px_#9090904D] xl:w-[738px]">
         {chatMessages.length > 0 && chat ? (
           <>
             <ChatTopBar chat={chat} />
-            <ChatMessages messages={chatMessages} currentUser={userInfo} />
+            <div className="container relative px-0">
+              <ChatMessages messages={chatMessages} currentUser={userInfo} />
+              <ChatBottombar chatId={chatId} />
+            </div>
           </>
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-5">
