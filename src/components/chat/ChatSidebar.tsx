@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { Card } from "@/components/ui/card";
@@ -5,6 +7,7 @@ import Image from "next/image";
 import { zChat } from "@/types/chat.schema";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type Props = {
   chats: zChat[];
@@ -12,6 +15,26 @@ type Props = {
 };
 
 const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  if (!chats.length && !isDesktop)
+    return (
+      <div className="mt-[calc(50vh-200px)] flex h-full flex-col items-center justify-center gap-5">
+        <div className="relative h-[61px] w-[64px]">
+          <Image
+            src="/assets/chat/empty.png"
+            alt="empty"
+            fill
+            sizes="(max-width: 600px) 100vw, 50vw"
+            className="object-contain"
+          />
+        </div>
+        <span className="text-lg font-semibold lg:text-xl">Нет сообщений</span>
+        <p className="max-w-[311px] text-center text-gray-500">
+          У Вас пока нет сообщений. <br /> Все исходящие и входящие сообщения
+          будут Вас ждать тут.
+        </p>
+      </div>
+    );
   return (
     <div
       className={cn(
