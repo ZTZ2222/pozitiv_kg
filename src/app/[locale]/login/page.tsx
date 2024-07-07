@@ -3,12 +3,14 @@
 import { setAccessToken } from "@/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import { Ban, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const LoginPage = () => {
+  const t = useTranslations("LoginPage");
   return (
     <div className="container mb-24 mt-14 flex flex-col items-center gap-12 text-lg text-gray-800">
       {/* Logo */}
@@ -35,7 +37,7 @@ const LoginPage = () => {
             sizes="(max-width: 600px) 100vw, 50vw"
           />
         </div>
-        <p>Вход с помощью Google</p>
+        <p>{t("sign-in-with-google")}</p>
       </Link>
       {/* Mock Login Button */}
       <Button
@@ -48,19 +50,22 @@ const LoginPage = () => {
         Mock Login
       </Button>
       {/* Terms */}
-      <p className="mt-10 max-w-[350px] text-center md:max-w-[460px]">
-        Подтверждая, Вы соглашаетесь с{" "}
-        <Link href="#" className="text-blue-500 hover:underline">
-          политикой конфиденциальности
+      <p className="mt-10 max-w-[350px] text-center md:max-w-[480px]">
+        {t("confirm-agree")}{" "}
+        <Link
+          href="/resources/privacy"
+          className="text-blue-500 hover:underline"
+        >
+          {t("privacy-policy")}
         </Link>{" "}
-        Позитив KG
+        {t("pozitiv-kg")}
       </p>
       {/* Skip Button */}
       <Link
         href="/"
         className="mt-5 flex items-center gap-2.5 rounded-md px-4 py-2.5 hover:bg-gray-100"
       >
-        <p>Пропустить сейчас</p>
+        <p>{t("skip-now")}</p>
         <ChevronRight className="size-5" />
       </Link>
     </div>

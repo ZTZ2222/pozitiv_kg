@@ -101,7 +101,10 @@
     "favorites": "Favorites",
     "login": "Login",
     "profile": "My Profile",
-    "search": "Search"
+    "search": "Search",
+    "resources": "Resources",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "NotFoundPage": {
     "title": "Oops!",
@@ -150,5 +153,12 @@
     "want-to-buy": "I want to buy it!",
     "interested": "I am interested!",
     "textarea-placeholder": "Message..."
+  },
+  "LoginPage": {
+    "sign-in-with-google": "Sign in with Google",
+    "confirm-agree": "By confirming, you agree to the",
+    "privacy-policy": "privacy policy",
+    "pozitiv-kg": "of Pozitiv KG",
+    "skip-now": "Skip now"
   }
 }

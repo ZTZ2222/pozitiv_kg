@@ -101,7 +101,10 @@
     "favorites": "Тандалмалар",
     "login": "Кирүү",
     "profile": "Менин профилем",
-    "search": "Издөө"
+    "search": "Издөө",
+    "resources": "Ресурстар",
+    "privacy": "Конфиденциальдик саясат",
+    "terms": "Пайдалануу келишим"
   },
   "NotFoundPage": {
     "title": "Ой!",
@@ -150,5 +153,12 @@
     "want-to-buy": "Сатып алгым келет!",
     "interested": "Мен кызыкдармын!",
     "textarea-placeholder": "Билдирүү..."
+  },
+  "LoginPage": {
+    "sign-in-with-google": "Google менен кириңиз",
+    "confirm-agree": "Ырастоо менен, сиз Позитив KG",
+    "privacy-policy": "купуялык саясатына",
+    "pozitiv-kg": "макул болосуз",
+    "skip-now": "Өткөрүп жиберүү"
   }
 }

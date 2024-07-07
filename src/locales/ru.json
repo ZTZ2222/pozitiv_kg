@@ -101,7 +101,10 @@
     "favorites": "Избранные",
     "login": "Вход",
     "profile": "Мой профиль",
-    "search": "Поиск"
+    "search": "Поиск",
+    "resources": "Ресурсы",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Пользовательское соглашение"
   },
   "NotFoundPage": {
     "title": "Ой!",
@@ -150,5 +153,12 @@
     "want-to-buy": "Хочу купить!",
     "interested": "Я заинтересован!",
     "textarea-placeholder": "Сообщение..."
+  },
+  "LoginPage": {
+    "sign-in-with-google": "Вход с помощью Google",
+    "confirm-agree": "Подтверждая, Вы соглашаетесь с",
+    "privacy-policy": "политикой конфиденциальности",
+    "pozitiv-kg": "Позитив KG",
+    "skip-now": "Пропустить сейчас"
   }
 }
