@@ -9,21 +9,25 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const BreadCrumbs = ({ className }: { className?: string }) => {
-  //   const t = useTranslations("Navigation");
-  const pathname = usePathname();
+  const t = useTranslations("Breadcrumbs");
 
-  // Split the pathname into parts
-  const parts = pathname.split("/").filter((part) => part !== "");
+  const pathname = usePathname();
+  const parts = pathname.split("/").filter((part) => part);
+
+  // Hide breadcrumbs on the home page
+  if (parts.length === 0) {
+    return <div className="hidden h-0 lg:mt-48 lg:block" />;
+  }
 
   // Create breadcrumb links from the parts
   const breadcrumbLinks = parts.map((part, index) => ({
-    label: part.charAt(0).toUpperCase() + part.slice(1),
+    label: t(part),
     href: `/${parts.slice(0, index + 1).join("/")}`,
   }));
 
@@ -32,10 +36,10 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Главная</Link>
+            <Link href="/">{t("home")}</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        {breadcrumbLinks.length > 0 && <BreadcrumbSeparator />}
         {breadcrumbLinks.map((link, index) => (
           <React.Fragment key={index}>
             {index > 0 && <BreadcrumbSeparator />}

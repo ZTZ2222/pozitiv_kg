@@ -88,6 +88,17 @@
     "profile": "Profile",
     "chats": "Chats"
   },
+  "Breadcrumbs": {
+    "home": "Home",
+    "ads": "Ads",
+    "post": "Post Ad",
+    "category": "Category",
+    "chat": "Chat",
+    "favorites": "Favorites",
+    "login": "Login",
+    "profile": "My Profile",
+    "search": "Search"
+  },
   "NotFoundPage": {
     "title": "Oops!",
     "description": "The page you are looking for does not exist.",

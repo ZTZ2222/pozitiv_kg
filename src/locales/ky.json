@@ -89,6 +89,17 @@
     "profile": "Профиль",
     "chats": "Чаттар"
   },
+  "Breadcrumbs": {
+    "home": "Башкы бет",
+    "ads": "Жарыялар",
+    "post": "Жарыя берүү",
+    "category": "Категория",
+    "chat": "Чат",
+    "favorites": "Тандалмалар",
+    "login": "Кирүү",
+    "profile": "Менин профилем",
+    "search": "Издөө"
+  },
   "NotFoundPage": {
     "title": "Ой!",
     "description": "Сиз издеп жаткан баракча жок.",
