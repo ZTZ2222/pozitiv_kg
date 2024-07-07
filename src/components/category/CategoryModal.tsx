@@ -48,7 +48,7 @@ const CategoryModal = ({
         <DrawerTrigger asChild>
           <Button
             className={cn(
-              "flex h-fit w-full max-w-[360px] gap-2.5 bg-fuchsia-500 py-3 text-lg leading-tight",
+              "flex h-fit w-full max-w-[288px] gap-2.5 bg-fuchsia-500 py-3 text-lg leading-tight xs:max-w-[360px]",
               className,
             )}
           >

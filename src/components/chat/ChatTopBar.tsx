@@ -9,8 +9,11 @@ import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import { formatTimeDistanceCustom } from "@/lib/utils";
 import DotsDropdownMenu from "../navigation/DotsDropdownMenu";
 import { useRouter } from "@/lib/i18nNavigation";
+import { useTranslations } from "next-intl";
 
 const ChatTopBar = ({ chat }: { chat: zChat }) => {
+  const t = useTranslations("ChatPage");
+
   const { seller } = chat;
   const router = useRouter();
   return (
@@ -40,8 +43,9 @@ const ChatTopBar = ({ chat }: { chat: zChat }) => {
               {seller.name}
             </h1>
             <p className="truncate text-sm font-light leading-tight text-gray-500">
-              Был(а) в сети{" "}
-              {formatTimeDistanceCustom(new Date(seller.last_seen))} назад
+              {t("last-seen-1")}{" "}
+              {formatTimeDistanceCustom(new Date(seller.last_seen))}{" "}
+              {t("last-seen-2")}
             </p>
           </div>
         </div>

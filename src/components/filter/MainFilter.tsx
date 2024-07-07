@@ -30,8 +30,7 @@ import CategoryPicker from "@/components/ui/category-picker";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FilterFormSchema, zFilterForm } from "@/types/other.schema";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
-import { toast } from "@/components/ui/use-toast";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useSearchParams } from "next/navigation";
 import { filterParams } from "@/lib/utils";
 

@@ -7,12 +7,15 @@
   },
   "Search": {
     "placeholder_mobile": "Издөө...",
-    "placeholder_desktop": "Кыймылдарды издөө..."
+    "placeholder_desktop": "Кыймылдарды издөө...",
+    "search-result": "Издөө натыйжалары",
+    "subscribe-to-search": "Издөөгө жазылуу",
+    "you-are-subscribed": "Сиз издөө үчүн жазылдыңыз"
   },
   "Button": {
     "login": "Кирүү",
     "categories": "Категориялар",
-    "filter": "Фильтр"
+    "more-details": "Толугураак"
   },
   "BackButton": {
     "profile": "Менин профилим",
@@ -130,5 +133,22 @@
     "empty-in-moderation-message-description": "Бул бөлүмдө сиз модерациядан өтүп жаткан жарыяларды көрөсүз.",
     "empty-deactivated-message-title": "Жарыялар жок",
     "empty-deactivated-message-description": "Бул жерде сиз өчүрүлгөн жарыяларыңызды көрөсүз."
+  },
+  "ChatPage": {
+    "choose-chat-title": "Сүйлөшүү үчүн чат тандаңыз",
+    "choose-chat-description": "Сураныч, сол жактагы каптал тилкеден бир чатты тандаңыз.",
+    "empty-chat-title": "Билдирүүлөр жок",
+    "empty-chat-description-1": "Сизде билдирүүлөр али жок.",
+    "empty-chat-description-2": "Бардык чыгыш жана кириш билдирүүлөрүңүз ушул жерде күтүп турат.",
+    "messages": "Билдирүүлөр",
+    "last-seen-1": "Акыркы жолу",
+    "last-seen-2": "мурун",
+    "how-much": "Канчага бересиз?",
+    "still-relevant": "Дагы актуалдуубу?",
+    "interested-in-exchange": "Алмашууга кызыгасызбы?",
+    "price-negotiable": "Баасы сүйлөшүлөбү?",
+    "want-to-buy": "Сатып алгым келет!",
+    "interested": "Мен кызыкдармын!",
+    "textarea-placeholder": "Билдирүү..."
   }
 }

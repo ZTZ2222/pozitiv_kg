@@ -6,6 +6,7 @@ import SaveSearch from "@/components/favorites/SaveSearch";
 import Swiper from "@/components/Swiper";
 import React from "react";
 import { getSavedSeaches } from "../favorites/page";
+import { getLocale, getTranslations } from "next-intl/server";
 
 type Props = {
   searchParams?: {
@@ -19,6 +20,12 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = async ({ searchParams }) => {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "Search",
+  });
+
   const params = new URLSearchParams(searchParams);
   const promotions = await getAds(params);
   const banners = await getBanners();
@@ -29,7 +36,7 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
       {promotions.length > 0 ? (
         <>
           <h1 className="container my-5 text-xl font-medium text-gray-500 lg:text-2xl">
-            Результаты поиска
+            {t("search-result")}
           </h1>
           <AdList ads={promotions} className="container mb-10 lg:mb-32" />
           <Swiper images={banners} className="mb-10 lg:mb-32" />

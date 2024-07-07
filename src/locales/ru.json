@@ -7,11 +7,15 @@
   },
   "Search": {
     "placeholder_mobile": "Поиск...",
-    "placeholder_desktop": "Поиск недвижимостей..."
+    "placeholder_desktop": "Поиск недвижимостей...",
+    "search-result": "Результаты поиска",
+    "subscribe-to-search": "Подписаться на поиск",
+    "you-are-subscribed": "Вы подписаны на поиск"
   },
   "Button": {
     "login": "Войти",
-    "categories": "Категории"
+    "categories": "Категории",
+    "more-details": "Подробнее"
   },
   "BackButton": {
     "profile": "Мой профиль",
@@ -129,5 +133,22 @@
     "empty-in-moderation-message-description": "В этом разделе вы увидите объявления, проходящие модерацию.",
     "empty-deactivated-message-title": "Нет объявлений",
     "empty-deactivated-message-description": "Здесь вы увидите свои деактивированные объявления."
+  },
+  "ChatPage": {
+    "choose-chat-title": "Выберите чат, чтобы начать разговор",
+    "choose-chat-description": "Пожалуйста, выберите один из чатов в боковой панели слева.",
+    "empty-chat-title": "Нет сообщений",
+    "empty-chat-description-1": "У Вас пока нет сообщений.",
+    "empty-chat-description-2": "Все исходящие и входящие сообщения будут Вас ждать тут.",
+    "messages": "Сообщения",
+    "last-seen-1": "Был(а) в сети",
+    "last-seen-2": "назад",
+    "how-much": "За сколько отдадите?",
+    "still-relevant": "Еще актуально?",
+    "interested-in-exchange": "Интересует обмен?",
+    "price-negotiable": "Торг возможен?",
+    "want-to-buy": "Хочу купить!",
+    "interested": "Я заинтересован!",
+    "textarea-placeholder": "Сообщение..."
   }
 }

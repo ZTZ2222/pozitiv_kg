@@ -11,6 +11,7 @@ import Link from "next/link";
 import React from "react";
 import { zPromotionRead } from "@/types/ad.schema";
 import AddToFavorites from "../favorites/AddToFavorites";
+import { useTranslations } from "next-intl";
 
 const AdCard: React.FC<zPromotionRead> = ({
   id,
@@ -23,6 +24,7 @@ const AdCard: React.FC<zPromotionRead> = ({
   favorites,
   is_vip,
 }) => {
+  const t = useTranslations("Button");
   return (
     <Card className="relative flex h-full flex-col justify-between overflow-hidden border-black">
       <Link href={`/ads/${id}`} className="block h-full w-full">
@@ -59,7 +61,7 @@ const AdCard: React.FC<zPromotionRead> = ({
             {price_after_discount} {currency}
           </span>
           <div className="mt-5 hidden w-full rounded-[10px] border border-cyan-400 py-1.5 text-center text-lg hover:bg-gray-100 lg:block">
-            Подробнее
+            {t("more-details")}
           </div>
         </CardFooter>
       </Link>

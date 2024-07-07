@@ -7,11 +7,15 @@
   },
   "Search": {
     "placeholder_mobile": "Search...",
-    "placeholder_desktop": "Search for properties..."
+    "placeholder_desktop": "Search for properties...",
+    "search-result": "Search Results",
+    "subscribe-to-search": "Subscribe to Search",
+    "you-are-subscribed": "You are subscribed to search"
   },
   "Button": {
     "login": "Login",
-    "categories": "Categories"
+    "categories": "Categories",
+    "more-details": "More details"
   },
   "BackButton": {
     "profile": "My Profile",
@@ -129,5 +133,22 @@
     "empty-in-moderation-message-description": "In this section, you will see promotions that are undergoing moderation.",
     "empty-deactivated-message-title": "No Promotions",
     "empty-deactivated-message-description": "Here you will see your deactivated promotions."
+  },
+  "ChatPage": {
+    "choose-chat-title": "Choose a chat to start a conversation",
+    "choose-chat-description": "Please select one of the chats from the sidebar on the left.",
+    "empty-chat-title": "No messages",
+    "empty-chat-description-1": "You have no messages yet.",
+    "empty-chat-description-2": "All outgoing and incoming messages will wait for you here.",
+    "messages": "Messages",
+    "last-seen-1": "Last seen",
+    "last-seen-2": "ago",
+    "how-much": "How much will you sell it for?",
+    "still-relevant": "Is it still relevant?",
+    "interested-in-exchange": "Interested in an exchange?",
+    "price-negotiable": "Is the price negotiable?",
+    "want-to-buy": "I want to buy it!",
+    "interested": "I am interested!",
+    "textarea-placeholder": "Message..."
   }
 }

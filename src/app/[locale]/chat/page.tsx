@@ -3,8 +3,15 @@ import React from "react";
 import { getChatList } from "@/actions/chat-actions";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import { MessagesSquare } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 
 const ChatList = async () => {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "ChatPage",
+  });
+
   const chatList = await getChatList();
 
   return (
@@ -16,10 +23,10 @@ const ChatList = async () => {
             <div className="flex h-full flex-col items-center justify-center gap-5">
               <MessagesSquare className="size-[64px] text-cyan-400" />
               <span className="text-lg font-semibold lg:text-xl">
-                Выберите чат, чтобы начать разговор
+                {t("choose-chat-title")}
               </span>
               <p className="max-w-[311px] text-center text-gray-500">
-                Пожалуйста, выберите один из чатов в боковой панели слева.
+                {t("choose-chat-description")}
               </p>
             </div>
           ) : (
@@ -34,11 +41,11 @@ const ChatList = async () => {
                 />
               </div>
               <span className="text-lg font-semibold lg:text-xl">
-                Нет сообщений
+                {t("empty-chat-title")}
               </span>
               <p className="max-w-[311px] text-center text-gray-500">
-                У Вас пока нет сообщений. <br /> Все исходящие и входящие
-                сообщения будут Вас ждать тут.
+                {t("empty-chat-description-1")} <br />
+                {t("empty-chat-description-2")}
               </p>
             </div>
           )}

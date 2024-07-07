@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useOptimisticAction } from "next-safe-action/hooks";
 import { saveSearch } from "@/actions/favorite-actions";
 import { zSearchRead } from "@/types/other.schema";
+import { useTranslations } from "next-intl";
 
 type Props = {
   searchList: zSearchRead[];
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const SaveSearch: React.FC<Props> = ({ searchList, className }) => {
+  const t = useTranslations("Search");
   const params = useSearchParams();
 
   const { execute, optimisticState } = useOptimisticAction(saveSearch, {
@@ -54,7 +56,7 @@ const SaveSearch: React.FC<Props> = ({ searchList, className }) => {
       disabled={isQuerySaved}
     >
       <Heart className="size-5" />
-      {isQuerySaved ? "Вы подписаны на поиск" : "Подписаться на поиск"}
+      {isQuerySaved ? t("you-are-subscribed") : t("subscribe-to-search")}
     </button>
   );
 };

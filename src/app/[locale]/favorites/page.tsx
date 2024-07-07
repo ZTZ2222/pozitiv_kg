@@ -72,7 +72,7 @@ const Favorites = async () => {
 
   return (
     <Tabs defaultValue="promotions" className="container mb-[100px] mt-[30px]">
-      <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0 md:w-[40%]">
+      <TabsList className="grid w-full grid-cols-2 bg-gray-200 p-0 md:w-[50%] lg:w-[40%] xl:w-[33%]">
         <TabsTrigger value="promotions">{t("tab-1")}</TabsTrigger>
         <TabsTrigger value="saved-searches">{t("tab-2")}</TabsTrigger>
       </TabsList>

@@ -8,6 +8,7 @@ import { zChat } from "@/types/chat.schema";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useTranslations } from "next-intl";
 
 type Props = {
   chats: zChat[];
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
+  const t = useTranslations("ChatPage");
+
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   if (!chats.length && !isDesktop)
     return (
@@ -28,10 +31,12 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
             className="object-contain"
           />
         </div>
-        <span className="text-lg font-semibold lg:text-xl">Нет сообщений</span>
+        <span className="text-lg font-semibold lg:text-xl">
+          {t("empty-chat-title")}
+        </span>
         <p className="max-w-[311px] text-center text-gray-500">
-          У Вас пока нет сообщений. <br /> Все исходящие и входящие сообщения
-          будут Вас ждать тут.
+          {t("empty-chat-description-1")} <br />
+          {t("empty-chat-description-2")}
         </p>
       </div>
     );
@@ -43,7 +48,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
       )}
     >
       <div className="hidden items-center justify-between px-7 py-[22px] lg:flex">
-        <p className="font-medium text-gray-500">Сообщения</p>
+        <p className="font-medium text-gray-500">{t("messages")}</p>
       </div>
       <ScrollArea>
         <nav className={cn("flex flex-col gap-2.5", "mt-10 lg:mt-0")}>

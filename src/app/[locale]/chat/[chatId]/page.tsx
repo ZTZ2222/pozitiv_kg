@@ -4,6 +4,7 @@ import ChatBottombar from "@/components/chat/ChatBottomBar";
 import { ChatMessages } from "@/components/chat/ChatMessages";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatTopBar from "@/components/chat/ChatTopBar";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
@@ -14,6 +15,12 @@ interface ChatProps {
 }
 
 const Chat = async ({ params: { chatId } }: ChatProps) => {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "ChatPage",
+  });
+
   const userInfo = await getUserInfo();
   const chatList = await getChatList();
   const chatMessages = await getMessagesByChatId(chatId);
@@ -43,10 +50,12 @@ const Chat = async ({ params: { chatId } }: ChatProps) => {
                 className="object-contain"
               />
             </div>
-            <span className="font-semibold">Нет сообщений</span>
+            <span className="text-lg font-semibold lg:text-xl">
+              {t("empty-chat-title")}
+            </span>
             <p className="max-w-[311px] text-center text-gray-500">
-              У Вас пока нет сообщений. <br /> Все исходящие и входящие
-              сообщения будут Вас ждать тут.
+              {t("empty-chat-description-1")} <br />
+              {t("empty-chat-description-2")}
             </p>
           </div>
         )}

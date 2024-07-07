@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { useAction } from "next-safe-action/hooks";
 import { sendMessage } from "@/actions/chat-actions";
+import { useTranslations } from "next-intl";
 
 type Props = {
   chatId: string;
@@ -33,13 +34,14 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
     },
   });
 
+  const t = useTranslations("ChatPage");
   const buttonGroupText = [
-    "За сколько отдадите? ",
-    "Еще актуально? ",
-    "Интересует обмен? ",
-    "Торг возможен? ",
-    "Хочу купить! ",
-    "Я заинтересован! ",
+    t("how-much"),
+    t("still-relevant"),
+    t("interested-in-exchange"),
+    t("price-negotiable"),
+    t("want-to-buy"),
+    t("interested"),
   ];
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -110,7 +112,7 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
               <>
                 <FormControl>
                   <Textarea
-                    placeholder="Сообщение..."
+                    placeholder={t("textarea-placeholder")}
                     onKeyDown={handleKeyPress}
                     autoComplete="off"
                     className="flex h-14 w-full resize-none items-center overflow-hidden rounded-[10px] border bg-background bg-gray-200 focus-visible:ring-offset-0"
