@@ -5,6 +5,11 @@
     "recommend": "Recommended",
     "new": "New"
   },
+  "Error": {
+    "title": "Something went wrong",
+    "try-again": "Try again",
+    "go-back": "Go back"
+  },
   "Search": {
     "placeholder_mobile": "Search...",
     "placeholder_desktop": "Search for properties...",

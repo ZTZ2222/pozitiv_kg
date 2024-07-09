@@ -5,6 +5,11 @@
     "recommend": "Сунушталган",
     "new": "Жаңы"
   },
+  "Error": {
+    "title": "Бир жерден ката кетти",
+    "try-again": "Кайра аракет кыл",
+    "go-back": "Артка кайтуу"
+  },
   "Search": {
     "placeholder_mobile": "Издөө...",
     "placeholder_desktop": "Кыймылдарды издөө...",

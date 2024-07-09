@@ -5,6 +5,11 @@
     "recommend": "Рекомендуемые",
     "new": "Новые"
   },
+  "Error": {
+    "title": "Что-то пошло не так",
+    "try-again": "Попробовать снова",
+    "go-back": "Вернуться назад"
+  },
   "Search": {
     "placeholder_mobile": "Поиск...",
     "placeholder_desktop": "Поиск недвижимостей...",
