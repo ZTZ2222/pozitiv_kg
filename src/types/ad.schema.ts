@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { SellerReadSchema } from "./user.schema";
-import { CategoryAttributeSchema, CategoryReadSchema } from "./category.schema";
+import { CategoryReadSchema } from "./category.schema";
 
 export const GalleryImageSchema = z.object({
   id: z.number().int().optional(),
@@ -13,22 +13,18 @@ export const PromotionAttributeSchema = z.object({
 });
 
 export const PromotionCreateSchema = z.object({
-  name: z.string().optional(),
-  description: z.string({ required_error: "Обязательное поле" }),
-  price: z.number({ required_error: "Обязательное поле" }).positive(),
-  category_id: z
-    .number({ required_error: "Обязательное поле" })
-    .int()
-    .positive(),
-  discount: z.number().min(0).max(100).default(0),
-  dates: z.string().optional(),
-  city_id: z.number().int().positive().optional(),
-  galleries: z.array(z.instanceof(File)),
-  attribute: CategoryAttributeSchema.array().default([]),
-  currency: z
-    .enum(["USD", "KGS", "RU", "EURO"], { required_error: "Обязательное поле" })
-    .default("KGS"),
-  phone: z.string({ required_error: "Обязательное поле" }),
+  name: z.string().default(""),
+  description: z.string(),
+  price: z.coerce.number(),
+  category_id: z.number(),
+  city_id: z.coerce.number(),
+  "galleries[]": z.array(z.custom<File>()),
+  currency: z.enum(["USD", "KGS", "RU"]).default("KGS"),
+  addtional_information: z.string().optional(),
+  enable_phone: z.coerce.number().default(0),
+  phone: z.string().optional(),
+  whatsapp_number: z.string().optional(),
+  attributeList: z.object({}),
 });
 
 export const PromotionUpdateSchema = PromotionCreateSchema.extend({
@@ -38,8 +34,7 @@ export const PromotionUpdateSchema = PromotionCreateSchema.extend({
 export const PromotionReadSchema = PromotionUpdateSchema.omit({
   category_id: true,
   city_id: true,
-  attribute: true,
-  galleries: true,
+  "galleries[]": true,
 }).extend({
   is_valid_discount: z.boolean(),
   discount_remaining_days: z.number().int(),

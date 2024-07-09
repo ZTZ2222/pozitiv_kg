@@ -23,12 +23,7 @@ const ImageUpload: React.FC<Props> = ({ field }) => {
       const newImages = Array.from(event.target.files);
       const updatedImages = [...images, ...newImages];
       setImages(updatedImages);
-      field.onChange({
-        target: {
-          name: field.name,
-          value: updatedImages,
-        },
-      });
+      field.onChange(updatedImages);
     }
   };
 
@@ -36,12 +31,7 @@ const ImageUpload: React.FC<Props> = ({ field }) => {
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
-    field.onChange({
-      target: {
-        name: field.name,
-        value: newImages,
-      },
-    });
+    field.onChange(newImages);
   };
 
   return (
@@ -90,6 +80,7 @@ const ImageUpload: React.FC<Props> = ({ field }) => {
                 onChange={handleImageUpload}
                 multiple
                 accept="image/*"
+                required
               />
             </div>
           </AnimatePresence>

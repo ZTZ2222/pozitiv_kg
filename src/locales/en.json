@@ -66,7 +66,17 @@
     "category-label": "Category",
     "category-button": "Select category",
     "category-search-placeholder": "Search category...",
-    "category-empty-text": "No category found."
+    "category-empty-text": "No category found.",
+    "city-label": "City",
+    "city-placeholder": "Select a city",
+    "additional-info-label": "Additional information",
+    "additional-info-placeholder": "Add additional description for your ad",
+    "checkbox-enable-phone-label": "Show phone number",
+    "phone-label": "Phone number",
+    "phone-placeholder": "Add phone number",
+    "whatsapp-label": "WhatsApp number",
+    "whatsapp-placeholder": "Add WhatsApp number",
+    "submit-button": "Publish"
   },
   "Header": {
     "share": "Share",

@@ -25,14 +25,19 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
       return (
         <FormField
           control={control}
-          name={attr.name}
+          name={`attribute_${attr.id}`}
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-lg font-semibold">
                 {attr.name}
               </FormLabel>
               <FormControl>
-                <Input type="number" placeholder={attr.name} {...field} />
+                <Input
+                  placeholder={attr.name}
+                  {...field}
+                  value={field.value || ""}
+                  required={!!attr.is_required}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -42,14 +47,18 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
       return (
         <FormField
           control={control}
-          name={attr.name}
+          name={`attribute_${attr.id}`}
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-lg font-semibold">
                 {attr.name}
               </FormLabel>
               <FormControl>
-                <Textarea placeholder={attr.name} {...field} />
+                <Textarea
+                  placeholder={attr.name}
+                  {...field}
+                  required={!!attr.is_required}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -59,7 +68,7 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
       return (
         <FormField
           control={control}
-          name={attr.name}
+          name={`attribute_${attr.id}`}
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-lg font-semibold">
@@ -67,7 +76,7 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
-                // defaultValue={field.value}
+                required={!!attr.is_required}
               >
                 <FormControl>
                   <SelectTrigger className="h-12">
@@ -76,7 +85,7 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
                 </FormControl>
                 <SelectContent>
                   {attr.options.map((option) => (
-                    <SelectItem key={option.id} value={option.name}>
+                    <SelectItem key={option.id} value={option.id.toString()}>
                       {option.name}
                     </SelectItem>
                   ))}
@@ -90,41 +99,45 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
       return (
         <FormField
           control={control}
-          name={attr.name}
+          name={`attribute_${attr.id}`}
           render={() => (
             <FormItem className="space-y-2.5">
               <FormLabel className="text-lg font-semibold">
                 {attr.name}
               </FormLabel>
               <div className="space-y-2.5 divide-y">
-                {attr.options.map((item) => (
+                {attr.options.map((option) => (
                   <FormField
-                    key={item.id}
+                    key={option.id}
                     control={control}
-                    name={attr.name}
+                    name={`attribute_${attr.id}`}
                     render={({ field }) => {
                       const value = field.value || [];
                       return (
                         <FormItem
-                          key={item.id}
+                          key={option.id}
                           className="flex flex-row items-start space-x-3 space-y-0 pt-2.5"
                         >
                           <FormControl>
                             <Checkbox
-                              checked={value.includes(item.name)}
+                              checked={value.includes(String(option.id))}
                               onCheckedChange={(checked) => {
                                 return checked
-                                  ? field.onChange([...value, item.name])
+                                  ? field.onChange([
+                                      ...value,
+                                      String(option.id),
+                                    ])
                                   : field.onChange(
                                       value.filter(
-                                        (value: string) => value !== item.name,
+                                        (value: string) =>
+                                          value !== String(option.id),
                                       ),
                                     );
                               }}
                             />
                           </FormControl>
                           <FormLabel className="self-center font-normal text-gray-500">
-                            {item.name}
+                            {option.name}
                           </FormLabel>
                         </FormItem>
                       );

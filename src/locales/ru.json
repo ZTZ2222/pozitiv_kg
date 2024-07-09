@@ -66,7 +66,17 @@
     "category-label": "Категория",
     "category-button": "Выберите категорию",
     "category-search-placeholder": "Поиск категории...",
-    "category-empty-text": "Категория не найдена."
+    "category-empty-text": "Категория не найдена.",
+    "city-label": "Город",
+    "city-placeholder": "Выберите город",
+    "additional-info-label": "Дополнительная информация",
+    "additional-info-placeholder": "Добавьте доп описание для Вашего объявления",
+    "checkbox-enable-phone-label": "Показать номер телефона",
+    "phone-label": "Номер телефона",
+    "phone-placeholder": "Добавьте номер телефона",
+    "whatsapp-label": "Номер WhatsApp",
+    "whatsapp-placeholder": "Добавьте номер WhatsApp",
+    "submit-button": "Опубликовать"
   },
   "Header": {
     "share": "Поделиться",

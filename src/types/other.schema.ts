@@ -50,9 +50,24 @@ export const FilterFormSchema = z
   })
   .partial();
 
+export const CityReadSchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  created_at: z.string(),
+});
+
+export const CurrencyReadSchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  symbol: z.string(),
+  code: z.string(),
+});
+
 export type zComplainForm = z.infer<typeof ComplainFormSchema>;
 export type zSocialRead = z.infer<typeof SocialReadSchema>;
 export type zSearchCreate = z.infer<typeof SearchCreateSchema>;
 export type zSearchDelete = z.infer<typeof SearchDeleteSchema>;
 export type zSearchRead = z.infer<typeof SearchReadSchema>;
 export type zFilterForm = z.infer<typeof FilterFormSchema>;
+export type zCityRead = z.infer<typeof CityReadSchema>;
+export type zCurrencyRead = z.infer<typeof CurrencyReadSchema>;

@@ -66,7 +66,17 @@
     "category-label": "Категория",
     "category-button": "Категория тандаңыз",
     "category-search-placeholder": "Категория издөө...",
-    "category-empty-text": "Категория табылган жок."
+    "category-empty-text": "Категория табылган жок.",
+    "city-label": "Шаар",
+    "city-placeholder": "Шаарды тандаңыз",
+    "additional-info-label": "Кошумча маалымат",
+    "additional-info-placeholder": "Жарыяңыз үчүн кошумча сүрөттөмө кошуңуз",
+    "checkbox-enable-phone-label": "Телефон номерин көрсөтүү",
+    "phone-label": "Телефон номери",
+    "phone-placeholder": "Телефон номерин кошуңуз",
+    "whatsapp-label": "WhatsApp номери",
+    "whatsapp-placeholder": "WhatsApp номерин кошуңуз",
+    "submit-button": "Жарыялоо"
   },
   "Header": {
     "share": "Бөлүшүү",
