@@ -5,10 +5,11 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { zChat } from "@/types/chat.schema";
-import { cn } from "@/lib/utils";
+import { cn, getInitials, getRandomColor } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type Props = {
   chats: zChat[];
@@ -19,6 +20,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
   const t = useTranslations("ChatPage");
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   if (!chats.length && !isDesktop)
     return (
       <div className="mt-[calc(50vh-200px)] flex h-full flex-col items-center justify-center gap-5">
@@ -55,16 +57,18 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
           {chats.map((chat) => (
             <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id}>
               <Card className="container flex min-h-[78px] items-center justify-between gap-4 rounded-none border-0 border-y border-gray-200 bg-gray-50 pb-3 pt-1.5 transition-colors duration-500 hover:bg-gray-200">
-                <div className="relative size-10 shrink-0 md:size-[50px]">
-                  <Image
-                    src={chat.seller.image || "/assets/chat/woman.png"}
-                    alt="profile picture"
-                    className="rounded-full bg-gray-600 object-contain"
-                    fill
-                    sizes="(max-width: 600px) 100vw, 50vw"
+                <Avatar className="size-10 shrink-0 md:size-[50px]">
+                  <AvatarImage
+                    src={chat.seller.image}
+                    className="object-cover"
                   />
-                </div>
-                <div className="flex max-w-[160px] flex-col justify-between xs:max-w-[215px] md:max-w-[480px] lg:max-w-[208px] xl:max-w-[235px]">
+                  <AvatarFallback
+                    className={cn("font-medium md:text-xl", getRandomColor())}
+                  >
+                    {getInitials(chat.seller.name)}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex w-full max-w-[160px] flex-col justify-between xs:max-w-[215px] md:max-w-[480px] lg:max-w-[208px] xl:max-w-[235px]">
                   <span className="truncate font-semibold text-gray-800">
                     {chat.name}
                   </span>
@@ -74,9 +78,9 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
                 </div>
                 <div className="relative size-[60px] shrink-0">
                   <Image
-                    src={chat.image || "/assets/chat/house.png"}
+                    src={chat.image || "/assets/other/placeholder.svg"}
                     alt="ad picture"
-                    className="rounded-[10px] bg-gray-600 object-contain"
+                    className="rounded-[10px] bg-gray-300 object-cover"
                     fill
                     sizes="(max-width: 600px) 100vw, 50vw"
                   />

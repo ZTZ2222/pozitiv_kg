@@ -115,7 +115,7 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
                     placeholder={t("textarea-placeholder")}
                     onKeyDown={handleKeyPress}
                     autoComplete="off"
-                    className="flex h-14 w-full resize-none items-center overflow-hidden rounded-[10px] border bg-background bg-gray-200 focus-visible:ring-offset-0"
+                    className="flex h-14 w-full resize-none items-center overflow-hidden rounded-[10px] border bg-background bg-gray-200"
                     {...field}
                     ref={inputRef}
                   />

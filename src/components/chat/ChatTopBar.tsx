@@ -6,19 +6,40 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
-import { formatTimeDistanceCustom } from "@/lib/utils";
-import DotsDropdownMenu from "../navigation/DotsDropdownMenu";
+import {
+  cn,
+  formatTimeDistanceCustom,
+  getInitials,
+  getRandomColor,
+} from "@/lib/utils";
+import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 import { useRouter } from "@/lib/i18nNavigation";
 import { useTranslations } from "next-intl";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { zUserRead } from "@/types/user.schema";
 
-const ChatTopBar = ({ chat }: { chat: zChat }) => {
+type Props = {
+  chat: zChat;
+  currentUser: zUserRead;
+  className?: string;
+};
+
+const ChatTopBar: React.FC<Props> = ({ chat, currentUser, className }) => {
   const t = useTranslations("ChatPage");
-
-  const { seller } = chat;
   const router = useRouter();
+
+  // Determine the other user in the chat
+  const otherUser =
+    chat.seller?.id === currentUser?.id ? chat.user : chat.seller;
+
   return (
     <>
-      <div className="container flex h-16 items-center justify-between border-b border-gray-200 md:justify-start md:gap-5">
+      <div
+        className={cn(
+          "container flex h-16 items-center justify-between border-b border-gray-200 md:justify-start md:gap-5",
+          className,
+        )}
+      >
         <Button
           className="flex h-fit w-fit shrink-0 justify-start p-1 lg:hidden"
           variant="ghost"
@@ -29,22 +50,21 @@ const ChatTopBar = ({ chat }: { chat: zChat }) => {
         </Button>
 
         <div className="flex items-center justify-end gap-0.5">
-          <div className="relative mr-2.5 size-[30px] overflow-hidden rounded-full lg:size-[50px]">
-            <Image
-              src={seller.image}
-              alt={seller.name}
-              className="object-cover"
-              fill
-              sizes="(max-width: 600px) 100vw, 50vw"
-            />
-          </div>
+          <Avatar className="mr-2.5 size-[30px] lg:size-[50px]">
+            <AvatarImage src={otherUser.image} className="object-cover" />
+            <AvatarFallback
+              className={cn("text-sm font-medium lg:text-xl", getRandomColor())}
+            >
+              {getInitials(otherUser.name)}
+            </AvatarFallback>
+          </Avatar>
           <div className="max-w-[140px] text-left xs:max-w-[185px] sm:max-w-[250px]">
             <h1 className="truncate text-lg font-semibold lg:text-nowrap">
-              {seller.name}
+              {otherUser.name}
             </h1>
             <p className="truncate text-sm font-light leading-tight text-gray-500">
               {t("last-seen-1")}{" "}
-              {formatTimeDistanceCustom(new Date(seller.last_seen))}{" "}
+              {formatTimeDistanceCustom(new Date(otherUser.last_seen))}{" "}
               {t("last-seen-2")}
             </p>
           </div>
@@ -62,7 +82,7 @@ const ChatTopBar = ({ chat }: { chat: zChat }) => {
       >
         <div className="relative size-8 shrink-0 md:size-14 lg:size-8">
           <Image
-            src={chat.image || "/assets/chat/house.png"}
+            src={chat.image || "/assets/other/placeholder.svg"}
             alt={chat.name}
             fill
             className="object-cover"

@@ -33,7 +33,7 @@ const Chat = async ({ params: { chatId } }: ChatProps) => {
       <div className="lg:w-[590px] lg:rounded-[10px] lg:shadow-[0px_0px_4px_0px_#9090904D] xl:w-[738px]">
         {chatMessages.length > 0 && chat ? (
           <>
-            <ChatTopBar chat={chat} />
+            <ChatTopBar chat={chat} currentUser={userInfo} />
             <div className="container relative px-0">
               <ChatMessages messages={chatMessages} currentUser={userInfo} />
               <ChatBottombar chatId={chatId} />
