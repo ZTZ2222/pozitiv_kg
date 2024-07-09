@@ -31,7 +31,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
     }
 
     push(`/search?${params.toString()}`);
-  }, 1200);
+  }, 900);
   return (
     <div
       className={cn(

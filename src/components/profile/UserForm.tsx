@@ -54,7 +54,7 @@ const UserForm: React.FC<Props> = ({ name, phone, email, className }) => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          "my-[30px] max-w-[420px] space-y-[30px] text-gray-500 lg:my-0",
+          "my-[30px] h-[750px] max-w-[420px] space-y-[30px] text-gray-500 lg:my-0",
           className,
         )}
       >
@@ -132,7 +132,12 @@ const UserForm: React.FC<Props> = ({ name, phone, email, className }) => {
 
         {/* Terms, Logout and Delete */}
         <div className="flex flex-col items-start gap-5">
-          <Link href="/terms">{t("terms")}</Link>
+          <Link
+            href="/resources/terms"
+            className="underline-offset-4 hover:underline"
+          >
+            {t("terms")}
+          </Link>
           <Separator />
           <Button
             type="button"

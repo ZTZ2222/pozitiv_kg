@@ -32,7 +32,7 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
   const searchList = await getSavedSeaches();
 
   return (
-    <main className="relative">
+    <main className="relative min-h-[75vh]">
       {promotions.length > 0 ? (
         <>
           <h1 className="container my-5 text-xl font-medium text-gray-500 lg:text-2xl">
@@ -42,11 +42,16 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
           <Swiper images={banners} className="mb-10 lg:mb-32" />
         </>
       ) : (
-        <EmptyMessage />
+        <>
+          <h1 className="container my-5 text-xl font-medium text-gray-500 lg:text-2xl">
+            {t("search-result")}
+          </h1>
+          <EmptyMessage />
+        </>
       )}
       <SaveSearch
         searchList={searchList}
-        className="absolute left-1/2 top-10 -translate-x-1/2"
+        className="absolute left-1/2 top-9 -translate-x-1/2 md:-top-1"
       />
     </main>
   );

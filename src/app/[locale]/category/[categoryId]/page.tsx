@@ -49,7 +49,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
       {promotions.length > 0 ? (
         <>
           <AdList ads={promotions} className="container mb-10" />
-          <Swiper images={banners} className="mb-10" />
+          <Swiper images={banners} className="mb-10 lg:mb-[100px]" />
         </>
       ) : (
         <EmptyMessage />

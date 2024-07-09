@@ -44,8 +44,8 @@ const AddToFavorites = ({
         className={cn("py-3 font-medium", className)}
       >
         {optimisticState === 1
-          ? t("add-to-favorites")
-          : t("delete-from-favorites")}{" "}
+          ? t("delete-from-favorites")
+          : t("add-to-favorites")}{" "}
         <Heart className="size-5 fill-white" />
       </Button>
     );

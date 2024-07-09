@@ -30,16 +30,17 @@ const AdCard: React.FC<zPromotionRead> = ({
       <Link href={`/ads/${id}`} className="block h-full w-full">
         {/* Image */}
         <CardHeader className="p-0">
-          <div className="relative h-[169px] md:h-[220px] lg:h-[280px]">
+          <div className="relative h-[169px] bg-gray-300 md:h-[220px] lg:h-[280px]">
             <Image
               src={
                 galleries && galleries.length > 0
                   ? galleries[0].image
-                  : "/assets/ads/house_1.png"
+                  : "/assets/other/placeholder.svg"
               }
               alt={`${name} {index}`}
               fill
-              className="object-cover"
+              // className="object-contain"
+              className="object-contain"
               sizes="(max-width: 320px) 100vw, (max-width: 767px) 50vw, 33vw"
             />
           </div>

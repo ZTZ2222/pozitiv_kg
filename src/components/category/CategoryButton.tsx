@@ -11,7 +11,6 @@ const CategoryButton: React.FC<zCategoryRead> = ({
   id,
   name,
   image,
-  icon,
   bg_color,
   text_color,
 }) => {
@@ -25,7 +24,7 @@ const CategoryButton: React.FC<zCategoryRead> = ({
         color: text_color,
       }}
     >
-      {icon && (
+      {image && (
         <Image
           src={image || "/assets/categoryIcons/service.png"}
           alt={name}

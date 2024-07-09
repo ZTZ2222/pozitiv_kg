@@ -62,7 +62,7 @@ const AdCarousel = ({
               <Card className="border-none">
                 <CardContent className="relative h-[281px] bg-gray-200 p-0 md:h-[317px] lg:h-[352px]">
                   <Image
-                    src={item.image}
+                    src={item.image || "/assets/other/placeholder.svg"}
                     alt={adName || "Images Carousel"}
                     fill
                     className="object-contain"
