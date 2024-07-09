@@ -45,7 +45,7 @@ const AdCarousel = ({
     }
   };
   return (
-    <div className={cn("sm:container", className)}>
+    <div className={cn("", className)}>
       <Carousel
         setApi={setApi}
         // plugins={[
@@ -54,7 +54,7 @@ const AdCarousel = ({
         //     stopOnInteraction: true,
         //   }),
         // ]}
-        className="relative min-w-[300px] overflow-hidden rounded-[10px] lg:w-[400px]"
+        className="relative min-w-[300px] overflow-hidden rounded-[10px] md:w-[380px] lg:w-[400px]"
       >
         <CarouselContent className="cursor-grab">
           {images.map((item, index) => (
