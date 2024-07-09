@@ -21,7 +21,9 @@ const Profile = async () => {
   });
 
   // fetch from API
-  const myPromotions = await getMyAds();
+  const myActivePromotions = await getMyAds("active");
+  const myPendingPromotions = await getMyAds("pending");
+  const myCancelledPromotions = await getMyAds("cancelled");
   const userInfo = await getUserInfo();
 
   const initials = getInitials(userInfo.name || "Annonymous");
@@ -88,9 +90,9 @@ const Profile = async () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="active">
-            {myPromotions.length > 0 ? (
+            {myActivePromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                {myPromotions.map((ad: zPromotionRead) => (
+                {myActivePromotions.map((ad: zPromotionRead) => (
                   <AdCard key={ad.id} {...ad} />
                 ))}
               </div>
@@ -106,9 +108,9 @@ const Profile = async () => {
             )}
           </TabsContent>
           <TabsContent value="in-moderation">
-            {myPromotions.length > 0 ? (
+            {myPendingPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                {myPromotions.map((ad: zPromotionRead) => (
+                {myPendingPromotions.map((ad: zPromotionRead) => (
                   <AdCard key={ad.id} {...ad} />
                 ))}
               </div>
@@ -124,9 +126,9 @@ const Profile = async () => {
             )}
           </TabsContent>
           <TabsContent value="deactivated">
-            {myPromotions.length > 0 ? (
+            {myCancelledPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                {myPromotions.map((ad: zPromotionRead) => (
+                {myCancelledPromotions.map((ad: zPromotionRead) => (
                   <AdCard key={ad.id} {...ad} />
                 ))}
               </div>
