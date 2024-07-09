@@ -110,7 +110,7 @@
     "chat": "Chat",
     "favorites": "Favorites",
     "login": "Login",
-    "profile": "My Profile",
+    "profile": "User Profile",
     "search": "Search",
     "resources": "Resources",
     "privacy": "Privacy Policy",
@@ -145,7 +145,10 @@
     "empty-in-moderation-message-title": "No Promotions",
     "empty-in-moderation-message-description": "In this section, you will see promotions that are undergoing moderation.",
     "empty-deactivated-message-title": "No Promotions",
-    "empty-deactivated-message-description": "Here you will see your deactivated promotions."
+    "empty-deactivated-message-description": "Here you will see your deactivated promotions.",
+    "seller-promotions": "All user announcements",
+    "empty-user-promotions-title": "No Promotions",
+    "empty-user-promotions-description": "The user has no ads yet."
   },
   "ChatPage": {
     "choose-chat-title": "Choose a chat to start a conversation",

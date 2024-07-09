@@ -110,7 +110,7 @@
     "chat": "Чат",
     "favorites": "Избранные",
     "login": "Вход",
-    "profile": "Мой профиль",
+    "profile": "Профиль пользователя",
     "search": "Поиск",
     "resources": "Ресурсы",
     "privacy": "Политика конфиденциальности",
@@ -145,7 +145,10 @@
     "empty-in-moderation-message-title": "Нет объявлений",
     "empty-in-moderation-message-description": "В этом разделе вы увидите объявления, проходящие модерацию.",
     "empty-deactivated-message-title": "Нет объявлений",
-    "empty-deactivated-message-description": "Здесь вы увидите свои деактивированные объявления."
+    "empty-deactivated-message-description": "Здесь вы увидите свои деактивированные объявления.",
+    "seller-promotions": "Все объявления пользователя",
+    "empty-user-promotions-title": "Нет объявлений",
+    "empty-user-promotions-description": "У пользователя пока нет объявлений."
   },
   "ChatPage": {
     "choose-chat-title": "Выберите чат, чтобы начать разговор",

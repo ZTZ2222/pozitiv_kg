@@ -110,7 +110,7 @@
     "chat": "Чат",
     "favorites": "Тандалмалар",
     "login": "Кирүү",
-    "profile": "Менин профилем",
+    "profile": "Колдонуучунун профили",
     "search": "Издөө",
     "resources": "Ресурстар",
     "privacy": "Конфиденциальдик саясат",
@@ -145,7 +145,10 @@
     "empty-in-moderation-message-title": "Жарыялар жок",
     "empty-in-moderation-message-description": "Бул бөлүмдө сиз модерациядан өтүп жаткан жарыяларды көрөсүз.",
     "empty-deactivated-message-title": "Жарыялар жок",
-    "empty-deactivated-message-description": "Бул жерде сиз өчүрүлгөн жарыяларыңызды көрөсүз."
+    "empty-deactivated-message-description": "Бул жерде сиз өчүрүлгөн жарыяларыңызды көрөсүз.",
+    "seller-promotions": "Колдонуучунун бардык жарыялары",
+    "empty-user-promotions-title": "Жарыялар жок",
+    "empty-user-promotions-description": "Колдонуучунун азырынча жарнамалары жок."
   },
   "ChatPage": {
     "choose-chat-title": "Сүйлөшүү үчүн чат тандаңыз",
