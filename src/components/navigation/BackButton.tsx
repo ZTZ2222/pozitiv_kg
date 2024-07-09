@@ -11,9 +11,10 @@ import { cn } from "@/lib/utils";
 type Props = {
   variant: "stepper" | "router";
   className?: string;
+  hidePath?: boolean;
 };
 
-const BackButton: React.FC<Props> = ({ variant, className }) => {
+const BackButton: React.FC<Props> = ({ variant, hidePath, className }) => {
   const { prevStep, isDisabledStep } = useStepper();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,7 +32,9 @@ const BackButton: React.FC<Props> = ({ variant, className }) => {
         >
           <ChevronLeft className="h-6 w-6" />
         </Button>
-        <span className="font-light text-gray-400">{t(path)}</span>
+        <span className={cn("font-light text-gray-400", hidePath && "hidden")}>
+          {t(path)}
+        </span>
       </div>
     );
   }

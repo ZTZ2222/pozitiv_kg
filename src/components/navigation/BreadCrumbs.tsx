@@ -26,10 +26,13 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
   }
 
   // Create breadcrumb links from the parts
-  const breadcrumbLinks = parts.map((part, index) => ({
-    label: t(part),
-    href: `/${parts.slice(0, index + 1).join("/")}`,
-  }));
+  const breadcrumbLinks = parts.map((part, index) => {
+    const isNumeric = !isNaN(Number(part));
+    return {
+      label: isNumeric ? part : t(part),
+      href: `/${parts.slice(0, index + 1).join("/")}`,
+    };
+  });
 
   return (
     <Breadcrumb className={cn("container mt-7 py-1", className)}>

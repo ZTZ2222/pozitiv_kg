@@ -12,8 +12,13 @@ import React from "react";
 import { zPromotionRead } from "@/types/ad.schema";
 import AddToFavorites from "../favorites/AddToFavorites";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
-const AdCard: React.FC<zPromotionRead> = ({
+interface AdCardProps extends zPromotionRead {
+  className?: string;
+}
+
+const AdCard: React.FC<AdCardProps> = ({
   id,
   name,
   description,
@@ -23,10 +28,16 @@ const AdCard: React.FC<zPromotionRead> = ({
   galleries,
   favorites,
   is_vip,
+  className,
 }) => {
   const t = useTranslations("Button");
   return (
-    <Card className="relative flex h-full flex-col justify-between overflow-hidden border-black">
+    <Card
+      className={cn(
+        "relative flex h-full flex-col justify-between overflow-hidden border-black",
+        className,
+      )}
+    >
       <Link href={`/ads/${id}`} className="block h-full w-full">
         {/* Image */}
         <CardHeader className="p-0">

@@ -12,7 +12,6 @@ import { cn, checkRoute } from "@/lib/utils";
 import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Search from "./Search";
-import BackButton from "./BackButton";
 import DotsDropdownMenu from "./DotsDropdownMenu";
 import LoginButton from "./LoginButton";
 import MainFilter from "@/components/filter/MainFilter";
@@ -29,8 +28,6 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const isWideScreen = useMediaQuery("(min-width: 1536px)");
   const isMobile = useMediaQuery("(max-width: 480px)");
-
-  // const isAuthenticated = true;
 
   const pathname = usePathname();
   const router = useRouter();
