@@ -56,7 +56,7 @@ const AddToFavorites = ({
       onClick={handleClick}
       whileTap={{ scale: 0.8, rotate: -20 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040]"
+      className="absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040] sm:right-2"
       disabled={isExecuting}
     >
       <Heart

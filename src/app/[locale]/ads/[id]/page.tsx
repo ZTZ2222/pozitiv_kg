@@ -9,9 +9,16 @@ import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 import UserInfoCard from "@/components/profile/UserInfoCard";
 import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
 const AdDetail = async ({ params }: { params: { id: string } }) => {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "Header",
+  });
+
   const promotion = await getAdInfo(params.id);
   const relatedPromotions = await getRelatedAds(params.id);
 
@@ -54,7 +61,7 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
             size="xs"
             className="h-fit gap-1.5 text-fuchsia-500 hover:bg-inherit"
           >
-            Поделиться <Share className="size-5" />
+            {t("share")} <Share className="size-5" />
           </Button>
 
           <DotsDropdownMenu />
