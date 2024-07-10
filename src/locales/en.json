@@ -20,7 +20,9 @@
   "Button": {
     "login": "Login",
     "categories": "Categories",
-    "more-details": "More details"
+    "more-details": "More details",
+    "share": "Share",
+    "link-copied": "Link copied"
   },
   "BackButton": {
     "profile": "My Profile",
@@ -106,7 +108,6 @@
     "submit-button": "Publish"
   },
   "Header": {
-    "share": "Share",
     "post-ad": "Post Ad",
     "favorites": "Favorites",
     "profile": "Profile",

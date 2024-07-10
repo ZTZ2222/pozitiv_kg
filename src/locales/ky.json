@@ -20,7 +20,9 @@
   "Button": {
     "login": "Кирүү",
     "categories": "Категориялар",
-    "more-details": "Толугураак"
+    "more-details": "Толугураак",
+    "share": "Бөлүшүү",
+    "link-copied": "Шилтеме көчүрүлдү"
   },
   "BackButton": {
     "profile": "Менин профилим",
@@ -106,7 +108,6 @@
     "submit-button": "Жарыялоо"
   },
   "Header": {
-    "share": "Бөлүшүү",
     "post-ad": "Жарыя берүү",
     "favorites": "Тандалгандар",
     "profile": "Профиль",

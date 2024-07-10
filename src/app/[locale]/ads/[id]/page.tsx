@@ -66,15 +66,8 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           <Map className="mb-[40px]" />
         </div>
         <div className="hidden h-fit gap-2.5 lg:flex">
-          <Button
-            variant="ghost"
-            size="xs"
-            className="h-fit gap-1.5 text-fuchsia-500 hover:bg-inherit"
-          >
-            {t("share")} <Share className="size-5" />
-          </Button>
-
-          <DotsDropdownMenu />
+          <ShareButton />
+          <DotsDropdownMenu promotion={promotion} currentUser={currentUser} />
         </div>
         <UserInfoCard
           seller={promotion.seller}

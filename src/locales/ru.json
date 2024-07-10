@@ -20,7 +20,9 @@
   "Button": {
     "login": "Войти",
     "categories": "Категории",
-    "more-details": "Подробнее"
+    "more-details": "Подробнее",
+    "share": "Поделиться",
+    "link-copied": "Ссылка скопирована"
   },
   "BackButton": {
     "profile": "Мой профиль",
@@ -106,7 +108,6 @@
     "submit-button": "Опубликовать"
   },
   "Header": {
-    "share": "Поделиться",
     "post-ad": "Подать объявление",
     "favorites": "Избранные",
     "profile": "Профиль",
