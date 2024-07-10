@@ -3,7 +3,8 @@
 import { MessageCreateSchema, zChat, zMessage } from "@/types/chat.schema";
 import { cookies } from "next/headers";
 import { actionClient } from "./safe-action";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { redirect } from "@/lib/i18nNavigation";
 
 export const getChatList = async (): Promise<zChat[]> => {
   const access_token = cookies().get("access_token")?.value;
@@ -75,4 +76,27 @@ export const sendMessage = actionClient
     return await res.json();
   });
 
-// export const deleteMessage
+export const clearChat = async (chatId: string): Promise<string> => {
+  const access_token = cookies().get("access_token")?.value;
+
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/chats/remove/${chatId}`;
+
+  const res = await fetch(endpoint, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
+  }
+
+  revalidatePath("/chat");
+  redirect("/chat");
+
+  const { message } = await res.json();
+
+  return message;
+};
