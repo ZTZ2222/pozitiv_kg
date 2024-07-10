@@ -34,6 +34,7 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           <ContactBlock
             id={promotion.id}
             favorites={promotion.favorites}
+            whatsapp_number={promotion.whatsapp_number}
             createdAt={promotion.created_at}
             updatedAt={promotion.updated_at}
             className="mb-[60px] hidden lg:flex"
