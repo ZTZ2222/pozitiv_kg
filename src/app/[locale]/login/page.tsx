@@ -2,6 +2,8 @@
 
 import { setAccessToken } from "@/actions/auth-actions";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "@/lib/i18nNavigation";
 import { Ban, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -11,6 +13,7 @@ import React from "react";
 
 const LoginPage = () => {
   const t = useTranslations("LoginPage");
+  const router = useRouter();
   return (
     <div className="container mb-24 mt-14 flex flex-col items-center gap-12 text-lg text-gray-800">
       {/* Logo */}
@@ -43,6 +46,10 @@ const LoginPage = () => {
       <Button
         onClick={async () => {
           await setAccessToken();
+          toast({
+            description: t("login-success"),
+          });
+          router.push("/");
         }}
         className="gap-2.5"
       >

@@ -23,7 +23,7 @@ const BackButton: React.FC<Props> = ({ variant, hidePath, className }) => {
 
   if (variant === "router") {
     return (
-      <div className={cn("flex items-center", className)}>
+      <div className={cn("flex items-center lg:hidden", className)}>
         <Button
           className="flex h-fit shrink-0 justify-start p-1"
           variant="ghost"
