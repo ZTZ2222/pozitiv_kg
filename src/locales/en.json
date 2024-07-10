@@ -60,6 +60,8 @@
     "terms": "Terms of use",
     "logout": "Log out",
     "delete-account": "Delete account",
+    "logout-toast": "You have successfully logged out.",
+    "delete-toast": "Your account has been successfully deleted.",
     "submit": "Update"
   },
   "PromotionForm": {

@@ -1,9 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import BackButton from "@/components/navigation/BackButton";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
 import { getUserInfo } from "@/actions/user-actions";
 import { User, UserRoundCog } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +9,7 @@ import UserForm from "@/components/profile/UserForm";
 import AdCard from "@/components/ads/AdCard";
 import { getMyAds } from "@/actions/ads-actions";
 import { getLocale, getTranslations } from "next-intl/server";
+import UserImageUpload from "@/components/profile/UserImageUpload";
 
 const Profile = async () => {
   const locale = await getLocale();
@@ -26,8 +24,6 @@ const Profile = async () => {
   const myCancelledPromotions = await getMyAds("cancelled");
   const userInfo = await getUserInfo();
 
-  const initials = getInitials(userInfo.name || "Annonymous");
-  const bgColor = getRandomColor();
   return (
     <div className="container">
       <div className="mt-[30px] flex items-center justify-between">
@@ -38,13 +34,8 @@ const Profile = async () => {
       </div>
       <div className="my-[30px] lg:flex lg:gap-[50px]">
         <div className="lg:hidden">
-          <Avatar className="mx-auto size-[100px]">
-            <AvatarImage src={userInfo.image} />
-            <AvatarFallback className={cn("text-4xl font-medium", bgColor)}>
-              {initials}
-            </AvatarFallback>
-          </Avatar>
-          <div className="mt-[30px]">
+          <UserImageUpload userInfo={userInfo} />
+          <div className="mt-5">
             <span className="font-semibold">Имя</span>
             <Link
               href="/profile/edit"
@@ -55,12 +46,12 @@ const Profile = async () => {
             </Link>
           </div>
         </div>
-        <UserForm
-          name={userInfo.name}
-          phone={userInfo.phone}
-          email={userInfo.email}
-          className="hidden rounded-[10px] border border-gray-500 px-7 py-10 lg:block"
-        />
+        <div>
+          <UserForm
+            userInfo={userInfo}
+            className="hidden rounded-[10px] border border-gray-500 px-7 py-10 lg:block"
+          />
+        </div>
         <Tabs
           defaultValue="active"
           className="mt-[30px] space-y-5 lg:mt-0 lg:w-full"
