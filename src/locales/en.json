@@ -44,7 +44,9 @@
     "dropdown-archive": "Archive advertisement",
     "dropdown-delete": "Delete advertisement",
     "promotion-archive-success-toast": "Your ad has been successfully deactivated!",
-    "promotion-delete-success-toast": "Your ad has been successfully deleted!"
+    "promotion-delete-success-toast": "Your ad has been successfully deleted!",
+    "clear-chat": "Clear chat",
+    "block-user": "Block user"
   },
   "ContactBlock": {
     "chat": "Chat",

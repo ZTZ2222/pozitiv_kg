@@ -44,7 +44,9 @@
     "dropdown-archive": "Архивировать объявление",
     "dropdown-delete": "Удалить объявление",
     "promotion-archive-success-toast": "Ваше объявление успешно деактивировано!",
-    "promotion-delete-success-toast": "Ваше объявление успешно удалено!"
+    "promotion-delete-success-toast": "Ваше объявление успешно удалено!",
+    "clear-chat": "Очистить чат",
+    "block-user": "Заблокировать пользователя"
   },
   "ContactBlock": {
     "chat": "Написать в чат",

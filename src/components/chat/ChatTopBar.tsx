@@ -12,11 +12,11 @@ import {
   getInitials,
   getRandomColor,
 } from "@/lib/utils";
-import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 import { useRouter } from "@/lib/i18nNavigation";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { zUserRead } from "@/types/user.schema";
+import ChatDotsDropdownMenu from "@/components/navigation/ChatDotsDropdownMenu";
 
 type Props = {
   chat: zChat;
@@ -74,7 +74,7 @@ const ChatTopBar: React.FC<Props> = ({ chat, currentUser, className }) => {
           <Phone className="h-6 w-6 text-fuchsia-500" />
         </Button>
 
-        <DotsDropdownMenu className="md:ml-auto" />
+        <ChatDotsDropdownMenu className="md:ml-auto" />
       </div>
       <Link
         href={`/ads/${chat.id}`}

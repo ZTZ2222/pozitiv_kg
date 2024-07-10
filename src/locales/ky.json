@@ -44,7 +44,9 @@
     "dropdown-archive": "Жарнаманы архивге сактоо",
     "dropdown-delete": "Жарнаманы өчүрүү",
     "promotion-archive-success-toast": "Сиздин жарнамаңыз ийгиликтүү архивделди!",
-    "promotion-delete-success-toast": "Сиздин жарнамаңыз ийгиликтүү өчүрүлдү!"
+    "promotion-delete-success-toast": "Сиздин жарнамаңыз ийгиликтүү өчүрүлдү!",
+    "clear-chat": "Маекти тазалоо",
+    "block-user": "Колдонуучуну бөгөттөө"
   },
   "ContactBlock": {
     "chat": "Чатка жазуу",
