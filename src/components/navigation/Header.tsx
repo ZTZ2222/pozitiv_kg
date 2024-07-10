@@ -6,13 +6,12 @@ import Link from "next/link";
 
 import { zCategoryRead } from "@/types/category.schema";
 import { getCategories } from "@/actions/category-actions";
-import { ChevronLeft, Share } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { Chat, Heart, PlusCircle, UserCircle } from "@/components/icons";
 import { cn, checkRoute } from "@/lib/utils";
 import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Search from "./Search";
-import DotsDropdownMenu from "./DotsDropdownMenu";
 import LoginButton from "./LoginButton";
 import MainFilter from "@/components/filter/MainFilter";
 import LocaleSwitcher from "@/components/navigation/LocaleSwitcher";
@@ -35,7 +34,6 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
 
   const searchFilterRoutes = ["/", "/favorites"];
   const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/, "/search"];
-  const backbtnShareDotsRoutes = [/^\/ads\/\d+$/];
   const backbtnChatsText = ["/chat"];
 
   const [categories, setCategories] = useState<zCategoryRead[]>();
@@ -187,7 +185,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
               sizes="100vw"
             />
           </Link>
-          <LocaleSwitcher className="h-fit p-0 text-white/80" />
+          <LocaleSwitcher className="h-fit p-0 text-white/80 hover:bg-transparent hover:text-accent-foreground" />
         </div>
         {/* Ornaments */}
         <div className="flex overflow-hidden">
@@ -209,8 +207,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         {checkRoute(pathname, searchFilterRoutes) && (
           <div
             className={cn(
-              "flex items-center justify-between gap-[18px] py-1.5 shadow-sm md:hidden",
-              // "hidden",
+              "flex items-center justify-between gap-[18px] py-1.5 shadow-sm lg:hidden",
             )}
           >
             <Search />
@@ -236,31 +233,6 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
             </Button>
             <Search />
             <MainFilter />
-          </div>
-        )}
-
-        {/* Back Button, Share & Dots */}
-        {checkRoute(pathname, backbtnShareDotsRoutes) && (
-          <div className="mt-[30px] flex justify-between">
-            <Button
-              className="flex h-fit w-fit shrink-0 justify-start p-1"
-              variant="ghost"
-              size="icon"
-              onClick={() => router.back()}
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-            <div className="flex items-center gap-2.5">
-              <Button
-                variant="ghost"
-                size="xs"
-                className="h-fit gap-1.5 text-fuchsia-500 hover:bg-inherit"
-              >
-                {t("share")} <Share className="size-5" />
-              </Button>
-
-              <DotsDropdownMenu />
-            </div>
           </div>
         )}
 
