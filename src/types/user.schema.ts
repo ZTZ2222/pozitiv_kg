@@ -27,8 +27,8 @@ export const UserReadSchema = z.object({
 });
 
 export const UserUpdateSchema = z.object({
-  name: z.string().optional(),
-  email: z.string().email(),
+  name: z.string(),
+  email: z.union([z.literal(""), z.string().email()]),
   phone: z.string().optional(),
 });
 
