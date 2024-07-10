@@ -1,10 +1,12 @@
 "use server";
 
+import { redirect } from "@/lib/i18nNavigation";
 import { zPromotionRead } from "@/types/ad.schema";
-import { zCityRead } from "@/types/other.schema";
+import { ComplainFormSchema, zCityRead } from "@/types/other.schema";
 import { getLocale } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { actionClient } from "./safe-action";
 
 export const getAds = async (
   params: URLSearchParams,
@@ -140,6 +142,60 @@ export const createPromotion = async (data: FormData): Promise<string> => {
 
   return message;
 };
+
+export const deletePromotion = async (promotionId: number): Promise<string> => {
+  const access_token = cookies().get("access_token")?.value;
+
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/delete/${promotionId}`;
+
+  const res = await fetch(endpoint, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
+  }
+
+  revalidatePath("/profile");
+  redirect("/profile");
+
+  const { message } = await res.json();
+
+  return message;
+};
+
+export const reportPromotion = actionClient
+  .schema(ComplainFormSchema)
+  .action(async ({ parsedInput: { reportText } }): Promise<string> => {
+    const [description, id] = reportText.split("|");
+    const report = `ID Объявления ${id}`;
+
+    const access_token = cookies().get("access_token")?.value;
+
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add-report/${id}`;
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ report, description }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const { message } = await res.json();
+
+    return message;
+  });
 
 export const getCities = async (): Promise<zCityRead[]> => {
   const locale = await getLocale();

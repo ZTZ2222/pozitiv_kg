@@ -1,20 +1,7 @@
 import { z } from "zod";
 
 export const ComplainFormSchema = z.object({
-  type: z.enum(
-    [
-      "spam",
-      "closed",
-      "prohibited",
-      "dublicate",
-      "wrong_category",
-      "fraud",
-      "other",
-    ],
-    {
-      required_error: "Причина не выбрана.",
-    },
-  ),
+  reportText: z.string().min(1),
 });
 
 export const SocialReadSchema = z.object({
