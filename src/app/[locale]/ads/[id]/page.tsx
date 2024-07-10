@@ -1,4 +1,5 @@
 import { getAdInfo, getRelatedAds } from "@/actions/ads-actions";
+import { getUserInfo } from "@/actions/user-actions";
 import AdCarousel from "@/components/ads/AdCarousel";
 import AdDetails from "@/components/ads/AdDetails";
 import AdHeading from "@/components/ads/AdHeading";
@@ -21,6 +22,9 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
 
   const promotion = await getAdInfo(params.id);
   const relatedPromotions = await getRelatedAds(params.id);
+  const currentUser = await getUserInfo();
+
+  const chatId = `${promotion.id}_${currentUser.id}`;
 
   return (
     <main className="container mt-[30px]">
@@ -34,9 +38,11 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           <ContactBlock
             id={promotion.id}
             favorites={promotion.favorites}
+            phone={promotion.phone}
             whatsapp_number={promotion.whatsapp_number}
             createdAt={promotion.created_at}
             updatedAt={promotion.updated_at}
+            chatId={chatId}
             className="mb-[60px] hidden lg:flex"
           />
           <UserInfoCard
@@ -49,8 +55,11 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           <ContactBlock
             id={promotion.id}
             favorites={promotion.favorites}
+            phone={promotion.phone}
+            whatsapp_number={promotion.whatsapp_number}
             createdAt={promotion.created_at}
             updatedAt={promotion.updated_at}
+            chatId={chatId}
             className="mb-[60px] lg:hidden"
           />
           <AdDetails attributes={promotion.attribute} className="mb-[60px]" />

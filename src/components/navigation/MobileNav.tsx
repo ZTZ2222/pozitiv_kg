@@ -23,7 +23,7 @@ const MobileNavButton = ({
         "flex w-full flex-col items-center justify-center transition-colors ease-in-out",
         "gap-1 pb-4 pt-3 sm:gap-2 sm:pb-6",
         "fill-gray-400 text-gray-400 focus:fill-fuchsia-500 focus:text-fuchsia-500",
-        "text-xs xs:text-sm sm:text-base",
+        "text-xs sm:text-base",
         pathname === href && "fill-fuchsia-500 text-fuchsia-500",
       )}
     >
@@ -61,7 +61,7 @@ const MobileNav = () => {
       >
         <PlusCircle className="size-12 p-4 sm:size-16" />
 
-        <span className="text-xs xs:text-sm sm:text-base">{t("post-ad")}</span>
+        <span className="text-xs sm:text-base">{t("post-ad")}</span>
       </Link>
       <MobileNavButton href="/chat">
         <Chat className="size-5 sm:size-7" />

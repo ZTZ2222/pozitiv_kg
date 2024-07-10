@@ -32,7 +32,8 @@
     "updated-at": "Updated at",
     "created-at": "Created at",
     "add-to-favorites": "Add to favorites",
-    "delete-from-favorites": "Remove from favorites"
+    "delete-from-favorites": "Remove from favorites",
+    "chat-modal-title": "Contact user"
   },
   "FilterSortModal": {
     "filter": "Filter",
@@ -170,7 +171,8 @@
     "price-negotiable": "Is the price negotiable?",
     "want-to-buy": "I want to buy it!",
     "interested": "I am interested!",
-    "textarea-placeholder": "Message..."
+    "textarea-placeholder": "Message...",
+    "send-message": "Send Message"
   },
   "LoginPage": {
     "sign-in-with-google": "Sign in with Google",

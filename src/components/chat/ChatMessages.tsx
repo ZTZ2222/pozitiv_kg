@@ -20,7 +20,7 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
   const bgColor = getRandomColor();
   return (
     <AnimatePresence>
-      <ScrollArea className="h-[59vh] md:h-[56vh] lg:h-[55vh] xl:h-[60vh]">
+      <ScrollArea className="h-[59vh] md:h-[56vh] lg:h-[50vh]">
         {messages.map((message, index) => (
           <motion.div
             key={index}

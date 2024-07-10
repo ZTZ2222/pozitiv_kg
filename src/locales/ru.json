@@ -32,7 +32,8 @@
     "updated-at": "Обновлено",
     "created-at": "Дата публикации",
     "add-to-favorites": "Добавить в избранные",
-    "delete-from-favorites": "Удалить из избранных"
+    "delete-from-favorites": "Удалить из избранных",
+    "chat-modal-title": "Связаться с пользователем"
   },
   "FilterSortModal": {
     "filter": "Фильтр",
@@ -170,7 +171,8 @@
     "price-negotiable": "Торг возможен?",
     "want-to-buy": "Хочу купить!",
     "interested": "Я заинтересован!",
-    "textarea-placeholder": "Сообщение..."
+    "textarea-placeholder": "Сообщение...",
+    "send-message": "Отправить сообщение"
   },
   "LoginPage": {
     "sign-in-with-google": "Вход с помощью Google",

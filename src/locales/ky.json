@@ -32,7 +32,8 @@
     "updated-at": "Жаңыланды",
     "created-at": "Жарыяланган датасы",
     "add-to-favorites": "Тандалмандарга кошуу",
-    "delete-from-favorites": "Тандалмандардан алып салуу"
+    "delete-from-favorites": "Тандалмандардан алып салуу",
+    "chat-modal-title": "Колдонуучу менен байланышуу"
   },
   "FilterSortModal": {
     "filter": "Фильтр",
@@ -170,7 +171,8 @@
     "price-negotiable": "Баасы сүйлөшүлөбү?",
     "want-to-buy": "Сатып алгым келет!",
     "interested": "Мен кызыкдармын!",
-    "textarea-placeholder": "Билдирүү..."
+    "textarea-placeholder": "Билдирүү...",
+    "send-message": "Билдирүү жөнөтүү"
   },
   "LoginPage": {
     "sign-in-with-google": "Google менен кириңиз",

@@ -266,7 +266,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
 
         {/* Back Button & "Chats" Text */}
         {checkRoute(pathname, backbtnChatsText) && (
-          <div className="mt-4 flex items-center">
+          <div className="mt-4 flex items-center pb-5">
             <Button
               className="flex h-fit w-fit shrink-0 justify-start p-1"
               variant="ghost"

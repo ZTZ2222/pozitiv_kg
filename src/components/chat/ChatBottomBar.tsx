@@ -18,13 +18,15 @@ import { useAction } from "next-safe-action/hooks";
 import { sendMessage } from "@/actions/chat-actions";
 import { useTranslations } from "next-intl";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { DialogClose } from "@/components/ui/dialog";
 
 type Props = {
   chatId: string;
+  asModal?: boolean;
   className?: string;
 };
 
-const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
+const ChatBottombar: React.FC<Props> = ({ chatId, asModal, className }) => {
   const form = useForm<zMessageCreate>({
     resolver: zodResolver(MessageCreateSchema),
     defaultValues: {
@@ -80,6 +82,67 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
       setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
     }
   }, [form.watch("message")]);
+
+  if (asModal) {
+    return (
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={cn("bg-white", className)}
+        >
+          {/* Button group */}
+          <ScrollArea className="max-w-[460px] whitespace-nowrap border-t border-gray-400">
+            <div className="flex space-x-2.5 px-4 py-2.5">
+              {buttonGroupText.map((text, index) => (
+                <Button
+                  type="button"
+                  onClick={() => handleAppendText(text)}
+                  key={index}
+                  className="h-full bg-red-600 px-4 py-1 font-normal text-white hover:bg-red-800/70"
+                >
+                  {text}
+                </Button>
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" className="h-2" />
+          </ScrollArea>
+
+          <Separator className="mx-auto w-[90%]" />
+
+          {/* Textarea and submit button */}
+          <div className="flex w-full flex-col items-center gap-3.5 p-4">
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <>
+                  <FormControl>
+                    <textarea
+                      placeholder={t("textarea-placeholder")}
+                      onKeyDown={handleKeyPress}
+                      className="h-32 w-full resize-none rounded-[10px] border px-2 py-1.5 placeholder:text-sm"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="absolute bottom-1 left-5" />
+                </>
+              )}
+            />
+            <DialogClose asChild>
+              <Button
+                variant="contact-call"
+                size="col-2"
+                type="submit"
+                disabled={isExecuting}
+              >
+                {t("send-message")}
+              </Button>
+            </DialogClose>
+          </div>
+        </form>
+      </Form>
+    );
+  }
 
   return (
     <Form {...form}>
