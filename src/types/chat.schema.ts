@@ -31,6 +31,8 @@ export const ChatSchema = z.object({
   seller: SellerChatSchema,
 });
 
+export const ChatDeleteSchema = z.object({ chat_id: z.string() });
+
 export const MessageSchema = z.object({
   id: z.number().int(),
   sender_id: SenderMessageSchema,
@@ -52,5 +54,6 @@ export type zReceiverMessage = z.infer<typeof ReceiverMessageSchema>;
 export type zUserChat = z.infer<typeof UserChatSchema>;
 export type zSellerChat = z.infer<typeof SellerChatSchema>;
 export type zChat = z.infer<typeof ChatSchema>;
+export type zChatDelete = z.infer<typeof ChatDeleteSchema>;
 export type zMessage = z.infer<typeof MessageSchema>;
 export type zMessageCreate = z.infer<typeof MessageCreateSchema>;

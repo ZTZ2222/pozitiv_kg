@@ -13,14 +13,18 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { clearChat } from "@/actions/chat-actions";
 import { useParams } from "next/navigation";
+import { useAction } from "next-safe-action/hooks";
 
 type Props = {
   className?: string;
 };
 
 const ChatDotsDropdownMenu: React.FC<Props> = ({ className }) => {
-  const { chatId } = useParams();
+  const { chatId: chat_id } = useParams();
   const t = useTranslations("Modal");
+
+  const { execute } = useAction(clearChat);
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -33,7 +37,9 @@ const ChatDotsDropdownMenu: React.FC<Props> = ({ className }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="-translate-x-4 translate-y-2">
-        <DropdownMenuItem onClick={clearChat.bind(null, chatId as string)}>
+        <DropdownMenuItem
+          onClick={() => execute({ chat_id: chat_id as string })}
+        >
           {t("clear-chat")}
         </DropdownMenuItem>
         <DropdownMenuItem>{t("block-user")}</DropdownMenuItem>

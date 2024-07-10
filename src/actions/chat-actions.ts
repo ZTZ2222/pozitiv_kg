@@ -1,6 +1,11 @@
 "use server";
 
-import { MessageCreateSchema, zChat, zMessage } from "@/types/chat.schema";
+import {
+  ChatDeleteSchema,
+  MessageCreateSchema,
+  zChat,
+  zMessage,
+} from "@/types/chat.schema";
 import { cookies } from "next/headers";
 import { actionClient } from "./safe-action";
 import { revalidatePath, revalidateTag } from "next/cache";
@@ -76,27 +81,34 @@ export const sendMessage = actionClient
     return await res.json();
   });
 
-export const clearChat = async (chatId: string): Promise<string> => {
-  const access_token = cookies().get("access_token")?.value;
+export const clearChat = actionClient
+  .schema(ChatDeleteSchema)
+  .action(async ({ parsedInput: { chat_id } }): Promise<string> => {
+    const access_token = cookies().get("access_token")?.value;
 
-  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/chats/remove/${chatId}`;
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/chats/remove/${chat_id}`;
 
-  const res = await fetch(endpoint, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
+    const res = await fetch(endpoint, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(
+        `HTTP error! status: ${res.status} - ${await res.json()}`,
+      );
+    }
+
+    // console.log(await res.json());
+    // console.log(res.status);
+
+    revalidatePath("/chat");
+    redirect("/chat");
+
+    const { message } = await res.json();
+
+    return message;
   });
-
-  if (!res.ok) {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
-  }
-
-  revalidatePath("/chat");
-  redirect("/chat");
-
-  const { message } = await res.json();
-
-  return message;
-};
