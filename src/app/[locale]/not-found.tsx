@@ -13,7 +13,7 @@ const NotFound = () => {
   const router = useRouter();
   return (
     <>
-      <div className="container mt-[30px] flex items-center">
+      <div className="container mt-[30px] flex items-center lg:hidden">
         <Button
           className="flex h-fit shrink-0 justify-start p-1"
           variant="ghost"

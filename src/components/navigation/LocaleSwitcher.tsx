@@ -59,7 +59,7 @@ export default function LocaleSwitcher({
     );
   }
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
           className={cn(

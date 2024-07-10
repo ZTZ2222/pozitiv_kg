@@ -161,6 +161,7 @@ const UserForm: React.FC<Props> = ({ userInfo, className }) => {
                 userLogout();
                 toast({
                   description: t("logout-toast"),
+                  duration: 3000,
                 });
               }}
             >
@@ -179,6 +180,7 @@ const UserForm: React.FC<Props> = ({ userInfo, className }) => {
                 // await deleteMyAccount();
                 toast({
                   description: t("delete-toast"),
+                  duration: 3000,
                 });
               }}
             >

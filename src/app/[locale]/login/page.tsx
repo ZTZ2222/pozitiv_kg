@@ -48,6 +48,7 @@ const LoginPage = () => {
           await setAccessToken();
           toast({
             description: t("login-success"),
+            duration: 3000,
           });
           router.push("/");
         }}

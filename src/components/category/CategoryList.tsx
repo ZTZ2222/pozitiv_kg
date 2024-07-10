@@ -7,9 +7,9 @@ import CategoryButton from "./CategoryButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const CategoryList = ({ categories }: { categories: zCategoryRead[] }) => {
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
 
-  if (isDesktop) {
+  if (isTablet) {
     return (
       <div className="container my-[100px] grid grid-cols-3 gap-4 p-4 lg:grid-cols-4 xl:grid-cols-5">
         {categories.map((category) => (

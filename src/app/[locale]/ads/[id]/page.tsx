@@ -7,9 +7,8 @@ import AdList from "@/components/ads/AdList";
 import ContactBlock from "@/components/ads/ContactBlock";
 import Map from "@/components/Map";
 import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
+import ShareButton from "@/components/navigation/ShareButton";
 import UserInfoCard from "@/components/profile/UserInfoCard";
-import { Button } from "@/components/ui/button";
-import { Share } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 

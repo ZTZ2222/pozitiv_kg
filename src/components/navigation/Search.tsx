@@ -16,7 +16,7 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ className }) => {
   const t = useTranslations("Search");
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const searchParams = useSearchParams();
   const { push } = useRouter();
@@ -35,16 +35,16 @@ const Search: React.FC<SearchProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "relative flex h-9 w-64 items-center rounded-[10px] border border-[#BCBCBC] bg-gray-200 text-gray-400 has-[:focus]:ring-2 has-[:focus]:ring-cyan-200 md:h-14 md:w-[480px] md:border-none md:bg-white",
+        "relative flex h-9 w-64 items-center rounded-[10px] border border-[#BCBCBC] bg-gray-200 text-gray-400 has-[:focus]:ring-2 has-[:focus]:ring-cyan-200 md:w-full lg:h-14 lg:w-[480px] lg:border-none lg:bg-white",
         className,
       )}
     >
-      <SearchIcon className="ml-3 h-6 w-6 md:order-last md:ml-0 md:mr-7" />
+      <SearchIcon className="ml-3 h-6 w-6 lg:order-last lg:ml-0 lg:mr-7" />
       {isDesktop ? (
         <Input
           type="search"
           placeholder={t("placeholder_desktop")}
-          className="h-full border-none pl-7 text-lg text-gray-700 md:order-1"
+          className="h-full border-none pl-7 text-lg text-gray-700 lg:order-1"
           defaultValue={searchParams.get("search")?.toString()}
           onChange={(e) => {
             handleSearch(e.target.value);

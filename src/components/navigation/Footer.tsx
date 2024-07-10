@@ -59,7 +59,7 @@ const Footer = () => {
             sizes="100vw"
           />
         </Link>
-        {isTablet && <Search />}
+        {isDesktop && <Search />}
       </div>
 
       {/* Ornaments */}
@@ -72,8 +72,8 @@ const Footer = () => {
               src="/assets/ornament-down.png"
               alt="Ornaments"
               fill
-              className="object-contain"
-              sizes="100vw"
+              className="object-cover"
+              sizes="66vw"
             />
           </div>
         ))}
