@@ -117,6 +117,7 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="mb-5 mt-5 flex min-h-screen w-full max-w-screen-sm flex-col gap-4 bg-gray-50 px-3 py-5 lg:mb-[100px] lg:mt-10 lg:gap-[30px]"
       >
+        <h1 className="mb-1.5 text-3xl font-bold">{t("form-title")}</h1>
         {/* Image Upload */}
         <FormField
           control={form.control}

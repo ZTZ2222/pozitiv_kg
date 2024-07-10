@@ -10,4 +10,4 @@ export { default as Eyes } from "./Eyes";
 export { default as WhatsApp } from "./WhatsApp";
 export { default as ThreeDots } from "./ThreeDots";
 export { default as Globus } from "./Globus";
-// Add more exports as needed
+export { default as Ornament } from "./Ornament";

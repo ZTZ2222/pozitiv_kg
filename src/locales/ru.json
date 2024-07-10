@@ -63,6 +63,7 @@
     "submit": "Обновить"
   },
   "PromotionForm": {
+    "form-title": "Новое объявление",
     "images-label": "Загрузите фото",
     "main-image-label": "Главное фото",
     "description-label": "Описание",

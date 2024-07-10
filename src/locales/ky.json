@@ -63,6 +63,7 @@
     "submit": "Жаңыртуу"
   },
   "PromotionForm": {
+    "form-title": "Жаңы жарнама",
     "images-label": "Сүрөт жүктөө",
     "main-image-label": "Негизги сүрөт",
     "description-label": "Баяндамасы",
