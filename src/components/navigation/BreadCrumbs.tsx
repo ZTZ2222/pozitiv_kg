@@ -14,6 +14,8 @@ import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+const chatIdPattern = /^\d+_\d+$/;
+
 const BreadCrumbs = ({ className }: { className?: string }) => {
   const t = useTranslations("Breadcrumbs");
 
@@ -28,8 +30,9 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
   // Create breadcrumb links from the parts
   const breadcrumbLinks = parts.map((part, index) => {
     const isNumeric = !isNaN(Number(part));
+    const matchesPattern = chatIdPattern.test(part);
     return {
-      label: isNumeric ? part : t(part),
+      label: isNumeric || matchesPattern ? part : t(part),
       href: `/${parts.slice(0, index + 1).join("/")}`,
     };
   });
