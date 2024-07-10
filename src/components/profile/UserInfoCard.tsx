@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { zSellerRead } from "@/types/user.schema";
 import React from "react";
 import {
@@ -25,14 +25,15 @@ const UserInfoCard: React.FC<Props> = ({ seller, className }) => {
   const t = useTranslations("ContactBlock");
 
   const initials = getInitials(seller.name);
-  const bgColor = getRandomColor();
   return (
     <Card className={cn("inline-flex border-none md:border-solid", className)}>
       <CardHeader className="justify-center px-5">
         <Link href={`/profile/${seller.id}`} className="hover:opacity-80">
           <Avatar className="h-16 w-16">
             <AvatarImage src={seller.image} className="object-cover" />
-            <AvatarFallback className={cn("text-xl font-medium", bgColor)}>
+            <AvatarFallback
+              className={cn("text-xl font-medium", "bg-indigo-200")}
+            >
               {initials}
             </AvatarFallback>
           </Avatar>

@@ -1,7 +1,7 @@
 import AdCard from "@/components/ads/AdCard";
 import BackButton from "@/components/navigation/BackButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { zPromotionRead } from "@/types/ad.schema";
 import { zSellerRead } from "@/types/user.schema";
 import { Phone } from "lucide-react";
@@ -77,10 +77,7 @@ const SellerProfile: React.FC<Props> = async ({ params }) => {
           <Avatar className="size-[50px] shrink-0 lg:size-[75px]">
             <AvatarImage src={sellerInfo.image} className="object-cover" />
             <AvatarFallback
-              className={cn(
-                "text-xl font-medium lg:text-3xl",
-                getRandomColor(),
-              )}
+              className={cn("text-xl font-medium lg:text-3xl", "bg-indigo-200")}
             >
               {getInitials(sellerInfo.name || "Anonymous")}
             </AvatarFallback>

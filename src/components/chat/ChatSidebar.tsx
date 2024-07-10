@@ -5,7 +5,7 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { zChat } from "@/types/chat.schema";
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
@@ -63,7 +63,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
                     className="object-cover"
                   />
                   <AvatarFallback
-                    className={cn("font-medium md:text-xl", getRandomColor())}
+                    className={cn("font-medium md:text-xl", "bg-indigo-200")}
                   >
                     {getInitials(chat.seller.name)}
                   </AvatarFallback>

@@ -2,7 +2,7 @@
 
 import { zMessage } from "@/types/chat.schema";
 import { zUserRead } from "@/types/user.schema";
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -17,7 +17,6 @@ interface ChatProps {
 }
 
 export function ChatMessages({ messages, currentUser }: ChatProps) {
-  const bgColor = getRandomColor();
   return (
     <AnimatePresence>
       <ScrollArea className="h-[59vh] md:h-[56vh] lg:h-[50vh]">
@@ -57,7 +56,9 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
                     height={6}
                     className="object-cover"
                   />
-                  <AvatarFallback className={cn("font-medium", bgColor)}>
+                  <AvatarFallback
+                    className={cn("font-medium", "bg-indigo-200")}
+                  >
                     {getInitials(message.sender_id.name)}
                   </AvatarFallback>
                 </Avatar>
@@ -85,7 +86,9 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
                     height={6}
                     className="object-cover"
                   />
-                  <AvatarFallback className={cn("font-medium", bgColor)}>
+                  <AvatarFallback
+                    className={cn("font-medium", "bg-indigo-200")}
+                  >
                     {getInitials(message.sender_id.name)}
                   </AvatarFallback>
                 </Avatar>

@@ -4,7 +4,7 @@ import React from "react";
 import { updateUserImage } from "@/actions/user-actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Pen } from "@/components/icons";
-import { cn, getInitials, getRandomColor } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { zUserRead } from "@/types/user.schema";
 
 type Props = {
@@ -14,7 +14,6 @@ type Props = {
 
 const UserImageUpload: React.FC<Props> = ({ userInfo, className }) => {
   const initials = getInitials(userInfo.name || "Annonymous");
-  const bgColor = getRandomColor();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const form = e.target.closest("form");
@@ -26,7 +25,7 @@ const UserImageUpload: React.FC<Props> = ({ userInfo, className }) => {
     <div className={cn("relative mx-auto size-[100px]", className)}>
       <Avatar className="size-[100px]">
         <AvatarImage src={userInfo.image} />
-        <AvatarFallback className={cn("text-4xl font-medium", bgColor)}>
+        <AvatarFallback className={cn("text-4xl font-medium", "bg-indigo-200")}>
           {initials}
         </AvatarFallback>
       </Avatar>

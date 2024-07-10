@@ -6,12 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
-import {
-  cn,
-  formatTimeDistanceCustom,
-  getInitials,
-  getRandomColor,
-} from "@/lib/utils";
+import { cn, formatTimeDistanceCustom, getInitials } from "@/lib/utils";
 import { useRouter } from "@/lib/i18nNavigation";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -53,7 +48,7 @@ const ChatTopBar: React.FC<Props> = ({ chat, currentUser, className }) => {
           <Avatar className="mr-2.5 size-[30px] lg:size-[50px]">
             <AvatarImage src={otherUser.image} className="object-cover" />
             <AvatarFallback
-              className={cn("text-sm font-medium lg:text-xl", getRandomColor())}
+              className={cn("text-sm font-medium lg:text-xl", "bg-indigo-200")}
             >
               {getInitials(otherUser.name)}
             </AvatarFallback>
