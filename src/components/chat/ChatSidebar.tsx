@@ -45,7 +45,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
   return (
     <div
       className={cn(
-        "group relative flex h-[630px] flex-col rounded-[10px] lg:w-[382px] lg:shadow-[0px_0px_4px_0px_#9090904D] xl:w-[410px]",
+        "group relative flex h-[700px] flex-col rounded-[10px] lg:w-[382px] lg:shadow-[0px_0px_4px_0px_#9090904D] xl:h-[797px] xl:w-[410px]",
         className,
       )}
     >

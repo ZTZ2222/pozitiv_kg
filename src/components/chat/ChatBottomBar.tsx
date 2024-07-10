@@ -1,13 +1,11 @@
 "use client";
 
 import { SendHorizontal } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { MessageCreateSchema, zMessageCreate } from "@/types/chat.schema";
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -19,6 +17,7 @@ import {
 import { useAction } from "next-safe-action/hooks";
 import { sendMessage } from "@/actions/chat-actions";
 import { useTranslations } from "next-intl";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 type Props = {
   chatId: string;
@@ -44,18 +43,12 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
     t("interested"),
   ];
 
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
   const { execute, isExecuting } = useAction(sendMessage);
 
   const onSubmit = (data: zMessageCreate) => {
     execute(data);
-
     form.reset();
-
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    setTextareaHeight("40px");
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -78,15 +71,28 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
     form.setValue("message", currentValue + text);
   };
 
+  // Change height of textarea
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [textareaHeight, setTextareaHeight] = useState("40px");
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
+    }
+  }, [form.watch("message")]);
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn("bg-white", className)}
+        className={cn(
+          "fixed bottom-0 overflow-hidden bg-white lg:static",
+          className,
+        )}
       >
         {/* Button group */}
-        <ScrollArea className="whitespace-nowrap border-t border-gray-400">
-          <div className="flex w-max space-x-2.5 p-4">
+        <ScrollArea className="w-screen whitespace-nowrap border-t border-gray-400 lg:w-[590px] xl:w-[738px]">
+          <div className="flex space-x-2.5 p-4">
             {buttonGroupText.map((text, index) => (
               <Button
                 type="button"
@@ -104,20 +110,20 @@ const ChatBottombar: React.FC<Props> = ({ chatId, className }) => {
         <Separator className="mx-auto w-[90%]" />
 
         {/* Textarea and submit button */}
-        <div className="container flex w-full items-center justify-between gap-3.5 pb-7 pt-4">
+        <div className="flex w-screen items-center gap-3.5 p-4 lg:w-full">
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
               <>
                 <FormControl>
-                  <Textarea
+                  <textarea
                     placeholder={t("textarea-placeholder")}
                     onKeyDown={handleKeyPress}
-                    autoComplete="off"
-                    className="flex h-14 w-full resize-none items-center overflow-hidden rounded-[10px] border bg-background bg-gray-200"
+                    style={{ height: textareaHeight, overflow: "hidden" }}
+                    className="w-full resize-none rounded-[10px] border px-2 py-1.5 placeholder:text-sm"
                     {...field}
-                    ref={inputRef}
+                    ref={textareaRef}
                   />
                 </FormControl>
                 <FormMessage className="absolute bottom-1 left-5" />
