@@ -11,3 +11,4 @@ export { default as WhatsApp } from "./WhatsApp";
 export { default as ThreeDots } from "./ThreeDots";
 export { default as Globus } from "./Globus";
 export { default as Ornament } from "./Ornament";
+export { default as Pen } from "./Pen";
