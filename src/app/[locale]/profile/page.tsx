@@ -10,6 +10,7 @@ import AdCard from "@/components/ads/AdCard";
 import { getMyAds } from "@/actions/ads-actions";
 import { getLocale, getTranslations } from "next-intl/server";
 import UserImageUpload from "@/components/profile/UserImageUpload";
+import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 
 const Profile = async () => {
   const locale = await getLocale();
@@ -84,7 +85,15 @@ const Profile = async () => {
             {myActivePromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myActivePromotions.map((ad: zPromotionRead) => (
-                  <AdCard key={ad.id} {...ad} />
+                  <div className="relative">
+                    <AdCard key={ad.id} {...ad} />
+                    <DotsDropdownMenu
+                      promotion={ad}
+                      currentUser={userInfo}
+                      editMode
+                      className="absolute -right-1 top-0 hover:bg-transparent"
+                    />
+                  </div>
                 ))}
               </div>
             ) : (
@@ -102,7 +111,15 @@ const Profile = async () => {
             {myPendingPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myPendingPromotions.map((ad: zPromotionRead) => (
-                  <AdCard key={ad.id} {...ad} />
+                  <div className="relative">
+                    <AdCard key={ad.id} {...ad} />
+                    <DotsDropdownMenu
+                      promotion={ad}
+                      currentUser={userInfo}
+                      editMode
+                      className="absolute -right-1 top-0 hover:bg-transparent"
+                    />
+                  </div>
                 ))}
               </div>
             ) : (
@@ -120,7 +137,15 @@ const Profile = async () => {
             {myCancelledPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myCancelledPromotions.map((ad: zPromotionRead) => (
-                  <AdCard key={ad.id} {...ad} />
+                  <div className="relative">
+                    <AdCard key={ad.id} {...ad} />
+                    <DotsDropdownMenu
+                      promotion={ad}
+                      currentUser={userInfo}
+                      editMode
+                      className="absolute -right-1 top-0 hover:bg-transparent"
+                    />
+                  </div>
                 ))}
               </div>
             ) : (

@@ -26,6 +26,24 @@
     "profile": "My Profile",
     "profile-edit": "Edit Profile"
   },
+  "Modal": {
+    "complain": "Complain",
+    "complain-sent-toast": "Thank you! Your complaint will be reviewed.",
+    "choose-reason": "Choose a reason",
+    "send-complain": "Send",
+    "reason-spam": "It's spam",
+    "reason-not-relevant": "The ad is not relevant",
+    "reason-prohibited": "Prohibited item",
+    "reason-duplicate": "Duplicate",
+    "reason-wrong-category": "Wrong category",
+    "reason-fraud": "Fraud",
+    "reason-other": "Other",
+    "dropdown-edit": "Edit advertisement",
+    "dropdown-archive": "Archive advertisement",
+    "dropdown-delete": "Delete advertisement",
+    "promotion-archive-success-toast": "Your ad has been successfully deactivated!",
+    "promotion-delete-success-toast": "Your ad has been successfully deleted!"
+  },
   "ContactBlock": {
     "chat": "Chat",
     "call": "Call",

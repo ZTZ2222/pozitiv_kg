@@ -26,6 +26,24 @@
     "profile": "Мой профиль",
     "profile-edit": "Редактирование данных"
   },
+  "Modal": {
+    "complain": "Пожаловаться",
+    "complain-sent-toast": "Спасибо! Ваша жалоба будет рассмотрена.",
+    "choose-reason": "Выберите причину",
+    "send-complain": "Отправить",
+    "reason-spam": "Это спам",
+    "reason-not-relevant": "Объявление неактуально",
+    "reason-prohibited": "Запрещенный товар",
+    "reason-duplicate": "Дубликат",
+    "reason-wrong-category": "Неверная категория",
+    "reason-fraud": "Мошенничество",
+    "reason-other": "Другое",
+    "dropdown-edit": "Редактировать объявление",
+    "dropdown-archive": "Архивировать объявление",
+    "dropdown-delete": "Удалить объявление",
+    "promotion-archive-success-toast": "Ваше объявление успешно деактивировано!",
+    "promotion-delete-success-toast": "Ваше объявление успешно удалено!"
+  },
   "ContactBlock": {
     "chat": "Написать в чат",
     "call": "Позвонить",

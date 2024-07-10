@@ -26,6 +26,24 @@
     "profile": "Менин профилим",
     "profile-edit": "Профилиңизди түзөтүү"
   },
+  "Modal": {
+    "complain": "Даттануу",
+    "complain-sent-toast": "Рахмат! Сиздин даттануу каралат.",
+    "choose-reason": "Себебин тандаңыз",
+    "send-complain": "Жөнөтүү",
+    "reason-spam": "Бул спам",
+    "reason-not-relevant": "Жарнама актуалдуу эмес",
+    "reason-prohibited": "Тыюу салынган буюм",
+    "reason-duplicate": "Дубликат",
+    "reason-wrong-category": "Туура эмес категория",
+    "reason-fraud": "Алдамчылык",
+    "reason-other": "Башка",
+    "dropdown-edit": "Жарнаманы түзөтүү",
+    "dropdown-archive": "Жарнаманы архивге сактоо",
+    "dropdown-delete": "Жарнаманы өчүрүү",
+    "promotion-archive-success-toast": "Сиздин жарнамаңыз ийгиликтүү архивделди!",
+    "promotion-delete-success-toast": "Сиздин жарнамаңыз ийгиликтүү өчүрүлдү!"
+  },
   "ContactBlock": {
     "chat": "Чатка жазуу",
     "call": "Чалуу",
