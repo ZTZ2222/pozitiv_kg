@@ -8,7 +8,7 @@ import { Phone } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
-export const getSellerPromotions = async (
+const getSellerPromotions = async (
   sellerId: string,
 ): Promise<zPromotionRead[]> => {
   const locale = await getLocale();
@@ -32,7 +32,7 @@ export const getSellerPromotions = async (
   return data.items;
 };
 
-export const getSellerInfo = async (sellerId: string): Promise<zSellerRead> => {
+const getSellerInfo = async (sellerId: string): Promise<zSellerRead> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/sellers/${sellerId}`,
     {

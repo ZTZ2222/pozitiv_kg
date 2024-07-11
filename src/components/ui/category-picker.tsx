@@ -26,7 +26,7 @@ import React, { useState } from "react";
 
 type Props = {
   categories?: zCategoryRead[];
-  field: ControllerRenderProps<any, string>;
+  field: ControllerRenderProps<any, any>;
   modal?: boolean;
   withLabel?: boolean;
 };

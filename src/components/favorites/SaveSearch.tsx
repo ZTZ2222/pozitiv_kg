@@ -10,7 +10,7 @@ import { zSearchRead } from "@/types/other.schema";
 import { useTranslations } from "next-intl";
 
 type Props = {
-  searchList: zSearchRead[];
+  searchList?: zSearchRead[];
   className?: string;
 };
 
@@ -19,7 +19,7 @@ const SaveSearch: React.FC<Props> = ({ searchList, className }) => {
   const params = useSearchParams();
 
   const { execute, optimisticState } = useOptimisticAction(saveSearch, {
-    currentState: searchList,
+    currentState: searchList || [],
     updateFn: (savedSearches) => [
       ...savedSearches,
       {

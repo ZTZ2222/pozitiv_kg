@@ -5,8 +5,8 @@ import EmptyMessage from "@/components/category/EmptyMessage";
 import SaveSearch from "@/components/favorites/SaveSearch";
 import Swiper from "@/components/Swiper";
 import React from "react";
-import { getSavedSeaches } from "../favorites/page";
 import { getLocale, getTranslations } from "next-intl/server";
+import { getSavedSeaches } from "@/actions/favorite-actions";
 
 type Props = {
   searchParams?: {

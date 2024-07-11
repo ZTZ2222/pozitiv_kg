@@ -33,7 +33,11 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
   const t = useTranslations("Header");
 
   const searchFilterRoutes = ["/", "/favorites"];
-  const backbtnSearchFilterRoutes = [/^\/category\/[^/]+$/, "/search"];
+  const backbtnSearchFilterRoutes = [
+    /^\/category\/[^/]+$/,
+    "/search",
+    /^\/commercial\/[^/]+$/,
+  ];
   const backbtnChatsText = ["/chat"];
 
   const [categories, setCategories] = useState<zCategoryRead[]>();

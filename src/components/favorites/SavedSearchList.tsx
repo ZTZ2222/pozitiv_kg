@@ -42,7 +42,7 @@ const SavedSearchList: React.FC<Props> = ({ savedSearches, className }) => {
               execute({ id: savedSearch.id });
               toast({
                 description: t("search-unsubscribe-success-text"),
-                duration: 3000,
+                duration: 5000,
               });
             }}
           >

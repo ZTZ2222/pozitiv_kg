@@ -32,7 +32,8 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
     const isNumeric = !isNaN(Number(part));
     const matchesPattern = chatIdPattern.test(part);
     return {
-      label: isNumeric || matchesPattern ? part : t(part),
+      label: isNumeric || matchesPattern ? part : part,
+      // t(part)
       href: `/${parts.slice(0, index + 1).join("/")}`,
     };
   });

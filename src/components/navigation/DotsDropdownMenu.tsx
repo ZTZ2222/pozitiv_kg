@@ -80,7 +80,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
             <ArchiveRestore /> {t("promotion-restore-success-toast")}
           </span>
         ),
-        duration: 3000,
+        duration: 5000,
       });
     } else if (advertisement.owner_status === "published") {
       await changePromotionStatus({
@@ -93,7 +93,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
             <Archive /> {t("promotion-archive-success-toast")}
           </span>
         ),
-        duration: 3000,
+        duration: 5000,
       });
     } else {
       toast({
@@ -102,7 +102,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
             <CircleSlash /> Oops! Something went wrong
           </span>
         ),
-        duration: 3000,
+        duration: 5000,
       });
     }
   };
@@ -115,7 +115,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
           <Trash2 /> {t("promotion-delete-success-toast")}
         </span>
       ),
-      duration: 3000,
+      duration: 5000,
     });
   };
 
@@ -224,7 +224,7 @@ const ComplainModal = ({
     if (hasSucceeded)
       toast({
         description: t("complain-sent-toast"),
-        duration: 3000,
+        duration: 5000,
       });
   }
 

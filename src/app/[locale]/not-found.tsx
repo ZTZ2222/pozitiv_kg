@@ -30,12 +30,12 @@ const NotFound = () => {
           <h2 className="text-lg font-semibold text-gray-800">{t("title")}</h2>
           <p className="text-gray-600">{t("description")}</p>
         </div>
-        <Link
+        <button
           className="flex h-[50px] w-full max-w-[358px] items-center justify-center rounded-[10px] bg-fuchsia-500 font-medium text-white"
-          href="/"
+          onClick={() => router.back()}
         >
           {t("back-to-home")}
-        </Link>
+        </button>
       </div>
     </>
   );

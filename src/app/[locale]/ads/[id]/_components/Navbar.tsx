@@ -25,7 +25,7 @@ const Navbar: React.FC<Props> = ({ currentUser }) => {
       setPromotion(await getAdInfo(id as string));
     };
     fetchPromotionInfo();
-  }, []);
+  }, [id]);
 
   return (
     <nav className="container mt-[30px] flex justify-between lg:hidden">

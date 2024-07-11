@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 type Props = {
-  field: ControllerRenderProps<any, string>;
+  field: ControllerRenderProps<any, any>;
 };
 
 const ImageUpload: React.FC<Props> = ({ field }) => {

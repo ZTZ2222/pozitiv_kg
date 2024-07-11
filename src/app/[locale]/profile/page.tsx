@@ -85,7 +85,7 @@ const Profile = async () => {
             {myActivePromotions && myActivePromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myActivePromotions.map((ad: zPromotionRead) => (
-                  <div className="relative">
+                  <div key={ad.id} className="relative">
                     <AdCard key={ad.id} {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}
@@ -111,7 +111,7 @@ const Profile = async () => {
             {myPendingPromotions && myPendingPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myPendingPromotions.map((ad: zPromotionRead) => (
-                  <div className="relative">
+                  <div key={ad.id} className="relative">
                     <AdCard key={ad.id} {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}
@@ -137,7 +137,7 @@ const Profile = async () => {
             {myCancelledPromotions && myCancelledPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myCancelledPromotions.map((ad: zPromotionRead) => (
-                  <div className="relative">
+                  <div key={ad.id} className="relative">
                     <AdCard key={ad.id} {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}

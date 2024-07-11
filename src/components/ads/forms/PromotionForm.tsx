@@ -50,16 +50,13 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
     },
   });
 
-  useEffect(() => {
-    async function getAttrs(categoryId: number) {
-      const attrs = await getCategoryAttributes(categoryId);
-      setAttributes(attrs);
-    }
+  const cat_id = form.watch("category_id");
 
-    if (form.watch("category_id")) {
-      getAttrs(form.watch("category_id")!);
+  useEffect(() => {
+    if (cat_id) {
+      getCategoryAttributes(cat_id).then(setAttributes);
     }
-  }, [form.watch("category_id")]);
+  }, [cat_id]);
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -114,7 +111,7 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
           <FileCheck2 /> {t("promotion-create-success-toast")}
         </span>
       ),
-      duration: 3000,
+      duration: 5000,
     });
 
     router.push("/profile");

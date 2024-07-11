@@ -77,11 +77,12 @@ const ChatBottombar: React.FC<Props> = ({ chatId, asModal, className }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = useState("40px");
 
+  const emessage = form.watch("message");
   useEffect(() => {
     if (textareaRef.current) {
       setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
     }
-  }, [form.watch("message")]);
+  }, [emessage]);
 
   if (asModal) {
     return (
