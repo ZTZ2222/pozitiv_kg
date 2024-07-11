@@ -42,8 +42,10 @@
     "reason-other": "Башка",
     "dropdown-edit": "Жарнаманы түзөтүү",
     "dropdown-archive": "Жарнаманы архивге сактоо",
+    "dropdown-activate": "Жарнаманы иштетүү",
     "dropdown-delete": "Жарнаманы өчүрүү",
     "promotion-archive-success-toast": "Сиздин жарнамаңыз ийгиликтүү архивделди!",
+    "promotion-restore-success-toast": "Сиздин жарнамаңыз ийгиликтүү активдештирилди!",
     "promotion-delete-success-toast": "Сиздин жарнамаңыз ийгиликтүү өчүрүлдү!",
     "clear-chat": "Маекти тазалоо",
     "block-user": "Колдонуучуну бөгөттөө"
@@ -55,7 +57,8 @@
     "created-at": "Жарыяланган датасы",
     "add-to-favorites": "Тандалмандарга кошуу",
     "delete-from-favorites": "Тандалмандардан алып салуу",
-    "chat-modal-title": "Колдонуучу менен байланышуу"
+    "chat-modal-title": "Колдонуучу менен байланышуу",
+    "advertise": "Жарнама жүргүзүү"
   },
   "FilterSortModal": {
     "filter": "Фильтр",
@@ -107,7 +110,8 @@
     "phone-placeholder": "Телефон номерин кошуңуз",
     "whatsapp-label": "WhatsApp номери",
     "whatsapp-placeholder": "WhatsApp номерин кошуңуз",
-    "submit-button": "Жарыялоо"
+    "submit-button": "Жарыялоо",
+    "promotion-create-success-toast": "Жарыя берүү кошулду"
   },
   "Header": {
     "post-ad": "Жарыя берүү",
@@ -164,6 +168,10 @@
     "empty-message-title": "Бул жерде азырынча бош",
     "empty-message-description": "Бул категорияда азырынча эч кандай жарнама жок.",
     "back-to-home": "Башкы бетке кайтуу"
+  },
+  "AdDetailsPage": {
+    "promotion-deactivated-alert": "Сиздин жарнамаңыз өчүрүлдү. Башкалар көрүшү үчүн аны активдеңиз.",
+    "related-promotions": "Окшош жарнамалар"
   },
   "ProfilePage": {
     "your-promotions": "Сиздин жарыяларыңыз",

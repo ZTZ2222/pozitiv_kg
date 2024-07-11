@@ -41,9 +41,11 @@
     "reason-fraud": "Мошенничество",
     "reason-other": "Другое",
     "dropdown-edit": "Редактировать объявление",
-    "dropdown-archive": "Архивировать объявление",
+    "dropdown-archive": "Деактивировать объявление",
+    "dropdown-activate": "Активировать объявление",
     "dropdown-delete": "Удалить объявление",
     "promotion-archive-success-toast": "Ваше объявление успешно деактивировано!",
+    "promotion-restore-success-toast": "Ваше объявление успешно активировано!",
     "promotion-delete-success-toast": "Ваше объявление успешно удалено!",
     "clear-chat": "Очистить чат",
     "block-user": "Заблокировать пользователя"
@@ -55,7 +57,8 @@
     "created-at": "Дата публикации",
     "add-to-favorites": "Добавить в избранные",
     "delete-from-favorites": "Удалить из избранных",
-    "chat-modal-title": "Связаться с пользователем"
+    "chat-modal-title": "Связаться с пользователем",
+    "advertise": "Запустить рекламу"
   },
   "FilterSortModal": {
     "filter": "Фильтр",
@@ -107,7 +110,8 @@
     "phone-placeholder": "Добавьте номер телефона",
     "whatsapp-label": "Номер WhatsApp",
     "whatsapp-placeholder": "Добавьте номер WhatsApp",
-    "submit-button": "Опубликовать"
+    "submit-button": "Опубликовать",
+    "promotion-create-success-toast": "Ваше объявление успешно опубликовано!"
   },
   "Header": {
     "post-ad": "Подать объявление",
@@ -164,6 +168,10 @@
     "empty-message-title": "Тут пока пусто",
     "empty-message-description": "В этой категории пока нет объявлений.",
     "back-to-home": "На главную"
+  },
+  "AdDetailsPage": {
+    "promotion-deactivated-alert": "Ваше объявление деактивировано. Активируйте его, чтобы другие могли его видеть.",
+    "related-promotions": "Похожие объявления"
   },
   "ProfilePage": {
     "your-promotions": "Ваши объявления",

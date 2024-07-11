@@ -41,9 +41,11 @@
     "reason-fraud": "Fraud",
     "reason-other": "Other",
     "dropdown-edit": "Edit advertisement",
-    "dropdown-archive": "Archive advertisement",
+    "dropdown-archive": "Deactivate advertisement",
+    "dropdown-activate": "Activate advertisement",
     "dropdown-delete": "Delete advertisement",
     "promotion-archive-success-toast": "Your ad has been successfully deactivated!",
+    "promotion-restore-success-toast": "Your ad has been successfully activated!",
     "promotion-delete-success-toast": "Your ad has been successfully deleted!",
     "clear-chat": "Clear chat",
     "block-user": "Block user"
@@ -55,7 +57,8 @@
     "created-at": "Created at",
     "add-to-favorites": "Add to favorites",
     "delete-from-favorites": "Remove from favorites",
-    "chat-modal-title": "Contact user"
+    "chat-modal-title": "Contact user",
+    "advertise": "Run advertising"
   },
   "FilterSortModal": {
     "filter": "Filter",
@@ -107,7 +110,8 @@
     "phone-placeholder": "Add phone number",
     "whatsapp-label": "WhatsApp number",
     "whatsapp-placeholder": "Add WhatsApp number",
-    "submit-button": "Publish"
+    "submit-button": "Publish",
+    "promotion-create-success-toast": "Your ad has been successfully created!"
   },
   "Header": {
     "post-ad": "Post Ad",
@@ -164,6 +168,10 @@
     "empty-message-title": "It's empty here yet",
     "empty-message-description": "There are no ads in this category yet.",
     "back-to-home": "Back to home"
+  },
+  "AdDetailsPage": {
+    "promotion-deactivated-alert": "Your ad has been deactivated. Activate it so others can see it.",
+    "related-promotions": "Related ads"
   },
   "ProfilePage": {
     "your-promotions": "Your Promotions",

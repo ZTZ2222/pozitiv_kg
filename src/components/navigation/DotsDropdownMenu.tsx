@@ -2,7 +2,15 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Archive, ArchiveRestore, Pencil, Trash2, X } from "lucide-react";
+import {
+  Archive,
+  ArchiveRestore,
+  ArchiveX,
+  CircleSlash,
+  Pencil,
+  Trash2,
+  X,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,12 +37,16 @@ import { useTranslations } from "next-intl";
 import { zPromotionRead } from "@/types/ad.schema";
 import { zUserRead } from "@/types/user.schema";
 import { useRouter } from "@/lib/i18nNavigation";
-import { deletePromotion, reportPromotion } from "@/actions/ads-actions";
+import {
+  changePromotionStatus,
+  deletePromotion,
+  reportPromotion,
+} from "@/actions/ads-actions";
 import { useAction } from "next-safe-action/hooks";
 
 type Props = {
   promotion: zPromotionRead;
-  currentUser: zUserRead;
+  currentUser?: zUserRead;
   editMode?: boolean;
   className?: string;
 };
@@ -50,45 +62,62 @@ const DotsDropdownMenu: React.FC<Props> = ({
 
   const router = useRouter();
 
-  const dropDownItems = [
-    {
-      icon: <Pencil className="mr-2.5 size-[18px]" />,
-      text: t("dropdown-edit"),
-      onClick: (promotionId: number) => {
-        router.push(`/ads/${promotionId}/edit`);
-      },
-    },
-    {
-      icon: <ArchiveRestore className="mr-2.5 size-[18px]" />,
-      text: t("dropdown-archive"),
-      onClick: (promotionId: number) => {
-        // await archivePromotion(promotionId);
-        toast({
-          description: (
-            <span className="flex items-center gap-2.5">
-              <Archive /> {t("promotion-archive-success-toast")}
-            </span>
-          ),
-          duration: 3000,
-        });
-      },
-    },
-    {
-      icon: <Trash2 className="mr-2.5 size-[18px]" />,
-      text: t("dropdown-delete"),
-      onClick: async (promotionId: number) => {
-        await deletePromotion(promotionId);
-        toast({
-          description: (
-            <span className="flex items-center gap-2.5">
-              <Trash2 /> {t("promotion-delete-success-toast")}
-            </span>
-          ),
-          duration: 3000,
-        });
-      },
-    },
-  ];
+  const editPromotionButtonHandler = (advertisementId: number) => {
+    router.push(`/ads/${advertisementId}/edit`);
+  };
+
+  const changeStatusPromotionButtonHandler = async (
+    advertisement: zPromotionRead,
+  ) => {
+    if (advertisement.owner_status === "pending") {
+      await changePromotionStatus({
+        promotion_id: advertisement.id,
+        status: "published",
+      });
+      toast({
+        description: (
+          <span className="flex items-center gap-2.5">
+            <ArchiveRestore /> {t("promotion-restore-success-toast")}
+          </span>
+        ),
+        duration: 3000,
+      });
+    } else if (advertisement.owner_status === "published") {
+      await changePromotionStatus({
+        promotion_id: advertisement.id,
+        status: "pending",
+      });
+      toast({
+        description: (
+          <span className="flex items-center gap-2.5">
+            <Archive /> {t("promotion-archive-success-toast")}
+          </span>
+        ),
+        duration: 3000,
+      });
+    } else {
+      toast({
+        description: (
+          <span className="flex items-center gap-2.5">
+            <CircleSlash /> Oops! Something went wrong
+          </span>
+        ),
+        duration: 3000,
+      });
+    }
+  };
+
+  const deletePromotionButtonHandler = async (advertisementId: number) => {
+    await deletePromotion(advertisementId);
+    toast({
+      description: (
+        <span className="flex items-center gap-2.5">
+          <Trash2 /> {t("promotion-delete-success-toast")}
+        </span>
+      ),
+      duration: 3000,
+    });
+  };
 
   return (
     <>
@@ -104,18 +133,58 @@ const DotsDropdownMenu: React.FC<Props> = ({
         </DropdownMenuTrigger>
         {currentUser?.id === promotion?.seller.id || editMode ? (
           <DropdownMenuContent className="-translate-x-2 translate-y-2 space-y-4 px-3 py-5 sm:-translate-x-4 lg:px-14">
-            {dropDownItems.map((item, index) => (
-              <DropdownMenuItem key={index} asChild>
-                <Button
-                  variant="outline"
-                  onClick={item.onClick.bind(null, promotion?.id)}
-                  className="w-[280px] justify-start rounded-[10px] px-4 font-medium"
-                >
-                  {item.icon}
-                  {item.text}
-                </Button>
-              </DropdownMenuItem>
-            ))}
+            {/* Edit */}
+            <DropdownMenuItem asChild>
+              <Button
+                variant="outline"
+                onClick={editPromotionButtonHandler.bind(null, promotion?.id)}
+                className="w-[280px] justify-start rounded-[10px] px-4 font-medium"
+              >
+                <Pencil className="mr-2.5 size-[18px]" />
+                {t("dropdown-edit")}
+              </Button>
+            </DropdownMenuItem>
+
+            {/* Change Status */}
+            <DropdownMenuItem asChild>
+              <Button
+                variant="outline"
+                onClick={changeStatusPromotionButtonHandler.bind(
+                  null,
+                  promotion,
+                )}
+                className={cn(
+                  "w-[280px] justify-start rounded-[10px] px-4 font-medium",
+                  promotion?.owner_status === "pending"
+                    ? "text-green-500"
+                    : "text-amber-500",
+                )}
+              >
+                {promotion?.owner_status === "pending" ? (
+                  <>
+                    <ArchiveRestore className="mr-2.5 size-[18px]" />
+                    {t("dropdown-activate")}
+                  </>
+                ) : (
+                  <>
+                    <ArchiveX className="mr-2.5 size-[18px]" />
+                    {t("dropdown-archive")}
+                  </>
+                )}
+              </Button>
+            </DropdownMenuItem>
+
+            {/* Delete */}
+            <DropdownMenuItem asChild>
+              <Button
+                variant="outline"
+                onClick={deletePromotionButtonHandler.bind(null, promotion?.id)}
+                className="w-[280px] justify-start rounded-[10px] px-4 font-medium text-red-500"
+              >
+                <Trash2 className="mr-2.5 size-[18px]" />
+                {t("dropdown-delete")}
+              </Button>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         ) : (
           <DropdownMenuContent className="-translate-x-4 translate-y-2">
