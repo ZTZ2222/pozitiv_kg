@@ -1,10 +1,10 @@
 "use server";
 
 import { redirect } from "@/lib/i18nNavigation";
-import { zPromotionRead } from "@/types/ad.schema";
+import { PromotionChangeStatusSchema, zPromotionRead } from "@/types/ad.schema";
 import { ComplainFormSchema, zCityRead } from "@/types/other.schema";
 import { getLocale } from "next-intl/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { actionClient } from "./safe-action";
 
@@ -88,11 +88,13 @@ export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
 
 type AdStatus = "active" | "pending" | "cancelled";
 
-export const getMyAds = async (status: AdStatus): Promise<zPromotionRead[]> => {
+export const getMyAds = async (
+  status: AdStatus,
+): Promise<zPromotionRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
-  const response = await fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/my-list?status=${status}`,
     {
       cache: "no-store",
@@ -104,15 +106,19 @@ export const getMyAds = async (status: AdStatus): Promise<zPromotionRead[]> => {
       next: { tags: ["my-list"] },
     },
   );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+  if (res.ok) {
+    const { data } = await res.json();
+    return data.items;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
   }
-  const { data } = await response.json();
-
-  return data.items;
 };
 
-export const createPromotion = async (data: FormData): Promise<string> => {
+export const createPromotion = async (
+  data: FormData,
+): Promise<string | undefined> => {
   const access_token = cookies().get("access_token")?.value;
 
   // data.forEach((value, key) => {
@@ -130,20 +136,22 @@ export const createPromotion = async (data: FormData): Promise<string> => {
     body: data,
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    revalidatePath("/profile");
+
+    const { message } = await res.json();
+
+    return message;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
-    // const error = await res.json();
-    // console.log(error);
   }
-
-  revalidatePath("/profile");
-
-  const { message } = await res.json();
-
-  return message;
 };
 
-export const deletePromotion = async (promotionId: number): Promise<string> => {
+export const deletePromotion = async (
+  promotionId: number,
+): Promise<string | undefined> => {
   const access_token = cookies().get("access_token")?.value;
 
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/delete/${promotionId}`;
@@ -156,16 +164,18 @@ export const deletePromotion = async (promotionId: number): Promise<string> => {
     },
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    revalidatePath("/profile");
+    redirect("/profile");
+
+    const { message } = await res.json();
+
+    return message;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }
-
-  revalidatePath("/profile");
-  redirect("/profile");
-
-  const { message } = await res.json();
-
-  return message;
 };
 
 export const reportPromotion = actionClient

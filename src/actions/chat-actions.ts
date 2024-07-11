@@ -11,7 +11,7 @@ import { actionClient } from "./safe-action";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "@/lib/i18nNavigation";
 
-export const getChatList = async (): Promise<zChat[]> => {
+export const getChatList = async (): Promise<zChat[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chats`, {
@@ -23,18 +23,19 @@ export const getChatList = async (): Promise<zChat[]> => {
     next: { tags: ["chats"] },
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    const { data } = await res.json();
+    return data.items;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  const { data } = await res.json();
-
-  return data.items;
 };
 
 export const getMessagesByChatId = async (
   chatId: string,
-): Promise<zMessage[]> => {
+): Promise<zMessage[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/chats/list/${chatId}`,
@@ -48,13 +49,15 @@ export const getMessagesByChatId = async (
     },
   );
 
-  if (!res.ok) {
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data.items.reverse();
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  const { data } = await res.json();
-
-  return data.items.reverse();
 };
 
 export const sendMessage = actionClient
@@ -72,21 +75,23 @@ export const sendMessage = actionClient
       body: JSON.stringify(parsedInput),
     });
 
-    if (!res.ok) {
+    if (res.ok) {
+      revalidateTag(`chat-${parsedInput.chat_id}`);
+
+      return await res.json();
+    } else if (res.status === 401) {
+      redirect("/login");
+    } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-
-    revalidateTag(`chat-${parsedInput.chat_id}`);
-
-    return await res.json();
   });
 
 export const clearChat = actionClient
   .schema(ChatDeleteSchema)
-  .action(async ({ parsedInput: { chat_id } }): Promise<string> => {
+  .action(async ({ parsedInput: { chat_id } }): Promise<string | undefined> => {
     const access_token = cookies().get("access_token")?.value;
 
-    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/chats/remove/${chat_id}`;
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/chats/remove-all/${chat_id}`;
 
     const res = await fetch(endpoint, {
       method: "DELETE",
@@ -96,19 +101,16 @@ export const clearChat = actionClient
       },
     });
 
-    if (!res.ok) {
-      throw new Error(
-        `HTTP error! status: ${res.status} - ${await res.json()}`,
-      );
+    if (res.ok) {
+      revalidatePath("/chat");
+      redirect("/chat");
+
+      const { message } = await res.json();
+
+      return message;
+    } else if (res.status === 401) {
+      redirect("/login");
+    } else {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
-
-    // console.log(await res.json());
-    // console.log(res.status);
-
-    revalidatePath("/chat");
-    redirect("/chat");
-
-    const { message } = await res.json();
-
-    return message;
   });

@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { actionClient } from "./safe-action";
 import { redirect } from "@/lib/i18nNavigation";
 
-export const getUserInfo = async (): Promise<zUserRead> => {
+export const getUserInfo = async (): Promise<zUserRead | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/info`, {
     cache: "no-store",
@@ -16,16 +16,20 @@ export const getUserInfo = async (): Promise<zUserRead> => {
     },
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  const { data } = await res.json();
-
-  return data;
 };
 
-export const updateUserImage = async (formData: FormData): Promise<string> => {
+export const updateUserImage = async (
+  formData: FormData,
+): Promise<string | undefined> => {
   const access_token = cookies().get("access_token")?.value;
 
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/users/image-upload`;
@@ -39,20 +43,22 @@ export const updateUserImage = async (formData: FormData): Promise<string> => {
     body: formData,
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    revalidatePath("/profile");
+
+    const { data } = await res.json();
+
+    return data;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  revalidatePath("/profile");
-
-  const { data } = await res.json();
-
-  return data;
 };
 
 export const updateUserInfo = actionClient
   .schema(UserUpdateSchema)
-  .action(async ({ parsedInput }): Promise<string> => {
+  .action(async ({ parsedInput }): Promise<string | undefined> => {
     const access_token = cookies().get("access_token")?.value;
 
     const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/users/update`;
@@ -67,15 +73,17 @@ export const updateUserInfo = actionClient
       body: JSON.stringify(parsedInput),
     });
 
-    if (!res.ok) {
+    if (res.ok) {
+      revalidatePath("/profile/edit");
+
+      const { data } = await res.json();
+
+      return data;
+    } else if (res.status === 401) {
+      redirect("/login");
+    } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-
-    revalidatePath("/profile/edit");
-
-    const { data } = await res.json();
-
-    return data;
   });
 
 export const userLogout = (): void => {
@@ -96,10 +104,12 @@ export const deleteMyAccount = async (): Promise<void> => {
     },
   });
 
-  if (!res.ok) {
+  if (res.ok) {
+    cookies().delete("access_token");
+    redirect("/login");
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  cookies().delete("access_token");
-  redirect("/login");
 };
