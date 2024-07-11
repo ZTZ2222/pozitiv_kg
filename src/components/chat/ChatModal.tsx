@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Dialog,
@@ -10,13 +12,29 @@ import { Button } from "@/components/ui/button";
 import { MessageCircleMore } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ChatBottombar from "./ChatBottomBar";
+import { useRouter } from "@/lib/i18nNavigation";
 
 type Props = {
-  chatId: string;
+  chatId?: string;
 };
 
 const ChatModal: React.FC<Props> = ({ chatId }) => {
   const t = useTranslations("ContactBlock");
+
+  const router = useRouter();
+
+  if (!chatId) {
+    return (
+      <Button
+        onClick={() => router.push("/login")}
+        variant="contact-chat"
+        size="col-2"
+      >
+        <MessageCircleMore className="size-5" />
+        {t("chat")}
+      </Button>
+    );
+  }
   return (
     <Dialog modal={false}>
       <DialogTrigger asChild>

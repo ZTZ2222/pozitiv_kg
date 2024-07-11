@@ -13,7 +13,7 @@ import BottomScroller from "@/components/BottomScroller";
 
 interface ChatProps {
   messages: zMessage[];
-  currentUser: zUserRead;
+  currentUser?: zUserRead;
 }
 
 export function ChatMessages({ messages, currentUser }: ChatProps) {
@@ -41,13 +41,13 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
             }}
             className={cn(
               "flex flex-col gap-2 whitespace-pre-wrap p-3",
-              message.sender_id.id === currentUser.id
+              message.sender_id.id === currentUser?.id
                 ? "items-end"
                 : "items-start",
             )}
           >
             <div className="flex items-center gap-2">
-              {message.sender_id.id !== currentUser.id && (
+              {message.sender_id.id !== currentUser?.id && (
                 <Avatar className="flex items-center justify-center">
                   <AvatarImage
                     src={message.sender_id.image}
@@ -67,7 +67,7 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
                 className={cn(
                   "max-w-xs overflow-hidden rounded-md px-[18px] pb-1.5 pt-3 font-light",
                   "bg-gray-100",
-                  message.sender_id.id === currentUser.id
+                  message.sender_id.id === currentUser?.id
                     ? "rounded-[16px] rounded-br-none"
                     : "rounded-[16px] rounded-tl-none",
                 )}
@@ -77,7 +77,7 @@ export function ChatMessages({ messages, currentUser }: ChatProps) {
                   {format(new Date(message.created_at), "HH:mm")}
                 </p>
               </span>
-              {message.sender_id.id === currentUser.id && (
+              {message.sender_id.id === currentUser?.id && (
                 <Avatar className="flex justify-center">
                   <AvatarImage
                     src={message.sender_id.image}

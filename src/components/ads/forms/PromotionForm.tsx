@@ -30,6 +30,8 @@ import { zCityRead } from "@/types/other.schema";
 import { Checkbox } from "@/components/ui/checkbox";
 import { createPromotion } from "@/actions/ads-actions";
 import { useRouter } from "@/lib/i18nNavigation";
+import { toast } from "@/components/ui/use-toast";
+import { FileCheck2 } from "lucide-react";
 
 type Props = {
   categories: zCategoryRead[];
@@ -60,8 +62,6 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
   }, [form.watch("category_id")]);
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
@@ -107,6 +107,15 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
     });
 
     await createPromotion(formData);
+
+    toast({
+      description: (
+        <span className="flex items-center gap-2.5">
+          <FileCheck2 /> {t("promotion-create-success-toast")}
+        </span>
+      ),
+      duration: 3000,
+    });
 
     router.push("/profile");
   };

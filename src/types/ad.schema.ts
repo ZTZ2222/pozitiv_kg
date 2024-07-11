@@ -71,6 +71,11 @@ export const PromotionReadSchema = PromotionUpdateSchema.omit({
   enable_phone: z.number().int(),
 });
 
+export const PromotionChangeStatusSchema = z.object({
+  promotion_id: z.number().int(),
+  status: z.enum(["published", "pending"]),
+});
+
 export const FavoriteItemSchema = z.object({
   id: z.number().int(),
   favourable_type: z.string(),
@@ -82,4 +87,7 @@ export type zPromotionAttribute = z.infer<typeof PromotionAttributeSchema>;
 export type zPromotionCreate = z.infer<typeof PromotionCreateSchema>;
 export type zPromotionUpdate = z.infer<typeof PromotionUpdateSchema>;
 export type zPromotionRead = z.infer<typeof PromotionReadSchema>;
+export type zPromotionChangeStatus = z.infer<
+  typeof PromotionChangeStatusSchema
+>;
 export type zFavoriteItem = z.infer<typeof FavoriteItemSchema>;

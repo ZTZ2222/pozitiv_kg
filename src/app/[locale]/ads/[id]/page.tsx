@@ -9,6 +9,7 @@ import Map from "@/components/Map";
 import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 import ShareButton from "@/components/navigation/ShareButton";
 import UserInfoCard from "@/components/profile/UserInfoCard";
+import { CircleAlert } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -16,18 +17,22 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
   const locale = await getLocale();
   const t = await getTranslations({
     locale: locale,
-    namespace: "Header",
+    namespace: "AdDetailsPage",
   });
 
   const promotion = await getAdInfo(params.id);
   const relatedPromotions = await getRelatedAds(params.id);
   const currentUser = await getUserInfo();
 
-  const chatId = `${promotion.id}_${currentUser.id}`;
+  let chatId = undefined;
+
+  if (promotion && currentUser) {
+    chatId = `${promotion.id}_${currentUser.id}`;
+  }
 
   return (
     <main className="container mt-[30px]">
-      <div className="items-center justify-center md:flex md:flex-col lg:flex-row lg:items-start lg:justify-between">
+      <div className="items-center justify-center md:flex md:flex-col lg:flex-row lg:items-start lg:justify-start lg:gap-[38px] xl:gap-[49px] 2xl:gap-[60px]">
         <div>
           <AdCarousel
             images={promotion.galleries}
@@ -35,12 +40,8 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
             className="mb-5"
           />
           <ContactBlock
-            id={promotion.id}
-            favorites={promotion.favorites}
-            phone={promotion.phone}
-            whatsapp_number={promotion.whatsapp_number}
-            createdAt={promotion.created_at}
-            updatedAt={promotion.updated_at}
+            promotion={promotion}
+            currentUser={currentUser}
             chatId={chatId}
             className="mb-[60px] hidden lg:flex"
           />
@@ -50,14 +51,16 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           />
         </div>
         <div className="md:w-[380px] xl:w-[535px]">
+          {promotion.owner_status === "pending" && (
+            <div className="mb-5 flex items-center gap-4 rounded-[10px] bg-blue-400 px-5 py-2.5 text-xs text-gray-50 lg:max-w-[405px] lg:text-sm">
+              <CircleAlert className="shrink-0" />
+              <span>{t("promotion-deactivated-alert")}</span>
+            </div>
+          )}
           <AdHeading {...promotion} className="mb-[60px]" />
           <ContactBlock
-            id={promotion.id}
-            favorites={promotion.favorites}
-            phone={promotion.phone}
-            whatsapp_number={promotion.whatsapp_number}
-            createdAt={promotion.created_at}
-            updatedAt={promotion.updated_at}
+            promotion={promotion}
+            currentUser={currentUser}
             chatId={chatId}
             className="mb-[60px] lg:hidden"
           />
@@ -74,7 +77,7 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
         />
       </div>
       <section className="mb-[100px]">
-        <h2 className="text-lg font-semibold">Похожие объявления</h2>
+        <h2 className="text-lg font-semibold">{t("related-promotions")}</h2>
         <AdList ads={relatedPromotions} />
       </section>
     </main>

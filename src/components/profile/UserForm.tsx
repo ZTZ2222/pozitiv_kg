@@ -31,7 +31,7 @@ import {
 import UserImageUpload from "./UserImageUpload";
 
 interface Props {
-  userInfo: zUserRead;
+  userInfo?: zUserRead;
   className?: string;
 }
 
@@ -43,17 +43,16 @@ const UserForm: React.FC<Props> = ({ userInfo, className }) => {
   const form = useForm<zUserUpdate>({
     resolver: zodResolver(UserUpdateSchema),
     defaultValues: {
-      name: userInfo.name,
-      phone: userInfo.phone,
-      email: userInfo.email,
+      name: userInfo?.name,
+      phone: userInfo?.phone,
+      email: userInfo?.email,
     },
   });
 
   const onSubmit = (data: zUserUpdate) => {
     execute(data);
     toast({
-      title: "Form submitted!",
-      description: JSON.stringify(data, null, 2),
+      description: "Данные успешно обновлены",
       duration: 3000,
     });
   };

@@ -43,7 +43,7 @@ const Profile = async () => {
               className="mt-2.5 flex gap-2 rounded-[10px] border border-black/25 p-2.5 text-black/25"
             >
               <User className="size-6" />
-              <span>{userInfo.name}</span>
+              <span>{userInfo?.name}</span>
             </Link>
           </div>
         </div>
@@ -82,7 +82,7 @@ const Profile = async () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="active">
-            {myActivePromotions.length > 0 ? (
+            {myActivePromotions && myActivePromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myActivePromotions.map((ad: zPromotionRead) => (
                   <div className="relative">
@@ -108,7 +108,7 @@ const Profile = async () => {
             )}
           </TabsContent>
           <TabsContent value="in-moderation">
-            {myPendingPromotions.length > 0 ? (
+            {myPendingPromotions && myPendingPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myPendingPromotions.map((ad: zPromotionRead) => (
                   <div className="relative">
@@ -134,7 +134,7 @@ const Profile = async () => {
             )}
           </TabsContent>
           <TabsContent value="deactivated">
-            {myCancelledPromotions.length > 0 ? (
+            {myCancelledPromotions && myCancelledPromotions.length > 0 ? (
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myCancelledPromotions.map((ad: zPromotionRead) => (
                   <div className="relative">

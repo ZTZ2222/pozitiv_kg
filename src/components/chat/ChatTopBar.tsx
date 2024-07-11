@@ -15,7 +15,7 @@ import ChatDotsDropdownMenu from "@/components/navigation/ChatDotsDropdownMenu";
 
 type Props = {
   chat: zChat;
-  currentUser: zUserRead;
+  currentUser?: zUserRead;
   className?: string;
 };
 

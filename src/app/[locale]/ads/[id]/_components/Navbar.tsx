@@ -7,13 +7,12 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "@/lib/i18nNavigation";
 import { zPromotionRead } from "@/types/ad.schema";
 import { zUserRead } from "@/types/user.schema";
-import { ChevronLeft, Share } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ChevronLeft } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type Props = {
-  currentUser: zUserRead;
+  currentUser?: zUserRead;
 };
 
 const Navbar: React.FC<Props> = ({ currentUser }) => {

@@ -7,11 +7,11 @@ import SavedSearchList from "@/components/favorites/SavedSearchList";
 import { zSearchRead } from "@/types/other.schema";
 import { redirect } from "@/lib/i18nNavigation";
 
-const getFavorites = async (): Promise<zPromotionRead[]> => {
+const getFavorites = async (): Promise<zPromotionRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
-  const response = await fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`,
     {
       cache: "no-store",
@@ -23,23 +23,23 @@ const getFavorites = async (): Promise<zPromotionRead[]> => {
       next: { tags: ["favorites"] },
     },
   );
-  if (response.status === 401) {
+
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data.items;
+  } else if (res.status === 401) {
     redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
   }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
-
-  return data.items;
 };
 
-export const getSavedSeaches = async (): Promise<zSearchRead[]> => {
+export const getSavedSeaches = async (): Promise<zSearchRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
-  const response = await fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/search-list`,
     {
       cache: "no-store",
@@ -51,12 +51,16 @@ export const getSavedSeaches = async (): Promise<zSearchRead[]> => {
       next: { tags: ["saved-searches"] },
     },
   );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
 
-  return data.items;
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data.items;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
 };
 
 const Favorites = async () => {
@@ -77,7 +81,7 @@ const Favorites = async () => {
         <TabsTrigger value="saved-searches">{t("tab-2")}</TabsTrigger>
       </TabsList>
       <TabsContent value="promotions">
-        {favorites.length > 0 ? (
+        {favorites && favorites.length > 0 ? (
           <AdList ads={favorites} />
         ) : (
           <div className="mx-auto my-[140px] max-w-[300px] space-y-6 text-center">
@@ -89,7 +93,7 @@ const Favorites = async () => {
         )}
       </TabsContent>
       <TabsContent value="saved-searches">
-        {savedSearches.length > 0 ? (
+        {savedSearches && savedSearches.length > 0 ? (
           <SavedSearchList savedSearches={savedSearches} />
         ) : (
           <div className="mx-auto my-[140px] max-w-[300px] space-y-6 text-center">

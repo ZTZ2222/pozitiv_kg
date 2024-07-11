@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type Props = {
-  chats: zChat[];
+  chats?: zChat[];
   className?: string;
 };
 
@@ -21,7 +21,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  if (!chats.length && !isDesktop)
+  if (!chats?.length && !isDesktop)
     return (
       <div className="mt-[calc(50vh-200px)] flex h-full flex-col items-center justify-center gap-5">
         <div className="relative h-[61px] w-[64px]">
@@ -54,7 +54,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
       </div>
       <ScrollArea>
         <nav className={cn("flex flex-col gap-2.5", "pb-12 md:pb-20 lg:pb-0")}>
-          {chats.map((chat) => (
+          {chats?.map((chat) => (
             <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id}>
               <Card className="container flex min-h-[78px] items-center justify-between gap-4 rounded-none border-0 border-y border-gray-200 bg-gray-50 pb-3 pt-1.5 transition-colors duration-500 hover:bg-gray-200">
                 <Avatar className="size-10 shrink-0 md:size-[50px]">

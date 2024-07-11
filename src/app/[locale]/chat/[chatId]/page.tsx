@@ -25,13 +25,13 @@ const Chat = async ({ params: { chatId } }: ChatProps) => {
   const chatList = await getChatList();
   const chatMessages = await getMessagesByChatId(chatId);
 
-  const chat = chatList.find((chat) => chat.chat_id === chatId);
+  const chat = chatList?.find((chat) => chat.chat_id === chatId);
 
   return (
     <main className="lg:container lg:my-10 lg:flex lg:gap-5">
       <ChatSidebar chats={chatList} className="hidden lg:flex" />
       <div className="lg:w-[590px] lg:rounded-[10px] lg:shadow-[0px_0px_4px_0px_#9090904D] xl:w-[738px]">
-        {chatMessages.length > 0 && chat ? (
+        {chatMessages && chatMessages.length > 0 && chat ? (
           <>
             <ChatTopBar chat={chat} currentUser={userInfo} />
             <div className="container relative px-0">

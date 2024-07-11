@@ -19,7 +19,7 @@ const ChatList = async () => {
       <ChatSidebar chats={chatList} />
       <div className="hidden w-full rounded-[10px] shadow-[0px_0px_4px_0px_#9090904D] lg:block">
         <div className="flex size-full flex-col gap-2.5">
-          {chatList.length > 0 ? (
+          {chatList && chatList.length > 0 ? (
             <div className="flex h-full flex-col items-center justify-center gap-5">
               <MessagesSquare className="size-[64px] text-cyan-400" />
               <span className="text-lg font-semibold lg:text-xl">
