@@ -4,7 +4,6 @@ import {
   FormItem,
   FormLabel,
   FormControl,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,6 +17,7 @@ import { zCategoryAttribute } from "@/types/category.schema";
 import StepperFormActions from "./StepperFormActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import BackButton from "@/components/navigation/BackButton";
+import { Textarea } from "@/components/ui/textarea";
 
 const DynamicFormStep = ({
   attrGroup,
@@ -44,7 +44,6 @@ const DynamicFormStep = ({
                     <FormControl>
                       <Input type="number" placeholder={attr.name} {...field} />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -61,9 +60,8 @@ const DynamicFormStep = ({
                       {attr.name}
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder={attr.name} {...field} />
+                      <Textarea placeholder={attr.name} {...field} />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -96,7 +94,6 @@ const DynamicFormStep = ({
                         ))}
                       </SelectContent>
                     </Select>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -149,7 +146,6 @@ const DynamicFormStep = ({
                         />
                       ))}
                     </div>
-                    <FormMessage />
                   </FormItem>
                 )}
               />

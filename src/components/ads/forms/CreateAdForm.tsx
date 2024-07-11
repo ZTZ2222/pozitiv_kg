@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Step, Stepper } from "@/components/ui/stepper";
 import { toast } from "@/components/ui/use-toast";
 import { Form } from "@/components/ui/form";
-import { createDynamicSchema } from "@/lib/schemas";
 import { z } from "zod";
 import DynamicFormStep from "./DynamicFormStep";
 import { chunkArray } from "@/lib/utils";
@@ -30,14 +29,14 @@ const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
   });
 
   useEffect(() => {
-    setSchema(createDynamicSchema(attributes));
+    // setSchema(createDynamicSchema(attributes));
   }, [attributes]);
 
   const onSubmit = (data: any) => {
     toast({
       title: "Form submitted!",
       description: JSON.stringify(data, null, 2),
-      duration: 3000,
+      duration: 5000,
     });
   };
 
@@ -52,6 +51,7 @@ const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
             orientation="horizontal"
             initialStep={0}
             steps={[
+              { label: "Default inputs", description: "Pic, name, price" },
               ...chunkedAttributes.map((_, i) => ({
                 label: `Step ${i + 1}`,
                 description: `Step ${i + 1} description`,
@@ -62,6 +62,9 @@ const CreateAdForm: React.FC<CreateAdFormProps> = ({ attributes }) => {
               "main-container": "hidden",
             }}
           >
+            <Step label="Default inputs" description="Pic, name, price">
+              {/* <PromotionForm /> */}
+            </Step>
             {chunkedAttributes.map((attrGroup, index) => (
               <Step
                 key={index}

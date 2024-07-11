@@ -7,6 +7,7 @@ import Swiper from "@/components/Swiper";
 import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getSavedSeaches } from "@/actions/favorite-actions";
+import { getUserInfo } from "@/actions/user-actions";
 
 type Props = {
   searchParams?: {
@@ -27,9 +28,16 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
   });
 
   const params = new URLSearchParams(searchParams);
+  params.set("per_page", "40");
   const promotions = await getAds(params);
   const banners = await getBanners();
-  const searchList = await getSavedSeaches();
+  const currentUser = await getUserInfo();
+
+  let searchList;
+
+  if (currentUser) {
+    searchList = await getSavedSeaches();
+  }
 
   return (
     <main className="relative min-h-[75vh]">

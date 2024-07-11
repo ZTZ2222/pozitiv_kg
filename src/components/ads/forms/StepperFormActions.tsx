@@ -22,8 +22,9 @@ function StepperFormActions({
   if (!isLastStep)
     return (
       <Button
-        className="h-12 w-full bg-fuchsia-500 disabled:bg-gray-500 disabled:opacity-100"
         onClick={validateAndNext}
+        className="h-12 w-full bg-fuchsia-500 disabled:bg-gray-500 disabled:opacity-100"
+        type="button"
         size="sm"
       >
         Далее
