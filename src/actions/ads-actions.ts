@@ -11,17 +11,14 @@ import { actionClient } from "./safe-action";
 export const getAds = async (
   params: URLSearchParams,
 ): Promise<zPromotionRead[]> => {
-  const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`,
     {
       cache: "no-store",
-      credentials: "include",
       headers: {
         "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
       },
       next: { tags: ["ad-list"] },
     },
@@ -35,17 +32,14 @@ export const getAds = async (
 };
 
 export const getAdInfo = async (id: string): Promise<zPromotionRead> => {
-  const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
     {
       cache: "no-store",
-      credentials: "include",
       headers: {
         "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
       },
       next: { tags: [`ad-${id}`] },
     },
@@ -59,17 +53,14 @@ export const getAdInfo = async (id: string): Promise<zPromotionRead> => {
 };
 
 export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
-  const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/related/${id}`,
     {
       cache: "no-store",
-      credentials: "include",
       headers: {
         "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
       },
       next: { tags: [`related-ads-for-${id}`] },
     },
@@ -180,32 +171,38 @@ export const deletePromotion = async (
 
 export const reportPromotion = actionClient
   .schema(ComplainFormSchema)
-  .action(async ({ parsedInput: { reportText } }): Promise<string> => {
-    const [description, id] = reportText.split("|");
-    const report = `ID Объявления ${id}`;
+  .action(
+    async ({ parsedInput: { reportText } }): Promise<string | undefined> => {
+      const [description, id] = reportText.split("|");
+      const report = `ID Объявления ${id}`;
 
-    const access_token = cookies().get("access_token")?.value;
+      const access_token = cookies().get("access_token")?.value;
 
-    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add-report/${id}`;
+      const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add-report/${id}`;
 
-    const res = await fetch(endpoint, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ report, description }),
-    });
+      const res = await fetch(endpoint, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ report, description }),
+      });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+      if (res.ok) {
+        const { message } = await res.json();
 
-    const { message } = await res.json();
-
-    return message;
-  });
+        return message;
+      } else if (res.status === 401) {
+        redirect("/login");
+      } else {
+        throw new Error(
+          `HTTP error! status: ${res.status} - ${await res.json()}`,
+        );
+      }
+    },
+  );
 
 export const changePromotionStatus = actionClient
   .schema(PromotionChangeStatusSchema)
@@ -250,12 +247,15 @@ export const changePromotionStatus = actionClient
 export const getCities = async (): Promise<zCityRead[]> => {
   const locale = await getLocale();
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cities`, {
-    cache: "no-store",
-    headers: {
-      "Accept-Language": locale,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/cities?perPage=40`,
+    {
+      cache: "no-store",
+      headers: {
+        "Accept-Language": locale,
+      },
     },
-  });
+  );
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

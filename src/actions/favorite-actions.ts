@@ -1,11 +1,72 @@
 "use server";
 
-import { FavoriteItemSchema } from "@/types/ad.schema";
+import { FavoriteItemSchema, zPromotionRead } from "@/types/ad.schema";
 import { actionClient } from "./safe-action";
 import { cookies } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { SearchCreateSchema, SearchDeleteSchema } from "@/types/other.schema";
+import {
+  SearchCreateSchema,
+  SearchDeleteSchema,
+  zSearchRead,
+} from "@/types/other.schema";
 import { redirect } from "@/lib/i18nNavigation";
+import { getLocale } from "next-intl/server";
+
+export const getFavorites = async (): Promise<zPromotionRead[] | undefined> => {
+  const access_token = cookies().get("access_token")?.value;
+  const locale = await getLocale();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`,
+    {
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        "Accept-Language": locale,
+        Authorization: `Bearer ${access_token}`,
+      },
+      next: { tags: ["favorites"] },
+    },
+  );
+
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data.items;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+};
+
+export const getSavedSeaches = async (): Promise<zSearchRead[] | undefined> => {
+  const access_token = cookies().get("access_token")?.value;
+  const locale = await getLocale();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/search-list`,
+    {
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        "Accept-Language": locale,
+        Authorization: `Bearer ${access_token}`,
+      },
+      next: { tags: ["saved-searches"] },
+    },
+  );
+
+  if (res.ok) {
+    const { data } = await res.json();
+
+    return data.items;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+};
 
 export const updateFavorites = actionClient
   .schema(FavoriteItemSchema)

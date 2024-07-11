@@ -21,7 +21,7 @@ export const getUserInfo = async (): Promise<zUserRead | undefined> => {
 
     return data;
   } else if (res.status === 401) {
-    redirect("/login");
+    return;
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
