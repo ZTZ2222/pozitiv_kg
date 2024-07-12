@@ -162,7 +162,8 @@
     "resources": "Resources",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "commercial": "Commercial"
+    "commercial": "Commercial",
+    "seller": "Seller"
   },
   "NotFoundPage": {
     "title": "Oops!",

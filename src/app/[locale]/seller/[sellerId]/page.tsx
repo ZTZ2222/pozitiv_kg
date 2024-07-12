@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn, getInitials } from "@/lib/utils";
 import { zPromotionRead } from "@/types/ad.schema";
 import { zSellerRead } from "@/types/user.schema";
-import { Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -73,7 +73,7 @@ const SellerProfile: React.FC<Props> = async ({ params }) => {
         className="container mt-5 lg:hidden"
       />
       <main className="container mb-[100px] mt-5 min-h-[60vh] lg:mb-[120px] lg:mt-10 lg:flex lg:min-h-[50vh] lg:gap-[30px]">
-        <div className="flex h-fit items-center gap-4 border-b border-gray-300 pb-5 lg:flex-col lg:gap-6 lg:border-b-0 lg:p-5 lg:shadow-[0px_0px_4px_0px_#9090904D]">
+        <div className="flex h-fit items-center gap-4 border-b border-gray-300 pb-5 lg:min-w-[300px] lg:flex-col lg:gap-6 lg:border-b-0 lg:p-5 lg:shadow-[0px_0px_4px_0px_#9090904D]">
           <Avatar className="size-[50px] shrink-0 lg:size-[75px]">
             <AvatarImage src={sellerInfo.image} className="object-cover" />
             <AvatarFallback
@@ -88,6 +88,10 @@ const SellerProfile: React.FC<Props> = async ({ params }) => {
               <Phone className="size-5" />
               {sellerInfo.phone || "Телeфон не указан"}
             </div>
+            <div className="flex items-center gap-2 text-lg">
+              <Mail className="size-5" />
+              {sellerInfo.email || "Email не указан"}
+            </div>
           </div>
         </div>
         <div className="mt-[30px] space-y-[30px] text-gray-800 lg:mt-0 lg:space-y-10">
@@ -95,7 +99,7 @@ const SellerProfile: React.FC<Props> = async ({ params }) => {
             {t("seller-promotions")}
           </h2>
           {sellerPromotions.length > 0 ? (
-            <div className="mt-[30px] grid w-full grid-cols-1 gap-4 xs:grid-cols-2 lg:mt-10 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-[30px] grid w-full grid-cols-1 gap-4 xs:grid-cols-2 lg:mt-10 lg:grid-cols-2 xl:grid-cols-3">
               {sellerPromotions.map((ad: zPromotionRead) => (
                 <AdCard
                   key={ad.id}
