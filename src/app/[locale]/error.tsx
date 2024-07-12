@@ -1,9 +1,7 @@
 "use client"; // Error components must be Client Components
 
-import BackButton from "@/components/navigation/BackButton";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/lib/i18nNavigation";
-import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 

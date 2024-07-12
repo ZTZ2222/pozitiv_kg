@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "@/lib/i18nNavigation";
 import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import React from "react";
 
 const NotFound = () => {
