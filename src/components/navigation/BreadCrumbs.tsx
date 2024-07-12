@@ -27,15 +27,11 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
     return <div className="hidden h-0 lg:mt-48 lg:block" />;
   }
 
-  // Create breadcrumb links from the parts
-  const breadcrumbLinks = parts.map((part, index) => {
-    const isNumeric = !isNaN(Number(part));
-    const matchesPattern = chatIdPattern.test(part);
-    return {
-      label: isNumeric || matchesPattern ? part : t(part),
-      href: `/${parts.slice(0, index + 1).join("/")}`,
-    };
-  });
+  // Only display the home link and the last part of the breadcrumb
+  const lastPart = parts[parts.length - 1];
+  const isNumeric = !isNaN(Number(lastPart));
+  const matchesPattern = chatIdPattern.test(lastPart);
+  const label = isNumeric || matchesPattern ? lastPart : t(lastPart);
 
   return (
     <Breadcrumb className={cn("container mt-7 py-1", className)}>
@@ -45,21 +41,10 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
             <Link href="/">{t("home")}</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        {breadcrumbLinks.length > 0 && <BreadcrumbSeparator />}
-        {breadcrumbLinks.map((link, index) => (
-          <React.Fragment key={index}>
-            {index > 0 && <BreadcrumbSeparator />}
-            <BreadcrumbItem>
-              {index === breadcrumbLinks.length - 1 ? (
-                <BreadcrumbPage>{link.label}</BreadcrumbPage>
-              ) : (
-                <BreadcrumbLink asChild>
-                  <Link href={link.href}>{link.label}</Link>
-                </BreadcrumbLink>
-              )}
-            </BreadcrumbItem>
-          </React.Fragment>
-        ))}
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{label}</BreadcrumbPage>
+        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   );
