@@ -36,7 +36,6 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
                   placeholder={attr.name}
                   {...field}
                   value={field.value || ""}
-                  required={!!attr.is_required}
                 />
               </FormControl>
             </FormItem>
@@ -54,11 +53,7 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
                 {attr.name}
               </FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder={attr.name}
-                  {...field}
-                  required={!!attr.is_required}
-                />
+                <Textarea placeholder={attr.name} {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -75,8 +70,8 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
                 {attr.name}
               </FormLabel>
               <Select
+                defaultValue={field.value.toString()}
                 onValueChange={field.onChange}
-                required={!!attr.is_required}
               >
                 <FormControl>
                   <SelectTrigger className="h-12">
