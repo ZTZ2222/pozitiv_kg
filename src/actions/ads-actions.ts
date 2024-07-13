@@ -1,7 +1,11 @@
 "use server";
 
 import { redirect } from "@/lib/i18nNavigation";
-import { PromotionChangeStatusSchema, zPromotionRead } from "@/types/ad.schema";
+import {
+  GalleryImageSchema,
+  PromotionChangeStatusSchema,
+  zPromotionRead,
+} from "@/types/ad.schema";
 import { ComplainFormSchema, zCityRead } from "@/types/other.schema";
 import { getLocale } from "next-intl/server";
 import { revalidatePath, revalidateTag } from "next/cache";
@@ -77,7 +81,7 @@ export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
   return data.items;
 };
 
-type AdStatus = "active" | "pending" | "cancelled";
+type AdStatus = "active" | "pending" | "inactive";
 
 export const getMyAds = async (
   status: AdStatus,
@@ -111,10 +115,6 @@ export const createPromotion = async (
   data: FormData,
 ): Promise<string | undefined> => {
   const access_token = cookies().get("access_token")?.value;
-
-  // data.forEach((value, key) => {
-  //   console.log({ value, key });
-  // });
 
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add`;
 
@@ -158,6 +158,38 @@ export const deletePromotion = async (
   if (res.ok) {
     revalidatePath("/profile");
     redirect("/profile");
+
+    const { message } = await res.json();
+
+    return message;
+  } else if (res.status === 401) {
+    redirect("/login");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
+  }
+};
+
+export const updatePromotion = async (
+  data: FormData,
+): Promise<string | undefined> => {
+  const promotion_id = data.get("id");
+  data.delete("id");
+
+  const access_token = cookies().get("access_token")?.value;
+
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/update/${promotion_id}`;
+
+  const res = await fetch(endpoint, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    body: data,
+  });
+
+  if (res.ok) {
+    revalidatePath("/profile");
 
     const { message } = await res.json();
 
@@ -229,7 +261,6 @@ export const changePromotionStatus = actionClient
         revalidateTag(`ad-${promotion_id}`);
 
         revalidatePath("/profile");
-        redirect("/profile");
 
         const { message } = await res.json();
 
@@ -243,6 +274,36 @@ export const changePromotionStatus = actionClient
       }
     },
   );
+
+export const deletePromotionImage = actionClient
+  .schema(GalleryImageSchema)
+  .action(async ({ parsedInput }): Promise<string | undefined> => {
+    const access_token = cookies().get("access_token")?.value;
+
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/delete-image/${parsedInput.id}`;
+
+    const res = await fetch(endpoint, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    if (res.ok) {
+      const { message } = await res.json();
+
+      revalidatePath(`/ads/${parsedInput.id}/edit`);
+
+      return message;
+    } else if (res.status === 401) {
+      redirect("/login");
+    } else {
+      throw new Error(
+        `HTTP error! status: ${res.status} - ${await res.json()}`,
+      );
+    }
+  });
 
 export const getCities = async (): Promise<zCityRead[]> => {
   const locale = await getLocale();
