@@ -46,7 +46,7 @@ const MainFilter = () => {
   const filterForm = useForm<zFilterForm>({
     resolver: zodResolver(FilterFormSchema),
     defaultValues: {
-      // currency: "KGS",
+      currency: "KGS",
       sort_by: "latest",
     },
   });
@@ -129,16 +129,18 @@ const MainFilter = () => {
                 name="currency"
                 render={({ field }) => (
                   <FormItem>
-                    <Select onValueChange={field.onChange}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger className="w-fit rounded-[10px] border-0 p-0 font-medium text-gray-500">
-                          <SelectValue placeholder="🇰🇬 KGS" />
+                          <SelectValue />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent className="min-w-[85px] bg-white">
                         <SelectGroup className="font-medium text-gray-500">
                           <SelectItem value="KGS">🇰🇬 KGS</SelectItem>
-                          <SelectItem value="RUB">🇷🇺 RUB</SelectItem>
                           <SelectItem value="USD">🇺🇸 USD</SelectItem>
                         </SelectGroup>
                       </SelectContent>

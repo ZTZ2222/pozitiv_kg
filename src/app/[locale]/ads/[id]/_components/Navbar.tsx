@@ -4,7 +4,7 @@ import { getAdInfo } from "@/actions/ads-actions";
 import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
 import ShareButton from "@/components/navigation/ShareButton";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "@/lib/i18nNavigation";
+import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import { zPromotionRead } from "@/types/ad.schema";
 import { zUserRead } from "@/types/user.schema";
 import { ChevronLeft } from "lucide-react";
@@ -19,6 +19,7 @@ const Navbar: React.FC<Props> = ({ currentUser }) => {
   const router = useRouter();
   const { id } = useParams();
   const [promotion, setPromotion] = useState<zPromotionRead>();
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchPromotionInfo = async () => {
@@ -38,7 +39,7 @@ const Navbar: React.FC<Props> = ({ currentUser }) => {
         <ChevronLeft className="h-6 w-6" />
       </Button>
       <div className="flex items-center gap-2.5">
-        <ShareButton />
+        {!pathname.endsWith("edit") && <ShareButton />}
         <DotsDropdownMenu currentUser={currentUser} promotion={promotion!} />
       </div>
     </nav>

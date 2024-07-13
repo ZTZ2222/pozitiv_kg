@@ -39,7 +39,6 @@ const CommercialForm: React.FC<Props> = ({ banks }) => {
 
   const [days, setDays] = useState(14);
   const [image, setImage] = useState<File | null>(null);
-  const [selectedBankId, setSelectedBankId] = useState<number | null>(null);
 
   const form = useForm<zInvoiceCreate>({
     resolver: zodResolver(InvoiceCreateSchema),
@@ -50,6 +49,10 @@ const CommercialForm: React.FC<Props> = ({ banks }) => {
       bank_id: 3,
     },
   });
+
+  const [selectedBankId, setSelectedBankId] = useState<number>(
+    form.getValues("bank_id"),
+  );
 
   const onSubmit = async (data: zInvoiceCreate) => {
     const formData = new FormData();
@@ -83,7 +86,7 @@ const CommercialForm: React.FC<Props> = ({ banks }) => {
               {t("form-title")}
             </h4>
             <p className="text-pretty text-gray-500">
-              {t("form-description")} 12 KGS
+              {t("form-description")} 1 KGS
             </p>
           </div>
           <FormField
@@ -114,7 +117,7 @@ const CommercialForm: React.FC<Props> = ({ banks }) => {
             )}
           />
           <div className="mx-auto w-fit text-3xl font-bold leading-10 text-gray-900">
-            {days * 12} KGS
+            {days * 1} KGS
           </div>
         </div>
 

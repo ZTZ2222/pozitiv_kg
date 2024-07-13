@@ -8,6 +8,7 @@ import { useOptimisticAction } from "next-safe-action/hooks";
 import { updateFavorites } from "@/actions/favorite-actions";
 import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
+import { usePathname } from "@/lib/i18nNavigation";
 
 const AddToFavorites = ({
   id,
@@ -21,6 +22,7 @@ const AddToFavorites = ({
   className?: string;
 }) => {
   const t = useTranslations("ContactBlock");
+  const pathname = usePathname();
   const { execute, isExecuting, optimisticState } = useOptimisticAction(
     updateFavorites,
     {
@@ -56,7 +58,10 @@ const AddToFavorites = ({
       onClick={handleClick}
       whileTap={{ scale: 0.8, rotate: -20 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040] sm:right-2"
+      className={cn(
+        "absolute bottom-[53%] right-1 rounded-full bg-white px-1.5 py-1.5 shadow-[0px_4px_4px_0px_#00000040] sm:right-2",
+        pathname.includes("/profile") && "hidden",
+      )}
       disabled={isExecuting}
     >
       <Heart

@@ -58,8 +58,8 @@ const AdCard: React.FC<AdCardProps> = ({
         </CardHeader>
 
         {/* Info */}
-        <CardContent className="px-2.5 py-4">
-          <CardTitle className="line-clamp-3 text-base font-normal lg:text-lg">
+        <CardContent className="min-h-[104px] px-2.5 py-4 lg:min-h-[116px]">
+          <CardTitle className="line-clamp-3 text-pretty text-base font-normal lg:text-lg">
             {description}
           </CardTitle>
         </CardContent>

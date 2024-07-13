@@ -33,10 +33,6 @@ export const createCommerialInvoice = async (
 ): Promise<string | undefined> => {
   const access_token = cookies().get("access_token")?.value;
 
-  // data.forEach((value, key) => {
-  //   console.log({ value, key });
-  // });
-
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/promotion`;
 
   const res = await fetch(endpoint, {
