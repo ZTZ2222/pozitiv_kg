@@ -22,7 +22,7 @@ const Profile = async () => {
   // fetch from API
   const myActivePromotions = await getMyAds("active");
   const myPendingPromotions = await getMyAds("pending");
-  const myCancelledPromotions = await getMyAds("cancelled");
+  const myCancelledPromotions = await getMyAds("inactive");
   const userInfo = await getUserInfo();
 
   return (
@@ -145,6 +145,9 @@ const Profile = async () => {
                       editMode
                       className="absolute -right-1 top-0 hover:bg-transparent"
                     />
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white bg-gradient-to-r from-red-600 to-red-700 px-3 py-1.5 text-xs text-white">
+                      {t("deactivated-badge")}
+                    </div>
                   </div>
                 ))}
               </div>

@@ -205,7 +205,8 @@
     "empty-deactivated-message-description": "Here you will see your deactivated promotions.",
     "seller-promotions": "All user announcements",
     "empty-user-promotions-title": "No Promotions",
-    "empty-user-promotions-description": "The user has no ads yet."
+    "empty-user-promotions-description": "The user has no ads yet.",
+    "deactivated-badge": "Deactivated"
   },
   "ChatPage": {
     "choose-chat-title": "Choose a chat to start a conversation",

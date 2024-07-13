@@ -205,7 +205,8 @@
     "empty-deactivated-message-description": "Бул жерде сиз өчүрүлгөн жарыяларыңызды көрөсүз.",
     "seller-promotions": "Колдонуучунун бардык жарыялары",
     "empty-user-promotions-title": "Жарыялар жок",
-    "empty-user-promotions-description": "Колдонуучунун азырынча жарнамалары жок."
+    "empty-user-promotions-description": "Колдонуучунун азырынча жарнамалары жок.",
+    "deactivated-badge": "Өчүрүлгөн"
   },
   "ChatPage": {
     "choose-chat-title": "Сүйлөшүү үчүн чат тандаңыз",
