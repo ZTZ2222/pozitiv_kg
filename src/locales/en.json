@@ -111,7 +111,10 @@
     "whatsapp-label": "WhatsApp number",
     "whatsapp-placeholder": "Add WhatsApp number",
     "submit-button": "Publish",
-    "promotion-create-success-toast": "Your ad has been successfully created!"
+    "update-button": "Update",
+    "promotion-create-success-toast": "Your ad has been successfully created!",
+    "promotion-update-success-toast": "Your ad has been successfully updated!",
+    "delete-image-success-toast": "The image has been successfully deleted!"
   },
   "CommercialForm": {
     "payment-sent": "Thank you for the payment! Your advertisement will be processed soon.",
@@ -163,7 +166,8 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "commercial": "Commercial",
-    "seller": "Seller"
+    "seller": "Seller",
+    "edit": "Edit"
   },
   "NotFoundPage": {
     "title": "Oops!",

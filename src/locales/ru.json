@@ -111,7 +111,10 @@
     "whatsapp-label": "Номер WhatsApp",
     "whatsapp-placeholder": "Добавьте номер WhatsApp",
     "submit-button": "Опубликовать",
-    "promotion-create-success-toast": "Ваше объявление успешно опубликовано!"
+    "update-button": "Обновить",
+    "promotion-create-success-toast": "Ваше объявление успешно опубликовано!",
+    "promotion-update-success-toast": "Ваше объявление успешно обновлено!",
+    "delete-image-success-toast": "Фото было успешно удалено!"
   },
   "CommercialForm": {
     "payment-sent": "Спасибо за оплату! Ваше объявление будет скоро обработано.",
@@ -163,7 +166,8 @@
     "privacy": "Политика конфиденциальности",
     "terms": "Пользовательское соглашение",
     "commercial": "Реклама",
-    "seller": "Продавец"
+    "seller": "Продавец",
+    "edit": "Редактирование"
   },
   "NotFoundPage": {
     "title": "Ой!",

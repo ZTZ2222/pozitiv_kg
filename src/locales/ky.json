@@ -111,7 +111,10 @@
     "whatsapp-label": "WhatsApp номери",
     "whatsapp-placeholder": "WhatsApp номерин кошуңуз",
     "submit-button": "Жарыялоо",
-    "promotion-create-success-toast": "Жарыя берүү кошулду"
+    "update-button": "Өзгөртүү",
+    "promotion-create-success-toast": "Жарыя берүү кошулду",
+    "promotion-update-success-toast": "Жарыя берүү өзгөртүлдү",
+    "delete-image-success-toast": "Сүрөт силүү өчүрүлдү"
   },
   "CommercialForm": {
     "payment-sent": "Төлөм үчүн рахмат! Сиздин жарнамаңыз жакында иштетилет.",
@@ -163,7 +166,8 @@
     "privacy": "Конфиденциальдик саясат",
     "terms": "Пайдалануу келишим",
     "commercial": "Реклама",
-    "seller": "Сатычуу"
+    "seller": "Сатычуу",
+    "edit": "Түзөтүү"
   },
   "NotFoundPage": {
     "title": "Ой!",
