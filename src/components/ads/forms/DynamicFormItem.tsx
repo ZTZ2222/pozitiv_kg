@@ -70,7 +70,7 @@ const DynamicFormItem = ({ attr }: { attr: zCategoryAttribute }) => {
                 {attr.name}
               </FormLabel>
               <Select
-                defaultValue={field.value.toString()}
+                defaultValue={field.value?.toString()}
                 onValueChange={field.onChange}
               >
                 <FormControl>

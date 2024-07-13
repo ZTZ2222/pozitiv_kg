@@ -94,11 +94,7 @@ const PromotionUpdateForm: React.FC<Props> = ({
           (acc, attr) => {
             const matchedAttr = attrs.find((a) => a.name === attr.title);
             if (matchedAttr) {
-              if (matchedAttr.type === "integer") {
-                acc[`attribute_${matchedAttr.id}`] = Number(
-                  attr.value.replace(/\s+/g, ""),
-                );
-              } else if (matchedAttr.type === "multiselect") {
+              if (matchedAttr.type === "multiselect") {
                 const valueArray = attr.value.split(",");
                 const optionIds = matchedAttr.options
                   .filter((option) => valueArray.includes(option.name))
