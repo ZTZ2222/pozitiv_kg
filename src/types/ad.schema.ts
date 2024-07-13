@@ -54,7 +54,7 @@ export const PromotionCreateSchema = z.object({
   category_id: z.number(),
   city_id: z.coerce.number(),
   galleries: z.array(z.custom<File>()),
-  currency: z.enum(["USD", "KGS", "RU"]).default("KGS"),
+  currency: z.string(),
   addtional_information: z.string().optional(),
   enable_phone: z.coerce.number(),
   phone: z.string().optional(),

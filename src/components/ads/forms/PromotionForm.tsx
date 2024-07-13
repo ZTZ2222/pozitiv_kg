@@ -32,6 +32,12 @@ import { createPromotion } from "@/actions/ads-actions";
 import { useRouter } from "@/lib/i18nNavigation";
 import { toast } from "@/components/ui/use-toast";
 import { FileCheck2 } from "lucide-react";
+import {
+  extendSchemaWithAttributes,
+  PromotionCreateSchema,
+} from "@/types/ad.schema";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type Props = {
   categories: zCategoryRead[];
@@ -42,11 +48,15 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
   const t = useTranslations("PromotionForm");
   const router = useRouter();
   const [attributes, setAttributes] = useState<zCategoryAttribute[]>([]);
+  const [formSchema, setFormSchema] = useState<z.AnyZodObject>(
+    PromotionCreateSchema,
+  );
 
-  const form = useForm<any>({
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       currency: "KGS",
-      enable_phone: true,
+      enable_phone: 1,
     },
   });
 
@@ -54,11 +64,18 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
 
   useEffect(() => {
     if (cat_id) {
-      getCategoryAttributes(cat_id).then(setAttributes);
+      getCategoryAttributes(cat_id).then((attrs) => {
+        setAttributes(attrs);
+        const extendedSchema = extendSchemaWithAttributes(
+          PromotionCreateSchema,
+          attrs,
+        );
+        setFormSchema(extendedSchema);
+      });
     }
   }, [cat_id]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
@@ -81,7 +98,7 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
           // Iterate over each element in the array
           value.forEach((element) => {
             // Append each element with its index as part of the key
-            formData.append(`attribute[${id}[]`, element);
+            formData.append(`attribute[${id}][]`, element);
           });
         } else {
           // If it's not an array, append the key-value pair directly
@@ -146,7 +163,6 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
                   {...field}
                   className="h-24"
                   autoComplete="off"
-                  required
                 />
               </FormControl>
             </FormItem>
@@ -169,7 +185,6 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
                   autoComplete="off"
                   {...field}
                   value={field.value || ""}
-                  required
                 />
               </FormControl>
 
@@ -191,7 +206,6 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
                       <SelectGroup className="font-medium text-gray-500">
                         <SelectItem value="KGS">🇰🇬 KGS</SelectItem>
                         <SelectItem value="USD">🇺🇸 USD</SelectItem>
-                        <SelectItem value="RU">🇷🇺 RU</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -228,7 +242,7 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
               <FormLabel className="text-lg font-medium">
                 {t("city-label")}
               </FormLabel>
-              <Select onValueChange={field.onChange} required>
+              <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder={t("city-placeholder")} />
@@ -275,7 +289,7 @@ const PromotionForm: React.FC<Props> = ({ categories, cities }) => {
             <FormItem className="space-x-2.5 space-y-0">
               <FormControl>
                 <Checkbox
-                  defaultChecked={field.value}
+                  defaultChecked={!!field.value}
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
