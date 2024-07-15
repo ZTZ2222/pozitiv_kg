@@ -26,9 +26,6 @@ export const exchangeCodeForToken = async (code: string): Promise<string> => {
     } = await res.json();
 
     return token;
-
-    // cookies().set("access_token", token);
-    // redirect("/");
   } else {
     throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }

@@ -28,13 +28,18 @@ export default async function middleware(
   const homePage = new URL(`${locale}/`, request.url);
 
   if (pathname.includes("/auth/google/redirect")) {
-    const token = await exchangeCodeForToken(
-      request.nextUrl.searchParams.get("code")!,
-    );
-
-    response.cookies.set("access_token", token);
-
-    return NextResponse.redirect(homePage);
+    const code = request.nextUrl.searchParams.get("code");
+    if (code) {
+      try {
+        const token = await exchangeCodeForToken(code);
+        const response = NextResponse.redirect(homePage);
+        response.cookies.set("access_token", token, { path: "/" });
+        return response;
+      } catch (error) {
+        console.error("Failed to exchange code for token:", error);
+        return NextResponse.redirect(loginUrl);
+      }
+    }
   }
 
   if (checkRoute(pathname, protectedRoutes)) {
