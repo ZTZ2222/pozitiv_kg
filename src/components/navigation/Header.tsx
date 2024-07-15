@@ -223,7 +223,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         {checkRoute(pathname, backbtnSearchFilterRoutes) && (
           <div
             className={cn(
-              "mt-1 flex items-center justify-between gap-2 py-1.5 md:hidden",
+              "mt-1 flex items-center justify-between gap-2 py-1.5 lg:hidden",
               // "hidden",
             )}
           >

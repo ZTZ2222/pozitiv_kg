@@ -35,7 +35,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "relative flex h-9 w-64 items-center rounded-[10px] border border-[#BCBCBC] bg-gray-200 text-gray-400 has-[:focus]:ring-2 has-[:focus]:ring-cyan-200 md:w-full lg:h-14 lg:w-[480px] lg:border-none lg:bg-white",
+        "relative flex h-9 w-full items-center rounded-[10px] border border-[#BCBCBC] bg-gray-200 text-gray-400 has-[:focus]:ring-2 has-[:focus]:ring-cyan-200 lg:h-14 lg:w-[480px] lg:border-none lg:bg-white",
         className,
       )}
     >
