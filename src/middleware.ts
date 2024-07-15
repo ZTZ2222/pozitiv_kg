@@ -18,14 +18,22 @@ const protectedRoutes = [
   /^\/\w{2}\/ads\/\d+\/edit/,
 ];
 
-export default async function middleware(request: NextRequest) {
+export default async function middleware(
+  request: NextRequest,
+  response: NextResponse,
+) {
   const { pathname } = request.nextUrl;
   const locale = pathname.match(/^\/(\w{2})\//)?.[1] || "";
   const loginUrl = new URL(`${locale}/login`, request.url);
   const homePage = new URL(`${locale}/`, request.url);
 
   if (pathname.includes("/auth/google/redirect")) {
-    await exchangeCodeForToken(request.nextUrl.searchParams.get("code")!);
+    const token = await exchangeCodeForToken(
+      request.nextUrl.searchParams.get("code")!,
+    );
+
+    response.cookies.set("access_token", token);
+
     return NextResponse.redirect(homePage);
   }
 
