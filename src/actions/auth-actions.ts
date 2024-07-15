@@ -13,7 +13,15 @@ export const setAccessToken = async () => {
 export const exchangeCodeForToken = async (code: string): Promise<void> => {
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/callback?code=${code}`;
 
-  const res = await fetch(endpoint);
+  const res = await fetch(endpoint, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  console.log("res: ", await res.json());
+  console.log("res.status: ", res);
 
   if (res.ok) {
     const {
