@@ -3,8 +3,8 @@
 import { redirect } from "@/lib/i18nNavigation";
 import { cookies } from "next/headers";
 
-export const setAccessToken = async (token: string) => {
-  cookies().set("access_token", token);
+export const setAccessToken = async (token?: string) => {
+  cookies().set("access_token", token!);
 };
 
 export const exchangeCodeForToken = async (code: string): Promise<void> => {
