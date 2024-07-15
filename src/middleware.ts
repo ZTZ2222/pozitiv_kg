@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { i18nMiddleware } from "./lib/i18n";
 import { checkRoute } from "./lib/utils";
 import { validateAccessToken } from "./lib/auth";
-import { exchangeCodeForToken } from "./actions/auth-actions";
 
 const protectedRoutes = [
   /^\/chat(.*)/,
@@ -21,17 +20,11 @@ const protectedRoutes = [
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const locale = pathname.match(/^\/(\w{2})\//)?.[1] || "";
-
-  if (pathname.includes("/auth/google/redirect")) {
-    await exchangeCodeForToken(request.nextUrl.searchParams.get("code")!);
-
-    return NextResponse.redirect(new URL(`${locale}/login`, request.url));
-  }
+  const loginUrl = new URL(`${locale}/login`, request.url);
 
   if (checkRoute(pathname, protectedRoutes)) {
-    const loginUrl = new URL(`${locale}/login`, request.url);
-
     const isAuthenticated = await validateAccessToken();
+
     if (!isAuthenticated) {
       return NextResponse.redirect(loginUrl);
     }
