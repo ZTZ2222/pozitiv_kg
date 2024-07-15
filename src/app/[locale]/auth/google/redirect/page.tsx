@@ -6,12 +6,18 @@ type Props = {
 };
 
 const GoogleRedirectPage = async ({ searchParams }: Props) => {
-  // await exchangeCodeForToken(searchParams.code);
+  let errorMessage = "";
+  try {
+    await exchangeCodeForToken(searchParams.code);
+  } catch (error: any) {
+    errorMessage = error.message;
+  }
   return (
     <div className="h-screen text-2xl font-medium">
       Выполняется авторизация...
       <p className="text-red-500">Это может занять некоторое время</p>
       <div>{searchParams.code}</div>
+      <div>Error Message: {errorMessage}</div>
     </div>
   );
 };

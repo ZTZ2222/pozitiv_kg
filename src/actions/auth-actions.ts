@@ -20,9 +20,6 @@ export const exchangeCodeForToken = async (code: string): Promise<void> => {
     },
   });
 
-  console.log("res: ", await res.json());
-  console.log("res.status: ", res);
-
   if (res.ok) {
     const {
       data: { token },
