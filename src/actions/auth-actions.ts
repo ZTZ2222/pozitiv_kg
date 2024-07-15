@@ -22,7 +22,7 @@ export const exchangeCodeForToken = async (code: string): Promise<void> => {
       data: { token },
     } = await res.json();
 
-    await setAccessToken(token);
+    await setAccessToken(JSON.stringify(token));
     // return token;
     // redirect("/");
   } else {
