@@ -1,6 +1,6 @@
 "use client";
 
-import { setAccessToken } from "@/actions/auth-actions";
+// import { setAccessToken } from "@/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "@/lib/i18nNavigation";
@@ -43,7 +43,7 @@ const LoginPage = () => {
         <p>{t("sign-in-with-google")}</p>
       </Link>
       {/* Mock Login Button */}
-      <Button
+      {/* <Button
         onClick={async () => {
           await setAccessToken();
           toast({
@@ -56,7 +56,7 @@ const LoginPage = () => {
       >
         <Ban />
         Mock Login
-      </Button>
+      </Button> */}
       {/* Terms */}
       <p className="mt-10 max-w-[350px] text-center md:max-w-[480px]">
         {t("confirm-agree")}{" "}
