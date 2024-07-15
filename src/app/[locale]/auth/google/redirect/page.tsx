@@ -8,7 +8,7 @@ type Props = {
 const GoogleRedirectPage = async ({ searchParams }: Props) => {
   let errorMessage = "";
   try {
-    await exchangeCodeForToken(searchParams.code);
+    // await exchangeCodeForToken(searchParams.code);
   } catch (error: any) {
     errorMessage = error.message;
   }
