@@ -10,7 +10,7 @@ export const setAccessToken = async () => {
   );
 };
 
-export const exchangeCodeForToken = async (code: string): Promise<void> => {
+export const exchangeCodeForToken = async (code: string): Promise<string> => {
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/callback?code=${code}`;
 
   const res = await fetch(endpoint, {
@@ -24,8 +24,11 @@ export const exchangeCodeForToken = async (code: string): Promise<void> => {
     const {
       data: { token },
     } = await res.json();
-    cookies().set("access_token", token);
-    redirect("/");
+
+    return token;
+
+    // cookies().set("access_token", token);
+    // redirect("/");
   } else {
     throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }
