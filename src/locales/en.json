@@ -167,7 +167,10 @@
     "terms": "Terms of Service",
     "commercial": "Commercial",
     "seller": "Seller",
-    "edit": "Edit"
+    "edit": "Edit",
+    "auth": "Authorization",
+    "google": "Google",
+    "redirect": "Redirect"
   },
   "NotFoundPage": {
     "title": "Oops!",

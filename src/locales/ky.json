@@ -167,7 +167,10 @@
     "terms": "Пайдалануу келишим",
     "commercial": "Реклама",
     "seller": "Сатычуу",
-    "edit": "Түзөтүү"
+    "edit": "Түзөтүү",
+    "auth": "Авторизация",
+    "google": "Google",
+    "redirect": "Кирүү"
   },
   "NotFoundPage": {
     "title": "Ой!",
