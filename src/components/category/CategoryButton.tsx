@@ -32,7 +32,7 @@ const CategoryButton: React.FC<zCategoryRead> = ({
           height={50}
         />
       )}
-      <span className="line-clamp-2 text-wrap text-start text-base font-medium">
+      <span className="line-clamp-2 text-wrap text-start text-sm font-medium md:text-base xl:text-sm">
         {name}
       </span>
     </Button>
