@@ -1,11 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const Loading = () => {
+const CategoryPromotionsLoading = () => {
   return (
     <main className="container flex flex-col">
-      <div className="mt-7 flex gap-4">
-        {Array.from({ length: 5 }).map((_, index) => (
+      <div className="mt-7 flex gap-4 overflow-hidden">
+        {Array.from({ length: 4 }).map((_, index) => (
           <Skeleton key={index} className="h-9 w-24"></Skeleton>
         ))}
       </div>
@@ -13,7 +13,7 @@ const Loading = () => {
         {Array.from({ length: 10 }).map((_, index) => (
           <Skeleton
             key={index}
-            className="h-[169px] w-full md:h-[220px] lg:h-[280px]"
+            className="h-[350px] w-full md:h-[400px] lg:h-[540px]"
           ></Skeleton>
         ))}
       </div>
@@ -21,4 +21,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default CategoryPromotionsLoading;

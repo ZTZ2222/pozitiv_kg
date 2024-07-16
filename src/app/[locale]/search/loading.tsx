@@ -1,10 +1,10 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const FavoritesLoading = () => {
+const CategoryPromotionsLoading = () => {
   return (
-    <main className="container mb-[100px] mt-[30px] flex flex-col">
-      <Skeleton className="h-10 w-full max-w-[360px]"></Skeleton>
+    <main className="container flex flex-col">
+      <Skeleton className="mt-7 h-7 w-[190px] lg:w-[240px]"></Skeleton>
       <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
         {Array.from({ length: 10 }).map((_, index) => (
           <Skeleton
@@ -17,4 +17,4 @@ const FavoritesLoading = () => {
   );
 };
 
-export default FavoritesLoading;
+export default CategoryPromotionsLoading;

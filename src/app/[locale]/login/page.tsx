@@ -1,10 +1,7 @@
 "use client";
 
-// import { setAccessToken } from "@/actions/auth-actions";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "@/lib/i18nNavigation";
-import { Ban, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import Image from "next/image";

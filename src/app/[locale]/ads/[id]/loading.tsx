@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const Loading = () => {
+const AdDetailsLoading = () => {
   return (
     <main className="container my-[30px]">
       <div className="items-center justify-center md:flex md:flex-col lg:flex-row lg:items-start lg:justify-start lg:gap-[38px] xl:gap-[49px] 2xl:gap-[60px]">
@@ -13,7 +13,7 @@ const Loading = () => {
           {/* User Info Card */}
           <Skeleton className="hidden h-[200px] min-w-[200px] rounded-[10px] md:w-[266px] lg:block lg:w-[280px]"></Skeleton>
         </div>
-        <div className="mt-3.5 flex flex-col gap-3.5 md:w-[380px] xl:w-[535px]">
+        <div className="mt-3.5 flex flex-col gap-3.5 md:w-[380px] xl:w-[536px]">
           {/* Description */}
           <Skeleton className="order-4 h-[250px] w-full"></Skeleton>
           {/* Price */}
@@ -30,4 +30,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default AdDetailsLoading;

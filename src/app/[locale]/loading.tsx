@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const Loading = () => {
+const IndexLoading = () => {
   return (
     <main className="container mt-[30px]">
       {/* Banner */}
@@ -24,7 +24,7 @@ const Loading = () => {
       {/* Tabs */}
       <Skeleton className="mt-[30px] h-10 w-full max-w-[400px] rounded-[10px]"></Skeleton>
       {/* Ads */}
-      <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+      <div className="my-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
         {Array.from({ length: 10 }).map((_, index) => (
           <Skeleton
             key={index}
@@ -36,4 +36,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default IndexLoading;

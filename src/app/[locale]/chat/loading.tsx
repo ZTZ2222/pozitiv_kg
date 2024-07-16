@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const Loading = () => {
+const ChatLoading = () => {
   return (
     <>
       {/* Mobile loading */}
@@ -23,4 +23,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default ChatLoading;
