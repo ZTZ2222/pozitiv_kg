@@ -4,10 +4,9 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { AllLocales } from "@/lib/i18n";
-import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Toaster } from "@/components/ui/toaster";
+import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -37,7 +36,7 @@ export default function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={params.locale} messages={messages}>
-          {children}
+          <ProgressBarProvider>{children}</ProgressBarProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>

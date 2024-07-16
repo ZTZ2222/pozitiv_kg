@@ -20,7 +20,7 @@ export const getAds = async (
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`,
     {
-      cache: "force-cache", // "no-store"
+      cache: "no-store",
       headers: {
         "Accept-Language": locale,
       },
@@ -41,7 +41,7 @@ export const getAdInfo = async (id: string): Promise<zPromotionRead> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
     {
-      cache: "force-cache", // "no-store"
+      cache: "no-store",
       headers: {
         "Accept-Language": locale,
       },
@@ -62,7 +62,7 @@ export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/related/${id}`,
     {
-      cache: "force-cache", // "no-store"
+      cache: "no-store",
       headers: {
         "Accept-Language": locale,
       },
@@ -92,7 +92,7 @@ export const getMyAds = async (
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/my-list?status=${status}`,
     {
-      cache: "force-cache", // "no-store"
+      cache: "no-store",
       credentials: "include",
       headers: {
         "Accept-Language": locale,
@@ -311,7 +311,7 @@ export const getCities = async (): Promise<zCityRead[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/cities?perPage=40`,
     {
-      cache: "force-cache", // "no-store"
+      cache: "no-store",
       headers: {
         "Accept-Language": locale,
       },

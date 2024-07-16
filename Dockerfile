@@ -37,11 +37,9 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV API_URL https://pitechagency.online
-ENV NEXT_PUBLIC_EMAIL "tzamirov@gmail.com"
-ENV NEXT_PUBLIC_PHONE "+996 (700) 355-350"
+ENV NEXT_PUBLIC_API_URL="https://pozitiv.kg/api/v1"
 # Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
