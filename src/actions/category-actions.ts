@@ -8,7 +8,7 @@ export const getCategories = async (): Promise<zCategoryRead[]> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/categories`,
     {
-      cache: "no-store",
+      cache: "force-cache", // "no-store"
       headers: {
         "Accept-Language": locale,
       },
@@ -33,7 +33,7 @@ export const getCategoryById = async ({
   const response = await fetch(
     `https://pozitiv.kg/api/v1/products/categories/${id}`,
     {
-      cache: "no-store",
+      cache: "force-cache", // "no-store"
       headers: {
         "Accept-Language": locale,
       },

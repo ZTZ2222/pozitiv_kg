@@ -19,7 +19,7 @@ export const getFavorites = async (): Promise<zPromotionRead[] | undefined> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`,
     {
-      cache: "no-store",
+      cache: "force-cache", // "no-store"
       credentials: "include",
       headers: {
         "Accept-Language": locale,
