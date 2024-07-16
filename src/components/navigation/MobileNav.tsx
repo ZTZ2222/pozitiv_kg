@@ -3,7 +3,6 @@
 import React from "react";
 import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import { Chat, Heart, Home, PlusCircle, UserCircle } from "@/components/icons";
 import { useTranslations } from "next-intl";
@@ -37,14 +36,12 @@ const MobileNavButton = ({
 export const chatRouteRegex = /\/chat\/\d+_\d+$/;
 
 const MobileNav = () => {
-  const pathname = usePathname();
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
   const t = useTranslations("MobileNav");
+  const pathname = usePathname();
 
-  if (isDesktop || chatRouteRegex.test(pathname)) return null;
+  if (chatRouteRegex.test(pathname)) return null;
   return (
-    <nav className="fixed bottom-0 left-0 z-20 flex w-full max-w-5xl border-t border-gray-200 bg-white px-1 shadow sm:px-0">
+    <nav className="fixed bottom-0 left-0 z-20 flex w-full max-w-5xl border-t border-gray-200 bg-white px-1 shadow sm:px-0 lg:hidden">
       <MobileNavButton href="/">
         <Home className="size-5 sm:size-7" />
         <span>{t("home")}</span>
