@@ -55,7 +55,7 @@ const ChatSidebar: React.FC<Props> = ({ chats, className }) => {
       <ScrollArea>
         <nav className={cn("flex flex-col gap-2.5", "pb-12 md:pb-20 lg:pb-0")}>
           {chats?.map((chat) => (
-            <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id}>
+            <Link href={`/chat/${chat.chat_id}`} key={chat.chat_id} prefetch>
               <Card className="container flex min-h-[78px] items-center justify-between gap-4 rounded-none border-0 border-y border-gray-200 bg-gray-50 pb-3 pt-1.5 transition-colors duration-500 hover:bg-gray-200">
                 <Avatar className="size-10 shrink-0 md:size-[50px]">
                   <AvatarImage

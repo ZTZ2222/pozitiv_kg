@@ -71,7 +71,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
             </div>
             {/* Logo */}
             <div className="container flex items-center justify-between py-1">
-              <Link href="/" className="relative h-[26px] w-[200px]">
+              <Link href="/" className="relative h-[26px] w-[200px]" prefetch>
                 <Image
                   src="/assets/logo/pozitiv.png"
                   alt="Logo"
@@ -180,7 +180,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         </div>
         {/* Logo */}
         <div className="container flex items-center justify-between">
-          <Link href="/" className="relative h-4 w-[120px]">
+          <Link href="/" className="relative h-4 w-[120px]" prefetch>
             <Image
               src="/assets/logo/pozitiv.png"
               alt="Logo"

@@ -50,7 +50,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white">
       {/* Logo */}
       <div className="container flex items-center justify-between py-5">
-        <Link href="/" className="relative h-[117px] w-[100px]">
+        <Link href="/" className="relative h-[117px] w-[100px]" prefetch>
           <Image
             src="/assets/logo/circle-logo.png"
             alt="Logo"
@@ -84,10 +84,18 @@ const Footer = () => {
         <nav className="space-y-9">
           <h6 className="font-bold uppercase">{t("my_profile")}</h6>
           <div className="flex flex-col gap-[30px]">
-            <Link href="/profile">{t("personal_account")}</Link>
-            <Link href="/ads/post">{t("post_ad")}</Link>
-            <Link href="/favorites">{t("favorites")}</Link>
-            <Link href="/chat">{t("chats")}</Link>
+            <Link href="/profile" prefetch>
+              {t("personal_account")}
+            </Link>
+            <Link href="/ads/post" prefetch>
+              {t("post_ad")}
+            </Link>
+            <Link href="/favorites" prefetch>
+              {t("favorites")}
+            </Link>
+            <Link href="/chat" prefetch>
+              {t("chats")}
+            </Link>
           </div>
         </nav>
         {/* Justify self center */}

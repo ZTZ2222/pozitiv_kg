@@ -19,6 +19,7 @@ const MobileNavButton = ({
   return (
     <Link
       href={href}
+      prefetch
       className={cn(
         "flex w-full flex-col items-center justify-center transition-colors ease-in-out",
         "gap-1 pb-4 pt-3 sm:gap-2 sm:pb-6",
@@ -54,6 +55,7 @@ const MobileNav = () => {
       </MobileNavButton>
       <Link
         href="/ads/post"
+        prefetch
         className={cn(
           "group flex w-full -translate-y-3 flex-col items-center justify-center gap-1 text-gray-400 focus:text-fuchsia-500 sm:gap-2",
           pathname === "/ads/post" && "fill-fuchsia-500 text-fuchsia-500",

@@ -38,7 +38,9 @@ const BreadCrumbs = ({ className }: { className?: string }) => {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">{t("home")}</Link>
+            <Link href="/" prefetch>
+              {t("home")}
+            </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

@@ -84,7 +84,7 @@ const ContactBlock: React.FC<Props> = ({
           className="h-fit gap-2.5 py-5 text-lg font-medium"
           asChild
         >
-          <Link href={`/commercial/${id}`}>
+          <Link href={`/commercial/${id}`} prefetch>
             <Gem className="size-6" />
             {t("advertise")}
           </Link>

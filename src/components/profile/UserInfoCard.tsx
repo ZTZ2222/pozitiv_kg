@@ -28,7 +28,11 @@ const UserInfoCard: React.FC<Props> = ({ seller, className }) => {
   return (
     <Card className={cn("inline-flex border-none md:border-solid", className)}>
       <CardHeader className="justify-center px-5">
-        <Link href={`/seller/${seller.id}`} className="hover:opacity-80">
+        <Link
+          href={`/seller/${seller.id}`}
+          prefetch
+          className="hover:opacity-80"
+        >
           <Avatar className="h-16 w-16">
             <AvatarImage src={seller.image} className="object-cover" />
             <AvatarFallback
@@ -40,7 +44,11 @@ const UserInfoCard: React.FC<Props> = ({ seller, className }) => {
         </Link>
       </CardHeader>
       <CardContent className="space-y-3.5 p-5">
-        <Link href={`/seller/${seller.id}`} className="hover:underline">
+        <Link
+          href={`/seller/${seller.id}`}
+          prefetch
+          className="hover:underline"
+        >
           <CardTitle className="text-lg font-normal">{seller.name}</CardTitle>
         </Link>
         <CardDescription className="flex gap-2.5">
