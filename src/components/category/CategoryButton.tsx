@@ -25,12 +25,15 @@ const CategoryButton: React.FC<zCategoryRead> = ({
       }}
     >
       {image && (
-        <Image
-          src={image || "/assets/categoryIcons/service.png"}
-          alt={name}
-          width={50}
-          height={50}
-        />
+        <div className="relative h-[50px] w-[50px]">
+          <Image
+            src={image || "/assets/categoryIcons/service.png"}
+            alt={name}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
       )}
       <span className="line-clamp-2 text-wrap text-start text-sm font-medium md:text-base xl:text-sm">
         {name}

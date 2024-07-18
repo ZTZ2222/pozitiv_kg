@@ -64,9 +64,10 @@ const Swiper = ({
                       src={item.banner}
                       alt={item.link}
                       fill
-                      className="rounded-[10px] object-cover object-left"
+                      className="rounded-[10px] object-cover"
                       priority
-                      sizes="100vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      quality={90}
                     />
                   </CardContent>
                 </Card>

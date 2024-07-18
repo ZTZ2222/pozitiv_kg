@@ -12,28 +12,33 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 const socials: zSocialRead[] = [
   {
     title: "instagram",
-    image: "/assets/socials/instagram.png",
+    image: "/assets/socials/instagram.svg",
     link: "https://www.instagram.com/",
   },
   {
     title: "whatsapp",
-    image: "/assets/socials/whatsapp.png",
+    image: "/assets/socials/whatsapp.svg",
     link: "https://www.whatsapp.com/",
   },
   {
     title: "telegram",
-    image: "/assets/socials/telegram.png",
+    image: "/assets/socials/telegram.svg",
     link: "https://telegram.org/",
   },
   {
     title: "tiktok",
-    image: "/assets/socials/tiktok.png",
+    image: "/assets/socials/tiktok.svg",
     link: "https://www.tiktok.com/",
   },
   {
     title: "facebook",
-    image: "/assets/socials/facebook.png",
+    image: "/assets/socials/facebook.svg",
     link: "https://www.facebook.com/",
+  },
+  {
+    title: "youtube",
+    image: "/assets/socials/youtube.svg",
+    link: "https://www.youtube.com/",
   },
 ];
 
@@ -52,11 +57,11 @@ const Footer = () => {
       <div className="container flex items-center justify-between py-5">
         <Link href="/" className="relative h-[117px] w-[100px]" prefetch>
           <Image
-            src="/assets/logo/circle-logo.png"
+            src="/assets/logo/circle-logo-big.png"
             alt="Logo"
             fill
             className="object-contain"
-            sizes="100vw"
+            sizes="50vw"
           />
         </Link>
         {isDesktop && <Search />}
@@ -65,15 +70,15 @@ const Footer = () => {
       {/* Ornaments */}
       <div className="container mb-5 flex overflow-hidden md:mb-7">
         {Array.from({
-          length: isTablet ? 2 : isDesktop ? 3 : isWideDesktop ? 4 : 1,
+          length: isTablet ? 3 : isDesktop ? 4 : isWideDesktop ? 5 : 2,
         }).map((_, index) => (
           <div key={index} className="relative h-4 w-full">
             <Image
-              src="/assets/ornament-down.png"
+              src="/assets/ornament-down-mobile.svg"
               alt="Ornaments"
               fill
               className="object-cover"
-              sizes="66vw"
+              sizes="100vw"
             />
           </div>
         ))}
@@ -116,17 +121,12 @@ const Footer = () => {
           <h6 className="font-bold uppercase">{t("socials")}</h6>
           <div className="flex gap-[26px]">
             {socials.map((social) => (
-              <Link
-                key={social.title}
-                href={social.link}
-                target="_blank"
-                className="grid h-10 w-10 place-items-center rounded-[10px] bg-white"
-              >
+              <Link key={social.title} href={social.link} target="_blank">
                 <Image
                   src={social.image}
                   alt={social.title}
-                  width={20}
-                  height={20}
+                  width={40}
+                  height={40}
                 />
               </Link>
             ))}

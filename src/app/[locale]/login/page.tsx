@@ -16,7 +16,7 @@ const LoginPage = () => {
       {/* Logo */}
       <div className="relative size-[100px] md:size-[155px]">
         <Image
-          src="/assets/auth/pozitiv-logo.png"
+          src="/assets/auth/login-poz-logo.svg"
           alt="Logo Pozitiv.KG"
           fill
           className="object-cover"
@@ -25,7 +25,7 @@ const LoginPage = () => {
       </div>
       {/* Google Sign-in Button */}
       <Link
-        href="https://accounts.google.com/o/oauth2/auth?client_id=211675154564-j6cv8sqa148kvjlpe334jvod40cg7uf6.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fpozitiv-kg.vercel.app%2Fauth%2Fgoogle%2Fredirect&scope=openid+profile+email&response_type=code"
+        href="https://accounts.google.com/o/oauth2/auth?client_id=211675154564-j6cv8sqa148kvjlpe334jvod40cg7uf6.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fpozitiv.kg%2Fauth%2Fgoogle%2Fredirect&scope=openid+profile+email&response_type=code"
         className="flex gap-2.5 rounded-[30px] border px-10 py-4 shadow-md"
       >
         <div className="relative size-6">

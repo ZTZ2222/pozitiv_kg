@@ -9,11 +9,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "pozitiv.kg",
+        hostname: "admin.pozitiv.kg",
       },
     ],
   },
-  // output: "standalone",
+  output: "standalone",
 };
 
 export default withNextIntl(nextConfig);

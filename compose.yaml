@@ -7,5 +7,5 @@ services:
     ports:
       - "3000:3000"  # Map port 80 on the host to port 80 in the container
     environment:
-      - ENV_VAR=example  # Example environment variable, add your required ones
+      - NEXT_PUBLIC_API_URL=https://admin.pozitiv.kg/api/v1  # Example environment variable, add your required ones
     restart: always  # Always restart the container if it stops

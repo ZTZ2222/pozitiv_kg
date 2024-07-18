@@ -57,10 +57,10 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
           <div className="flex flex-col justify-between bg-gradient-to-r from-cyan-400 to-fuchsia-500">
             {/* Ornaments */}
             <div className="flex overflow-hidden">
-              {Array.from({ length: isWideScreen ? 5 : 4 }).map((_, index) => (
+              {Array.from({ length: isWideScreen ? 6 : 4 }).map((_, index) => (
                 <div key={index} className="relative h-4 w-full">
                   <Image
-                    src="/assets/ornament-up.png"
+                    src="/assets/ornament-up-mobile.svg"
                     alt="Ornaments"
                     fill
                     className="object-contain"
@@ -73,20 +73,21 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
             <div className="container flex items-center justify-between py-1">
               <Link href="/" className="relative h-[26px] w-[200px]" prefetch>
                 <Image
-                  src="/assets/logo/pozitiv.png"
+                  src="/assets/logo/header-logo.svg"
                   alt="Logo"
                   fill
                   className="object-contain"
+                  sizes="100%"
                 />
               </Link>
               <Search />
             </div>
             {/* Ornaments */}
             <div className="flex overflow-hidden">
-              {Array.from({ length: isWideScreen ? 5 : 4 }).map((_, index) => (
+              {Array.from({ length: isWideScreen ? 6 : 4 }).map((_, index) => (
                 <div key={index} className="relative h-4 w-full">
                   <Image
-                    src="/assets/ornament-down.png"
+                    src="/assets/ornament-down-mobile.svg"
                     alt="Ornaments"
                     fill
                     className="object-contain"
@@ -169,7 +170,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
           {Array.from({ length: isMobile ? 1 : 2 }).map((_, index) => (
             <div key={index} className="relative h-4 w-full">
               <Image
-                src="/assets/ornament-up.png"
+                src="/assets/ornament-up-mobile.svg"
                 alt="Ornaments"
                 fill
                 className="object-contain"
@@ -182,11 +183,11 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
         <div className="container flex items-center justify-between">
           <Link href="/" className="relative h-4 w-[120px]" prefetch>
             <Image
-              src="/assets/logo/pozitiv.png"
+              src="/assets/logo/header-logo.svg"
               alt="Logo"
               fill
               className="object-contain"
-              sizes="100vw"
+              sizes="100%"
             />
           </Link>
           <LocaleSwitcher className="h-fit p-0 text-white/80 hover:bg-transparent hover:text-accent-foreground" />
@@ -196,11 +197,11 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
           {Array.from({ length: isMobile ? 1 : 2 }).map((_, index) => (
             <div key={index} className="relative h-4 w-full">
               <Image
-                src="/assets/ornament-down.png"
+                src="/assets/ornament-down-mobile.svg"
                 alt="Ornaments"
                 fill
                 className="object-contain"
-                sizes="(max-width: 600px) 50vw, 25vw"
+                sizes="100%"
               />
             </div>
           ))}
