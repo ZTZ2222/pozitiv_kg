@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pozitiv:
+    image: tilzam/pozitiv:latest
+    container_name: pozitiv_container
+    ports:
+      - "3000:3000"  # Map port 80 on the host to port 80 in the container
+    environment:
+      - ENV_VAR=example  # Example environment variable, add your required ones
+    restart: always  # Always restart the container if it stops
