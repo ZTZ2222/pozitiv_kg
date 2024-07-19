@@ -2,25 +2,19 @@
 
 import { zCategoryAttribute, zCategoryRead } from "@/types/category.schema";
 import { getLocale } from "next-intl/server";
+import { fetchData } from "./safe-action";
 
 export const getCategories = async (): Promise<zCategoryRead[]> => {
   const locale = await getLocale();
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/categories`,
-    {
-      cache: "no-store",
-      headers: {
-        "Accept-Language": locale,
-      },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/categories`;
+  const options: RequestInit = {
+    headers: {
+      "Accept-Language": locale,
     },
-  );
-
-  if (!res.ok) {
-    throw new Error(`HTTP error! status: ${res.status}`);
-  }
-
-  const { data } = await res.json();
-
+    // revalidate: every 12 hours
+    next: { revalidate: 60 * 60 * 12 },
+  };
+  const { data } = await fetchData(endpoint, options);
   return data.items;
 };
 
@@ -30,19 +24,16 @@ export const getCategoryById = async ({
   id: string;
 }): Promise<zCategoryRead> => {
   const locale = await getLocale();
-  const response = await fetch(
-    `https://pozitiv.kg/api/v1/products/categories/${id}`,
-    {
-      cache: "no-store",
-      headers: {
-        "Accept-Language": locale,
-      },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/categories/${id}`;
+  const options: RequestInit = {
+    headers: {
+      "Accept-Language": locale,
     },
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
+    // revalidate: every 12 hours
+    next: { revalidate: 60 * 60 * 12 },
+  };
+
+  const { data } = await fetchData(endpoint, options);
 
   return data;
 };

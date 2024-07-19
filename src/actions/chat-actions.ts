@@ -27,7 +27,7 @@ export const getChatList = async (): Promise<zChat[] | undefined> => {
     const { data } = await res.json();
     return data.items;
   } else if (res.status === 401) {
-    redirect("/login");
+    throw new Error("Unauthorized");
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
@@ -54,7 +54,7 @@ export const getMessagesByChatId = async (
 
     return data.items.reverse();
   } else if (res.status === 401) {
-    redirect("/login");
+    throw new Error("Unauthorized");
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
@@ -80,7 +80,7 @@ export const sendMessage = actionClient
 
       return await res.json();
     } else if (res.status === 401) {
-      redirect("/login");
+      throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
@@ -109,7 +109,7 @@ export const clearChat = actionClient
 
       return message;
     } else if (res.status === 401) {
-      redirect("/login");
+      throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }

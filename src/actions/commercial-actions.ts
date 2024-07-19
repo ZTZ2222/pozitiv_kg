@@ -4,28 +4,21 @@ import { redirect } from "@/lib/i18nNavigation";
 import { zPaymentMethodRead } from "@/types/payment.schema";
 import { getLocale } from "next-intl/server";
 import { cookies } from "next/headers";
+import { fetchData } from "./safe-action";
 
 export const getPaymentMethods = async (): Promise<
   zPaymentMethodRead[] | undefined
 > => {
   const locale = await getLocale();
-
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/banks`;
-
-  const res = await fetch(endpoint, {
+  const options: RequestInit = {
     cache: "no-store",
     headers: {
       "Accept-Language": locale,
     },
-  });
-
-  if (res.ok) {
-    const { data } = await res.json();
-
-    return data.items;
-  } else {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
-  }
+  };
+  const { data } = await fetchData(endpoint, options);
+  return data.items;
 };
 
 export const createCommerialInvoice = async (
@@ -51,7 +44,7 @@ export const createCommerialInvoice = async (
 
     return message;
   } else if (res.status === 401) {
-    redirect("/login");
+    throw new Error("Unauthorized");
   } else {
     throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }

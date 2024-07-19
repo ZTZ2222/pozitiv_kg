@@ -21,7 +21,7 @@ export const getUserInfo = async (): Promise<zUserRead | undefined> => {
 
     return data;
   } else if (res.status === 401) {
-    return;
+    return undefined;
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
@@ -50,7 +50,7 @@ export const updateUserImage = async (
 
     return data;
   } else if (res.status === 401) {
-    redirect("/login");
+    throw new Error("Unauthorized");
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }
@@ -80,7 +80,7 @@ export const updateUserInfo = actionClient
 
       return data;
     } else if (res.status === 401) {
-      redirect("/login");
+      throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
@@ -108,7 +108,28 @@ export const deleteMyAccount = async (): Promise<void> => {
     cookies().delete("access_token");
     redirect("/login");
   } else if (res.status === 401) {
-    redirect("/login");
+    throw new Error("Unauthorized");
+  } else {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+};
+
+export const isAuthenticated = async (): Promise<boolean> => {
+  const access_token = cookies().get("access_token")?.value;
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/users/info`;
+  const options: RequestInit = {
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  };
+  const res = await fetch(endpoint, options);
+  const { data } = await res.json();
+
+  if (res.status === 401) {
+    return false;
+  } else if (data?.id) {
+    return true;
   } else {
     throw new Error(`HTTP error! status: ${res.status}`);
   }

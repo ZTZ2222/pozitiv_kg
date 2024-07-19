@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "@/lib/i18nNavigation";
 import {
   GalleryImageSchema,
   PromotionChangeStatusSchema,
@@ -10,75 +9,36 @@ import { ComplainFormSchema, zCityRead } from "@/types/other.schema";
 import { getLocale } from "next-intl/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import { actionClient } from "./safe-action";
+import { actionClient, fetchData } from "./safe-action";
 
 export const getAds = async (
   params: URLSearchParams,
 ): Promise<zPromotionRead[]> => {
   const locale = await getLocale();
-
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`,
-    {
-      cache: "no-store",
-      headers: {
-        "Accept-Language": locale,
-      },
-      next: { tags: ["ad-list"] },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`;
+  const options: RequestInit = {
+    cache: "no-store",
+    headers: {
+      "Accept-Language": locale,
     },
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
-
+    next: { tags: ["ad-list"] },
+  };
+  const { data } = await fetchData(endpoint, options);
   return data.items;
 };
 
 export const getAdInfo = async (id: string): Promise<zPromotionRead> => {
   const locale = await getLocale();
-
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
-    {
-      cache: "no-store",
-      headers: {
-        "Accept-Language": locale,
-      },
-      next: { tags: [`ad-${id}`] },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`;
+  const options: RequestInit = {
+    cache: "no-store",
+    headers: {
+      "Accept-Language": locale,
     },
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
-
+    next: { tags: [`ad-${id}`] },
+  };
+  const { data } = await fetchData(endpoint, options);
   return data;
-};
-
-export const getRelatedAds = async (id: string): Promise<zPromotionRead[]> => {
-  const locale = await getLocale();
-
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/related/${id}`,
-    {
-      cache: "no-store",
-      headers: {
-        "Accept-Language": locale,
-      },
-      next: { tags: [`related-ads-for-${id}`] },
-    },
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const { data } = await response.json();
-
-  if (data.items.length % 2) {
-    data.items.pop();
-  }
-
-  return data.items;
 };
 
 type AdStatus = "active" | "pending" | "inactive";
@@ -88,192 +48,127 @@ export const getMyAds = async (
 ): Promise<zPromotionRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/my-list?status=${status}`,
-    {
-      cache: "no-store",
-      credentials: "include",
-      headers: {
-        "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
-      },
-      next: { tags: ["my-list"] },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/my-list?status=${status}`;
+  const options: RequestInit = {
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      "Accept-Language": locale,
+      Authorization: `Bearer ${access_token}`,
     },
-  );
-  if (res.ok) {
-    const { data } = await res.json();
-    return data.items;
-  } else if (res.status === 401) {
-    redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status}`);
-  }
+    next: { tags: ["my-list"] },
+  };
+  const { data } = await fetchData(endpoint, options);
+  return data.items;
 };
 
-export const createPromotion = async (
-  data: FormData,
-): Promise<string | undefined> => {
+export const createPromotion = async (data: FormData): Promise<void> => {
   const access_token = cookies().get("access_token")?.value;
-
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add`;
-
-  const res = await fetch(endpoint, {
+  const options: RequestInit = {
     method: "POST",
     credentials: "include",
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
     body: data,
-  });
+  };
 
-  if (res.ok) {
+  const { status_code } = await fetchData(endpoint, options);
+
+  if (status_code === 200) {
     revalidatePath("/profile");
-
-    const { message } = await res.json();
-
-    return message;
-  } else if (res.status === 401) {
-    redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }
 };
 
-export const deletePromotion = async (
-  promotionId: number,
-): Promise<string | undefined> => {
+export const deletePromotion = async (promotionId: number): Promise<void> => {
   const access_token = cookies().get("access_token")?.value;
-
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/delete/${promotionId}`;
-
-  const res = await fetch(endpoint, {
+  const options: RequestInit = {
     method: "DELETE",
     credentials: "include",
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
-  });
+  };
 
-  if (res.ok) {
+  const { status_code } = await fetchData(endpoint, options);
+
+  if (status_code === 200) {
     revalidatePath("/profile");
-    redirect("/profile");
-
-    const { message } = await res.json();
-
-    return message;
-  } else if (res.status === 401) {
-    redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }
 };
 
-export const updatePromotion = async (
-  data: FormData,
-): Promise<string | undefined> => {
+export const updatePromotion = async (data: FormData): Promise<void> => {
   const promotion_id = data.get("id");
   data.delete("id");
 
   const access_token = cookies().get("access_token")?.value;
-
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/update/${promotion_id}`;
-
-  const res = await fetch(endpoint, {
+  const options: RequestInit = {
     method: "POST",
     credentials: "include",
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
     body: data,
-  });
+  };
 
-  if (res.ok) {
+  const { status_code } = await fetchData(endpoint, options);
+
+  if (status_code === 200) {
     revalidatePath("/profile");
-
-    const { message } = await res.json();
-
-    return message;
-  } else if (res.status === 401) {
-    redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
   }
 };
 
 export const reportPromotion = actionClient
   .schema(ComplainFormSchema)
-  .action(
-    async ({ parsedInput: { reportText } }): Promise<string | undefined> => {
-      const [description, id] = reportText.split("|");
-      const report = `ID Объявления ${id}`;
+  .action(async ({ parsedInput: { reportText } }): Promise<void> => {
+    const [description, id] = reportText.split("|");
+    const report = `ID Объявления ${id}`;
 
-      const access_token = cookies().get("access_token")?.value;
+    const access_token = cookies().get("access_token")?.value;
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add-report/${id}`;
+    const options: RequestInit = {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ report, description }),
+    };
 
-      const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/add-report/${id}`;
+    const { status_code } = await fetchData(endpoint, options);
 
-      const res = await fetch(endpoint, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ report, description }),
-      });
-
-      if (res.ok) {
-        const { message } = await res.json();
-
-        return message;
-      } else if (res.status === 401) {
-        redirect("/login");
-      } else {
-        throw new Error(
-          `HTTP error! status: ${res.status} - ${await res.json()}`,
-        );
-      }
-    },
-  );
+    if (status_code === 200) {
+      return void 0;
+    }
+  });
 
 export const changePromotionStatus = actionClient
   .schema(PromotionChangeStatusSchema)
-  .action(
-    async ({
-      parsedInput: { promotion_id, status },
-    }): Promise<string | undefined> => {
-      const access_token = cookies().get("access_token")?.value;
+  .action(async ({ parsedInput: { promotion_id, status } }): Promise<void> => {
+    const access_token = cookies().get("access_token")?.value;
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/change-status/${promotion_id}`;
+    const options: RequestInit = {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    };
 
-      const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/change-status/${promotion_id}`;
+    const { status_code } = await fetchData(endpoint, options);
 
-      const res = await fetch(endpoint, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status }),
-      });
-
-      if (res.ok) {
-        revalidateTag("my-list");
-        revalidateTag(`ad-${promotion_id}`);
-
-        revalidatePath("/profile");
-
-        const { message } = await res.json();
-
-        return message;
-      } else if (res.status === 401) {
-        redirect("/login");
-      } else {
-        throw new Error(
-          `HTTP error! status: ${res.status} - ${await res.json()}`,
-        );
-      }
-    },
-  );
+    if (status_code === 200) {
+      revalidateTag("my-list");
+      revalidateTag(`ad-${promotion_id}`);
+      revalidatePath("/profile");
+    }
+  });
 
 export const deletePromotionImage = actionClient
   .schema(GalleryImageSchema)
@@ -297,7 +192,7 @@ export const deletePromotionImage = actionClient
 
       return message;
     } else if (res.status === 401) {
-      redirect("/login");
+      throw new Error("Unauthorized");
     } else {
       throw new Error(
         `HTTP error! status: ${res.status} - ${await res.json()}`,

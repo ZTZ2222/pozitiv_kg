@@ -27,3 +27,19 @@ export const actionClient = createSafeActionClient({
   },
   handleReturnedServerError,
 });
+
+export const fetchData = async (
+  url: string,
+  options?: RequestInit,
+): Promise<any> => {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    const error = await response
+      .json()
+      .catch(() => ({ message: response.statusText }));
+    throw new Error(
+      `HTTP error! status: ${response.status}, message: ${error.message}`,
+    );
+  }
+  return response.json();
+};

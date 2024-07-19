@@ -1,7 +1,7 @@
 "use server";
 
 import { FavoriteItemSchema, zPromotionRead } from "@/types/ad.schema";
-import { actionClient } from "./safe-action";
+import { actionClient, fetchData } from "./safe-action";
 import { cookies } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
 import {
@@ -15,56 +15,42 @@ import { getLocale } from "next-intl/server";
 export const getFavorites = async (): Promise<zPromotionRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`,
-    {
-      cache: "no-store",
-      credentials: "include",
-      headers: {
-        "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
-      },
-      next: { tags: ["favorites"] },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/fevourites?sort_by=latest`;
+  const options: RequestInit = {
+    credentials: "include",
+    headers: {
+      "Accept-Language": locale,
+      Authorization: `Bearer ${access_token}`,
     },
-  );
+    next: { tags: ["favorites"] },
+  };
 
-  if (res.ok) {
-    const { data } = await res.json();
-
+  try {
+    const { data } = await fetchData(endpoint, options);
     return data.items;
-  } else if (res.status === 401) {
+  } catch (error) {
     redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status}`);
   }
 };
 
 export const getSavedSeaches = async (): Promise<zSearchRead[] | undefined> => {
   const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/search-list`,
-    {
-      cache: "no-store",
-      credentials: "include",
-      headers: {
-        "Accept-Language": locale,
-        Authorization: `Bearer ${access_token}`,
-      },
-      next: { tags: ["saved-searches"] },
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/search-list`;
+  const options: RequestInit = {
+    credentials: "include",
+    headers: {
+      "Accept-Language": locale,
+      Authorization: `Bearer ${access_token}`,
     },
-  );
+    next: { tags: ["saved-searches"] },
+  };
 
-  if (res.ok) {
-    const { data } = await res.json();
-
+  try {
+    const { data } = await fetchData(endpoint, options);
     return data.items;
-  } else if (res.status === 401) {
+  } catch (error) {
     redirect("/login");
-  } else {
-    throw new Error(`HTTP error! status: ${res.status}`);
   }
 };
 
@@ -98,7 +84,7 @@ export const updateFavorites = actionClient
 
         return data;
       } else if (res.status === 401) {
-        redirect("/login");
+        throw new Error("Unauthorized");
       } else {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -132,7 +118,7 @@ export const saveSearch = actionClient
 
         return message;
       } else if (res.status === 401) {
-        redirect("/login");
+        throw new Error("Unauthorized");
       } else {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -161,7 +147,7 @@ export const deleteSearch = actionClient
 
       return message;
     } else if (res.status === 401) {
-      redirect("/login");
+      throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
