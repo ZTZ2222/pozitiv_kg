@@ -6,6 +6,8 @@ import { getFavorites, getSavedSeaches } from "@/actions/favorite-actions";
 import { isAuthenticated } from "@/actions/user-actions";
 import { redirect } from "@/lib/i18nNavigation";
 import BreadCrumbs from "@/components/navigation/BreadCrumbs";
+import { zPromotionRead } from "@/types/ad.schema";
+import AdCard from "@/components/ads/AdCard";
 
 const Favorites = async () => {
   const isAuth = await isAuthenticated();
@@ -37,7 +39,11 @@ const Favorites = async () => {
         </TabsList>
         <TabsContent value="promotions">
           {favorites && favorites.length > 0 ? (
-            <AdList ads={favorites} />
+            <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+              {favorites?.map((ad: zPromotionRead) => (
+                <AdCard key={ad.id} {...ad} />
+              ))}
+            </div>
           ) : (
             <div className="mx-auto my-[140px] max-w-[300px] space-y-6 text-center">
               <h3 className="text-xl font-medium">{t("tab-1-empty-title")}</h3>

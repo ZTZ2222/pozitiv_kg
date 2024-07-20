@@ -90,7 +90,7 @@ const CategoryAccordion = ({ className }: { className?: string }) => {
   }, []);
 
   if (loading) {
-    return <Spinner />;
+    return <Spinner className="h-[70vh]" />;
   }
 
   return (

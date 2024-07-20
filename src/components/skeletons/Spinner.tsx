@@ -1,10 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const Spinner = () => {
+const Spinner = ({ className }: { className?: string }) => {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div
+      className={cn(
+        "flex h-full w-full items-center justify-center",
+        className,
+      )}
+    >
       <motion.div
         animate={{ rotate: 360 }}
         transition={{

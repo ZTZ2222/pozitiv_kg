@@ -1,4 +1,5 @@
 import CategoriesButtonGroup from "@/components/category/CategoriesButtonGroup";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 import SkCategoriesButtonGroup from "@/components/skeletons/SkCategoriesButtonGroup";
 import Swiper from "@/components/Swiper";
 import { useTranslations } from "next-intl";
@@ -9,7 +10,7 @@ const Categories = () => {
   const t = useTranslations("CategoryPromotionsPage");
   return (
     <main className="min-h-screen">
-      <div className="hidden h-0 lg:mt-48 lg:block" />
+      <BreadCrumbs path={["category"]} className="container" />
       <Swiper className="mt-[30px]" />
       <Suspense fallback={<SkCategoriesButtonGroup />}>
         <CategoriesButtonGroup />

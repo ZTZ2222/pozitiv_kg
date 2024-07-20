@@ -31,6 +31,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
           "category",
           { name: category.name, href: category.id.toString() },
         ]}
+        className="container"
       />
       <ScrollArea
         className={cn(
@@ -54,7 +55,11 @@ const CategoryPromotionList: React.FC<Props> = async ({
       </ScrollArea>
       {promotions.length > 0 ? (
         <>
-          <AdList ads={promotions} className="container mb-10" />
+          <AdList
+            initialAds={promotions}
+            params={searchParams}
+            className="container mb-10"
+          />
           <Swiper className="mb-10 lg:mb-[100px]" />
         </>
       ) : (

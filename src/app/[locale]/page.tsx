@@ -53,10 +53,16 @@ export default async function Home() {
           <TabsTrigger value="new">{t("new")}</TabsTrigger>
         </TabsList>
         <TabsContent value="recommend">
-          <AdList ads={recommendedPromotions} />
+          <AdList
+            initialAds={recommendedPromotions}
+            params={new URLSearchParams({ recommend: "1", sort_by: "latest" })}
+          />
         </TabsContent>
         <TabsContent value="new">
-          <AdList ads={newPromotions} />
+          <AdList
+            initialAds={newPromotions}
+            params={new URLSearchParams({ sort_by: "latest" })}
+          />
         </TabsContent>
       </Tabs>
     </main>

@@ -1,14 +1,64 @@
+"use client";
+
 import AdCard from "@/components/ads/AdCard";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { zPromotionRead } from "@/types/ad.schema";
+import { getAds } from "@/actions/ads-actions";
+import Spinner from "@/components/skeletons/Spinner";
 
 type Props = {
-  ads: zPromotionRead[];
+  initialAds: zPromotionRead[];
+  params?: URLSearchParams;
   className?: string;
 };
 
-const AdList: React.FC<Props> = ({ ads, className }) => {
+const AdList: React.FC<Props> = ({
+  initialAds,
+  params = new URLSearchParams(),
+  className,
+}) => {
+  const [ads, setAds] = useState(initialAds);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const loaderRef = useRef(null);
+
+  const loadMoreAds = useCallback(async () => {
+    setLoading(true);
+
+    // Ensure params is a URLSearchParams instance
+    const searchParams = new URLSearchParams(params);
+    searchParams.set("page", page.toString());
+
+    const newAds = await getAds(searchParams);
+
+    setAds((prevAds) => [...prevAds, ...newAds]);
+    setLoading(false);
+    setPage((prevPage) => prevPage + 1);
+  }, [page, params]);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 1.0,
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !loading) {
+        loadMoreAds();
+      }
+    }, options);
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [loadMoreAds, loading]);
   return (
     <div
       className={cn(
@@ -16,9 +66,13 @@ const AdList: React.FC<Props> = ({ ads, className }) => {
         className,
       )}
     >
-      {ads.map((ad: zPromotionRead) => (
-        <AdCard key={ad.id} {...ad} />
-      ))}
+      {ads?.map((ad: zPromotionRead) => <AdCard key={ad.id} {...ad} />)}
+      <div
+        ref={loaderRef}
+        className="col-span-full flex items-center justify-center"
+      >
+        {loading && <Spinner className="h-[300px]" />}
+      </div>
     </div>
   );
 };

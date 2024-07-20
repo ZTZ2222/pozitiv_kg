@@ -3,7 +3,6 @@ import { getUserInfo } from "@/actions/user-actions";
 import AdCarousel from "@/components/ads/AdCarousel";
 import AdDetails from "@/components/ads/AdDetails";
 import AdHeading from "@/components/ads/AdHeading";
-import AdList from "@/components/ads/AdList";
 import ContactBlock from "@/components/ads/ContactBlock";
 import Map from "@/components/Map";
 import DotsDropdownMenu from "@/components/navigation/DotsDropdownMenu";
