@@ -47,7 +47,6 @@ const LoginPage = async () => {
       <p className="mt-10 max-w-[350px] text-center md:max-w-[480px]">
         {t("confirm-agree")}{" "}
         <Link
-          prefetch
           href="/resources/privacy"
           className="text-blue-500 hover:underline"
         >
@@ -58,7 +57,6 @@ const LoginPage = async () => {
       {/* Skip Button */}
       <Link
         href="/"
-        prefetch
         className="mt-5 flex items-center gap-2.5 rounded-md px-4 py-2.5 hover:bg-gray-100"
       >
         <p>{t("skip-now")}</p>

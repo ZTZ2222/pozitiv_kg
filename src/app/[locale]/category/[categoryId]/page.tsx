@@ -60,7 +60,6 @@ const CategoryPromotionList: React.FC<Props> = async ({
             params={searchParams}
             className="container mb-10"
           />
-          <Swiper className="mb-10 lg:mb-[100px]" />
         </>
       ) : (
         <EmptyMessage />

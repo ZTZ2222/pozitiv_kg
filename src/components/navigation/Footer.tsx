@@ -55,7 +55,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white">
       {/* Logo */}
       <div className="container flex items-center justify-between py-5">
-        <Link href="/" className="relative h-[117px] w-[100px]" prefetch>
+        <Link href="/" className="relative h-[117px] w-[100px]">
           <Image
             src="/assets/logo/circle-logo-big.png"
             alt="Logo"

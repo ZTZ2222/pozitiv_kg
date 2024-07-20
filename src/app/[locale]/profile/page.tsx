@@ -29,7 +29,7 @@ const Profile = async () => {
     <div className="container">
       <div className="mt-[30px] flex items-center justify-between">
         <BackButton variant="router" location="profile" />
-        <Link href="/profile/edit" prefetch className="lg:hidden">
+        <Link href="/profile/edit" className="lg:hidden">
           <UserRoundCog className="size-5" />
         </Link>
       </div>

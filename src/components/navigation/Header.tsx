@@ -55,7 +55,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
             </div>
             {/* Logo */}
             <div className="container flex items-center justify-between py-1">
-              <Link href="/" className="relative h-[26px] w-[200px]" prefetch>
+              <Link href="/" className="relative h-[26px] w-[200px]">
                 <Image
                   src="/assets/logo/header-logo.svg"
                   alt="Logo"
@@ -159,7 +159,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
         </div>
         {/* Logo */}
         <div className="container flex items-center justify-between">
-          <Link href="/" className="relative h-4 w-[120px]" prefetch>
+          <Link href="/" className="relative h-4 w-[120px]">
             <Image
               src="/assets/logo/header-logo.svg"
               alt="Logo"

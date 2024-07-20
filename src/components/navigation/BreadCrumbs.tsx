@@ -67,9 +67,7 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ path, className }) => {
                   <BreadcrumbPage>{label}</BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
-                    <Link href={constructHref(path, index)} prefetch>
-                      {label}
-                    </Link>
+                    <Link href={constructHref(path, index)}>{label}</Link>
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
