@@ -1,16 +1,19 @@
-"use client";
-
-import { useRouter } from "@/lib/i18nNavigation";
 import { ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const LoginPage = () => {
-  const t = useTranslations("LoginPage");
-  const router = useRouter();
+const LoginPage = async () => {
+  const t = await getTranslations("LoginPage");
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+  const options: RequestInit = {
+    cache: "no-store",
+  };
+  const response = await fetch(endpoint, options);
+  const redirect_uri = await response.text();
+
   return (
     <div className="container mb-24 mt-14 flex flex-col items-center gap-12 text-lg text-gray-800">
       {/* Logo */}
@@ -25,7 +28,8 @@ const LoginPage = () => {
       </div>
       {/* Google Sign-in Button */}
       <Link
-        href="https://accounts.google.com/o/oauth2/auth?client_id=211675154564-j6cv8sqa148kvjlpe334jvod40cg7uf6.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fpozitiv.kg%2Fauth%2Fgoogle%2Fredirect&scope=openid+profile+email&response_type=code"
+        // href="https://accounts.google.com/o/oauth2/auth?client_id=211675154564-j6cv8sqa148kvjlpe334jvod40cg7uf6.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fgoogle%2Fredirect&scope=openid+profile+email&response_type=code"
+        href={redirect_uri}
         className="flex gap-2.5 rounded-[30px] border px-10 py-4 shadow-md"
       >
         <div className="relative size-6">
@@ -39,21 +43,6 @@ const LoginPage = () => {
         </div>
         <p>{t("sign-in-with-google")}</p>
       </Link>
-      {/* Mock Login Button */}
-      {/* <Button
-        onClick={async () => {
-          await setAccessToken();
-          toast({
-            description: t("login-success"),
-            duration: 5000,
-          });
-          router.push("/");
-        }}
-        className="gap-2.5"
-      >
-        <Ban />
-        Mock Login
-      </Button> */}
       {/* Terms */}
       <p className="mt-10 max-w-[350px] text-center md:max-w-[480px]">
         {t("confirm-agree")}{" "}
