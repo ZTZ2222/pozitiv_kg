@@ -109,6 +109,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
 
   const deletePromotionButtonHandler = async (advertisementId: number) => {
     await deletePromotion(advertisementId);
+
     toast({
       description: (
         <span className="flex items-center gap-2.5">
@@ -117,6 +118,8 @@ const DotsDropdownMenu: React.FC<Props> = ({
       ),
       duration: 5000,
     });
+
+    router.push("/profile");
   };
 
   return (

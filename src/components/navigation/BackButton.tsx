@@ -10,16 +10,14 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   variant: "stepper" | "router";
+  location?: string;
   className?: string;
-  hidePath?: boolean;
 };
 
-const BackButton: React.FC<Props> = ({ variant, hidePath, className }) => {
+const BackButton: React.FC<Props> = ({ variant, location, className }) => {
   const { prevStep, isDisabledStep } = useStepper();
   const router = useRouter();
-  const pathname = usePathname();
   const t = useTranslations("BackButton");
-  const path = pathname.split("/").filter(Boolean).join("-").toLowerCase();
 
   if (variant === "router") {
     return (
@@ -32,9 +30,9 @@ const BackButton: React.FC<Props> = ({ variant, hidePath, className }) => {
         >
           <ChevronLeft className="h-6 w-6" />
         </Button>
-        <span className={cn("font-light text-gray-400", hidePath && "hidden")}>
-          {t(path)}
-        </span>
+        {location && (
+          <span className={cn("font-light text-gray-400")}>{t(location)}</span>
+        )}
       </div>
     );
   }

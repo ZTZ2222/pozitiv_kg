@@ -51,7 +51,7 @@ const AdCard: React.FC<AdCardProps> = ({
               alt={`${name} {index}`}
               fill
               // className="object-contain"
-              className="object-contain"
+              className="object-cover"
               sizes="(max-width: 320px) 100vw, (max-width: 767px) 50vw, 33vw"
             />
           </div>

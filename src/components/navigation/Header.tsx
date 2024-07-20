@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { zCategoryRead } from "@/types/category.schema";
-import { getCategories } from "@/actions/category-actions";
 import { ChevronLeft } from "lucide-react";
 import { Chat, Heart, PlusCircle, UserCircle } from "@/components/icons";
 import { cn, checkRoute } from "@/lib/utils";
@@ -19,11 +17,7 @@ import CategoryModal from "@/components/category/CategoryModal";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
-type Props = {
-  isAuthenticated: boolean;
-};
-
-const Header: React.FC<Props> = ({ isAuthenticated }) => {
+const Header = ({ isAuth }: { isAuth: boolean }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const isWideScreen = useMediaQuery("(min-width: 1536px)");
   const isMobile = useMediaQuery("(max-width: 480px)");
@@ -39,16 +33,6 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
     /^\/commercial\/[^/]+$/,
   ];
   const backbtnChatsText = ["/chat"];
-
-  const [categories, setCategories] = useState<zCategoryRead[]>();
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const data = await getCategories();
-      setCategories(data);
-    };
-    fetchCategories();
-  }, []);
 
   if (isDesktop) {
     return (
@@ -98,12 +82,9 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
             </div>
           </div>
         </div>
-        {isAuthenticated ? (
+        {isAuth ? (
           <nav className="container flex items-center justify-between bg-white px-4 py-2.5">
-            <CategoryModal
-              categories={categories || []}
-              className="hover:bg-inherit"
-            />
+            <CategoryModal variant="desktop" className="hover:bg-inherit" />
             <div className="flex items-center gap-3.5 text-fuchsia-500">
               <LocaleSwitcher />
 
@@ -148,10 +129,7 @@ const Header: React.FC<Props> = ({ isAuthenticated }) => {
           </nav>
         ) : (
           <nav className="container flex items-center justify-between bg-white px-4 py-2.5">
-            <CategoryModal
-              categories={categories || []}
-              className="hover:bg-inherit"
-            />
+            <CategoryModal variant="desktop" className="hover:bg-inherit" />
             <div className="flex items-center space-x-4">
               <LocaleSwitcher />
               <LoginButton />
