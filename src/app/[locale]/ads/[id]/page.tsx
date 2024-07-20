@@ -1,4 +1,4 @@
-import { getAdInfo, getRelatedAds } from "@/actions/ads-actions";
+import { getAdInfo } from "@/actions/ads-actions";
 import { getUserInfo } from "@/actions/user-actions";
 import AdCarousel from "@/components/ads/AdCarousel";
 import AdDetails from "@/components/ads/AdDetails";
@@ -11,7 +11,9 @@ import ShareButton from "@/components/navigation/ShareButton";
 import UserInfoCard from "@/components/profile/UserInfoCard";
 import { CircleAlert } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
-import React from "react";
+import React, { Suspense } from "react";
+import { RelatedAds } from "./_components/related-ads";
+import SkSellerPromotions from "@/components/skeletons/SkSellerPromotions";
 
 const AdDetail = async ({ params }: { params: { id: string } }) => {
   const locale = await getLocale();
@@ -21,7 +23,6 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
   });
 
   const promotion = await getAdInfo(params.id);
-  const relatedPromotions = await getRelatedAds(params.id);
   const currentUser = await getUserInfo();
 
   let chatId = undefined;
@@ -76,10 +77,9 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
           className="mb-[30px] lg:hidden"
         />
       </div>
-      <section className="mb-[100px]">
-        <h2 className="text-lg font-semibold">{t("related-promotions")}</h2>
-        <AdList ads={relatedPromotions} />
-      </section>
+      <Suspense fallback={<SkSellerPromotions />}>
+        <RelatedAds id={promotion.id} />
+      </Suspense>
     </main>
   );
 };

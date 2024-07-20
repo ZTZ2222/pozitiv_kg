@@ -9,10 +9,10 @@ const PostCreateLoading = () => {
         <Skeleton className="h-5 w-1/3"></Skeleton>
         <Skeleton className="size-24 rounded-[10px]"></Skeleton>
         {Array.from({ length: 10 }).map((_, index) => (
-          <>
+          <React.Fragment key={index}>
             <Skeleton className="h-5 w-1/3"></Skeleton>
             <Skeleton className="h-24 w-full"></Skeleton>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </main>
