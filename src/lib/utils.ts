@@ -72,3 +72,8 @@ export const filterParams = (
     Object.entries(params).filter(([_, value]) => value !== undefined),
   ) as Record<string, string>;
 };
+
+export const getFirstKWords = (text: string, k: number = 4) => {
+  const words = text.split(" ");
+  return words.length > k ? words.slice(0, k).join(" ") : words[0];
+};

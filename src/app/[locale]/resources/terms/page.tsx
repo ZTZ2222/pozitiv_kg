@@ -1,3 +1,4 @@
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 import { getLocale } from "next-intl/server";
 import React from "react";
 
@@ -28,6 +29,7 @@ const TermsPage = async () => {
   const { title, description } = await getTermsInfo();
   return (
     <main className="container my-[100px] space-y-10">
+      <BreadCrumbs path={["terms"]} />
       <h1 className="text-center text-3xl font-bold">{title}</h1>
       <div
         className="space-y-5"

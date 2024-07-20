@@ -3,15 +3,8 @@ import PromotionForm from "@/components/ads/forms/PromotionForm";
 import { getCategories } from "@/actions/category-actions";
 import { getCities } from "@/actions/ads-actions";
 import { Ornament } from "@/components/icons";
-import { isAuthenticated } from "@/actions/user-actions";
-import { redirect } from "@/lib/i18nNavigation";
 
 const PostAd = async () => {
-  const isAuth = await isAuthenticated();
-  if (!isAuth) {
-    redirect("/login");
-  }
-
   const categories = await getCategories();
   const cities = await getCities();
 

@@ -7,7 +7,11 @@ const EditProfile = async () => {
   const userInfo = await getUserInfo();
   return (
     <div className="container">
-      <BackButton variant="router" className="mt-[30px]" />
+      <BackButton
+        variant="router"
+        location="profile-edit"
+        className="mt-[30px]"
+      />
       <UserForm userInfo={userInfo} className="mx-auto" />
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { getLocale } from "next-intl/server";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 
 type zPrivacyInfo = {
   title: string;
@@ -28,6 +29,7 @@ const PrivacyPage = async () => {
   const { title, description } = await getPrivacyInfo();
   return (
     <main className="container my-[100px] space-y-10">
+      <BreadCrumbs path={["privacy"]} />
       <h1 className="text-center text-3xl font-bold">{title}</h1>
       <div
         className="space-y-5"

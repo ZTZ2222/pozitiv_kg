@@ -26,7 +26,8 @@
   },
   "BackButton": {
     "profile": "My Profile",
-    "profile-edit": "Edit Profile"
+    "profile-edit": "Edit Profile",
+    "seller": "User profile"
   },
   "Modal": {
     "complain": "Complain",
@@ -156,21 +157,20 @@
     "home": "Home",
     "ads": "Ads",
     "post": "Post Ad",
-    "category": "Category",
+    "category": "Categories",
     "chat": "Chat",
     "favorites": "Favorites",
     "login": "Login",
-    "profile": "User Profile",
+    "profile": "My Profile",
     "search": "Search",
     "resources": "Resources",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "commercial": "Commercial",
-    "seller": "Seller",
+    "seller": "User Profile",
     "edit": "Edit",
-    "auth": "Authorization",
-    "google": "Google",
-    "redirect": "Redirect"
+    "redirect": "Redirect",
+    "404": "404"
   },
   "NotFoundPage": {
     "title": "Oops!",
@@ -189,7 +189,16 @@
   "CategoryPromotionsPage": {
     "empty-message-title": "It's empty here yet",
     "empty-message-description": "There are no ads in this category yet.",
-    "back-to-home": "Back to home"
+    "back-to-home": "Back to home",
+    "categories-title": "Explore Our Categories",
+    "categories-description": "Browse various ads tailored to your needs.",
+    "featured-categories": "Featured Categories",
+    "category-title-1": "Real Estate",
+    "category-description-1": "Ads for real estate.",
+    "category-title-2": "Transport",
+    "category-description-2": "Ads for transport.",
+    "category-title-3": "Technology and Electronics",
+    "category-description-3": "Ads for technology and electronics."
   },
   "AdDetailsPage": {
     "promotion-deactivated-alert": "Your ad has been deactivated. Activate it so others can see it.",

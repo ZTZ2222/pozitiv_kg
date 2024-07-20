@@ -4,9 +4,14 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "@/components/ui/toaster";
 import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
+import Header from "@/components/navigation/Header";
+import Footer from "@/components/navigation/Footer";
+import MobileNav from "@/components/navigation/MobileNav";
+import { isAuthenticated } from "@/actions/user-actions";
+import { getMessages } from "next-intl/server";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,14 +23,15 @@ export const metadata: Metadata = {
   description: "Pozitiv App",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  const messages = useMessages();
+  const messages = await getMessages();
+  const isAuth = await isAuthenticated();
 
   return (
     <html lang={params.locale} suppressHydrationWarning>
@@ -35,8 +41,14 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <NextIntlClientProvider locale={params.locale} messages={messages}>
-          <ProgressBarProvider>{children}</ProgressBarProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ProgressBarProvider>
+            <Header isAuth={isAuth} />
+            <div className="hidden lg:mt-48 lg:block" />
+            {children}
+            <Footer />
+            <MobileNav />
+          </ProgressBarProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>

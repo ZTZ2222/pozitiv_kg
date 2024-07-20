@@ -1,8 +1,8 @@
 import { getAds } from "@/actions/ads-actions";
-import { getBanners } from "@/actions/banner-actions";
 import { getCategoryById } from "@/actions/category-actions";
 import AdList from "@/components/ads/AdList";
 import EmptyMessage from "@/components/category/EmptyMessage";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 import Swiper from "@/components/Swiper";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
@@ -16,17 +16,17 @@ type Props = {
 const CategoryPromotionList: React.FC<Props> = async ({
   params: { categoryId },
 }) => {
-  const params = new URLSearchParams({
+  const searchParams = new URLSearchParams({
     sort_by: "latest",
     category_id: categoryId,
   });
 
   const category = await getCategoryById({ id: categoryId });
-  const promotions = await getAds(params);
-  const banners = await getBanners();
+  const promotions = await getAds(searchParams);
 
   return (
     <main>
+      <BreadCrumbs path={["category", { name: category.name }]} />
       <ScrollArea
         className={cn(
           "ml-4 md:container",
@@ -50,7 +50,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
       {promotions.length > 0 ? (
         <>
           <AdList ads={promotions} className="container mb-10" />
-          <Swiper images={banners} className="mb-10 lg:mb-[100px]" />
+          <Swiper className="mb-10 lg:mb-[100px]" />
         </>
       ) : (
         <EmptyMessage />

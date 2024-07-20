@@ -1,6 +1,7 @@
 "use client";
 
 import Crescent from "@/components/icons/Crescent";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/lib/i18nNavigation";
 import { ChevronLeft } from "lucide-react";
@@ -12,6 +13,7 @@ const CatchAllSegments = () => {
   const router = useRouter();
   return (
     <>
+      <BreadCrumbs path={["404"]} className="container" />
       <div className="container mt-[30px] flex items-center lg:hidden">
         <Button
           className="flex h-fit shrink-0 justify-start p-1"

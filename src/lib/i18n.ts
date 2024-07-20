@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 import { LocalePrefix } from "next-intl/routing";
-import createMiddleware from "next-intl/middleware";
+import { redirect } from "next/navigation";
+import { IntlErrorCode } from "next-intl";
 
 const localePrefix: LocalePrefix = "as-needed";
 
@@ -29,10 +29,22 @@ export const AllLocales = AppConfig.locales.map((locale) => locale.id);
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!AllLocales.includes(locale as any)) notFound();
+  if (!AllLocales.includes(locale as any)) {
+    redirect("/404");
+  }
 
   return {
     messages: (await import(`../locales/${locale}.json`)).default,
+    onError(error) {
+      if (error.code === IntlErrorCode.MISSING_MESSAGE) {
+        console.log(error);
+      } else {
+        console.log(error);
+      }
+    },
+    getMessageFallback({ namespace, key, error }) {
+      return key;
+    },
   };
 });
 
@@ -43,9 +55,3 @@ export const getI18nPath = (url: string, locale: string) => {
 
   return `/${locale}${url}`;
 };
-
-export const i18nMiddleware = createMiddleware({
-  locales: AllLocales,
-  localePrefix: AppConfig.localePrefix,
-  defaultLocale: AppConfig.defaultLocale,
-});

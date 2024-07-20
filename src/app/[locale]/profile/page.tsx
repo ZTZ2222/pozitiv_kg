@@ -20,15 +20,15 @@ const Profile = async () => {
   });
 
   // fetch from API
+  const userInfo = await getUserInfo();
   const myActivePromotions = await getMyAds("active");
   const myPendingPromotions = await getMyAds("pending");
   const myCancelledPromotions = await getMyAds("inactive");
-  const userInfo = await getUserInfo();
 
   return (
     <div className="container">
       <div className="mt-[30px] flex items-center justify-between">
-        <BackButton variant="router" />
+        <BackButton variant="router" location="profile" />
         <Link href="/profile/edit" prefetch className="lg:hidden">
           <UserRoundCog className="size-5" />
         </Link>
@@ -86,7 +86,7 @@ const Profile = async () => {
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myActivePromotions.map((ad: zPromotionRead) => (
                   <div key={ad.id} className="relative">
-                    <AdCard key={ad.id} {...ad} />
+                    <AdCard {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}
                       currentUser={userInfo}
@@ -112,7 +112,7 @@ const Profile = async () => {
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myPendingPromotions.map((ad: zPromotionRead) => (
                   <div key={ad.id} className="relative">
-                    <AdCard key={ad.id} {...ad} />
+                    <AdCard {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}
                       currentUser={userInfo}
@@ -138,7 +138,7 @@ const Profile = async () => {
               <div className="mt-[30px] grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {myCancelledPromotions.map((ad: zPromotionRead) => (
                   <div key={ad.id} className="relative">
-                    <AdCard key={ad.id} {...ad} />
+                    <AdCard {...ad} />
                     <DotsDropdownMenu
                       promotion={ad}
                       currentUser={userInfo}

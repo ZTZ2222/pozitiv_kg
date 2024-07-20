@@ -26,7 +26,8 @@
   },
   "BackButton": {
     "profile": "Мой профиль",
-    "profile-edit": "Редактирование данных"
+    "profile-edit": "Редактирование данных",
+    "seller": "Профиль пользователя"
   },
   "Modal": {
     "complain": "Пожаловаться",
@@ -156,21 +157,20 @@
     "home": "Главная",
     "ads": "Объявления",
     "post": "Подать объявление",
-    "category": "Категория",
+    "category": "Категории",
     "chat": "Чат",
     "favorites": "Избранные",
     "login": "Вход",
-    "profile": "Профиль пользователя",
+    "profile": "Мой профиль",
     "search": "Поиск",
     "resources": "Ресурсы",
     "privacy": "Политика конфиденциальности",
     "terms": "Пользовательское соглашение",
     "commercial": "Реклама",
-    "seller": "Продавец",
+    "seller": "Профиль пользователя",
     "edit": "Редактирование",
-    "auth": "Авторизация",
-    "google": "Google",
-    "redirect": "Перенаправление"
+    "redirect": "Перенаправление",
+    "404": "404"
   },
   "NotFoundPage": {
     "title": "Ой!",
@@ -189,7 +189,16 @@
   "CategoryPromotionsPage": {
     "empty-message-title": "Тут пока пусто",
     "empty-message-description": "В этой категории пока нет объявлений.",
-    "back-to-home": "На главную"
+    "back-to-home": "На главную",
+    "categories-title": "Исследуйте наши категории",
+    "categories-description": "Ознакомьтесь с различными объявлениями, подобранными для ваших нужд.",
+    "featured-categories": "Популярные категории",
+    "category-title-1": "Недвижимость",
+    "category-description-1": "Объявления о недвижимости.",
+    "category-title-2": "Транспорт",
+    "category-description-2": "Объявления о транспорте.",
+    "category-title-3": "Технологии и электроника",
+    "category-description-3": "Объявления об электронике."
   },
   "AdDetailsPage": {
     "promotion-deactivated-alert": "Ваше объявление деактивировано. Активируйте его, чтобы другие могли его видеть.",

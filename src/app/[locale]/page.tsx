@@ -1,13 +1,12 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import React from "react";
+import React, { Suspense } from "react";
 import CategoryModal from "@/components/category/CategoryModal";
 import Swiper from "@/components/Swiper";
-import CategoryList from "@/components/category/CategoryList";
+import CategoriesButtonGroup from "@/components/category/CategoriesButtonGroup";
 import AdList from "@/components/ads/AdList";
-import { getCategories } from "@/actions/category-actions";
-import { getBanners } from "@/actions/banner-actions";
 import { getAds } from "@/actions/ads-actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SkCategoriesButtonGroup from "@/components/skeletons/SkCategoriesButtonGroup";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -29,8 +28,6 @@ export default async function Home() {
     namespace: "Index",
   });
 
-  const categories = await getCategories();
-  const banners = await getBanners();
   const params = new URLSearchParams({ sort_by: "latest" });
   const newPromotions = await getAds(params);
   params.set("recommend", "1");
@@ -38,11 +35,14 @@ export default async function Home() {
 
   return (
     <main>
+      <div className="hidden h-0 lg:mt-48 lg:block" />
       {/* End of bottom header */}
-      <Swiper images={banners} className="mt-[30px]" />
-      <CategoryList categories={categories} />
+      <Swiper className="mt-[30px]" />
+      <Suspense fallback={<SkCategoriesButtonGroup />}>
+        <CategoriesButtonGroup />
+      </Suspense>
       <CategoryModal
-        categories={categories}
+        variant="mobile"
         className="container mt-4 self-center md:hidden"
       />
       <Tabs defaultValue="recommend" className="container mb-[100px] mt-[30px]">

@@ -1,5 +1,4 @@
 import { getAds } from "@/actions/ads-actions";
-import { getBanners } from "@/actions/banner-actions";
 import AdList from "@/components/ads/AdList";
 import EmptyMessage from "@/components/category/EmptyMessage";
 import SaveSearch from "@/components/favorites/SaveSearch";
@@ -8,6 +7,7 @@ import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getSavedSeaches } from "@/actions/favorite-actions";
 import { getUserInfo } from "@/actions/user-actions";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
 
 type Props = {
   searchParams?: {
@@ -30,7 +30,6 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
   const params = new URLSearchParams(searchParams);
   params.set("per_page", "40");
   const promotions = await getAds(params);
-  const banners = await getBanners();
   const currentUser = await getUserInfo();
 
   let searchList;
@@ -41,17 +40,18 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
 
   return (
     <main className="relative min-h-[75vh]">
+      <BreadCrumbs path={["search"]} className="container" />
       {promotions.length > 0 ? (
         <>
-          <h1 className="container my-5 text-xl font-medium text-gray-500 lg:text-2xl">
+          <h1 className="container mb-7 mt-5 text-xl font-medium text-gray-500 lg:text-2xl">
             {t("search-result")}
           </h1>
           <AdList ads={promotions} className="container mb-10 lg:mb-32" />
-          <Swiper images={banners} className="mb-10 lg:mb-32" />
+          <Swiper className="mb-10 lg:mb-32" />
         </>
       ) : (
         <>
-          <h1 className="container my-5 text-xl font-medium text-gray-500 lg:text-2xl">
+          <h1 className="container mb-7 mt-5 text-xl font-medium text-gray-500 lg:text-2xl">
             {t("search-result")}
           </h1>
           <EmptyMessage />

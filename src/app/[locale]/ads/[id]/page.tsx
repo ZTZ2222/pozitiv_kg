@@ -14,6 +14,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import React, { Suspense } from "react";
 import { RelatedAds } from "./_components/related-ads";
 import SkSellerPromotions from "@/components/skeletons/SkSellerPromotions";
+import BreadCrumbs from "@/components/navigation/BreadCrumbs";
+import { getFirstKWords } from "@/lib/utils";
 
 const AdDetail = async ({ params }: { params: { id: string } }) => {
   const locale = await getLocale();
@@ -33,6 +35,13 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
 
   return (
     <main className="container mt-[30px]">
+      <BreadCrumbs
+        path={[
+          "category",
+          { categoryName: promotion.category.name },
+          { promotionName: getFirstKWords(promotion.description) },
+        ]}
+      />
       <div className="items-center justify-center md:flex md:flex-col lg:flex-row lg:items-start lg:justify-start lg:gap-[38px] xl:gap-[49px] 2xl:gap-[60px]">
         <div>
           <AdCarousel

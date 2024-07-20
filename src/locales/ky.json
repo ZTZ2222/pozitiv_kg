@@ -26,7 +26,8 @@
   },
   "BackButton": {
     "profile": "Менин профилим",
-    "profile-edit": "Профилиңизди түзөтүү"
+    "profile-edit": "Профилиңизди түзөтүү",
+    "seller": "Колдонуучунун профили"
   },
   "Modal": {
     "complain": "Даттануу",
@@ -156,21 +157,20 @@
     "home": "Башкы бет",
     "ads": "Жарыялар",
     "post": "Жарыя берүү",
-    "category": "Категория",
+    "category": "Категориялар",
     "chat": "Чат",
     "favorites": "Тандалмалар",
     "login": "Кирүү",
-    "profile": "Колдонуучунун профили",
+    "profile": "Менин профилим",
     "search": "Издөө",
     "resources": "Ресурстар",
     "privacy": "Конфиденциальдик саясат",
     "terms": "Пайдалануу келишим",
     "commercial": "Реклама",
-    "seller": "Сатычуу",
+    "seller": "Колдонуучунун профили",
     "edit": "Түзөтүү",
-    "auth": "Авторизация",
-    "google": "Google",
-    "redirect": "Кирүү"
+    "redirect": "Кайра багыттоо",
+    "404": "404"
   },
   "NotFoundPage": {
     "title": "Ой!",
@@ -189,7 +189,16 @@
   "CategoryPromotionsPage": {
     "empty-message-title": "Бул жерде азырынча бош",
     "empty-message-description": "Бул категорияда азырынча эч кандай жарнама жок.",
-    "back-to-home": "Башкы бетке кайтуу"
+    "back-to-home": "Башкы бетке кайтуу",
+    "categories-title": "Категорияларыбызды изилдеңиз",
+    "categories-description": "Ар кандай муктаждыктарыңыз үчүн ылайыкталган жарнамалар менен таанышыңыз.",
+    "featured-categories": "Тандалган категориялар",
+    "category-title-1": "Кыймылсыз мүлк",
+    "category-description-1": "Кыймылсыз мүлк жарнамалары.",
+    "category-title-2": "Транспорт",
+    "category-description-2": "Транспорт боюнча жарнамалар.",
+    "category-title-3": "Технология жана электроника",
+    "category-description-3": "Технология жана электроника боюнча жарнамалар."
   },
   "AdDetailsPage": {
     "promotion-deactivated-alert": "Сиздин жарнамаңыз өчүрүлдү. Башкалар көрүшү үчүн аны активдеңиз.",
