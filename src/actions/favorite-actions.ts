@@ -78,10 +78,8 @@ export const updateFavorites = actionClient
       });
 
       if (res.ok) {
-        revalidatePath("/favorites");
-
+        revalidateTag("favorites");
         const { data } = await res.json();
-
         return data;
       } else if (res.status === 401) {
         throw new Error("Unauthorized");
