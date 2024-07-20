@@ -38,7 +38,11 @@ const AdCard: React.FC<AdCardProps> = ({
         className,
       )}
     >
-      <Link href={`/ads/${id}`} prefetch className="block h-full w-full">
+      <Link
+        href={`/ads/${id}`}
+        // prefetch
+        className="block h-full w-full"
+      >
         {/* Image */}
         <CardHeader className="p-0">
           <div className="relative h-[169px] bg-gray-300 md:h-[220px] lg:h-[280px]">
