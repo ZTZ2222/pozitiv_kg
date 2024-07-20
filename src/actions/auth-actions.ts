@@ -1,5 +1,8 @@
 "use server";
 
+import { cookies } from "next/headers";
+import { fetchData } from "./safe-action";
+
 // export const setAccessToken = async () => {
 //   cookies().set(
 //     "access_token",
@@ -7,23 +10,27 @@
 //   );
 // };
 
+export async function storeToken(token: string) {
+  cookies().set({
+    name: "access_token",
+    value: token,
+    maxAge: 60 * 60 * 24 * 30,
+    httpOnly: true,
+    secure: true,
+  });
+}
+
 export const exchangeCodeForToken = async (code: string): Promise<string> => {
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/callback?code=${code}`;
-
-  const res = await fetch(endpoint, {
+  const options: RequestInit = {
     method: "GET",
     headers: {
       Accept: "application/json",
     },
-  });
+  };
 
-  if (res.ok) {
-    const {
-      data: { token },
-    } = await res.json();
-
-    return token;
-  } else {
-    throw new Error(`HTTP error! status: ${res.status} - ${await res.json()}`);
-  }
+  const {
+    data: { token },
+  } = await fetchData(endpoint, options);
+  return token;
 };
