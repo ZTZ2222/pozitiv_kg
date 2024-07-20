@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Search as SearchIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "@/lib/i18nNavigation";
+import { usePathname, useRouter } from "@/lib/i18nNavigation";
 import { useDebouncedCallback } from "use-debounce";
 
 interface SearchProps {
@@ -19,7 +19,16 @@ const Search: React.FC<SearchProps> = ({ className }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const { push } = useRouter();
+
+  const [query, setQuery] = useState(
+    searchParams.get("search")?.toString() || "",
+  );
+
+  useEffect(() => {
+    setQuery(searchParams.get("search")?.toString() || "");
+  }, [pathname]);
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
@@ -45,8 +54,9 @@ const Search: React.FC<SearchProps> = ({ className }) => {
           type="search"
           placeholder={t("placeholder_desktop")}
           className="h-full border-none pl-7 text-lg text-gray-700 lg:order-1"
-          defaultValue={searchParams.get("search")?.toString()}
+          value={query}
           onChange={(e) => {
+            setQuery(e.target.value);
             handleSearch(e.target.value);
           }}
         />
@@ -55,8 +65,9 @@ const Search: React.FC<SearchProps> = ({ className }) => {
           type="search"
           placeholder={t("placeholder_mobile")}
           className="h-full border-none bg-gray-200 px-2 text-base font-light text-gray-700"
-          defaultValue={searchParams.get("search")?.toString()}
+          value={query}
           onChange={(e) => {
+            setQuery(e.target.value);
             handleSearch(e.target.value);
           }}
         />
