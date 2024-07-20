@@ -1,4 +1,14 @@
 {
+  "Metadata": {
+    "title": "pozitiv.kg - Мүлк жана Транспорт",
+    "description": "Эң жакшы мүлк жана транспорт сунуштарын табыңыз. Өз жарнамаларыңызды жайгаштырыңыз жана кеңири тизмелерди караңыз.",
+    "keywords": "мүлк, транспорт, жарнама, үйлөр, унаалар",
+    "robots": "index, follow",
+    "author": "Pozitiv командасы",
+    "og_title": "Pozitiv - Мүлк жана Транспорт",
+    "og_description": "Pozitivде эң жакшы мүлк жана транспорт сунуштарын табыңыз жана өзүңүздүн жарнамаларыңызды жайгаштырыңыз.",
+    "og_site_name": "Pozitiv"
+  },
   "Index": {
     "meta_title": "Pozitiv-KY",
     "meta_description": "Pozitiv-KY",

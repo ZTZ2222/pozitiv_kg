@@ -1,4 +1,14 @@
 {
+  "Metadata": {
+    "title": "pozitiv.kg - Real Estate and Transport",
+    "description": "Find the best deals in real estate and transport. Post your ads and explore a wide range of listings.",
+    "keywords": "real estate, transport, ads, property, vehicles",
+    "robots": "index, follow",
+    "author": "Pozitiv Team",
+    "og_title": "Pozitiv - Real Estate and Transport",
+    "og_description": "Discover top listings and post your own ads for real estate and transport on Pozitiv.",
+    "og_site_name": "Pozitiv"
+  },
   "Index": {
     "meta_title": "Pozitiv-EN",
     "meta_description": "Pozitiv-EN",

@@ -11,17 +11,35 @@ import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
 import MobileNav from "@/components/navigation/MobileNav";
 import { isAuthenticated } from "@/actions/user-actions";
-import { getMessages } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-  title: "Pozitiv App",
-  description: "Pozitiv App",
-};
+export async function generateMetadata() {
+  const locale = await getLocale();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "Metadata",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    robots: t("robots"),
+    author: t("author"),
+    openGraph: {
+      title: t("og_title"),
+      description: t("og_description"),
+      url: "https://pozitiv.kg",
+      siteName: t("og_site_name"),
+      type: "website",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

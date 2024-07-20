@@ -8,19 +8,6 @@ import { getAds } from "@/actions/ads-actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SkCategoriesButtonGroup from "@/components/skeletons/SkCategoriesButtonGroup";
 
-export async function generateMetadata() {
-  const locale = await getLocale();
-  const t = await getTranslations({
-    locale: locale,
-    namespace: "Index",
-  });
-
-  return {
-    title: t("meta_title"),
-    description: t("meta_description"),
-  };
-}
-
 export default async function Home() {
   const locale = await getLocale();
   const t = await getTranslations({
