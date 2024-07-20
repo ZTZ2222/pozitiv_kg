@@ -26,7 +26,12 @@ const CategoryPromotionList: React.FC<Props> = async ({
 
   return (
     <main>
-      <BreadCrumbs path={["category", { name: category.name }]} />
+      <BreadCrumbs
+        path={[
+          "category",
+          { name: category.name, href: category.id.toString() },
+        ]}
+      />
       <ScrollArea
         className={cn(
           "ml-4 md:container",

@@ -38,8 +38,11 @@ const AdDetail = async ({ params }: { params: { id: string } }) => {
       <BreadCrumbs
         path={[
           "category",
-          { categoryName: promotion.category.name },
-          { promotionName: getFirstKWords(promotion.description) },
+          {
+            name: promotion.category.name,
+            href: promotion.category.id.toString(),
+          },
+          { name: getFirstKWords(promotion.description) },
         ]}
       />
       <div className="items-center justify-center md:flex md:flex-col lg:flex-row lg:items-start lg:justify-start lg:gap-[38px] xl:gap-[49px] 2xl:gap-[60px]">

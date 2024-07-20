@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 interface BreadCrumbsProps {
-  path: (string | { [key: string]: string })[];
+  path: (string | { name: string; href?: string })[];
   className?: string;
 }
 
@@ -22,7 +22,7 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ path, className }) => {
   const t = useTranslations("Breadcrumbs");
 
   const constructHref = (
-    path: (string | { [key: string]: string })[],
+    path: (string | { name: string; href?: string })[],
     index: number,
   ) => {
     return (
@@ -31,7 +31,7 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ path, className }) => {
         .slice(0, index + 1)
         .map((part) => {
           if (typeof part === "object" && part !== null) {
-            return Object.values(part)[0];
+            return part.href ?? part.name;
           }
           return part;
         })
@@ -54,7 +54,7 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ path, className }) => {
           // Determine if part is an object or a string
           if (typeof part === "object" && part !== null) {
             const key = Object.keys(part)[0];
-            label = part[key];
+            label = part.name;
           } else {
             label = t(part as string);
           }
