@@ -1,5 +1,5 @@
 import { zCategoryRead } from "@/types/category.schema";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,6 +10,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { DrawerClose } from "@/components/ui/drawer";
+import { getCategories } from "@/actions/category-actions";
+import Spinner from "@/components/skeletons/Spinner";
 
 const RecursiveAccordionItem = ({
   category,
@@ -68,13 +70,29 @@ const RecursiveAccordionItem = ({
   );
 };
 
-const CategoryAccordion = ({
-  categories,
-  className,
-}: {
-  categories: zCategoryRead[];
-  className?: string;
-}) => {
+const CategoryAccordion = ({ className }: { className?: string }) => {
+  const [categories, setCategories] = useState<zCategoryRead[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const fetchedCategories = await getCategories();
+        setCategories(fetchedCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <Accordion type="multiple" className={className}>
       {categories.map((category) => (

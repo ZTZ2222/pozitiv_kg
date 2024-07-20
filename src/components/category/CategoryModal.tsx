@@ -5,33 +5,31 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerHeader,
+  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
 import { Grip, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { zCategoryRead } from "@/types/category.schema";
 import CategoryAccordion from "./CategoryAccordion";
 
 const CategoryModal = ({
+  variant = "mobile",
   className,
-  categories,
 }: {
+  variant?: "mobile" | "desktop";
   className?: string;
-  categories: zCategoryRead[];
 }) => {
   const t = useTranslations("Button");
-  const isSmallScreen = useMediaQuery("(max-width: 395px)");
-  const isDesktopScreen = useMediaQuery("(min-width: 768px)");
   return (
-    <Drawer direction={isSmallScreen ? "bottom" : "left"}>
+    <Drawer direction={variant === "mobile" ? "bottom" : "left"}>
       {/* Trigger button */}
-      {isDesktopScreen ? (
+      {variant === "desktop" ? (
         <DrawerTrigger asChild>
           <Button
             variant="ghost"
@@ -62,10 +60,13 @@ const CategoryModal = ({
       {/* Drawer content */}
       <DrawerContent className="h-full max-w-[395px] rounded-t-[10px] bg-white md:rounded-none">
         <DrawerHeader className="flex justify-between py-0 pb-8">
-          <div className="ml-4 flex gap-2.5 text-lg leading-tight text-gray-500">
-            <Grip className="h-6 w-6" />
-            {t("categories")}
-          </div>
+          <DrawerTitle asChild>
+            <div className="ml-4 flex gap-2.5 text-lg leading-tight text-gray-500">
+              <Grip className="h-6 w-6" />
+              {t("categories")}
+            </div>
+          </DrawerTitle>
+          <DrawerDescription className="hidden"></DrawerDescription>
           <DrawerClose className="">
             <X className="h-6 w-6 text-gray-500" />
           </DrawerClose>
@@ -73,10 +74,7 @@ const CategoryModal = ({
 
         {/* Start of categories navbar */}
         <ScrollArea>
-          <CategoryAccordion
-            categories={categories}
-            className="w-full space-y-5 px-9"
-          />
+          <CategoryAccordion className="w-full space-y-5 px-9" />
         </ScrollArea>
         {/* End of categories navbar */}
       </DrawerContent>

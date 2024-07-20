@@ -1,9 +1,10 @@
 import React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { zCategoryRead } from "@/types/category.schema";
 import CategoryButton from "./CategoryButton";
+import { getCategories } from "@/actions/category-actions";
 
-const CategoryList = ({ categories }: { categories: zCategoryRead[] }) => {
+const CategoriesButtonGroup = async () => {
+  const categories = await getCategories();
   return (
     <>
       <ScrollArea className="ml-4 mt-10 pb-4 md:hidden">
@@ -23,4 +24,4 @@ const CategoryList = ({ categories }: { categories: zCategoryRead[] }) => {
   );
 };
 
-export default CategoryList;
+export default CategoriesButtonGroup;
