@@ -13,17 +13,31 @@ import { cn } from "@/lib/utils";
 import { Card, CardContent } from "./ui/card";
 import Link from "next/link";
 import { zBannerRead } from "@/types/banner.schema";
+import { getBanners } from "@/actions/banner-actions";
+import { Skeleton } from "./ui/skeleton";
 
-const Swiper = ({
-  className,
-  images,
-}: {
-  className?: string;
-  images: zBannerRead[];
-}) => {
+const Swiper = ({ className }: { className?: string }) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [images, setImages] = React.useState<zBannerRead[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const items = await getBanners();
+        setImages(items);
+      } catch (error) {
+        setError("Failed to fetch images");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   React.useEffect(() => {
     if (!api) {
@@ -43,6 +57,21 @@ const Swiper = ({
       api.scrollTo(index);
     }
   };
+
+  if (loading)
+    return (
+      <div className="container">
+        <Skeleton
+          className={cn(
+            "h-[150px] w-full rounded-[10px] md:h-[245px] lg:h-[340px]",
+            className,
+          )}
+        ></Skeleton>
+      </div>
+    );
+  if (error) return <div className="text-red-500">{error}</div>;
+  if (images.length === 0) return <div>No images available</div>;
+
   return (
     <div className={cn("sm:container", className)}>
       <Carousel
