@@ -8,22 +8,24 @@ import { redirect } from "@/lib/i18nNavigation";
 
 export const getUserInfo = async (): Promise<zUserRead | undefined> => {
   const access_token = cookies().get("access_token")?.value;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/info`, {
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/users/info`;
+  const options: RequestInit = {
     cache: "no-store",
     credentials: "include",
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
-  });
+  };
 
-  if (res.ok) {
-    const { data } = await res.json();
-
+  try {
+    const response = await fetch(endpoint, options);
+    if (!response.ok) {
+      return undefined;
+    }
+    const { data } = await response.json();
     return data;
-  } else if (res.status === 401) {
-    return undefined;
-  } else {
-    throw new Error(`HTTP error! status: ${res.status}`);
+  } catch (error) {
+    throw new Error(`An error occurred. Error: ${error}`);
   }
 };
 
@@ -86,7 +88,7 @@ export const updateUserInfo = actionClient
     }
   });
 
-export const userLogout = (): void => {
+export const userLogout = async (): Promise<void> => {
   cookies().delete("access_token");
   redirect("/login");
 };
@@ -123,14 +125,14 @@ export const isAuthenticated = async (): Promise<boolean> => {
       Authorization: `Bearer ${access_token}`,
     },
   };
-  const res = await fetch(endpoint, options);
-  const { data } = await res.json();
-
-  if (res.status === 401) {
-    return false;
-  } else if (data?.id) {
-    return true;
-  } else {
-    throw new Error(`HTTP error! status: ${res.status}`);
+  try {
+    const response = await fetch(endpoint, options);
+    if (!response.ok) {
+      return false;
+    }
+    const { data } = await response.json();
+    return Boolean(data?.id);
+  } catch (error) {
+    throw new Error(`An error occurred. Error: ${error}`);
   }
 };
