@@ -9,44 +9,73 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useTranslations } from "next-intl";
-import { usePathname } from "@/lib/i18nNavigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
-const chatIdPattern = /^\d+_\d+$/;
+interface BreadCrumbsProps {
+  path: (string | { [key: string]: string })[];
+  className?: string;
+}
 
-const BreadCrumbs = ({ className }: { className?: string }) => {
+const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ path, className }) => {
   const t = useTranslations("Breadcrumbs");
 
-  const pathname = usePathname();
-  const parts = pathname.split("/").filter((part) => part);
-
-  // Hide breadcrumbs on the home page
-  if (parts.length === 0) {
-    return <div className="hidden h-0 lg:mt-48 lg:block" />;
-  }
-
-  // Only display the home link and the last part of the breadcrumb
-  const lastPart = parts[parts.length - 1];
-  const isNumeric = !isNaN(Number(lastPart));
-  const matchesPattern = chatIdPattern.test(lastPart);
-  const label = isNumeric || matchesPattern ? lastPart : t(lastPart);
+  const constructHref = (
+    path: (string | { [key: string]: string })[],
+    index: number,
+  ) => {
+    return (
+      "/" +
+      path
+        .slice(0, index + 1)
+        .map((part) => {
+          if (typeof part === "object" && part !== null) {
+            return Object.values(part)[0];
+          }
+          return part;
+        })
+        .join("/")
+    );
+  };
 
   return (
-    <Breadcrumb className={cn("container mt-7 py-1", className)}>
+    <Breadcrumb className={cn("mb-[50px] mt-7 hidden lg:block", className)}>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/" prefetch>
-              {t("home")}
-            </Link>
+            <Link href="/">{t("home")}</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{label}</BreadcrumbPage>
-        </BreadcrumbItem>
+        {path.map((part, index) => {
+          const isLast = index === path.length - 1;
+          let label: string;
+
+          // Determine if part is an object or a string
+          if (typeof part === "object" && part !== null) {
+            const key = Object.keys(part)[0];
+            label = part[key];
+          } else {
+            label = t(part as string);
+          }
+
+          return (
+            <React.Fragment key={index}>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                {isLast ? (
+                  <BreadcrumbPage>{label}</BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink asChild>
+                    <Link href={constructHref(path, index)} prefetch>
+                      {label}
+                    </Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
+          );
+        })}
       </BreadcrumbList>
     </Breadcrumb>
   );
