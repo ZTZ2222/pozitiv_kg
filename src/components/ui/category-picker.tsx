@@ -27,14 +27,12 @@ import React, { useState } from "react";
 type Props = {
   categories?: zCategoryRead[];
   field: ControllerRenderProps<any, any>;
-  modal?: boolean;
   withLabel?: boolean;
 };
 
 const CategoryPicker: React.FC<Props> = ({
   categories,
   field,
-  modal = false,
   withLabel = true,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -57,7 +55,7 @@ const CategoryPicker: React.FC<Props> = ({
           {t("category-label")}
         </FormLabel>
       )}
-      <Popover open={open} onOpenChange={setOpen} modal={modal}>
+      <Popover open={open} onOpenChange={setOpen} modal={true}>
         <PopoverTrigger asChild>
           <FormControl>
             <Button

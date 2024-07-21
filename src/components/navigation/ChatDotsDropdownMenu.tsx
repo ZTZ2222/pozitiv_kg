@@ -26,7 +26,7 @@ const ChatDotsDropdownMenu: React.FC<Props> = ({ className }) => {
   const { execute } = useAction(clearChat);
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"

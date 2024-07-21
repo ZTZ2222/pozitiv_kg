@@ -115,7 +115,6 @@ const MainFilter = () => {
                 <CategoryPicker
                   categories={categories}
                   field={field}
-                  modal={true}
                   withLabel={false}
                 />
               )}

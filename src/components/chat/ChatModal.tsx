@@ -36,7 +36,7 @@ const ChatModal: React.FC<Props> = ({ chatId }) => {
     );
   }
   return (
-    <Dialog modal={false}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant="contact-chat" size="col-2">
           <MessageCircleMore className="size-5" />
