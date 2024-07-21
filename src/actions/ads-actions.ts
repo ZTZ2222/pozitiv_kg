@@ -12,14 +12,16 @@ import { cookies } from "next/headers";
 import { actionClient, fetchData } from "./safe-action";
 
 export const getAds = async (
-  params: URLSearchParams,
+  searchParams: string,
 ): Promise<zPromotionRead[]> => {
+  const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
-  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`;
+  const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products?${searchParams}`;
   const options: RequestInit = {
     cache: "no-store",
     headers: {
       "Accept-Language": locale,
+      ...(access_token && { Authorization: `Bearer ${access_token}` }),
     },
     next: { tags: ["ad-list"] },
   };
@@ -28,12 +30,14 @@ export const getAds = async (
 };
 
 export const getAdInfo = async (id: string): Promise<zPromotionRead> => {
+  const access_token = cookies().get("access_token")?.value;
   const locale = await getLocale();
   const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`;
   const options: RequestInit = {
     cache: "no-store",
     headers: {
       "Accept-Language": locale,
+      ...(access_token && { Authorization: `Bearer ${access_token}` }),
     },
     next: { tags: [`ad-${id}`] },
   };
