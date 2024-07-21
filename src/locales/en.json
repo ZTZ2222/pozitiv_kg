@@ -37,7 +37,9 @@
   "BackButton": {
     "profile": "My Profile",
     "profile-edit": "Edit Profile",
-    "seller": "User profile"
+    "seller": "User profile",
+    "post": "Post Ad",
+    "edit": "Edit"
   },
   "Modal": {
     "complain": "Complain",
