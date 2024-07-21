@@ -1,6 +1,5 @@
 import { fetchData } from "@/actions/safe-action";
 import AdCard from "@/components/ads/AdCard";
-import AdList from "@/components/ads/AdList";
 import { zPromotionRead } from "@/types/ad.schema";
 import { getLocale, getTranslations } from "next-intl/server";
 

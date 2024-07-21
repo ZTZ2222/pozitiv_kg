@@ -27,7 +27,7 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
   });
 
   const params = new URLSearchParams(searchParams);
-  const promotions = await getAds(params);
+  const promotions = await getAds(params.toString());
   const currentUser = await getUserInfo();
 
   let searchList;
@@ -46,7 +46,7 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
           </h1>
           <AdList
             initialAds={promotions}
-            params={params}
+            params={params.toString()}
             className="container mb-10 lg:mb-32"
           />
         </>

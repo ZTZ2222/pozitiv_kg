@@ -3,7 +3,6 @@ import { getCategoryById } from "@/actions/category-actions";
 import AdList from "@/components/ads/AdList";
 import EmptyMessage from "@/components/category/EmptyMessage";
 import BreadCrumbs from "@/components/navigation/BreadCrumbs";
-import Swiper from "@/components/Swiper";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -22,7 +21,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
   });
 
   const category = await getCategoryById({ id: categoryId });
-  const promotions = await getAds(searchParams);
+  const promotions = await getAds(searchParams.toString());
 
   return (
     <main>
@@ -57,7 +56,7 @@ const CategoryPromotionList: React.FC<Props> = async ({
         <>
           <AdList
             initialAds={promotions}
-            params={searchParams}
+            params={searchParams.toString()}
             className="container mb-10"
           />
         </>

@@ -1,6 +1,5 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { getLocale, getTranslations } from "next-intl/server";
-import AdList from "@/components/ads/AdList";
 import SavedSearchList from "@/components/favorites/SavedSearchList";
 import { getFavorites, getSavedSeaches } from "@/actions/favorite-actions";
 import { isAuthenticated } from "@/actions/user-actions";

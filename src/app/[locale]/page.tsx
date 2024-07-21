@@ -16,9 +16,9 @@ export default async function Home() {
   });
 
   const params = new URLSearchParams({ sort_by: "latest" });
-  const newPromotions = await getAds(params);
+  const newPromotions = await getAds(params.toString());
   params.set("recommend", "1");
-  const recommendedPromotions = await getAds(params);
+  const recommendedPromotions = await getAds(params.toString());
 
   return (
     <main>
@@ -42,13 +42,16 @@ export default async function Home() {
         <TabsContent value="recommend">
           <AdList
             initialAds={recommendedPromotions}
-            params={new URLSearchParams({ recommend: "1", sort_by: "latest" })}
+            params={new URLSearchParams({
+              recommend: "1",
+              sort_by: "latest",
+            }).toString()}
           />
         </TabsContent>
         <TabsContent value="new">
           <AdList
             initialAds={newPromotions}
-            params={new URLSearchParams({ sort_by: "latest" })}
+            params={new URLSearchParams({ sort_by: "latest" }).toString()}
           />
         </TabsContent>
       </Tabs>
