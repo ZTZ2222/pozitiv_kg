@@ -563,8 +563,8 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M38 123.052V114.732H41.9888C42.7865 114.732 43.4721 114.855 44.0455 115.101C44.6272 115.346 45.0759 115.703 45.3917 116.17C45.7075 116.63 45.8654 117.177 45.8654 117.811C45.8654 118.436 45.7075 118.979 45.3917 119.439C45.0759 119.898 44.6272 120.255 44.0455 120.508C43.4721 120.754 42.7865 120.877 41.9888 120.877H40.4681V123.052H38ZM41.8392 119.023H40.4681V116.586H41.8392C42.3544 116.586 42.7367 116.693 42.986 116.907C43.2436 117.121 43.3724 117.422 43.3724 117.811C43.3724 118.191 43.2436 118.488 42.986 118.702C42.7367 118.916 42.3544 119.023 41.8392 119.023Z" fill="url(#paint555_linear_1952_20605)"/>
 </g>
 <defs>
-<filter id="filter0_d_1952_20605" x="59.2344" y="61.1029" width="36.1836" height="20.0782" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-<feFlood floodOpacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_d_1952_20605" x="59.2344" y="61.1029" width="36.1836" height="20.0782" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="0.413984"/>
 <feComposite in2="hardAlpha" operator="out"/>
@@ -572,8 +572,8 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1952_20605"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1952_20605" result="shape"/>
 </filter>
-<filter id="filter1_d_1952_20605" x="38" y="114.566" width="78.6562" height="9.06621" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-<feFlood floodOpacity="0" result="BackgroundImageFix"/>
+<filter id="filter1_d_1952_20605" x="38" y="114.566" width="78.6562" height="9.06621" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="0.413984"/>
 <feComposite in2="hardAlpha" operator="out"/>

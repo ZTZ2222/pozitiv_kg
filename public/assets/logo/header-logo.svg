@@ -12,8 +12,8 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00293732 23.5172V2.36338H10.1452C12.1736 2.36338 13.9168 2.67566 15.3748 3.3002C16.8538 3.92474 17.9948 4.83133 18.7978 6.01998C19.6007 7.18848 20.0022 8.57859 20.0022 10.1903C20.0022 11.7819 19.6007 13.1619 18.7978 14.3304C17.9948 15.4989 16.8538 16.4055 15.3748 17.0502C13.9168 17.6747 12.1736 17.987 10.1452 17.987H6.27845V23.5172H0.00293732ZM9.76484 13.2727H6.27845V7.07767H9.76484C11.0749 7.07767 12.0468 7.34965 12.6807 7.8936C13.3358 8.43756 13.6633 9.20313 13.6633 10.1903C13.6633 11.1573 13.3358 11.9128 12.6807 12.4568C12.0468 13.0007 11.0749 13.2727 9.76484 13.2727Z" fill="url(#paint9_linear_2999_705)"/>
 </g>
 <defs>
-<filter id="filter0_d_2999_705" x="0.00293732" y="1.94116" width="199.996" height="23.0526" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-<feFlood floodOpacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_d_2999_705" x="0.00293732" y="1.94116" width="199.996" height="23.0526" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="1.05263"/>
 <feComposite in2="hardAlpha" operator="out"/>
