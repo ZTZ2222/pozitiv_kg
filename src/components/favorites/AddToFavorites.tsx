@@ -13,11 +13,13 @@ import { usePathname } from "@/lib/i18nNavigation";
 const AddToFavorites = ({
   id,
   favorites,
+  onUpdateFavorites,
   variant = "icon",
   className,
 }: {
   id: number;
   favorites: number;
+  onUpdateFavorites?: (id: number, favorites: number) => void;
   variant?: "icon" | "button";
   className?: string;
 }) => {
@@ -33,7 +35,9 @@ const AddToFavorites = ({
 
   const handleClick = () => {
     const action = optimisticState === 1 ? "remove" : "add";
+
     execute({ id, favourable_type: "Product", action });
+    if (onUpdateFavorites) onUpdateFavorites(id, optimisticState === 1 ? 0 : 1);
   };
 
   if (variant === "button") {

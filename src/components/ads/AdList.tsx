@@ -9,33 +9,38 @@ import Spinner from "@/components/skeletons/Spinner";
 
 type Props = {
   initialAds: zPromotionRead[];
-  params?: URLSearchParams;
+  params?: string;
   className?: string;
 };
 
-const AdList: React.FC<Props> = ({
-  initialAds,
-  params = new URLSearchParams(),
-  className,
-}) => {
-  const [ads, setAds] = useState(initialAds);
+const AdList: React.FC<Props> = ({ initialAds, params, className }) => {
+  const [ads, setAds] = useState<zPromotionRead[]>(initialAds);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const loaderRef = useRef(null);
 
   const loadMoreAds = useCallback(async () => {
     setLoading(true);
 
     // Ensure params is a URLSearchParams instance
-    const searchParams = new URLSearchParams(params);
+    const searchParams = new URLSearchParams(params || "");
     searchParams.set("page", page.toString());
 
-    const newAds = await getAds(searchParams);
+    const newAds = await getAds(searchParams.toString());
 
     setAds((prevAds) => [...prevAds, ...newAds]);
     setLoading(false);
     setPage((prevPage) => prevPage + 1);
   }, [page, params]);
+
+  const handleUpdateFavorites = useCallback(
+    (id: number, favorites: number) => {
+      setAds((prevAds) =>
+        prevAds.map((ad) => (ad.id === id ? { ...ad, favorites } : ad)),
+      );
+    },
+    [setAds],
+  );
 
   useEffect(() => {
     const options = {
@@ -66,7 +71,9 @@ const AdList: React.FC<Props> = ({
         className,
       )}
     >
-      {ads?.map((ad: zPromotionRead) => <AdCard key={ad.id} {...ad} />)}
+      {ads?.map((ad: zPromotionRead) => (
+        <AdCard key={ad.id} {...ad} onUpdateFavorites={handleUpdateFavorites} />
+      ))}
       <div
         ref={loaderRef}
         className="col-span-full flex items-center justify-center"

@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 interface AdCardProps extends zPromotionRead {
+  onUpdateFavorites?: (id: number, favorites: number) => void;
   className?: string;
 }
 
@@ -28,6 +29,7 @@ const AdCard: React.FC<AdCardProps> = ({
   galleries,
   favorites,
   is_vip,
+  onUpdateFavorites,
   className,
 }) => {
   const t = useTranslations("Button");
@@ -91,7 +93,11 @@ const AdCard: React.FC<AdCardProps> = ({
       )}
 
       {/* Add to favorites */}
-      <AddToFavorites id={id} favorites={favorites} />
+      <AddToFavorites
+        id={id}
+        favorites={favorites}
+        onUpdateFavorites={onUpdateFavorites}
+      />
     </Card>
   );
 };
