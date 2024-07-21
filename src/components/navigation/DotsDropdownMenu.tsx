@@ -124,7 +124,7 @@ const DotsDropdownMenu: React.FC<Props> = ({
 
   return (
     <>
-      <DropdownMenu modal={false}>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
