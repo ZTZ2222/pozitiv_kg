@@ -51,12 +51,7 @@ const SearchPage: React.FC<Props> = async ({ searchParams }) => {
           />
         </>
       ) : (
-        <>
-          <h1 className="container mb-7 mt-5 text-xl font-medium text-gray-500 lg:text-2xl">
-            {t("search-result")}
-          </h1>
-          <EmptyMessage />
-        </>
+        <EmptyMessage />
       )}
       <SaveSearch
         searchList={searchList}

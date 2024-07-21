@@ -168,7 +168,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
               sizes="100%"
             />
           </Link>
-          <LocaleSwitcher className="h-fit p-0 text-white/80 hover:bg-transparent hover:text-accent-foreground" />
+          <LocaleSwitcher className="h-fit p-0 text-white/80 hover:bg-transparent hover:text-white focus-visible:ring-0" />
         </div>
         {/* Ornaments */}
         <div className="flex overflow-hidden">
